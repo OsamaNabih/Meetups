@@ -5,19 +5,21 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
 <body>
 
-<nav id = "navBarHead" class="fixed-top navbar navbar-expand-md">
+<nav id = "navBarHead" class="navbar navbar-fixed-top navbar-dark navbar-expand-md">
+
   <a class="navbar-brand" href="#">
     <img src="Tafrah.png" alt="Tafrah">
     Tafrah
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-    <span class="navbar-toggler-icon"></span>
+    <i style='color:black' class="fas fa-bars"></i>
   </button>
   <div class="collapse navbar-collapse " id="collapsibleNavbar">
     <ul class="navbar-nav ml-auto">
@@ -36,90 +38,72 @@
     </ul>
   </div>
 </nav>
-<p> 
-  This 
-  thisasd</p><p> 
-  This 
-  thisasd</p>
-  <p> 
-  This 
-  thisasd</p>
-  <p> 
-  This 
-  thisasd</p>
+<div  class="jumbotron MainTron">
+  <h1 class="display-4">Hello, world!</h1>
+  <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+  <hr class="my-4">
+  <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+  <p class="lead">
+    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+  </p>
+</div>
 
-  <p> 
-  This 
-  thisasd</p><p> 
-  This 
-  thisasd</p>
-  <p> 
-  This 
-  thisasd</p>
-  <p> 
-  This 
-  thisasd</p>
-  <p> 
-  This 
-  thisasd</p>
-  <p> 
-  This 
-  thisasd</p>
-  <p> 
-  This 
-  thisasd</p>
-  <p> 
-  This 
-  thisasd</p>
-  <p> 
-  This 
-  thisasd</p>
-  <p> 
-  This 
-  thisasd</p>
-  <p> 
-  This 
-  thisasd</p>
-  <p> 
-  This 
-  thisasd</p>
-  <p> 
-  This 
-  thisasd</p>
 <style>
 
-.nav-item
+.MainTron
+{
+  background-image: url('egypt.jpg');
+  background-position: 0% 25%;
+  background-size: cover;
+  border-radius: 0px;
+  background-repeat: no-repeat;
+  color: white;
+  text-shadow: black 0.3em 0.3em 0.3em;
+}
+.nav-item /* The margin right is to make the "spaces" between the words, the text overflow and the whitespace is to make the text not wrap */
 {
   margin-right: 7%;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.Transparent
+.navbar /* making the navbar cover the whole page (full width) and unpadded */
 {
-  background:rgba(81, 70, 132, 0.5) !important;
+  background: rgb(grey) !important;
   transition: 0.5s;
+  width:100%;
+  padding: 0%;
 }
-.navbar
+.show /* show and collapsing are classes that get added to the data toggler, if you remove the padding left the text will stick to the left of the page*/
+      /* try removing collapsing first and see how it looks and then try to remove them both, watch div with id collapsibleNavbar in the inspector on google chrome */
 {
-  background: rgba(white);
-  transition: 0.5s
+  padding-left: 15px;
 }
-.nav-link
+.collapsing
 {
-   color: darkgrey;
-   transition: 0.5s;
+  padding-left: 15px;
 }
-.navbar-brand
+.nav-link,.navbar-brand
 {
-  color:darkgrey;
-  transition: 0.5s
+   color: black !important;
+  
 }
-#Profiling
+#Profiling  /* this is just an arbitrary number by trial and error */
 {
   margin-right: 50px !important;
 }
-.navbar-fixed-top {height: 40px !important;}
-.navbar-brand img {height: 40px;}
+.navbar-toggler:focus {outline:0;}
+.navbar-fixed-top {height: 50px !important;}
+.navbar-brand img {height: 40px;} /* so the image doesn't overflow the navbar*/
+@media (max-width: 767px) { /* when the screen is small and you're going to make a toggler have the drop down menu colored in transparent white, so the text can be seen */
+  .navbar-collapse
+    {
+        background-color:rgba(255,255,255,0.8);
+    }
+  .navbar-toggler
+  {
+    margin-right:2%;
+  }
+}
 </style>
 
 <script>
@@ -129,16 +113,10 @@
  $(window).scroll(function() {
     if($(this).scrollTop() > 50)  /*height in pixels when the navbar becomes non opaque*/ 
     {
-       $('.nav-link').css('color', 'white');
-       $('.navbar-brand').css('color', 'white');
-        $('#Profiling').text('Sign up');
-        $('.navbar').addClass('Transparent');
-  
+        $('#Profiling').text('Sign up');  
     } else {
-       $('.nav-link').css('color', 'darkgrey');
-       $('.navbar-brand').css('color', 'darkgrey');
+
          $('#Profiling').text('Profile');
-         $('.navbar').removeClass('Transparent');
     }
 });
 $(window).ready(function()
