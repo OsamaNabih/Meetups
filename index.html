@@ -11,8 +11,11 @@
 </head>
 <body>
 
-<nav id = "navBarHead" class="fixed-top navbar navbar-expand-md bg-dark navbar-dark">
-  <a class="navbar-brand" href="#">Navbar</a>
+<nav id = "navBarHead" class="fixed-top navbar navbar-expand-md">
+  <a class="navbar-brand" href="#">
+    <img src="Tafrah.png" alt="Tafrah">
+    Tafrah
+  </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -93,13 +96,30 @@
 }
 .Transparent
 {
-  background: rgba(0,0,0,0.4) !important;
+  background:rgba(81, 70, 132, 0.5) !important;
   transition: 0.5s;
 }
-.navbar-dark
+.navbar
 {
+  background: rgba(white);
   transition: 0.5s
 }
+.nav-link
+{
+   color: darkgrey;
+   transition: 0.5s;
+}
+.navbar-brand
+{
+  color:darkgrey;
+  transition: 0.5s
+}
+#Profiling
+{
+  margin-right: 50px !important;
+}
+.navbar-fixed-top {height: 40px !important;}
+.navbar-brand img {height: 40px;}
 </style>
 
 <script>
@@ -109,11 +129,14 @@
  $(window).scroll(function() {
     if($(this).scrollTop() > 50)  /*height in pixels when the navbar becomes non opaque*/ 
     {
-       
+       $('.nav-link').css('color', 'white');
+       $('.navbar-brand').css('color', 'white');
         $('#Profiling').text('Sign up');
         $('.navbar').addClass('Transparent');
   
     } else {
+       $('.nav-link').css('color', 'darkgrey');
+       $('.navbar-brand').css('color', 'darkgrey');
          $('#Profiling').text('Profile');
          $('.navbar').removeClass('Transparent');
     }
