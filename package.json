@@ -1,0 +1,32 @@
+{
+  "name": "meetups",
+  "version": "1.0.0",
+  "description": "Meetups project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OsamaNabih/Meetups.git"
+  },
+  "keywords": [
+    "Meetups",
+    "node",
+    "express",
+    "passport"
+  ],
+  "author": "Osama Nabih",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OsamaNabih/Meetups/issues"
+  },
+  "homepage": "https://github.com/OsamaNabih/Meetups#readme",
+  "dependencies": {
+    "ejs": "^2.5.7",
+    "express": "^4.16.3",
+    "nodemon": "^1.17.2",
+    "passport": "^0.4.0",
+    "passport-google-oauth20": "^1.0.0"
+  }
+}

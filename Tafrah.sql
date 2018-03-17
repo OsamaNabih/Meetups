@@ -1,9 +1,9 @@
 create database Tafrah;
 
 create table Users
-(	
-	UserID int not null auto_increment,	
-	Email varchar(320) not null, 
+(
+	UserID int not null auto_increment,
+	Email varchar(320) not null,
 	FirstName varchar(20) not null,
 	LastName varchar(20) not null,
 	Password varchar(30) not null,
@@ -51,32 +51,30 @@ create table Images
 	MeetupID int not null,
     ImageURL varchar(400) not null,
     Primary Key (MeetupID,ImageURL),
-    Foreign Key(MeetupID) references Meetups(MeetupID) on delete cascade on update cascade 
+    Foreign Key(MeetupID) references Meetups(MeetupID) on delete cascade on update cascade
 );
-delimiter $$ 
+delimiter $$
 
-create trigger Capcity before insert on Meetups 
-for each row 
-begin 
+create trigger Capcity before insert on Meetups
+for each row
+begin
 if new.Capacity <= 0  then
 set new.Capacity = NULL ;
 end if;
-if new.Price <= 0 then 
+if new.Price <= 0 then
 set new.Price = NULL;
 end if;
-end$$ 
+end$$
 
 
 delimiter $$
-create trigger foo before insert on Users 
-for each row 
-begin 
+create trigger foo before insert on Users
+for each row
+begin
 if new.UserType > 2   then
 set new.UserType = NULL ;
 end if ;
 if new.UserType < 0 then
 set new.UserType=NULL;
 end if;
-end$$ 
-
-
+end$$
