@@ -54,44 +54,6 @@ create table Images
     Foreign Key(MeetupID) references Meetups(MeetupID) on delete cascade on update cascade
 );
 
-/*--Inserting some users--*/
-
-Insert Into Users(Email,FirstName,LastName,Password,UserType,BirthDate,Position) 
-value ("walidashraf423@gmail.com","waleed","ashraf",123,0,STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Professional Procrastinator"); 
-
-Insert Into Users(Email,FirstName,LastName,Password,UserType,BirthDate,Position) 
-value ("OmarWagih@gmail.com","Omar","Wagih",11111,1,STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Professional Procrastinator");
- 
-Insert Into Users(Email,FirstName,LastName,Password,UserType,BirthDate,Position)
- value ("OsamaNabih@gmail.com","Osama","Nabih",4444,2,STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Professional Procrastinator");
- 
-Insert Into Users(Email,FirstName,LastName,Password,UserType,BirthDate,Position)
- value ("YasmeenAhmed@gmail.com","Yasmeen","Ahmed",5555,0,STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Professional Procrastinator"); 
- 
-
-/*--------------------------------------------------------------------------------------------------------------------
-Inserting some Meetups--*/
-Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,MeetupDate,Slogan,District)
- value ("helloworld1",50000,"how to procrastinate",0,"my house ",STR_TO_DATE('09-04-2018 23:30:50','%m-%d-%Y %H:%i:%s'),"Procrastinate FTW","Dokki");
- 
-Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,MeetupDate,Slogan,District) 
-value ("helloworld2",4165000,"how to procrastinate",33,"my house ",STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Procrastinate FTW","Dokki");
-
-Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,MeetupDate,Slogan,District)
- value ("helloworld3",50000,"how to procrastinate",99,"my house ",STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Procrastinate FTW","Dokki");
- 
-Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,MeetupDate,Slogan,District) 
-value ("helloworld4",50000,"how to procrastinate",40,"my house ",STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Procrastinate FTW","Dokki");
-
-Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,MeetupDate,Slogan,District)
- value ("helloworld5",50000,"how to procrastinate",80,"my house ",STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Procrastinate FTW","Dokki");
- 
-Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,MeetupDate,Slogan,District)
- value ("helloworld6",50000,"how to procrastinate",650,"my house ",STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Procrastinate FTW","Dokki");
- 
-Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,MeetupDate,Slogan,District) 
-value ("helloworld7",50000,"how to procrastinate",7440,"my house ",19830905202020,"Procrastinate FTW","Dokki");
-
 /*--------------------------------------------------------------------------------------------------------------------
 Some triggers performing checks on insertions--*/
 delimiter $$
@@ -119,13 +81,77 @@ set new.UserType=NULL;
 end if;
 end$$
 
+/*-------------------------------------------------------------------------------------------------------------------
+--Inserting some users--*/
+Insert Into Users(Email,FirstName,LastName,Password,UserType,BirthDate,Position) 
+values ("walidashraf423@gmail.com","waleed","ashraf",123,0,STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Professional Procrastinator"); 
 
-/* TESTING */
+Insert Into Users(Email,FirstName,LastName,Password,UserType,BirthDate,Position) 
+values ("OmarWagih@gmail.com","Omar","Wagih",11111,1,STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Professional Procrastinator");
+ 
+Insert Into Users(Email,FirstName,LastName,Password,UserType,BirthDate,Position)
+values ("OsamaNabih@gmail.com","Osama","Nabih",4444,2,STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Professional Procrastinator");
+ 
+Insert Into Users(Email,FirstName,LastName,Password,UserType,BirthDate,Position)
+values ("YasmeenAhmed@gmail.com","Yasmeen","Ahmed",5555,0,STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Professional Procrastinator"); 
+ 
+Insert Into Users(Email,FirstName,LastName,Password,UserType,BirthDate,Position)
+values
+("Speaker1@gmail.com", "Speaker2@gmail.com"),
+("Speaker1FirstName", "Speaker2FirstName"),
+("Speaker1LastName", "Speaker2LastName"),
+("password1", "password2"),
+(1, 1),
+('1990-06-22', '1994-12-01'),
+("Machine Learning Engineer at Microsoft", "DevOps Engineer at Google");
 
+Insert Into Users(Email,FirstName,LastName,Password,UserType,BirthDate,Position)
+values ("Attendee@gmail.com","Eager","Learner",1234,2,'2001-06-22',"Student");
+
+Insert Into Users(Email,FirstName,LastName,Password,UserType,BirthDate,Position)
+values ("Attendee2@gmail.com","Tafrah","Lover",4321,2,'1995-04-15',"Junior front-end developer");
+
+Insert Into Users(Email,FirstName,LastName,Password,UserType,BirthDate,Position)
+values ("Attendee3@gmail.com","Real","Person",1111,2,'1990-06-02',"Junior back-end developer");
+
+Insert Into Users(Email,FirstName,LastName,Password,UserType,BirthDate,Position)
+values ("Attendee4@gmail.com","Very","Enthusiastic",2222,2,'1990-04-13',"Machine Learning Engineer");
+
+Insert Into Users(Email,FirstName,LastName,Password,UserType,BirthDate,Position)
+values
+("Attendee@gmail.com", "Attendee2@gmail.com", "Attendee3@gmail.com", "Attendee4@gmail.com"),
+("Eager", "Tafrah", "Real", "Very"),
+("Learner", "Lover", "Person", "Enthusiastic"),
+(1234, 4321, 1111, 2222),
+(2, 2, 2, 2),
+('2001-06-22', '1995-04-15', '1990-06-02', '1990-04-13'),
+("Student", "Junior front-end developer", "Junior back-end developer", "Machine Learning Engineer");
+/*--------------------------------------------------------------------------------------------------------------------
+Inserting some Meetups--*/
+Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,MeetupDate,Slogan,District)
+values ("helloworld1",50000,"how to procrastinate",0,"my house ",STR_TO_DATE('09-04-2018 23:30:50','%m-%d-%Y %H:%i:%s'),"Procrastinate FTW","Dokki");
+ 
+Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,MeetupDate,Slogan,District) 
+values ("helloworld2",4165000,"how to procrastinate",33,"my house ",STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Procrastinate FTW","Dokki");
+
+Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,MeetupDate,Slogan,District)
+values ("helloworld3",50000,"how to procrastinate",99,"my house ",STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Procrastinate FTW","Dokki");
+ 
+Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,MeetupDate,Slogan,District) 
+values ("helloworld4",50000,"how to procrastinate",40,"my house ",STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Procrastinate FTW","Dokki");
+
+Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,MeetupDate,Slogan,District)
+values ("helloworld5",50000,"how to procrastinate",80,"my house ",STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Procrastinate FTW","Dokki");
+ 
+Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,MeetupDate,Slogan,District)
+values ("helloworld6",50000,"how to procrastinate",650,"my house ",STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Procrastinate FTW","Dokki");
+ 
+Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,MeetupDate,Slogan,District) 
+values ("helloworld7",50000,"how to procrastinate",7440,"my house ",19830905202020,"Procrastinate FTW","Dokki");
 
 
 Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,MeetupDate,Slogan,District) 
-value ("tafrah meetup #05: artificial intelligence potential",60,"The potential behind Artificial Intelligence is increasing every day with disrupting industries. Didn’t you wonder how can that solve challenges human race face till now such as healthcare ones! What are the actual insights and case studies regardless the hype of facebook posts! How can we connect all the dots from data science to machine learning to learn and develop such helpful solutions?
+values ("tafrah meetup #05: artificial intelligence potential",60,"The potential behind Artificial Intelligence is increasing every day with disrupting industries. Didn’t you wonder how can that solve challenges human race face till now such as healthcare ones! What are the actual insights and case studies regardless the hype of facebook posts! How can we connect all the dots from data science to machine learning to learn and develop such helpful solutions?
 
 This round of #Tafrah_Meetup, we will be tackling the journey of Artificial Intelligence starting from how was it in the past going through the present state and what do we expect in the future, with focus on healthcare case studies, meeting different experienced people to share with you their insights and hands on experience and also getting to know a glimpse of Tafrah Artificial Intelligence community.
 
@@ -212,3 +238,104 @@ Tafrah is a platform that empowers MENA region techies to disrupt tech industrie
 We started with conducting frequent rich meetups for techies (juniors/seniors) through #Tafrah_Meetup to tackle the latest updates and best practices, networking with like-minded people and enriching the mindsets with technical/non-technical experiences.
 
 Tafrah - Empowering Techies",120,"AUC Main Campus",20180317120001,"Artificial Intelligence Potential","Tahrir");
+
+
+Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,MeetupDate,Slogan,District) 
+values ("Tafrah Meetup #06: DevOps 101",60,"Whether you are reading this as DevOps Engineer or enthusiast about the topic, Didn’t you question yourself at the very beginning when you heard about this term -DevOps- Is it a new Technology? Or just a practice and philosophy? Has it something linked between Software Operations and Software Development only? Didn’t you wonder before about the history of it? How is the global companies and the local ones dealing with it? How Agile methodologies for planning and development do affect on DevOps? Is there a difference when it comes to SysAdmins Vs DevOps? 
+
+This round of #Tafrah_Meetup, we will be tackling a glimpse of the journey of DevOps starting from how was it in the past going through the present state and what do we expect in the future, meeting different experienced people to share with you their insights and hands on experience and also getting to know Tafrah DevOps Community.
+
+Join 4 Hrs of #Tafrah_Meetup to engage, learn, get to know the community and have answers for all the topics mentioned above.
+
+- For whom this Meetup:
+1. Development and Quality Team Leaders. 
+2. Junior/Senior DevOps Engineers.
+3. Software Engineers.
+4. IT Department Lead.
+5. CIOs.
+6. CTOs
+7. Everyone who is passionate about building reliable systems.
+8. Interested in platform automation, delivering continuously and monitoring distributed systems.
+9. CEOs and Founders of Technology-Based Ventures.
+10. Interested Students & Fresh Graduates.
+
+- We will be tackling the following:
+1. History of DevOps.
+2. Fundamentals of DevOps.
+3. Toolchain Stages.
+4. What to do to pursue a career in DevOps?
+5. How to apply for a Job in DevOps in Europe?
+6. Linux Adminstration.
+7. Career Opportunities inside and outside Egypt.
+
+- Venue, Date, Time & Duration:
+302Labs - G2 Room
+Saturday 31-03-2018
+(13:00 to 17:00)
+4 Essential Hours for DevOps Enthusiasts and Practitioners.
+
+- Meetup Agenda:
+13:00-13:30 … Keynote, Ice Breaking & Networking Activity
+13:30-14:30 … Talk #01
+14:30-14:45 … Coffee Break
+14:45-15:45 … Career Opportunities, Working experience in Germany and DevOps future by Mohamed Zeineldin - Know more: https://goo.gl/WWq46z
+15:45-16:00 … Alasr Prayer Break + Coffee Break
+16:00-17:00 … System Administration Vs. DevOps - a hands-on approach by Rehab Hassanein - Know more: https://goo.gl/Hje9UA
+
+- Who’re the Speakers?
+1- Mohamed Zeineldin, Senior DevOps Engineer at Leverton GmbH.
+2- Rehab Hassanein, Senior Linux Administrator | DevOps
+
+- Why to attend #Tafrah_Meetup?
+★Getting to know like-minded people in your industry.
+★Getting to know the seniors, resources and the shortest routes for gaining a lot of knowledge and insights.
+★Meeting your potential mentor, favorite speaker, unexpected old friend or maybe future friend.
+★Having clear practical answers on the questions you have on the mentioned topics.
+★Being up to date and tackling the latest news.
+★Attending one of a kind meetup.
+★Enjoying snacks and hot drinks for free.
+★Engaging in fruitful technical sessions.
+★Gaining hands-on experience in non-technical sessions.
+★Building a strong network through Tafrah networking activities.
+★Enjoying a 20% off on the next meetup by attending this meetup.
+And know us more :)
+
+- How to attend?
+Two stages, Registration and Investment.
+1) Registration
+through here: https://goo.gl/forms/5gOd1XYvX0h9hy4F3
+
+2) Submit your investment
+Step 1: Go to the payment page (https://paymestore.co/085613) and choose no. of tickets you need to buy.
+
+Step 2: Sign up, Enter your name and mobile number correctly and fill randomly what’s else required randomly.
+
+Step 3: Now go again to the payment page, choose your needed no. of tickets and enjoy paying either cash (through fawry, atm or wallets) or paying online (through credit card).
+
+- Investment Fees:
+★Early Bird Ticket: 120 EGP - till Monday 26-03-2018
+★Late Owl Ticket: 150 EGP - Starting from Tuesday 27-03-2018
+
+P.S. Registration for the Meetup is a MUST. We have very limited seats due to the capacity of the venue .. so hurry up reserving your seat in early bird period!
+
+Materials and Talks will be conducted in Arabic/English.
+
+For any inquiries, please call us on +201111733122
+
+- Who are we?
+Tafrah is a platform that empowers MENA region techies to disrupt tech industries worldwide. We’re capable of doing that through our products.
+We started with conducting frequent rich meetups for techies (juniors/seniors) through #Tafrah_Meetup to tackle the latest updates and best practices, networking with like-minded people and enriching the mindsets with technical/non-technical experiences.
+
+Tafrah - Empowering Techies",120,"302Labs",'20180331 1:00:00 PM',"DevOps 101","Nasr City");
+/*--------------------------------------------------------------------------------------------------------------------
+Attaching speakers to meetups*/
+Insert Into Spoke_In(SpeakerID, MeetupID)
+values
+(2, 5, 6, 2, 5, 6, 2, 5, 6, 2, 5, 6, 5, 6, 5),
+(8, 8, 8, 9, 9, 9, 1, 1, 1, 2, 3, 4, 5, 6, 2);
+/*--------------------------------------------------------------------------------------------------------------------
+Attaching attendees to meetups*/
+Insert Into Attended(AttendeeID, AttendedEventID)
+values
+(3, 7, 8, 9, 10, 3, 7, 8, 9, 10, 3, 7, 8, 9, 10, 3, 7, 8, 9, 10, 3, 10),
+(8, 8, 8, 8, 8, 9, 9, 9, 9, 9, 1, 1, 2, 2, 3, 5, 5, 5, 6, 6, 7, 7);
