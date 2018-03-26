@@ -106,18 +106,6 @@ values
 ("Machine Learning Engineer at Microsoft", "DevOps Engineer at Google");
 
 Insert Into Users(Email,FirstName,LastName,Password,UserType,BirthDate,Position)
-values ("Attendee@gmail.com","Eager","Learner",1234,2,'2001-06-22',"Student");
-
-Insert Into Users(Email,FirstName,LastName,Password,UserType,BirthDate,Position)
-values ("Attendee2@gmail.com","Tafrah","Lover",4321,2,'1995-04-15',"Junior front-end developer");
-
-Insert Into Users(Email,FirstName,LastName,Password,UserType,BirthDate,Position)
-values ("Attendee3@gmail.com","Real","Person",1111,2,'1990-06-02',"Junior back-end developer");
-
-Insert Into Users(Email,FirstName,LastName,Password,UserType,BirthDate,Position)
-values ("Attendee4@gmail.com","Very","Enthusiastic",2222,2,'1990-04-13',"Machine Learning Engineer");
-
-Insert Into Users(Email,FirstName,LastName,Password,UserType,BirthDate,Position)
 values
 ("Attendee@gmail.com", "Attendee2@gmail.com", "Attendee3@gmail.com", "Attendee4@gmail.com"),
 ("Eager", "Tafrah", "Real", "Very"),
