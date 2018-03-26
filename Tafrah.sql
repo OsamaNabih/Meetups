@@ -54,24 +54,46 @@ create table Images
     Foreign Key(MeetupID) references Meetups(MeetupID) on delete cascade on update cascade
 );
 
+/*--Inserting some users--*/
 
-Insert Into Users(Email,FirstName,LastName,Password,UserType,BirthDate,Position) value ("walidashraf423@gmail.com","waleed","ashraf",123,0,STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Professional Procrastinator"); 
-Insert Into Users(Email,FirstName,LastName,Password,UserType,BirthDate,Position) value ("OmarWagih@gmail.com","Omar","Wagih",11111,1,STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Professional Procrastinator"); 
-Insert Into Users(Email,FirstName,LastName,Password,UserType,BirthDate,Position) value ("OsamaNabih@gmail.com","Osama","Nabih",4444,2,STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Professional Procrastinator"); 
-Insert Into Users(Email,FirstName,LastName,Password,UserType,BirthDate,Position) value ("YasmeenAhmed@gmail.com","Yasmeen","Ahmed",5555,0,STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Professional Procrastinator"); 
-Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,MeetupDate,Slogan,District) value ("helloworld1",50000,"how to procrastinate",0,"my house ",STR_TO_DATE('09-04-2018 23:30:50','%m-%d-%Y %H:%i:%s'),"Procrastinate FTW","Dokki");
-Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,MeetupDate,Slogan,District) value ("helloworld2",4165000,"how to procrastinate",33,"my house ",STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Procrastinate FTW","Dokki");
-Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,MeetupDate,Slogan,District) value ("helloworld3",50000,"how to procrastinate",99,"my house ",STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Procrastinate FTW","Dokki");
-Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,MeetupDate,Slogan,District) value ("helloworld4",50000,"how to procrastinate",40,"my house ",STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Procrastinate FTW","Dokki");
-Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,MeetupDate,Slogan,District) value ("helloworld5",50000,"how to procrastinate",80,"my house ",STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Procrastinate FTW","Dokki");
-Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,MeetupDate,Slogan,District) value ("helloworld6",50000,"how to procrastinate",650,"my house ",STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Procrastinate FTW","Dokki");
-Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,MeetupDate,Slogan,District) value ("helloworld7",50000,"how to procrastinate",7440,"my house ",STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Procrastinate FTW","Dokki");
-/*
-Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,Date,Slogan,Disrtict) value ("helloworld3",501566000,"how to procrastinate",04212,"my house ",14/4/1997,"Procrastinate FTW","Dokki");
-Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,Date,Slogan,Disrtict) value ("helloworld4",56260,"how to procrastinate",584,"my house ",14/4/1997,"Procrastinate FTW","Dokki");
-Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,Date,Slogan,Disrtict) value ("helloworld5",15616,"how to procrastinate",3165,"my house ",14/4/1997,"Procrastinate FTW","Dokki");
-Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,Date,Slogan,Disrtict) value ("helloworld6",9491,"how to procrastinate",6186,"my house ",14/4/1997,"Procrastinate FTW","Dokki");
-*/
+Insert Into Users(Email,FirstName,LastName,Password,UserType,BirthDate,Position) 
+value ("walidashraf423@gmail.com","waleed","ashraf",123,0,STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Professional Procrastinator"); 
+
+Insert Into Users(Email,FirstName,LastName,Password,UserType,BirthDate,Position) 
+value ("OmarWagih@gmail.com","Omar","Wagih",11111,1,STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Professional Procrastinator");
+ 
+Insert Into Users(Email,FirstName,LastName,Password,UserType,BirthDate,Position)
+ value ("OsamaNabih@gmail.com","Osama","Nabih",4444,2,STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Professional Procrastinator");
+ 
+Insert Into Users(Email,FirstName,LastName,Password,UserType,BirthDate,Position)
+ value ("YasmeenAhmed@gmail.com","Yasmeen","Ahmed",5555,0,STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Professional Procrastinator"); 
+ 
+
+/*--------------------------------------------------------------------------------------------------------------------
+Inserting some Meetups--*/
+Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,MeetupDate,Slogan,District)
+ value ("helloworld1",50000,"how to procrastinate",0,"my house ",STR_TO_DATE('09-04-2018 23:30:50','%m-%d-%Y %H:%i:%s'),"Procrastinate FTW","Dokki");
+ 
+Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,MeetupDate,Slogan,District) 
+value ("helloworld2",4165000,"how to procrastinate",33,"my house ",STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Procrastinate FTW","Dokki");
+
+Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,MeetupDate,Slogan,District)
+ value ("helloworld3",50000,"how to procrastinate",99,"my house ",STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Procrastinate FTW","Dokki");
+ 
+Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,MeetupDate,Slogan,District) 
+value ("helloworld4",50000,"how to procrastinate",40,"my house ",STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Procrastinate FTW","Dokki");
+
+Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,MeetupDate,Slogan,District)
+ value ("helloworld5",50000,"how to procrastinate",80,"my house ",STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Procrastinate FTW","Dokki");
+ 
+Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,MeetupDate,Slogan,District)
+ value ("helloworld6",50000,"how to procrastinate",650,"my house ",STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Procrastinate FTW","Dokki");
+ 
+Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,MeetupDate,Slogan,District) 
+value ("helloworld7",50000,"how to procrastinate",7440,"my house ",STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Procrastinate FTW","Dokki");
+
+/*--------------------------------------------------------------------------------------------------------------------
+Some triggers performing checks on insertions--*/
 delimiter $$
 create trigger Capcity before insert on Meetups
 for each row
