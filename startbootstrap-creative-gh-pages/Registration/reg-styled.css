@@ -1,0 +1,18 @@
+.register{
+
+}
+
+.register fields{
+    background: rgba(9,9,9,0.7);
+    color: #DDD;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.register textarea{height: 108px;}
+.register input[type="text"],
+.register textarea{
+    background: rgba(82 , 78 , 78 , 0.7);
+    color: #FFF;
+    border:none; 
+}

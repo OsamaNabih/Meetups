@@ -1,0 +1,216 @@
+/* .btn-primary{
+color: aqua;
+background-color: blueviolet;
+} */
+body{
+    padding-top: 20px;
+    height: 2000px;
+}
+.meh{
+    margin: 600px;
+}
+
+/* start overriding bootstrap */
+.navbar-expand-lg .navbar-nav .dropdown-menu{
+    background-color: #343a40;
+    border-top: 3px solid aliceblue;
+    left: 0;
+    right: auto; 
+    
+}
+
+.navbar-dark .navbar-brand{
+    font-size:30px;
+    line-height: 30px; 
+}
+
+.dropdown-item{
+    color: aliceblue;
+    padding: 6px 20px;
+    min-width: 200px;
+}
+.dropdown-item:hover{
+    color: red;
+    padding-left: 25px;
+    -webkit-transition: padding 0.4s ease;
+    -moz-transition: padding 0.4s ease;
+    -o-transition: padding 0.4s ease;
+    transition: padding 0.4s ease;
+}
+
+
+
+
+
+
+
+
+  /* 
+.dropdown-divider{
+
+ background-color: black; 
+ }         
+
+ */
+
+ /* start our about class*/
+ .about{
+     padding-top: 60px;
+     padding-bottom: 60px;
+ }
+ .about .lead{
+     color: #888;
+     font-size: 25px;
+     margin-top: 15px;
+ }
+
+ /* start our team class*/
+ .ourTeam{
+     background: url(123.jpg) no-repeat center center fixed;
+     -webkit-background-size: cover;
+     -moz-background-size:cover;
+     -moz-background-size:cover;     
+     min-height: 600px;
+
+ }
+
+ .ourTeam .team{
+     background: rgba(2,2,2,0.5);
+     color:white;
+     min-height: 600px;
+     padding-top: 40px;
+     padding-bottom: 40px;
+ }
+ .ourTeam h1{
+     margin-bottom: 60px;   
+ }
+ .ourTeam .person{
+     margin-bottom: 40px;
+ }
+
+/* section contact us*/
+
+.contactUs{
+    background: url(c41230.png) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size:cover;
+    -moz-background-size:cover;     
+    min-height: 600px;
+
+}
+.contactUs fields{
+    background: rgba(9,9,9,0.8);
+    min-height: 300px;
+    color:#DDD;
+}
+
+/* start section stats */
+.statistics{
+    background: url(pexels-photo-943907.jpeg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size:cover;
+    -moz-background-size:cover;     
+    min-height: 600px;
+}
+
+.statistics .data{
+    background-color:rgba(2, 2, 2, 0.6);
+    color: #B6B5B5; 
+    min-height: 600px;
+    padding-top:40px;
+    padding-bottom: 70px; 
+}
+
+.statistics h1{
+    margin-bottom:40px;
+}
+.statistics .stats{
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+    margin-bottom:30px; 
+}
+
+.statistics .stats:hover{
+    color:#fff;
+}
+
+.statistics p{
+    font-size: 60px;
+    font-weight: 800;
+    margin: 0;
+}
+.statistics span{
+    font-size: 25px;
+}
+/* end section stats */
+
+/* start section skills */
+.ourSkills{
+    padding-top: 40px;
+    padding-bottom: 70px;   
+}
+.ourSkills h1{
+    margin-bottom: 60px;
+}
+.ourSkills h3{
+    font-weight: bold;
+    margin-top:0;
+}
+
+.ourSkills .progress{
+    height: 36px;
+}
+
+.ourSkills .progress-bar{
+    height: 36px;
+    font-size: 15px;
+    font-weight: bold;
+}
+/* strat footer*/
+.footer{
+    background: #333;
+    color:#AAA;
+    padding-top:20px;
+    padding-bottom:20px;
+}
+.footer a{
+    color: #AAA;
+}
+.footer a:hover{
+    color: #FFF;
+}
+.footer h3{
+    letter-spacing: 1px;
+    margin:30px 0 20px;
+    color: #0895D1;
+}
+
+.footer .threeColumns li{
+    width: 33.33333%;
+    float: left;
+    padding: 5px 0;
+}
+.footer sociallList{
+    overflow: hidden;
+    margin: 20px 0 10px;
+}
+
+.footer sociallList li{
+    float: left;
+    margin-right: 3px;
+    opacity:0.7;
+    filter:alpha(opacity=70);
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+}
+
+.footer sociallList li:hover{
+    opacity : 1;
+}
+/* end footer*/
+
+/* end section stats */
