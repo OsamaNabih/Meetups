@@ -3,7 +3,7 @@ create database Tafrah;
 create table Users
 (
 	UserID int not null auto_increment,
-	Email varchar(320) not null,
+	Email varchar(320) UNIQUE not null,
 	FirstName varchar(50) not null,
 	LastName varchar(50) not null,
 	Password varchar(30) not null,
