@@ -6,8 +6,8 @@ create table Users
 	email varchar(320) UNIQUE not null,
 	firstName varchar(50) not null,
 	lastName varchar(50) not null,
-	password varchar(30) not null,
-	userType ENUM('Admin','Speaker','User') not null, /* 1->Admin, 2 ->Speaker, 3->User,*/
+	password varchar(100) not null,
+	userType int  not null, /* 1->Admin, 2 ->Speaker, 3->User,*/
 	birthDate date,
 	position varchar(320),
 
@@ -433,10 +433,10 @@ delimiter $$
 create trigger foo before insert on Users
 for each row
 begin
-if new.userType > 2   then
+if new.userType > 3   then
 set new.userType = NULL ;
 end if ;
-if new.userType < 0 then
+if new.userType < 1 then
 set new.userType=NULL;
 end if;
 end$$

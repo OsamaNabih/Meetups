@@ -23,28 +23,8 @@ app.use(bodyParser.json());
 
 // Routes
 app.use('/users', require('./routes/users'));
-
+app.use('/', require('./routes/meetups'));
 
 app.listen(3000, ()=>{
   console.log('Listening on port 3000');
 });
-
-/*
-let bdan = {
-	Email: 'codeworkr@gmail.com',
-	Password: 'test',
-	FirstName: 'Osos',
-	LastName: 'gamed'
-}
-let sql = 'Insert INTO users set ?';
-db.query(sql, bdan, (err, result) =>{
-  if (err)
-  {
-    console.log(err);
-  }
-  else{
-    console.log('succeeded');
-  }
-});
-*/
-module.exports
