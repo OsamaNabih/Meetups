@@ -2,17 +2,15 @@ const JWT = require('jsonwebtoken');
 const UserModel = require('../models/user');
 const DB = require('../config/DB');
 const bcrypt = require('bcryptjs');
-/*
-const { JWT_SECRET } = require('../config/keys')
-signToken = user =>{
-  return JWT.sign({
-    iss: 'CodeWorkr',
-    sub: user._id,
-    iat: new Date().getTime(),
-    exp: new Date().setDate(new Date().getDate() + 1) //current time + 1 day ahead
-  }, JWT_SECRET);
+const { JWT_SECRET } = require('../config/keys');
+
+signToken = (Id) =>{
+    return JWT.sign({
+    iss: 'Tafrah',
+    sub: Id,
+}, JWT_SECRET,{expiresIn:'24h'});
 }
-*/
+
 
 module.exports = {
   signUp: async(req, res, next) =>{
@@ -33,27 +31,34 @@ module.exports = {
    req.value.body.password = passwordHash;
     DB.query(UserModel.InsertUser(), req.value.body, (error, result) =>{
       if (error){
-        console.log(error.sqlMessage);
+        console.log(error.sqlMessage);//should return error page
       } else{
         console.log('insertion succeeded');
+        DB.query(UserModel.GetUserId(),req.value.body.email,(err,innerResult)=>{
+          if(error){
+            console.log(err.sqlMessage);//should return error page
+          }
+          else
+          {
+            console.log("Id retrieved");
+            let id = innerResult[0].userId;
+            let token = signToken(id);
+            //res.redirect(200,'/');
+            res.send({token});
+          }
+        });
       }
     });
-    // Respond with token
-    //res.json({user: 'created'});
-    /*
-    const token = signToken(newUser);
-    res.status(200).json({ token: token});
-    */
   },
-  /*
+
   signIn: async(req, res, next) =>{
     // Generate a token
     const token = signToken(req.user);
-    res.status(200).json({ token });
+    res.status(200).json({token});
   },
 
   secret: async(req, res, next) =>{
     res.json({secret: "resource"});
   }
-  */
+
 }

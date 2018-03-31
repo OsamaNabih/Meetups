@@ -33,13 +33,11 @@ app.get('/Event/:id', (req, res) =>{
 app.get('/Events', (req, res) =>{
   res.render('Events');
 });
-app.get('/', (req, res) =>{
-  res.render('MainPage');
-});
+
+
 app.get('/Register', (req, res) =>{
   res.render('Registration');
 });
-app.use('/auth',authRoutes);
 app.listen(3000,()=>
 {
   console.log("Listening on port 3000");

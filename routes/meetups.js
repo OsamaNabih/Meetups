@@ -17,7 +17,8 @@ router.route('/')
    */
    var result = MeetupsController.home(req, res);
    result.then(function(result){
-     res.send(result);
+     //res.send(result);
+     res.render('MainPage', {meetups: result});
    });
   });
 
