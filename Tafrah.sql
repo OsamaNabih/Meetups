@@ -57,19 +57,19 @@ create table Images
 
 /*-------------------------------------------------------------------------------------------------------------------
 --Inserting some users--*/
-Insert Into Users(Email,FirstName,LastName,Password,UserType,BirthDate,Position) 
+Insert Into Users(Email,FirstName,LastName,Password,UserType,BirthDate,Position)
 values ("walidashraf423@gmail.com","waleed","ashraf",123,1,STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Professional Procrastinator");
 
-Insert Into Users(Email,FirstName,LastName,Password,UserType,BirthDate,Position) 
+Insert Into Users(Email,FirstName,LastName,Password,UserType,BirthDate,Position)
 values ("OmarWagih@gmail.com","Omar","Wagih",11111,2,STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Professional Procrastinator");
- 
+
 Insert Into Users(Email,FirstName,LastName,Password,UserType,BirthDate,Position)
 values ("OsamaNabih@gmail.com","Osama","Nabih",4444,2,STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Professional Procrastinator");
- 
+
 Insert Into Users(Email,FirstName,LastName,Password,UserType,BirthDate,Position)
-values ("YasmeenAhmed@gmail.com","Yasmeen","Ahmed",5555,1,STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Professional Procrastinator"); 
- 
- 
+values ("YasmeenAhmed@gmail.com","Yasmeen","Ahmed",5555,1,STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Professional Procrastinator");
+
+
 
 Insert Into Users
 (Email,FirstName,LastName,Password,UserType,BirthDate,Position)
@@ -98,27 +98,27 @@ Values("Attendee4@gmail.com", "Very", "Enthusiastic", "2222", 2, 19900413, "Mach
 Inserting some Meetups--*/
 Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,MeetupDate,Slogan,District)
 values ("helloworld1",50000,"how to procrastinate",0,"my house ",STR_TO_DATE('09-04-2018 23:30:50','%m-%d-%Y %H:%i:%s'),"Procrastinate FTW","Dokki");
- 
-Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,MeetupDate,Slogan,District) 
+
+Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,MeetupDate,Slogan,District)
 values ("helloworld2",4165000,"how to procrastinate",33,"my house ",STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Procrastinate FTW","Dokki");
 
 Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,MeetupDate,Slogan,District)
 values ("helloworld3",50000,"how to procrastinate",99,"my house ",STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Procrastinate FTW","Dokki");
- 
-Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,MeetupDate,Slogan,District) 
+
+Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,MeetupDate,Slogan,District)
 values ("helloworld4",50000,"how to procrastinate",40,"my house ",STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Procrastinate FTW","Dokki");
 
 Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,MeetupDate,Slogan,District)
 values ("helloworld5",50000,"how to procrastinate",80,"my house ",STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Procrastinate FTW","Dokki");
- 
+
 Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,MeetupDate,Slogan,District)
 values ("helloworld6",50000,"how to procrastinate",650,"my house ",STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Procrastinate FTW","Dokki");
- 
-Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,MeetupDate,Slogan,District) 
+
+Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,MeetupDate,Slogan,District)
 values ("helloworld7",50000,"how to procrastinate",7440,"my house ",19830905202020,"Procrastinate FTW","Dokki");
 
 
-Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,MeetupDate,Slogan,District) 
+Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,MeetupDate,Slogan,District)
 value("tafrah meetup #05: artificial intelligence potential",60,"The potential behind Artificial Intelligence is increasing every day with disrupting industries. Didn’t you wonder how can that solve challenges human race face till now such as healthcare ones! What are the actual insights and case studies regardless the hype of facebook posts! How can we connect all the dots from data science to machine learning to learn and develop such helpful solutions?
 
 This round of #Tafrah_Meetup, we will be tackling the journey of Artificial Intelligence starting from how was it in the past going through the present state and what do we expect in the future, with focus on healthcare case studies, meeting different experienced people to share with you their insights and hands on experience and also getting to know a glimpse of Tafrah Artificial Intelligence community.
@@ -129,7 +129,7 @@ Join 5 Hrs of #Tafrah_Meetup to engage, learn and have answers for all the topic
 1. AI and Machine Learning researchers and teaching assistants.
 2. Junior/Senior Product Managers working on machine learning products.
 3. Junior/Senior Business Analysts working on machine learning products..
-4. Development and Quality Team Leaders working on machine learning products. 
+4. Development and Quality Team Leaders working on machine learning products.
 5. Junior/Senior machine learning developers.
 6. Founders of AI-Based startups.
 7. CTOs.
@@ -154,15 +154,15 @@ Saturday 17-03-2018
 12:00-12:30 … Keynote, Ice Breaking & Networking Activity.
 12:30-13:30 … The AI hype between truth and myth by Hossam Elrashidy. - know more: https://goo.gl/V4YC2K
 13:30-13:45 … Duhr Prayer + Coffee Break + Networking
-13:45-14:45 … Potential Uses of AI in Healthcare Information Systems by Dr. Mohamed Fateen - Know more: https://goo.gl/26nDxK 
+13:45-14:45 … Potential Uses of AI in Healthcare Information Systems by Dr. Mohamed Fateen - Know more: https://goo.gl/26nDxK
 14:45-15:00 … Coffee Break + Networking
-15:00-16:00 … Practical Uses of AI in Healthcare Facilities by Abdelrahman Hosny. - Know more: https://goo.gl/3RhAPR 
+15:00-16:00 … Practical Uses of AI in Healthcare Facilities by Abdelrahman Hosny. - Know more: https://goo.gl/3RhAPR
 16:00-16:15 … Asr Prayer + Coffee Break + Networking
 16:15-17:15 … How to start and Career Opportunities in Data Science/Artificial Intelligence by Omar Amin. - Know more: https://goo.gl/PgXSZy
 
 - Who’re the Speakers?
 1. Hossam El Rashidy, Co-Founder and CEO of Humachina.
-2. Dr. Mohamed Fateen, Lecturer & Consultant of Hematological Pathology and Specialist of Hematology. 
+2. Dr. Mohamed Fateen, Lecturer & Consultant of Hematological Pathology and Specialist of Hematology.
 3. Abdelrahman Hosny, Research and Development Engineer at xWare Integrated Solutions.
 4. Omar Amin, Research and Teaching Assistant at Faculty of Engineering, Ain Shams University.
 
@@ -182,7 +182,7 @@ Saturday 17-03-2018
 - How to attend?
 Two stages, Registration and Investment.
 1) Registration
-through here: https://goo.gl/ZYxPBL 
+through here: https://goo.gl/ZYxPBL
 
 2) Submit your investment
 Step 1: Go to the payment page (https://www.paymestore.co/085611) and choose no. of tickets you need to buy.
@@ -208,15 +208,15 @@ We started with conducting frequent rich meetups for techies (juniors/seniors) t
 Tafrah - Empowering Techies",120,"AUC Main Campus",20180317120001,"Artificial Intelligence Potential","Tahrir");
 
 
-Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,MeetupDate,Slogan,District) 
-values ("Tafrah Meetup #06: DevOps 101",60,"Whether you are reading this as DevOps Engineer or enthusiast about the topic, Didn’t you question yourself at the very beginning when you heard about this term -DevOps- Is it a new Technology? Or just a practice and philosophy? Has it something linked between Software Operations and Software Development only? Didn’t you wonder before about the history of it? How is the global companies and the local ones dealing with it? How Agile methodologies for planning and development do affect on DevOps? Is there a difference when it comes to SysAdmins Vs DevOps? 
+Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,MeetupDate,Slogan,District)
+values ("Tafrah Meetup #06: DevOps 101",60,"Whether you are reading this as DevOps Engineer or enthusiast about the topic, Didn’t you question yourself at the very beginning when you heard about this term -DevOps- Is it a new Technology? Or just a practice and philosophy? Has it something linked between Software Operations and Software Development only? Didn’t you wonder before about the history of it? How is the global companies and the local ones dealing with it? How Agile methodologies for planning and development do affect on DevOps? Is there a difference when it comes to SysAdmins Vs DevOps?
 
 This round of #Tafrah_Meetup, we will be tackling a glimpse of the journey of DevOps starting from how was it in the past going through the present state and what do we expect in the future, meeting different experienced people to share with you their insights and hands on experience and also getting to know Tafrah DevOps Community.
 
 Join 4 Hrs of #Tafrah_Meetup to engage, learn, get to know the community and have answers for all the topics mentioned above.
 
 - For whom this Meetup:
-1. Development and Quality Team Leaders. 
+1. Development and Quality Team Leaders.
 2. Junior/Senior DevOps Engineers.
 3. Software Engineers.
 4. IT Department Lead.
