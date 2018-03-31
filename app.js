@@ -1,5 +1,5 @@
 const express = require('express');
-const keys = require('./config/keys');
+//const keys = require('./config/keys');
 const passport = require('passport');
 const http = require('http');
 const morgan = require('morgan');
@@ -25,6 +25,9 @@ app.use(bodyParser.json());
 app.use('/users', require('./routes/users'));
 app.use('/', require('./routes/meetups'));
 
+
+try{
 app.listen(3000, ()=>{
   console.log('Listening on port 3000');
 });
+}catch(error){console.log(error);}
