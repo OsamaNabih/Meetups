@@ -4,7 +4,7 @@ const passportConf = require('../passport');
 
 const { validateBody, schemas} = require('../helpers/routeHelpers');
 const UsersController = require('../controllers/users');
-//const passportSignIn = passport.authenticate('local', { session: false })
+const passportSignIn = passport.authenticate('local', { session: false })
 //const passportJWT = passport.authenticate('jwt', { session: false});
 
 
@@ -12,5 +12,7 @@ const UsersController = require('../controllers/users');
 router.route('/signup')
   .post(validateBody(schemas.authSchema), UsersController.signUp);
 
+router.route('/signin')
+  .post(passportSignIn , UsersController.signIn);
 
 module.exports = router;
