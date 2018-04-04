@@ -23,7 +23,10 @@ app.use(bodyParser.json());
 
 // Routes
 app.use('/users', require('./routes/users'));
-app.use('/', require('./routes/meetups'));
+app.use('/meetup', require('./routes/meetup'));
+app.use('/meetups', require('./routes/meetups'));
+
+
 
 
 try{
