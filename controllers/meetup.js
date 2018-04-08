@@ -1,9 +1,12 @@
 const MeetupModel = require('../models/meetup');
-const DB = require('../config/DB');
+const Database = require('../config/DB');
+const config = require('../config/keys').config;
 
 module.exports = {
   GetMeetupAndSpeakers: (id) =>{
     return new Promise(function(resolve, reject){
+      DB = new Database(config);
+      console.log(DB);
       let meetup, speakers, attendees;
       DB.query(MeetupModel.GetMeetup(), id).then( result =>{
         if (result.length == 0)

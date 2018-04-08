@@ -27,4 +27,4 @@ class Database {
     }
 }
 
-module.exports = new Database(config);
+module.exports = Database
