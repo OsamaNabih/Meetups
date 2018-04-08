@@ -55,6 +55,11 @@ module.exports = {
     const token = signToken(req.userId);
     res.status(200).json({ token });
   },
+  googleOAuth: async(req,res,next)=>{
+    // Generate a token
+    const token = signToken(req.userId);
+    res.status(200).json({token});
+  }
 /*
   secret: async(req, res, next) =>{
     res.json({secret: "resource"});

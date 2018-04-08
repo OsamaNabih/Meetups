@@ -4,7 +4,7 @@ const DB = require('../config/DB');
 module.exports = {
   GetMeetupAndSpeakers: (id) =>{
     return new Promise (function(resolve, reject){
-      return new Promise (function(resolve, reject){
+      return new Promise (function(resolve, reject){   // i think this should be deleted 
         DB.query(MeetupModel.GetMeetup(), id, (error, result)=>{
          console.log('Meetup retrieved');
          if (error){

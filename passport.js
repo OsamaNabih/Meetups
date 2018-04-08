@@ -2,6 +2,7 @@ const passport = require('passport');
 const JwtStrategy = require('passport-jwt').Strategy;
 const { ExtractJwt } = require('passport-jwt');
 const LocalStrategy = require('passport-local').Strategy;
+const GooglePlusTokenStrategy = require('passport-google-plus-token')
 const { JWT_SECRET } = require('./config/keys');
 const UserModel = require('./models/user');
 const DB = require('./config/DB');
@@ -27,7 +28,52 @@ passport.use(new JwtStrategy({
   }
 }));
 */
+//Google Oauth STRATEGY
+passport.use('googleToken', new GooglePlusTokenStrategy({
 
+  clientID:'835631524663-b6nhvpmsbpndqa8g4m051r5qd4iujgjt.apps.googleusercontent.com',
+  clientSecret:'KlCyyv2VcOc07Gzhktkj1RKX'
+
+},async(accessToken,refereshToken,profile,done)=>{
+//  console.log('accessToken',accessToken);
+//  console.log('refereshToken',refereshToken);
+//  console.log('profile',profile);
+
+  //check wether this current user exists in the DB or not
+  try{
+    DB.query(UserModel.GetUserByForeignId(),profile.id,(error,result)=>{
+      if(error)
+      console.log(error);
+      else if(result[0]){
+        console.log("User already exists in our database");
+        return done(null,false);
+      }
+      else{
+        console.log("Creating new User");
+        newUser={};
+        newUser['email']=profile.emails[0].value;
+        newUser['foreignId']=profile.id;
+        newUser['firstName']=profile.name.givenName;
+        newUser['lastName']=profile.name.familyName;
+        newUser['userType']=3;                // Normal User
+        newUser['loginType']=3;              // Login by google
+
+        DB.query(UserModel.InsertUser(),newUser,(error,result)=>{
+          if(error)
+          console.log(error);
+          else
+          {
+            done(false,newUser);
+          }
+
+        });
+      }
+    });
+  }catch(error){
+    done(error,false);
+  }
+
+}));
 
 // LOCAL STRATEGY
 passport.use(new LocalStrategy({
