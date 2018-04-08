@@ -9,7 +9,8 @@ router.route('/:id')
     result.then(function(result){
       res.send(result);
     }).catch(function(error){
-      console.log(error.message);
+      //res.sendStatus(error);
+      res.send(error);
     });
   });
 
