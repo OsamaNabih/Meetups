@@ -4,23 +4,69 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    
     <!-- Bootstrap CSS -->
-    <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
-      <!-- Bootstrap core CSS -->
-      <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
-      <!-- Your custom styles (optional) -->
-      <link href="/assets/css/styleMainPage.css" rel="stylesheet">
-    <script type="text/javascript" src="/assets/js/jquery-3.2.1.min.js"></script>
-    <!-- Bootstrap tooltips -->
-    <script type="text/javascript" src="/assets/js/popper.min.js"></script>
-    <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3nfuwaNpvJldXYFHprFU0QwD0Jwr74Oc&callback=initMap" async defer></script>    <!-- this on overrides the bootstrap stylesheet-->
-    <title>Hello, world!</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
+    <!-- this on overrides the bootstrap stylesheet-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous">
+    <link rel="stylesheet" href="../Main Page/css/style.css"> 
+    <link rel="stylesheet" href="../Main Page/css/Sign_in_style.css">
+    <link rel="stylesheet" href="../Main Page/css/img_hover.css"> 
+    <link rel="stylesheet" href="../Main Page/css/nav_bar_style.css"> 
+    <title>Tafrah</title>
+    <script>
+            // This is a trial function, it detects when the browser is scrolled down and makes changes accordingly
+            // The Signup/Profile should be according to every user
+           $(window).scroll(function() {
+              if($(this).scrollTop() > 50)  /*height in pixels when the navbar becomes non opaque*/ 
+              {
+                  $('#Profiling').text('Sign up');  
+              } else {
+          
+                   $('#Profiling').text('Profile');
+              }
+          });
+          $(window).ready(function()
+          {
+             $('#Profiling').text('Sign up');
+          });
+          </script>
   </head>
 
 <body>
+        <nav id = "navBarHead" class="navbar navbar-fixed-top navbar-dark navbar-expand-md">
+
+                <a class="navbar-brand" href="#">
+                  <img src="../Main Page/img/Tafrah.png" alt="Tafrah">
+                  Tafrah
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                  <i style='color:black' class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse " id="collapsibleNavbar">
+                  <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <br>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Events</a>
+                    </li>
+                      <br>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#" id = "Profiling"></a>
+                    </li>
+                      <br>
+                  </ul>
+                </div>
+              </nav>
+             
+    <!--
 <div id="app" class="container">
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark bg-faded">
         <a class="navbar-brand" href="#">Navbar</a>
@@ -59,7 +105,7 @@
             </ul>
         </div>
     </nav>
-</div>
+</div>     -->
 <!-- end of navbar-->
 <!--start of the slideshow -->
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -70,19 +116,19 @@
     </ol>
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img class="d-block w-100" src="/assets/img/123.jpg" alt="First slide">
+        <img class="d-block w-100" src="../Main Page/img/pexels-photo-943907.jpeg" alt="First slide">
       </div>
       <div class="carousel-item">
-        <img class="d-block w-100" src="/assets/img/elsisi_ra2ysi.jpg" alt="Second slide">
-        <div class="carousel-caption d-none d-md-block">
+        <img class="d-block w-100" src="../Main Page/img/countryside-daylight-environment-105813.jpg" alt="Second slide">
+     <!--   <div class="carousel-caption d-none d-md-block">
             <h5>try captions 1</h5>
             <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident accusamus sed facere dolor nihil vero pariatur iure ipsa eos placeat aliquam perferendis unde minus delectus obcaecati neque nulla, minima porro?</p>
             <button class="btn btn-primary">read more</button>
-            <button class="btn btn-danger">buy now</button>
+            <button class="btn btn-danger">buy now</button> -->
         </div>
       </div>
       <div class="carousel-item">
-        <img class="d-block w-100" src="/assets/img/123.jpg" alt="Third slide">
+        <img class="d-block w-100" src="../Main Page/img/pexels-photo-943907.jpeg" alt="Third slide">
       </div>
     </div>
     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -96,11 +142,44 @@
   </div>
   <!-- the beggening of our about section -->
   <section class="about text-center">
-      <!--<h1>meet our new template<span>Elzero inc</span></h1> -->
-      <h1> <%= data[0] %> <span>Elzero inc</span></h1>
+      <h1>Welcome<span>Tafra inc</span></h1>
       <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing <strong> elit.</strong> Placeat eligendi expedita libero asperiores est eveniet, consectetur quas, iste doloribus dolorum adipisci repudiandae commodi voluptate et quis laboriosam vero minus autem!</p>
   </section>
-  <!-- end -->
+  <!-- end of section about us-->
+  <!-- start section features-->
+  <section>
+    <div class="container text-center">
+          <h1>Upcoming Events</h1>
+          <div class="row">
+              <div class="col-lg-6 col-md-12" style="">
+                 <div class="feat">
+                       <figure class="snip0019">
+                          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample11.jpg"alt="sample11" height="250px"/>
+                          <figcaption>
+                              <div><h2>What <span>state</span> do you live in?</h2></div>
+                              <div><p>Denial. Miss Wormwood: I don't suppose I can argue with that.</p></div>
+                              <a href="#"></a>
+                          </figcaption>			
+                      </figure>
+                 </div>
+              </div>
+              <div class="col-lg-6 col-md-12" style="">
+                  <div class="feat">
+                      <figure class="snip0019">
+                          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample11.jpg"alt="sample11" height="250px"/>
+                          <figcaption>
+                              <div><h2>What <span>state</span> do you live in?</h2></div>
+                              <div><p>Denial. Miss Wormwood: I don't suppose I can argue with that.</p></div>
+                              <a href="#"></a>
+                          </figcaption>			
+                      </figure>
+              </div>
+
+          </div>
+    </div>
+
+</section>
+   <!-- end section features-->
   <!--start team-->
     <section class="ourTeam text-center">
         <div class="team">
@@ -109,34 +188,50 @@
                     <div class="row">
                         <div class="col-lg-3 col-sm-6">
                             <div class="person">
-                                <img src="/assets/img/insta-square-size-pic-grid-197.png" class="rounded-circle" alt="team1" height="250px" width="250px"/>
+                                <img src="../Main Page/img/person265x256.png" class="rounded-circle" alt="team1" height="250px" width="250px"/>
+                                <h3>ahmed</h3>
+                                <p>some text about the team member</p>
+                                <i class="fab fa-facebook-f fa-lg"></i>
+                                <i class="fab fa-twitter fa-lg"></i>
+                                <i class="fab fa-linkedin-in fa-lg"></i>
                             </div>
                         </div>
                         <div class="col-lg-3 col-sm-6">
                             <div class="person">
-                                    <img src="/assets/img/insta-square-size-pic-grid-197.png" class="rounded-circle" alt="team1" height="250px" width="250px"/>
-                             </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="person">
-                                    <img src="/assets/img/insta-square-size-pic-grid-197.png" class="rounded-circle" alt="team1" height="250px" width="250px"/>
-                             </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="person">
-                                    <img src="/assets/img/insta-square-size-pic-grid-197.png" class="rounded-circle" alt="team1" height="250px" width="250px"/>
+                                    <img src="../Main Page/img/person265x256.png" class="rounded-circle" alt="team2" height="250px" width="250px"/>
                                     <h3>ahmed</h3>
                                     <p>some text about the team member</p>
-                                    <i class="fab fa-facebook-square fa-lg"></i>
-                                    <i class="fab fa-google"></i>
+                                    <i class="fab fa-facebook-f fa-lg"></i>
+                                    <i class="fab fa-twitter fa-lg"></i>
+                                    <i class="fab fa-linkedin-in fa-lg"></i>
+                             </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="person">
+                                    <img src="../Main Page/img/person265x256.png" class="rounded-circle" alt="team3" height="250px" width="250px"/>
+                                    <h3>ahmed</h3>
+                                    <p>some text about the team member</p>
+                                    <i class="fab fa-facebook-f fa-lg"></i>
+                                    <i class="fab fa-twitter fa-lg"></i>
+                                    <i class="fab fa-linkedin-in fa-lg"></i>
+                             </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="person">
+                                    <img src="../Main Page/img/person265x256.png" class="rounded-circle" alt="team4" height="250px" width="250px"/>
+                                    <h3>ahmed</h3>
+                                    <p>some text about the team member</p>
+                                    <i class="fab fa-facebook-f fa-lg"></i>
+                                    <i class="fab fa-twitter fa-lg"></i>
+                                    <i class="fab fa-linkedin-in fa-lg"></i>
                             </div>
                         </div>
                     </div>
             </div>
         </div>
     </section>
-    <!-- start section contact us
-    <section class="contactUs">
+    <!-- end section team-->
+   <!-- <section class="contactUs">
         <div class="fields">
             <div class="container">
                 <div class="row">
@@ -149,64 +244,116 @@
         </div>
         </div>
     </section>    -->
+    <!-- start section sign in-->
+ 
+        <section class="hero">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-sm-8 mx-auto">
+                        <div class="card border-none">
+                            <div class="card-body">
+                                <div class="mt-2 text-center">
+                                    <h2>Create Your Account</h2>
+                                </div>
+                                <p class="mt-4 text-white lead text-center">
+                                    Sign up and don't worry about spam we hate it too.
+                                </p>
+                                <div class="mt-4">
+                                    <form>
+                                        <div class="form-group">
+                                            <input type="email" class="form-control" name="email" value="" placeholder="Enter email address">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" class="form-control" name="password" value="" placeholder="Enter password">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" class="form-control" name="confirm-password" value="" placeholder="Confirm password">
+                                        </div>
+                                        <button type="submit" class="btn btn-primary btn-block">Create Account</button>
+                                    </form>
+                                    <div class="clearfix"></div>
+                                    <p class="content-divider center mt-4"><span>or</span></p>
+                                </div>
+                                <button class="loginBtn loginBtn--facebook" style="margin-left: 100px;">
+                                    Login with Facebook
+                                  </button>
+                                  
+                                  <button class="loginBtn loginBtn--google"  style="margin-left: 70px;">
+                                    Login with Google
+                                  </button>
+                              <!--  <p class="mt-4 social-login text-center">
+                                    <a href="#" class="loginBtn loginBtn--google"></a>
+                                    <a href="#" class="btn btn-facebook"><em class="ion-social-facebook"></em></a>
+                                    <a href="#" class="btn btn-linkedin"><em class="ion-social-linkedin"></em></a>
+                                    <a href="#" class="btn btn-google"><em class="ion-social-googleplus"></em></a>
+                                    <a href="#" class="btn btn-github"><em class="ion-social-github"></em></a>
+                                </p> -->
+                                <p class="text-center">
+                                    Already have an account? <a href="index.html">Login Now</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+               <!--     <div class="col-sm-12 mt-5 footer">
+                        <p class="text-white small text-center">
+                            &copy; 2017 Login/Register Forms. A FREE Bootstrap 4 component by 
+                            <a href="https://wireddots.com">Wired Dots</a>. Designed by <a href="https://twitter.com/attacomsian">@attacomsian</a>
+                        </p>
+                    </div> -->
+                </div>
+            </div>
+        </section>
+     <!-- end section sign in-->
     <!-- start section statistics -->
+
     <section class="statistics text-center">
         <div class="data">
             <div class="container">
                 <h1>Our Main Statistics</h1>
                 <div class="row">
-                    <div class="col-lg-3 col-sm-3">
+                    <div class="col-lg-6 col-sm-12">
                         <div class="stats">
-                            <i class="fa fa-users fa-5x"></i>
+                            <i class="fa fa-users fa-6x"></i>
+                            <p>528</p>
+                            <span>Commuinty Members</span>
                         </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-3">
+                    </div>    
+                    <div class="col-lg-6 col-sm-12">
                         <div class="stats">
-                            <i class="fa fa-comments fa-5x"></i>
+                            <i class="fas fa-calendar-alt fa-6x"></i>
                             <p>5278</p>
-                            <span> comments!!</span>
+                            <span>Events</span>        
                         </div>
                     </div>
-                    <div class="col-lg-3 col-sm-3">
-                        <div class="stats">
-                            <i class="fa fa-suitcase fa-5x"></i>
-                        </div>
-                    </div>
-                     <div class="col-lg-3 col-sm-3">
-                        <div class="stats">
-                            <i class="fa fa-support fa-5x"></i>
-                        </div>
-                    </div>
-
-                    </div>
-                </div>
-            </div>
+                       
+                 </div>
+             </div>
         </div>
+ 
     </section>
     <!-- start section Sillks -->
     <section class="ourSkills">
         <div class="container">
-            <h1 class="text-center">our skills</h1>
+            <h1 class="text-center">Our Organization</h1>
             <div class="row">
-                <div class="col-md-5">
+              <!--   <div class="col-md-5">
                     <div class="skillsProgress">
                         <div class="progress">
                                 <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:80%" aria-valuenow="80" aria-valuemax="100" aria-valuemin="20">
                                     Test
-                                </div>
-
-
+                                </div>  
                         </div>
                     </div>
                 </div>
 
-                <!-- end progress bar -->
+                    end progress bar -->
                 <!-- start team info -->
-                <div class="col-md-6 col-md-offset-1">
+                <div class="col-md-8 col-md-offset-1">
                     <div class="skillsInfo">
-                        <h3> about the team</h3>
+                        <h3> About Us</h3>
                         <p class="lead">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Error dignissimos iusto nostrum illo aspernatur, animi sequi veritatis, iure ea dolorem doloremque. Fugiat cum soluta optio inventore, laudantium tenetur harum quisquam.</p>
-                        <button type="button" class=" btn btn-primary">dgfgf</button>
+                        <button type="button" class=" btn btn-primary">Discover More</button>
                     </div>
                 </div>
                 <!-- end team info -->
@@ -219,32 +366,25 @@
     <section class="footer">
         <div class="container">
             <div class="row">
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-md-6">
                     <h3>Sitemap</h3>
                     <ul class="list-unstyled three colomns">
                         <li>Home</li>
-                        <li>abput</li>
+                        <li>about</li>
                         <li>company</li>
-                        <li>code</li>
-                        <li>desidn</li>
                         <li>contact us</li>
-                        <li>Home</li>
-                    </ul>
-                    <ul class="list-unstyled threeColomns">
-                        <li><img src="/assets/img/insta-square-size-pic-grid-197.png" width="60px" height="60px" class="rounded-circle"/></li>
-                        <li><img src="/assets/img/insta-square-size-pic-grid-197.png" width="60px" height="60px" class="rounded-circle"/></li>
-                        <li><img src="/assets/img/insta-square-size-pic-grid-197.png" width="60px" height="60px" class="rounded-circle"/></li>
-                        <li><img src="/assets/img/insta-square-size-pic-grid-197.png" width="60px" height="60px" class="rounded-circle"/></li>
-                        <li><img src="/assets/img/insta-square-size-pic-grid-197.png" width="60px" height="60px" class="rounded-circle"/></li>
-                        <li><img src="/assets/img/insta-square-size-pic-grid-197.png" width="60px" height="60px" class="rounded-circle"/></li>
-
+                    </ul> 
+                    <ul class="list-unstyled socialList">
+                      <!--  <li><img src="../Main Page/imgif_circle-facebook.png" /></li> -->
+                        <li><img src="../Main Page/img/if_twitter.png" width="65" height="65"/></li>
+                        <li><img src="../Main Page/img/if_linkedin_64.png"/></li>
                     </ul>
                 </div>
-                <div class="col-lg-4">
-                    <h3>lattest news</h3>
+                <div class="col-lg-4 col-md-6">
+                    <h3>latest news</h3>
                     <div class="media">
                         <a class="pull-left" href="#">
-                            <img class="media.object" src=""/>
+                            <img class="media.object" src="../Main Page/img/if_twitter.png" alt=""/>
                         </a>
                         <div class="media.body">
                             <h4 class="media.heading">
@@ -253,13 +393,33 @@
                             hdsfjsdhfjsdhkfjdshfkdshfj
                         </div>
                     </div>
+                    <div class="media">
+                        <a class="pull-left" href="#">
+                            <img class="media.object" src="../Main Page/img/if_twitter.png" alt=""/>
+                        </a>
+                        <div class="media.body">
+                            <h4 class="media.heading">
+                                programming
+                            </h4>
+                            hdsfjsdhfjsdhkfjdshfkdshfj
+                        </div>
+                    </div>                    
                 </div>
+<!--
                 <div class="col-lg-4">
-                            Test
-                </div>
+                    <h3>This is our awesome world</h3>
+                    <img class="img-thumbnail" src="../Main Page/imgif_twitter.png" alt="" >
+                    <img class="img-thumbnail"  src="../Main Page/imgif_twitter.png" alt="" >
+                    <img class="img-thumbnail"  src="../Main Page/imgif_twitter.png" alt="" >
+                    
+                </div> 
+            -->       
             </div>
+        </div>
+        <div class="copyRight text-center">
+            Copyright &copy; 2014 <span>Your template</span>.inc
         </div>
     </section>
     <!-- end footer> -->
-
+   
 </body>

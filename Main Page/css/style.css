@@ -1,0 +1,325 @@
+/* .btn-primary{
+color: aqua;
+background-color: blueviolet;
+} */
+body{
+   /* padding-top: 20px; */
+
+    text-decoration: none;
+}
+.meh{
+    margin: 600px;
+}
+
+/* start overriding bootstrap */
+.navbar-expand-lg .navbar-nav .dropdown-menu{
+    background-color: #343a40;
+    border-top: 3px solid aliceblue;
+    left: 0;
+    right: auto; 
+    
+}
+
+.navbar-dark .navbar-brand{
+    font-size:30px;
+    line-height: 30px; 
+}
+
+.dropdown-item{
+    color: aliceblue;
+    padding: 6px 20px;
+    min-width: 200px;
+}
+.dropdown-item:hover{
+    color: red;
+    padding-left: 25px;
+    -webkit-transition: padding 0.4s ease;
+    -moz-transition: padding 0.4s ease;
+    -o-transition: padding 0.4s ease;
+    transition: padding 0.4s ease;
+}
+
+
+
+
+
+
+
+
+  /* 
+.dropdown-divider{
+
+ background-color: black; 
+ }         
+
+ */
+
+ /* start our about class*/
+ .about{
+     padding-top: 60px;
+     padding-bottom: 60px;
+ }
+ .about .lead{
+     color: #888;
+     font-size: 25px;
+     margin-top: 15px;
+ }
+
+ /* start our features class*/
+ .features{
+    background: #EEE;
+    padding-top: 50px;
+    padding-bottom: 50px;
+ }
+.features h1{
+    margin-bottom: 50px;
+}
+.features .feat{
+    margin-bottom: 30px;
+}
+ /* start our team class*/
+ 
+.ourTeam{
+     background: url(../img/pexels-photo-943907.jpeg) no-repeat center center fixed;
+     -webkit-background-size: cover;
+     -moz-background-size:cover;
+     -moz-background-size:cover;     
+     min-height: 600px;
+}
+
+ .ourTeam .team{
+     background: rgba(2,2,2,0.7);
+     color:white;
+     min-height: 600px;
+     padding-top: 40px;
+     padding-bottom: 40px;
+ }
+ .ourTeam h1{
+     margin-bottom: 60px;   
+ }
+ .ourTeam .person{
+     margin-bottom: 40px;
+ }
+/*start section sign in
+.signin{
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background: #EEE;    
+}
+.signin h1{
+    color: #888;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+.signin p{
+    margin-bottom: 30px;
+}
+ section contact us*/
+
+.contactUs{
+    background: url(../c41230.png) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size:cover;
+    -moz-background-size:cover;     
+    min-height: 600px;
+
+}
+.contactUs fields{
+    background: rgba(9,9,9,0.8);
+    min-height: 300px;
+    color:#DDD;
+}
+
+/* start section stats */
+.statistics{
+    background: url(../img/pexels-photo-943907.jpeg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size:cover;
+    -moz-background-size:cover;     
+    min-height: 600px;
+}
+
+.statistics .data{
+    background-color:rgba(2, 2, 2, 0.6);
+    color: #B6B5B5; 
+    min-height: 600px;
+    padding-top:40px;
+    padding-bottom: 70px; 
+}
+
+.statistics h1{
+    margin-bottom:40px;
+}
+.statistics .stats{
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+    margin-bottom:30px; 
+}
+
+.statistics .stats:hover{
+    color:#fff;
+}
+
+.statistics p{
+    font-size: 60px;
+    font-weight: 800;
+    margin: 0;
+}
+.statistics span{
+    font-size: 25px;
+}
+/* end section stats */
+
+/* start section skills */
+.ourSkills{
+    padding-top: 40px;
+    padding-bottom: 70px;   
+}
+.ourSkills h1{
+    margin-bottom: 60px;
+}
+.ourSkills h3{
+    font-weight: bold;
+    margin-top:0;
+}
+
+.ourSkills .progress{
+    height: 36px;
+}
+
+.ourSkills .progress-bar{
+    height: 36px;
+    font-size: 15px;
+    font-weight: bold;
+}
+/* strat footer*/
+.footer{
+    background: #111;
+    color:#AAA;
+    padding-top:10px;
+   /* padding-bottom:20px; */
+}
+.footer a{
+    color: #AAA;
+}
+.footer a:hover{
+    color: #FFF;
+}
+.footer h3{
+    letter-spacing: 1px;
+    margin:30px 0 20px;
+    color: #0895D1;
+}
+
+.footer .threeColumns{
+    overflow: hidden
+}
+.footer .threeColumns li{
+    width: 33.33333%;
+    float: left;
+    padding: 5px 0;
+}
+.footer .socialList{
+    overflow: hidden;
+    margin: 20px 0 10px;
+}
+
+.footer .socialList li{
+    float: left;
+    margin-right: 3px;
+    opacity:0.7;
+    filter:alpha(opacity=70);
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+}
+
+.footer .socialList li:hover{
+    opacity : 1;
+}
+.footer .img-thumbnail{
+    background: rgba(0, 0, 0, 2);
+    border:1px solod #444;
+    margin-bottom: 5px;
+}
+.footer .copyRight{
+    background: #333;
+    color: AAA;
+    padding: 15px 0;
+    margin-top: 30px;
+    font-size: 18px;
+} 
+.footer .copyRight span{
+    color: #0895D1;
+}  
+/* end footer*/
+
+
+
+
+/* Shared */
+.loginBtn {
+  box-sizing: border-box;
+  position: relative;
+  /* width: 13em;  - apply for fixed size */
+  margin: 0.2em;
+  padding: 0 15px 0 46px;
+  border: none;
+  text-align: left;
+  line-height: 34px;
+  white-space: nowrap;
+  border-radius: 0.2em;
+  font-size: 16px;
+  color: #FFF;
+}
+.loginBtn:before {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 34px;
+  height: 100%;
+}
+.loginBtn:focus {
+  outline: none;
+}
+.loginBtn:active {
+  box-shadow: inset 0 0 0 32px rgba(0,0,0,0.1);
+}
+
+
+/* Facebook */
+.loginBtn--facebook {
+  background-color: #4C69BA;
+  background-image: linear-gradient(#4C69BA, #3B55A0);
+  /*font-family: "Helvetica neue", Helvetica Neue, Helvetica, Arial, sans-serif;*/
+  text-shadow: 0 -1px 0 #354C8C;
+}
+.loginBtn--facebook:before {
+  border-right: #364e92 1px solid;
+  background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/icon_facebook.png') 6px 6px no-repeat;
+}
+.loginBtn--facebook:hover,
+.loginBtn--facebook:focus {
+  background-color: #5B7BD5;
+  background-image: linear-gradient(#5B7BD5, #4864B1);
+}
+
+
+/* Google */
+.loginBtn--google {
+  /*font-family: "Roboto", Roboto, arial, sans-serif;*/
+  background: #DD4B39;
+}
+.loginBtn--google:before {
+  border-right: #BB3F30 1px solid;
+  background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/icon_google.png') 6px 6px no-repeat;
+}
+.loginBtn--google:hover,
+.loginBtn--google:focus {
+  background: #E74B37;
+}
