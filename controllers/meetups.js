@@ -2,7 +2,7 @@ const MeetupModel = require('../models/meetup');
 const DB = require('../config/DB');
 
 module.exports = {
-  home: (req, res) =>{
+  GetAllMeetups: (req, res) =>{
     return new Promise (function(resolve, reject){
       DB.query(MeetupModel.GetAllMeetups(),(error, result)=>{
          if (error){

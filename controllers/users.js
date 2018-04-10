@@ -2,6 +2,7 @@ const JWT = require('jsonwebtoken');
 const UserModel = require('../models/user');
 const DB = require('../config/DB');
 const bcrypt = require('bcryptjs');
+<<<<<<< HEAD
 const { JWT_SECRET } = require('../config/keys');
 
 signToken = (Id) =>{
@@ -9,8 +10,32 @@ signToken = (Id) =>{
     iss: 'Tafrah',
     sub: Id,
 }, JWT_SECRET,{expiresIn:'24h'});
-}
+||||||| merged common ancestors
+/*
+const { JWT_SECRET } = require('../config/keys')
+signToken = user =>{
+  return JWT.sign({
+    iss: 'CodeWorkr',
+    sub: user._id,
+    iat: new Date().getTime(),
+    exp: new Date().setDate(new Date().getDate() + 1) //current time + 1 day ahead
+  }, JWT_SECRET);
+=======
 
+const { JWT_SECRET } = require('../config/keys')
+signToken = (Id) =>{
+    return JWT.sign({
+    iss: 'Tafrah',
+    sub: Id,
+}, JWT_SECRET,{expiresIn:'24h'});
+>>>>>>> back-end
+}
+<<<<<<< HEAD
+
+||||||| merged common ancestors
+*/
+=======
+>>>>>>> back-end
 
 module.exports = {
   signUp: async(req, res, next) =>{
@@ -53,10 +78,18 @@ module.exports = {
 
   signIn: async(req, res, next) =>{
     // Generate a token
+<<<<<<< HEAD
     const token = signToken(req.user);
     res.status(200).json({token});
+||||||| merged common ancestors
+    const token = signToken(req.user);
+    res.status(200).json({ token });
+=======
+    const token = signToken(req.userId);
+    res.status(200).json({ token });
+>>>>>>> back-end
   },
-
+/*
   secret: async(req, res, next) =>{
     res.json({secret: "resource"});
   }

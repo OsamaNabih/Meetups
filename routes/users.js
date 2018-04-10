@@ -4,9 +4,15 @@ const passportConf = require('../passport');
 
 const { validateBody, schemas} = require('../helpers/routeHelpers');
 const UsersController = require('../controllers/users');
+<<<<<<< HEAD
 const passportSignIn = passport.authenticate('local', { session: false })
 const passportJWT = passport.authenticate('jwt', { session: false});
 //const passportSignIn = passport.authenticate('local', { session: false })
+||||||| merged common ancestors
+//const passportSignIn = passport.authenticate('local', { session: false })
+=======
+const passportSignIn = passport.authenticate('local', { session: false })
+>>>>>>> back-end
 //const passportJWT = passport.authenticate('jwt', { session: false});
 
 
@@ -14,7 +20,13 @@ const passportJWT = passport.authenticate('jwt', { session: false});
 router.route('/signup')
   .post(validateBody(schemas.authSchema), UsersController.signUp);
 
+<<<<<<< HEAD
   router.route('/signin')
     .post(passportSignIn , UsersController.signIn);
+||||||| merged common ancestors
+=======
+router.route('/signin')
+  .post(passportSignIn , UsersController.signIn);
+>>>>>>> back-end
 
 module.exports = router;
