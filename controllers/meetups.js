@@ -1,9 +1,11 @@
 const MeetupModel = require('../models/meetup');
-const DB = require('../config/DB');
+const Database = require('../config/DB');
+const config = require('../config/keys').config;
 
 module.exports = {
   GetAllMeetups: (req, res) =>{
     return new Promise (function(resolve, reject){
+      DB = new Database(config);
       DB.query(MeetupModel.GetAllMeetups(),(error, result)=>{
          if (error){
            reject(error.sqlMessage);

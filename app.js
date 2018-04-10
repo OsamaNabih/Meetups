@@ -31,22 +31,6 @@ app.use('/meetups', require('./routes/meetups'));
 
 
 
-app.get('/Event/:id', (req, res) =>{
-  var id = req.params.id;
-     var result = MeetupsController.Event(req, res, id);
-   result.then(function(result){
-     //res.send(result);
-     res.render('Event', {Meetup: result[0]});
-   });
-});
-app.get('/Events', (req, res) =>{
-   var result = MeetupsController.home(req, res);
-   result.then(function(result){
-     //res.send(result);
-     res.render('Events', {meetups: result});
-   });
-});
-
 app.get('/MakeEvent', (req, res) =>{
      res.render('AddPage');
 });

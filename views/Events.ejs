@@ -42,14 +42,14 @@
  <% meetups.forEach(function(data){ %>
 <div  class="col-xs-10 col-sm-10 col-md-10 mx-auto jumbotron MainTron">
  <div class ='container-fluid SubTron'>
-    <h2 class='Title' > <%= data.MeetupName %> </h2>
-    <p class="SubTitle"><%= data.Slogan %> </p>
+    <h2 class='Title' > <%= data.meetupName %> </h2>
+    <p class="SubTitle"><%= data.slogan %> </p>
       <br>
       <div  class="LocationAndTime">
       <p style = 'color:lightgray'>
-    <span  style = 'color:lightgray' class="fas fa-calendar-alt"></span> <%= data.MeetupDate %> &emsp;
-    <span style = 'color:lightgray' class="fas fa-map-marker"></span> <%= data.District %></p>
-    <% var hrf = '/Event/' + data.MeetupID %>
+    <span  style = 'color:lightgray' class="fas fa-calendar-alt"></span> <%= data.meetupDate %> &emsp;
+    <span style = 'color:lightgray' class="fas fa-map-marker"></span> <%= data.district %></p>
+    <% var hrf = '/Event/' + data.meetupID %>
     <a href = <%= hrf %> class="button1">Details</a> &emsp;
     <a class="button1">Buy Ticket</a>
     </div>

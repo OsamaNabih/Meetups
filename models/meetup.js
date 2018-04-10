@@ -1,14 +1,4 @@
 module.exports = {
-<<<<<<< HEAD
-  GetAllMeetups:  function(){
-    return "Select * From Meetups";
-  },
-  GetMeetup:  function(){
-    return "Select * From Meetups WHERE MeetupID = ?";
-||||||| merged common ancestors
-  GetAllMeetups:  function(){
-    return "Select * From Meetups";
-=======
   GetAllMeetups: function(){
     return "Select * From meetups";
   },
@@ -27,6 +17,5 @@ module.exports = {
     return `SELECT userId, email, firstName, lastName, position
           FROM (attended JOIN meetups ON attendedMeetupId = meetupId) JOIN users ON userId = attendeeId
           WHERE meetupId = ?`
->>>>>>> back-end
   }
 }

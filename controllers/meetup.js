@@ -6,7 +6,6 @@ module.exports = {
   GetMeetupAndSpeakers: (id) =>{
     return new Promise(function(resolve, reject){
       DB = new Database(config);
-      console.log(DB);
       let meetup, speakers, attendees;
       DB.query(MeetupModel.GetMeetup(), id).then( result =>{
         if (result.length == 0)
