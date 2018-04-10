@@ -10,11 +10,11 @@ create table Users
 	userType int  not null, /* 1->Admin, 2 ->Speaker, 3->User,*/
 	birthDate date,
 	position varchar(320),
-
 	Primary key(userId)
 );
 Create Table Meetups
 (
+
 	meetupId int not null auto_increment,
 	meetupName  varchar(500)  not null ,
 	capacity int not null,
@@ -39,11 +39,11 @@ Create Table Spoke_In
 create table Attended
 (
 	attendeeId int not null,
-	attendedmeetupId int not null,
+	attendedMeetupId int not null,
 
-	Primary key (attendeeId,attendedmeetupId),
+	Primary key (attendeeId,attendedMeetupId),
 	Foreign key (attendeeId) references Users(userId) On Delete cascade On Update cascade,
-	Foreign key (attendedmeetupId) references Meetups(meetupId) On Delete cascade On Update cascade
+	Foreign key (attendedMeetupId) references Meetups(meetupId) On Delete cascade On Update cascade
 );
 
 create table Images
@@ -63,6 +63,7 @@ values ("walidashraf423@gmail.com","waleed","ashraf",123,1,STR_TO_DATE('09-04-20
 Insert Into Users(email,firstName,lastName,password,userType,birthDate,position) 
 values ("OmarWagih@gmail.com","Omar","Wagih",11111,2,STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Professional Procrastinator");
  
+
 Insert Into Users(email,firstName,lastName,password,userType,birthDate,position)
 values ("OsamaNabih@gmail.com","Osama","Nabih",4444,2,STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Professional Procrastinator");
  
@@ -70,6 +71,7 @@ Insert Into Users(email,firstName,lastName,password,userType,birthDate,position)
 values ("YasmeenAhmed@gmail.com","Yasmeen","Ahmed",5555,1,STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Professional Procrastinator"); 
  
  
+
 
 Insert Into Users
 (email,firstName,lastName,password,userType,birthDate,position)
@@ -83,7 +85,7 @@ values
 
 Insert Into Users(email,firstName,lastName,password,userType,birthDate,position)
 values
-("Attendee@gmail.com", "Eager", "Learner", 1234, 2, 20010622, "Student");
+("Attendee@gmail.com", "Eager", "Learner", 1234, 3, 20010622, "Student");
 
 Insert Into Users(email,firstName,lastName,password,userType,birthDate,position)
 Values("Attendee2@gmail.com", "Tafrah", "Lover", "4321", 2, 19950415, "Junior front-end developer");
@@ -91,11 +93,13 @@ Values("Attendee2@gmail.com", "Tafrah", "Lover", "4321", 2, 19950415, "Junior fr
 Insert Into Users(email,firstName,lastName,password,userType,birthDate,position)
 Values("Attendee3@gmail.com", "Real", "Person", "1111", 2, 19900602, "Junior back-end developer");
 
+
 Insert Into Users(email,firstName,lastName,password,userType,birthDate,position)
 Values("Attendee4@gmail.com", "Very", "Enthusiastic", "2222", 2, 19900413, "Machine Learning Engineer");
 
 /*--------------------------------------------------------------------------------------------------------------------
 Inserting some Meetups--*/
+
 Insert Into Meetups(meetupName,capacity,description,price,venue,meetupDate,slogan,district)
 values ("helloworld1",50000,"how to procrastinate",0,"my house ",STR_TO_DATE('09-04-2018 23:30:50','%m-%d-%Y %H:%i:%s'),"Procrastinate FTW","Dokki");
  
@@ -346,76 +350,244 @@ values
 
 /*--------------------------------------------------------------------------------------------------------------------
 Attaching attendees to meetups*/
+
 /*
 Insert Into Attended(attendeeId, attendedMeetupId)
+>>>>>>> 0e12c95c1b40ba4ca3c940754b5fb1b75820ed92
 values
+<<<<<<< HEAD
+(3,1);
+Insert Into Attended(AttendeeID, AttendedEventID)
+||||||| merged common ancestors
+(3,8);
+Insert Into Attended(AttendeeID, AttendedEventID)
+=======
 (3,8);
 Insert Into Attended(attendeeId, attendedMeetupId)
+>>>>>>> 0e12c95c1b40ba4ca3c940754b5fb1b75820ed92
 values
+<<<<<<< HEAD
+(3,5);
+Insert Into Attended(AttendeeID, AttendedEventID)
+||||||| merged common ancestors
+(7,8);
+Insert Into Attended(AttendeeID, AttendedEventID)
+=======
 (7,8);
 Insert Into Attended(attendeeId, attendedMeetupId)
+>>>>>>> 0e12c95c1b40ba4ca3c940754b5fb1b75820ed92
 values
+<<<<<<< HEAD
+(3,7);
+Insert Into Attended(AttendeeID, AttendedEventID)
+||||||| merged common ancestors
+(8,8);
+Insert Into Attended(AttendeeID, AttendedEventID)
+=======
 (8,8);
 Insert Into Attended(attendeeId, attendedMeetupId)
+>>>>>>> 0e12c95c1b40ba4ca3c940754b5fb1b75820ed92
 values
+<<<<<<< HEAD
+(3,8);
+Insert Into Attended(AttendeeID, AttendedEventID)
+||||||| merged common ancestors
+(9,8);
+Insert Into Attended(AttendeeID, AttendedEventID)
+=======
 (9,8);
 Insert Into Attended(attendeeId, attendedMeetupId)
+>>>>>>> 0e12c95c1b40ba4ca3c940754b5fb1b75820ed92
 values
+<<<<<<< HEAD
+(3,9);
+
+Insert Into Attended(AttendeeID, AttendedEventID)
+||||||| merged common ancestors
+(10,8);
+Insert Into Attended(AttendeeID, AttendedEventID)
+=======
 (10,8);
 Insert Into Attended(attendeeId, attendedMeetupId)
+>>>>>>> 0e12c95c1b40ba4ca3c940754b5fb1b75820ed92
 values
+<<<<<<< HEAD
+(7,1);
+Insert Into Attended(AttendeeID, AttendedEventID)
+||||||| merged common ancestors
+(3,9);
+Insert Into Attended(AttendeeID, AttendedEventID)
+=======
 (3,9);
 Insert Into Attended(attendeeId, attendedMeetupId)
+>>>>>>> 0e12c95c1b40ba4ca3c940754b5fb1b75820ed92
 values
+<<<<<<< HEAD
+(7,5);
+Insert Into Attended(AttendeeID, AttendedEventID)
+||||||| merged common ancestors
+(7,9);
+Insert Into Attended(AttendeeID, AttendedEventID)
+=======
 (7,9);
 Insert Into Attended(attendeeId, attendedMeetupId)
+>>>>>>> 0e12c95c1b40ba4ca3c940754b5fb1b75820ed92
 values
+<<<<<<< HEAD
+(7,8);
+Insert Into Attended(AttendeeID, AttendedEventID)
+||||||| merged common ancestors
+(8,9);
+Insert Into Attended(AttendeeID, AttendedEventID)
+=======
 (8,9);
 Insert Into Attended(attendeeId, attendedMeetupId)
+>>>>>>> 0e12c95c1b40ba4ca3c940754b5fb1b75820ed92
 values
+<<<<<<< HEAD
+(7,9);
+
+Insert Into Attended(AttendeeID, AttendedEventID)
+||||||| merged common ancestors
+(9,9);
+Insert Into Attended(AttendeeID, AttendedEventID)
+=======
 (9,9);
 Insert Into Attended(attendeeId, attendedMeetupId)
+>>>>>>> 0e12c95c1b40ba4ca3c940754b5fb1b75820ed92
 values
+<<<<<<< HEAD
+(8,2);
+Insert Into Attended(AttendeeID, AttendedEventID)
+||||||| merged common ancestors
+(10,9);
+Insert Into Attended(AttendeeID, AttendedEventID)
+=======
 (10,9);
 Insert Into Attended(attendeeId, attendedMeetupId)
+>>>>>>> 0e12c95c1b40ba4ca3c940754b5fb1b75820ed92
 values
+<<<<<<< HEAD
+(8,5);
+Insert Into Attended(AttendeeID, AttendedEventID)
+||||||| merged common ancestors
+(3,1);
+Insert Into Attended(AttendeeID, AttendedEventID)
+=======
 (3,1);
 Insert Into Attended(attendeeId, attendedMeetupId)
+>>>>>>> 0e12c95c1b40ba4ca3c940754b5fb1b75820ed92
 values
+<<<<<<< HEAD
+(8,8);
+Insert Into Attended(AttendeeID, AttendedEventID)
+||||||| merged common ancestors
+(7,1);
+Insert Into Attended(AttendeeID, AttendedEventID)
+=======
 (7,1);
 Insert Into Attended(attendeeId, attendedMeetupId)
+>>>>>>> 0e12c95c1b40ba4ca3c940754b5fb1b75820ed92
 values
+<<<<<<< HEAD
+(8,9);
+
+Insert Into Attended(AttendeeID, AttendedEventID)
+||||||| merged common ancestors
+(8,2);
+Insert Into Attended(AttendeeID, AttendedEventID)
+=======
 (8,2);
 Insert Into Attended(attendeeId, attendedMeetupId)
+>>>>>>> 0e12c95c1b40ba4ca3c940754b5fb1b75820ed92
 values
 (9,2);
 Insert Into Attended(attendeeId, attendedMeetupId)
 values
+<<<<<<< HEAD
+(9,6);
+Insert Into Attended(AttendeeID, AttendedEventID)
+||||||| merged common ancestors
+(10,3);
+Insert Into Attended(AttendeeID, AttendedEventID)
+=======
 (10,3);
 Insert Into Attended(attendeeId, attendedMeetupId)
+>>>>>>> 0e12c95c1b40ba4ca3c940754b5fb1b75820ed92
 values
+<<<<<<< HEAD
+(9,8);
+Insert Into Attended(AttendeeID, AttendedEventID)
+||||||| merged common ancestors
+(3,5);
+Insert Into Attended(AttendeeID, AttendedEventID)
+=======
 (3,5);
 Insert Into Attended(attendeeId, attendedMeetupId)
+>>>>>>> 0e12c95c1b40ba4ca3c940754b5fb1b75820ed92
 values
+<<<<<<< HEAD
+(9,9);
+
+Insert Into Attended(AttendeeID, AttendedEventID)
+||||||| merged common ancestors
+(7,5);
+Insert Into Attended(AttendeeID, AttendedEventID)
+=======
 (7,5);
 Insert Into Attended(attendeeId, attendedMeetupId)
+>>>>>>> 0e12c95c1b40ba4ca3c940754b5fb1b75820ed92
 values
+<<<<<<< HEAD
+(10,3);
+Insert Into Attended(AttendeeID, AttendedEventID)
+||||||| merged common ancestors
+(8,5);
+Insert Into Attended(AttendeeID, AttendedEventID)
+=======
 (8,5);
 Insert Into Attended(attendeeId, attendedMeetupId)
+>>>>>>> 0e12c95c1b40ba4ca3c940754b5fb1b75820ed92
 values
+<<<<<<< HEAD
+(10,6);
+Insert Into Attended(AttendeeID, AttendedEventID)
+||||||| merged common ancestors
+(9,6);
+Insert Into Attended(AttendeeID, AttendedEventID)
+=======
 (9,6);
 Insert Into Attended(attendeeId, attendedMeetupId)
+>>>>>>> 0e12c95c1b40ba4ca3c940754b5fb1b75820ed92
 values
+<<<<<<< HEAD
+(10,7);
+Insert Into Attended(AttendeeID, AttendedEventID)
+||||||| merged common ancestors
+(10,6);
+Insert Into Attended(AttendeeID, AttendedEventID)
+=======
 (10,6);
 Insert Into Attended(attendeeId, attendedMeetupId)
+>>>>>>> 0e12c95c1b40ba4ca3c940754b5fb1b75820ed92
 values
+<<<<<<< HEAD
+(10,8);
+Insert Into Attended(AttendeeID, AttendedEventID)
+||||||| merged common ancestors
+(3,7);
+Insert Into Attended(AttendeeID, AttendedEventID)
+=======
 (3,7);
 Insert Into Attended(attendeeId, attendedMeetupId)
+>>>>>>> 0e12c95c1b40ba4ca3c940754b5fb1b75820ed92
 values
-(10,7);
+(10,9);
 
-/*--------------------------------------------------------------------------------------------------------------------
+/*
+--------------------------------------------------------------------------------------------------------------------
 Some triggers performing checks on insertions--*/
+
 delimiter $$
 create trigger Capacity before insert on Meetups
 for each row
