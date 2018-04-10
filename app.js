@@ -30,6 +30,9 @@ app.use('/meetups', require('./routes/meetups'));
 
 
 
+app.get('/', (req, res) =>{
+  res.render('MainPage');
+});
 
 app.get('/MakeEvent', (req, res) =>{
      res.render('AddPage');
@@ -38,6 +41,7 @@ app.get('/MakeEvent', (req, res) =>{
 app.get('/Register', (req, res) =>{
   res.render('Registration');
 });
+
 app.listen(3000,()=>
 {
   console.log("Listening on port 3000");
