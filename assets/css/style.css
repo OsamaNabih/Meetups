@@ -131,6 +131,12 @@ line-height: 1;
   {
     margin-bottom: -1rem;
   }
+  .AddPageTitle
+  {
+    font-size: 3rem;
+    text-align: center;
+     margin-top: -6rem ;
+  }
   .Text
   {
     font-weight: 200;
@@ -203,6 +209,29 @@ line-height: 1;
 }
 .navbar-toggler:focus {outline:0;}
 .navbar-fixed-top {height: 50px !important;}
+.no-padding
+{
+  padding-left: 0px  !important;
+  padding-right:0px !important;
+}
+html,body
+{
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden; 
+}
+
+.no-margin
+{
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+}
+.PaddingTop
+{
+  height: 100%;
+}
 .navbar-brand img {height: 40px;} /* so the image doesn't overflow the navbar*/
 @media (max-width: 767px) { /* when the screen is small and you're going to make a toggler have the drop down menu colored in transparent white, so the text can be seen */
   .navbar-collapse
@@ -218,4 +247,40 @@ line-height: 1;
 {
   padding: 15rem 0 0 0;
 }
+
+  .AddPageTitle
+  {
+     margin-top: -4rem;
+    font-size: 2rem;
+  }
 }
+
+pre {
+    white-space: pre-wrap;       /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+      #map2 {
+        height: 200px;
+        width: 200px;
+      }
+
+      #description {
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+      }
+
+      #infowindow-content .title {
+        font-weight: bold;
+      }
+
+      #infowindow-content {
+        display: none;
+      }
+
+      #map #infowindow-content {
+        display: inline;
+      }

@@ -1,0 +1,158 @@
+
+
+
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
+    <!-- Bootstrap core CSS -->
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="/assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<nav id = "navBarHead" class="navbar navbar-fixed-top navbar-dark navbar-expand-md">
+
+                <a class="navbar-brand" href="#">
+                  <img src="/assets/img/Tafrah.png" alt="Tafrah">
+                  Tafrah
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                  <i style='color:black' class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse " id="collapsibleNavbar">
+                  <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                      <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <br>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/Events">Events</a>
+                    </li>
+                      <br>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#" id = "Profiling"></a>
+                    </li>
+                      <br>
+                  </ul>
+                </div>
+              </nav>
+
+<div  style = 'height:200px;' class="jumbotron MainTron">
+    <p class="AddPageTitle" >Start a new event!</p>
+</div
+
+
+<form>
+<div>
+  <div class="row equal no-margin">
+<div class="col-sm no-padding">
+  <div class = "jumbotron PaddingTop">
+  <h3>Information</h3>
+    <h5 for="exampleInputEmail1">What will the event's name be?</h5>
+    <input class="form-control" id="EventName" aria-describedby="EventName" placeholder="Name">
+    <h5 for="exampleInputEmail1">What will the event's slogan be?</h5>
+    <input class="form-control" id="EventName" aria-describedby="EventName" placeholder="Slogan">
+    <h5 for="exampleTextarea">Describe your event</h5>
+    <textarea class="form-control" id="exampleTextarea" rows="5"></textarea>
+  </div>
+  </div>
+  <div class= "col-sm no-padding">
+<div class = "jumbotron PaddingTop">
+  <h3>Time</h3>
+        <h5 >Date</h5>
+  <div>
+    <input class="form-control" type="date" value="2018-04-05" id="example-date-input">
+  </div>
+  <h5 >Start Time</h5>
+  <div>
+    <input class="form-control"  id="example-date-input">
+  </div>
+  <h5 >End Time</h5>
+  <div>
+    <input class="form-control"  id="example-date-input">
+  </div>
+</div>
+</div>
+ <div class= "col-sm no-padding">
+<div class = "jumbotron">
+  <h3>Place</h3>
+    <h5 >Location</h5>
+  <div>
+      <div id="gmap"></div>
+  </div>
+      <h5 >Venue</h5>
+  <div>
+    <input class="form-control" id="EventVenue" aria-describedby="EventVenue" placeholder="Venue">
+  </div>
+  <h5 >Capacity</h5>
+  <div>
+    <input class="form-control" id="EventCapacity" aria-describedby="EventCapacity" placeholder="Capacity">
+  </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+  </form>
+ 
+  
+
+
+<script>
+ var map;
+        function initialize() {
+            var myLatlng = new google.maps.LatLng(30.01279,31.20852);
+            var myOptions = {
+                zoom:7,
+                center: myLatlng,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            }
+            map = new google.maps.Map(document.getElementById("gmap"), myOptions);
+            // marker refers to a global variable
+            marker = new google.maps.Marker({
+                position: myLatlng,
+                map: map
+            });
+
+            google.maps.event.addListener(map, "click", function(event) {
+                // get lat/lon of click
+                var clickLat = event.latLng.lat();
+                var clickLon = event.latLng.lng();
+                    
+                // show in input box
+               console.log(clickLat.toFixed(5));
+               console.log(clickLon.toFixed(5));
+
+                  var marker = new google.maps.Marker({
+                        position: new google.maps.LatLng(clickLat,clickLon),
+                        map: map
+                     });
+            });
+    }   
+
+    window.onload = function () { initialize() };
+  </script> 
+
+   <style>
+   h5
+  {
+     padding-top: 1rem;
+  }
+ div#gmap {
+        width: 80%;
+        height: 400px;
+ }
+    </style>
+    <!-- JQuery -->
+    <script type="text/javascript" src="/assets/js/jquery-3.2.1.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="/assets/js/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3nfuwaNpvJldXYFHprFU0QwD0Jwr74Oc&callback=initMap" async defer></script>
+
+    <script>

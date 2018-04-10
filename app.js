@@ -3,6 +3,7 @@ const express = require('express');
 const passport = require('passport');
 const http = require('http');
 const morgan = require('morgan');
+const MeetupsController = require('./controllers/meetups');
 const bodyParser = require('body-parser');
 require('./config/DB');
 
@@ -28,12 +29,24 @@ app.use('/', require('./routes/meetups'));
 
 
 app.get('/Event/:id', (req, res) =>{
-  res.render('Event');
+  var id = req.params.id;
+     var result = MeetupsController.Event(req, res, id);
+   result.then(function(result){
+     //res.send(result);
+     res.render('Event', {Meetup: result[0]});
+   });
 });
 app.get('/Events', (req, res) =>{
-  res.render('Events');
+   var result = MeetupsController.home(req, res);
+   result.then(function(result){
+     //res.send(result);
+     res.render('Events', {meetups: result});
+   });
 });
 
+app.get('/MakeEvent', (req, res) =>{
+     res.render('AddPage');
+});
 
 app.get('/Register', (req, res) =>{
   res.render('Registration');
