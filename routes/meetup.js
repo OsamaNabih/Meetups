@@ -1,7 +1,14 @@
 const router = require('express').Router();
+const passport = require('passport');
+const DB = require('../config/DB');
 const MeetupController = require('../controllers/meetup');
 const MeetupModel = require('../models/meetup');
-const DB = require('../config/DB');
+const passportJWT = passport.authenticate('jwt', { session: false });
+
+router.route('/create')
+  .get(passportJWT, (req, res)=>{
+    res.send('Consider the create meetup page is rendered')
+  });
 
 router.route('/:id')
   .get((req, res) =>{
@@ -9,9 +16,9 @@ router.route('/:id')
     result.then(function(result){
       res.send(result);
     }).catch(function(error){
-      //res.sendStatus(error);
       res.send(error);
     });
   });
+
 
 module.exports = router;

@@ -7,7 +7,9 @@ const { JWT_SECRET } = require('./config/keys');
 const UserModel = require('./models/user');
 const Database = require('./config/DB');
 const bcrypt = require('bcryptjs');
-const config =require('./config/keys.js').config;
+const config =require('./config/keys.js');
+const DBconfig = require('./config/keys.js').DBconfig;
+
 
 // JSON WEB TOKENS STRATEGY
 /*
@@ -32,18 +34,16 @@ passport.use(new JwtStrategy({
 //Google Oauth STRATEGY
 passport.use('googleToken', new GooglePlusTokenStrategy({
 
-  clientID:'835631524663-b6nhvpmsbpndqa8g4m051r5qd4iujgjt.apps.googleusercontent.com',
-  clientSecret:'KlCyyv2VcOc07Gzhktkj1RKX'
+  clientID:config.oauth.google.clientID,
+  clientSecret:config.oauth.google.clientSecret
 
 },async(accessToken,refereshToken,profile,done)=>{
-//  console.log('accessToken',accessToken);
-  //console.log('refereshToken',refereshToken);
-  //console.log('profile',profile);
-    DB = new Database(config);
-    DB.query(UserModel.GetUserByForeignId(),profile.id).then(result=>{
+    DB = new Database(DBconfig);
+    DB.query(UserModel.GetUserIdAndTypeByEmail(),profile.emails[0].value).then(result=>{
       if(result.length>0)
           {
-            done(null,result[0]);
+            let user = {userId: result[0].userId, userType: result[0].userType};
+            done(null,user);
             throw "User already exists in our DataBase "
           }
         else
@@ -51,15 +51,16 @@ passport.use('googleToken', new GooglePlusTokenStrategy({
           console.log("User doesnt exist we are creating new user");
                 newUser={};
                 newUser['email']=profile.emails[0].value;
-                newUser['foreignId']=profile.id;
+                newUser['authField']=profile.id;
                 newUser['firstName']=profile.name.givenName;
                 newUser['lastName']=profile.name.familyName;
                 newUser['userType']=3;                // Normal User
-                newUser['loginType']=3;              // Login by google
+                newUser['authType']=3;              // Login by google
                 return DB.query(UserModel.InsertUser(),newUser)
         }
     }).then( () =>{
-                      done(null,newUser);
+                      let user = {userId: result[0].userId, userType: result[0].userType};
+                      done(null,user);
                       return DB.close()
                   }, err => { return DB.close().then( () =>{ throw err; }) }
           ).catch(err => {

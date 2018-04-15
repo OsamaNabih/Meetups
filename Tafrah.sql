@@ -6,8 +6,14 @@ create table Users
 	email varchar(320) UNIQUE not null,
 	firstName varchar(50) not null,
 	lastName varchar(50) not null,
+<<<<<<< HEAD
 	password varchar(100) ,
 	userType int  not null, /* 1->Admin, 2 ->Speaker, 3->User,*/
+=======
+	authField varchar(150) not null,
+	authType int not null, /* 1->Local, 2->Facebook, 3->Google */
+	userType int not null, /* 1->Admin, 2 ->Speaker, 3->User,*/
+>>>>>>> c098b9ae9608a490ba77d13092caede5c2547d1e
 	birthDate date,
 	position varchar(320),
     loginType int not null, /* 1->local, 2->Facebook,3->Google*/
@@ -42,7 +48,6 @@ create table Attended
 (
 	attendeeId int not null,
 	attendedmeetupId int not null,
-
 	Primary key (attendeeId,attendedMeetupId),
 	Foreign key (attendeeId) references Users(userId) On Delete cascade On Update cascade,
 	Foreign key (attendedMeetupId) references Meetups(meetupId) On Delete cascade On Update cascade
@@ -56,46 +61,91 @@ create table Images
     Foreign Key(meetupId) references Meetups(meetupId) on delete cascade on update cascade
 );
 
+create table FormQuestions
+(
+	meetupId int not null,
+	questionId int not null,
+	question varchar(400) not null,
+	questionType int not null,
+	Primary Key(meetupId, questionId),
+	Foreign Key(meetupId) references Meetups(meetupId) on delete cascade on update cascade
+);
 
-/*-------------------------------------------------------------------------------------------------------------------
---Inserting some users--*/
-Insert Into Users(email,firstName,lastName,password,userType,birthDate,position)
-values ("walidashraf423@gmail.com","waleed","ashraf",123,1,STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Professional Procrastinator");
+create table FormReplies
+(
+	meetupId int not null,
+	questionId int not null,
+	userId int not null,
+	userReply varchar(400) not null,
+	Primary Key(meetupId, questionId, userId),
+	Foreign Key(meetupId, questionId) references FormQuestions(meetupId, questionId) on delete cascade on update cascade,
+	Foreign Key(userId) references Users(userId) on delete cascade on update cascade
+);
 
-Insert Into Users(email,firstName,lastName,password,userType,birthDate,position)
-values ("OmarWagih@gmail.com","Omar","Wagih",11111,2,STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Professional Procrastinator");
+create table RadioCheck
+(
+	questionId int not null,
+	meetupId int not null,
+	userId int not null,
+	optionString tinytext not null,
+	isChecked bool not null,
+	Primary Key(meetupId, questionId, userId),
+	Foreign Key(meetupId, questionId) references FormQuestions(meetupId, questionId) on delete cascade on update cascade,
+	Foreign Key(userId) references Users(userId) on delete cascade on update cascade
+);
+/*
+-------------------------------------------------------------------------------------------------------------------
+--Inserting some users--
 
-Insert Into Users(email,firstName,lastName,password,userType,birthDate,position)
-values ("OsamaNabih@gmail.com","Osama","Nabih",4444,2,STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Professional Procrastinator");
 
-Insert Into Users(email,firstName,lastName,password,userType,birthDate,position)
-values ("YasmeenAhmed@gmail.com","Yasmeen","Ahmed",5555,1,STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Professional Procrastinator");
 
+-------------------------------------------------------------------------------------------------------------------
+--Inserting some users--
+*/
+Insert Into Users(email,firstName,lastName,authField,authType,userType,birthDate,position)
+values ("walidashraf423@gmail.com","waleed","ashraf",123,1,1,STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Professional Procrastinator");
+
+Insert Into Users(email,firstName,lastName,authField,authType,userType,birthDate,position)
+values ("OmarWagih@gmail.com","Omar","Wagih",11111,1,2,STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Professional Procrastinator");
+
+Insert Into Users(email,firstName,lastName,authField,authType,userType,birthDate,position)
+values ("OsamaNabih@gmail.com","Osama","Nabih",4444,1,3,STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Professional Procrastinator");
+
+Insert Into Users(email,firstName,lastName,authField,authType,userType,birthDate,position)
+values ("YasmeenAhmed@gmail.com","Yasmeen","Ahmed",5555,1,1,STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Professional Procrastinator");
 
 
 Insert Into Users
-(email,firstName,lastName,password,userType,birthDate,position)
+(email,firstName,lastName,authField,authType,userType,birthDate,position)
 values
-("Speaker1@gmail.com", "Speaker1firstName", "Speaker1lastName", "password1", 1, 19900622, "Machine Learning Engineer at Microsoft");
+("Speaker1@gmail.com", "Speaker1firstName", "Speaker1lastName", "authField1",1, 2, 19900622, "Machine Learning Engineer at Microsoft");
 
 Insert Into Users
-(email,firstName,lastName,password,userType,birthDate,position)
+(email,firstName,lastName,authField,authType,userType,birthDate,position)
 values
-("Speaker2@gmail.com","Speaker2firstName", "Speaker2lastName", "password2", 1, 19941201, "DevOps Engineer at Google");
+("Speaker2@gmail.com","Speaker2firstName", "Speaker2lastName", "authField2",1, 2, 19941201, "DevOps Engineer at Google");
 
-Insert Into Users(email,firstName,lastName,password,userType,birthDate,position)
+Insert Into Users(email,firstName,lastName,authField,authType,userType,birthDate,position)
 values
-("Attendee@gmail.com", "Eager", "Learner", 1234, 2, 20010622, "Student");
+("Attendee@gmail.com", "Eager", "Learner", 1234,1, 3, 20010622, "Student");
 
-Insert Into Users(email,firstName,lastName,password,userType,birthDate,position)
-Values("Attendee2@gmail.com", "Tafrah", "Lover", "4321", 2, 19950415, "Junior front-end developer");
+Insert Into Users(email,firstName,lastName,authField,authType,userType,birthDate,position)
+Values("Attendee2@gmail.com", "Tafrah", "Lover", "4321",1, 3, 19950415, "Junior front-end developer");
 
-Insert Into Users(email,firstName,lastName,password,userType,birthDate,position)
-Values("Attendee3@gmail.com", "Real", "Person", "1111", 2, 19900602, "Junior back-end developer");
+Insert Into Users(email,firstName,lastName,authField,authType,userType,birthDate,position)
+Values("Attendee3@gmail.com", "Real", "Person", "1111",1, 3, 19900602, "Junior back-end developer");
 
-Insert Into Users(email,firstName,lastName,password,userType,birthDate,position)
-Values("Attendee4@gmail.com", "Very", "Enthusiastic", "2222", 2, 19900413, "Machine Learning Engineer");
+Insert Into Users(email,firstName,lastName,authField,authType,userType,birthDate,position)
+Values("Attendee4@gmail.com", "Very", "Enthusiastic", "2222",1, 3, 19900413, "Machine Learning Engineer");
 
+Insert Into Users(email,firstName,lastName,authField,authType,userType,birthDate,position)
+Values("Attendee5@gmail.com", "Techie", "Goals", "randomFacebookToken23qwekmlkdmasd90i3e39msmdakmalksd",2, 3, 19900413, "Senior Machine Learning Engineer");
+
+Insert Into Users(email,firstName,lastName,authField,authType,userType,birthDate,position)
+Values("Attendee6@gmail.com", "Google", "Rocks", "randomGoogleTokena2sd6lklm9asd3",3, 3, 19900413, "Senior Machine Learning Engineer");
+
+Insert Into Users(email,firstName,lastName,authField,authType,userType,birthDate,position)
+Values("admin@gmail.com", "Test", "Admin", "$2a$10$qECNSpwdIe.kacmtEakDuuuqcXPC2WkZqHqQrNJ1sAMb2PA2mo0hm",1, 1, 19900413, "The admin");
 /*--------------------------------------------------------------------------------------------------------------------
 Inserting some Meetups--*/
 Insert Into Meetups(meetupName,capacity,description,price,venue,meetupDate,slogan,district)
@@ -351,36 +401,6 @@ Attaching attendees to meetups*/
 /*
 Insert Into Attended(attendeeId, attendedMeetupId)
 values
-(3,8);
-Insert Into Attended(attendeeId, attendedMeetupId)
-values
-(7,8);
-Insert Into Attended(attendeeId, attendedMeetupId)
-values
-(8,8);
-Insert Into Attended(attendeeId, attendedMeetupId)
-values
-(9,8);
-Insert Into Attended(attendeeId, attendedMeetupId)
-values
-(10,8);
-Insert Into Attended(attendeeId, attendedMeetupId)
-values
-(3,9);
-Insert Into Attended(attendeeId, attendedMeetupId)
-values
-(7,9);
-Insert Into Attended(attendeeId, attendedMeetupId)
-values
-(8,9);
-Insert Into Attended(attendeeId, attendedMeetupId)
-values
-(9,9);
-Insert Into Attended(attendeeId, attendedMeetupId)
-values
-(10,9);
-Insert Into Attended(attendeeId, attendedMeetupId)
-values
 (3,1);
 Insert Into Attended(attendeeId, attendedMeetupId)
 values
@@ -415,7 +435,36 @@ values
 Insert Into Attended(attendeeId, attendedMeetupId)
 values
 (10,7);
-
+Insert Into Attended(attendeeId, attendedMeetupId)
+values
+(3,8);
+Insert Into Attended(attendeeId, attendedMeetupId)
+values
+(7,8);
+Insert Into Attended(attendeeId, attendedMeetupId)
+values
+(8,8);
+Insert Into Attended(attendeeId, attendedMeetupId)
+values
+(9,8);
+Insert Into Attended(attendeeId, attendedMeetupId)
+values
+(10,8);
+Insert Into Attended(attendeeId, attendedMeetupId)
+values
+(3,9);
+Insert Into Attended(attendeeId, attendedMeetupId)
+values
+(7,9);
+Insert Into Attended(attendeeId, attendedMeetupId)
+values
+(8,9);
+Insert Into Attended(attendeeId, attendedMeetupId)
+values
+(9,9);
+Insert Into Attended(attendeeId, attendedMeetupId)
+values
+(10,9);
 /*--------------------------------------------------------------------------------------------------------------------
 Some triggers performing checks on insertions--*/
 delimiter $$
