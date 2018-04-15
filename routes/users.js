@@ -5,7 +5,6 @@ const passportConf = require('../passport');
 const { validateBody, schemas} = require('../helpers/routeHelpers');
 const UsersController = require('../controllers/users');
 const passportSignIn = passport.authenticate('local', { session: false })
-//const passportJWT = passport.authenticate('jwt', { session: false});
 
 
 
@@ -22,7 +21,6 @@ router.route('/signup')
     else{
       res.send({ token: req.token});
     }
-
   });
 
 router.route('/signin')

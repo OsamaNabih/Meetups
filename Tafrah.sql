@@ -8,7 +8,7 @@ create table Users
 	lastName varchar(50) not null,
 	authField varchar(150) not null,
 	authType int not null, /* 1->Local, 2->Facebook, 3->Google */
-	userType int  not null, /* 1->Admin, 2 ->Speaker, 3->User,*/
+	userType int not null, /* 1->Admin, 2 ->Speaker, 3->User,*/
 	birthDate date,
 	position varchar(320),
 
@@ -41,7 +41,6 @@ create table Attended
 (
 	attendeeId int not null,
 	attendedmeetupId int not null,
-
 	Primary key (attendeeId,attendedMeetupId),
 	Foreign key (attendeeId) references Users(userId) On Delete cascade On Update cascade,
 	Foreign key (attendedMeetupId) references Meetups(meetupId) On Delete cascade On Update cascade
@@ -55,9 +54,47 @@ create table Images
     Foreign Key(meetupId) references Meetups(meetupId) on delete cascade on update cascade
 );
 
+create table FormQuestions
+(
+	meetupId int not null,
+	questionId int not null,
+	question varchar(400) not null,
+	questionType int not null,
+	Primary Key(meetupId, questionId),
+	Foreign Key(meetupId) references Meetups(meetupId) on delete cascade on update cascade
+);
 
-/*-------------------------------------------------------------------------------------------------------------------
---Inserting some users--*/
+create table FormReplies
+(
+	meetupId int not null,
+	questionId int not null,
+	userId int not null,
+	userReply varchar(400) not null,
+	Primary Key(meetupId, questionId, userId),
+	Foreign Key(meetupId, questionId) references FormQuestions(meetupId, questionId) on delete cascade on update cascade,
+	Foreign Key(userId) references Users(userId) on delete cascade on update cascade
+);
+
+create table RadioCheck
+(
+	questionId int not null,
+	meetupId int not null,
+	userId int not null,
+	optionString tinytext not null,
+	isChecked bool not null,
+	Primary Key(meetupId, questionId, userId),
+	Foreign Key(meetupId, questionId) references FormQuestions(meetupId, questionId) on delete cascade on update cascade,
+	Foreign Key(userId) references Users(userId) on delete cascade on update cascade
+);
+/*
+-------------------------------------------------------------------------------------------------------------------
+--Inserting some users--
+
+
+
+-------------------------------------------------------------------------------------------------------------------
+--Inserting some users--
+*/
 Insert Into Users(email,firstName,lastName,authField,authType,userType,birthDate,position)
 values ("walidashraf423@gmail.com","waleed","ashraf",123,1,1,STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Professional Procrastinator");
 
@@ -69,7 +106,6 @@ values ("OsamaNabih@gmail.com","Osama","Nabih",4444,1,3,STR_TO_DATE('09-04-2018 
 
 Insert Into Users(email,firstName,lastName,authField,authType,userType,birthDate,position)
 values ("YasmeenAhmed@gmail.com","Yasmeen","Ahmed",5555,1,1,STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Professional Procrastinator");
-
 
 
 Insert Into Users
@@ -100,6 +136,9 @@ Values("Attendee5@gmail.com", "Techie", "Goals", "randomFacebookToken23qwekmlkdm
 
 Insert Into Users(email,firstName,lastName,authField,authType,userType,birthDate,position)
 Values("Attendee6@gmail.com", "Google", "Rocks", "randomGoogleTokena2sd6lklm9asd3",3, 3, 19900413, "Senior Machine Learning Engineer");
+
+Insert Into Users(email,firstName,lastName,authField,authType,userType,birthDate,position)
+Values("admin@gmail.com", "Test", "Admin", "$2a$10$qECNSpwdIe.kacmtEakDuuuqcXPC2WkZqHqQrNJ1sAMb2PA2mo0hm",1, 1, 19900413, "The admin");
 /*--------------------------------------------------------------------------------------------------------------------
 Inserting some Meetups--*/
 Insert Into Meetups(meetupName,capacity,description,price,venue,meetupDate,slogan,district)

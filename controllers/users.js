@@ -4,10 +4,11 @@ const Database = require('../config/DB');
 const DBconfig = require('../config/keys').DBconfig;
 const bcrypt = require('bcryptjs');
 const { JWT_SECRET } = require('../config/keys')
-signToken = (Id) =>{
+signToken = (Id, type) =>{
     return JWT.sign({
     iss: 'Tafrah',
     sub: Id,
+    type: type,
 }, JWT_SECRET,{expiresIn:'24h'});
 }
 
@@ -27,11 +28,14 @@ module.exports = {
    const passwordHash = await bcrypt.hash(req.value.body.authField, salt);
    req.value.body.authField = passwordHash;
    const DB = new Database(DBconfig);
+   req.value.body.userType = 3;
+   req.value.body.authType = 1;
    DB.query(UserModel.InsertUser(), req.value.body).then(result =>{
-      return DB.query(UserModel.GetUserId(),req.value.body.email);
+      return DB.query(UserModel.GetUserIdAndTypeByEmail(),req.value.body.email);
     }).then(innerResult =>{
       let id = innerResult[0].userId;
-      let token = signToken(id);
+      let type = innerResult[0].userType;
+      let token = signToken(id, type);
       return DB.close().then( () => { req.token = token; next(); } )
     },err => {
       return DB.close().then( () => { throw err; } )
@@ -44,7 +48,7 @@ module.exports = {
 
   signIn: async(req, res, next) =>{
     // Generate a token4
-    const token = signToken(req.userId);
+    const token = signToken(req.user[0].userId, req.user[0].userType);
     req.token = token;
     return next();
   },

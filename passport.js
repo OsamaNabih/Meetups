@@ -10,51 +10,54 @@ const DBconfig = require('./config/keys').DBconfig;
 const bcrypt = require('bcryptjs');
 const config = require('./config/keys');
 // JSON WEB TOKENS STRATEGY
-/*
+
 passport.use(new JwtStrategy({
   jwtFromRequest: ExtractJwt.fromHeader('authorization'),
   secretOrKey: JWT_SECRET
 }, async (payload, done) =>{
   try{
       // Find the user specifided in token
-      const user = await User.findById(payload.sub);
-      // If user doesn't exist, handle it
-      if (!user) {
-        return done (null, false);
+      const DB = new Database(DBconfig);
+      const user = await DB.query(UserModel.GetUserIdAndTypeById(), payload.sub);
+      await DB.close();
+      if (user.length === 0){
+        return done(null, false);
       }
-      // Otherwise, return the user
+      else if (user[0].userType !== 1){
+        return done(null, false);
+      }
       done(null, user);
   } catch(error) {
     done(error, false);
   }
 }));
-*/
+
 
 
 // LOCAL STRATEGY
 passport.use(new LocalStrategy({
   usernameField: 'email',
-
-}, async (email, password, done) =>{
+  passwordField: 'authField'
+}, async (email, authField, done) =>{
   try {
     // Find the user given the email
     const DB = new Database(DBconfig);
     let user = await DB.query(UserModel.GetUser(),email);
+    await DB.close();
     if(!user){
       return done(null, false);
     }
     let authType = user[0].authType;
-    if (authType !== 1){
-      throw 'Email already exists';
+    if (authType !== 1){  //Checking his acc was made locally
+      throw 'Email already exists with facebook/google login';
     }
     const dbPassword = user[0].authField;
-    let isMatch = await bcrypt.compare(password,dbPassword);
+    let isMatch = await bcrypt.compare(authField,dbPassword);
     if (!isMatch){
       return done(null, false);
     }
-    done(null, user);
      // Otherwise, return the user
-    done(null, user[0].userId);
+    done(null, user);
   } catch(error){
     done(error, false);
   }

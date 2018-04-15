@@ -23,7 +23,6 @@ module.exports = {
     signupAuthSchema: Joi.object().keys({
       email: Joi.string().email().required(),
       authField: Joi.string().required().min(7).max(30),
-      authType: Joi.number().integer().positive().min(1).max(3),
       firstName: Joi.string().required(),
       lastName: Joi.string().required(),
       position: Joi.string(),
