@@ -5,8 +5,9 @@ const LocalStrategy = require('passport-local').Strategy;
 const GooglePlusTokenStrategy = require('passport-google-plus-token')
 const { JWT_SECRET } = require('./config/keys');
 const UserModel = require('./models/user');
-const DB = require('./config/DB');
+const Database = require('./config/DB');
 const bcrypt = require('bcryptjs');
+const config =require('./config/keys.js').config;
 
 // JSON WEB TOKENS STRATEGY
 /*
@@ -36,44 +37,41 @@ passport.use('googleToken', new GooglePlusTokenStrategy({
 
 },async(accessToken,refereshToken,profile,done)=>{
 //  console.log('accessToken',accessToken);
-//  console.log('refereshToken',refereshToken);
-//  console.log('profile',profile);
-
-  //check wether this current user exists in the DB or not
-  try{
-    DB.query(UserModel.GetUserByForeignId(),profile.id,(error,result)=>{
-      if(error)
-      console.log(error);
-      else if(result[0]){
-        console.log("User already exists in our database");
-        return done(null,false);
-      }
-      else{
-        console.log("Creating new User");
-        newUser={};
-        newUser['email']=profile.emails[0].value;
-        newUser['foreignId']=profile.id;
-        newUser['firstName']=profile.name.givenName;
-        newUser['lastName']=profile.name.familyName;
-        newUser['userType']=3;                // Normal User
-        newUser['loginType']=3;              // Login by google
-
-        DB.query(UserModel.InsertUser(),newUser,(error,result)=>{
-          if(error)
-          console.log(error);
-          else
+  //console.log('refereshToken',refereshToken);
+  //console.log('profile',profile);
+    DB = new Database(config);
+    DB.query(UserModel.GetUserByForeignId(),profile.id).then(result=>{
+      if(result.length>0)
           {
-            done(false,newUser);
+            done(null,result[0]);
+            throw "User already exists in our DataBase "
           }
+        else
+        {
+          console.log("User doesnt exist we are creating new user");
+                newUser={};
+                newUser['email']=profile.emails[0].value;
+                newUser['foreignId']=profile.id;
+                newUser['firstName']=profile.name.givenName;
+                newUser['lastName']=profile.name.familyName;
+                newUser['userType']=3;                // Normal User
+                newUser['loginType']=3;              // Login by google
+                return DB.query(UserModel.InsertUser(),newUser)
+        }
+    }).then( () =>{
+                      done(null,newUser);
+                      return DB.close()
+                  }, err => { return DB.close().then( () =>{ throw err; }) }
+          ).catch(err => {
+            done(err,false,err.message);
+            console.log(err);
+          });
 
-        });
-      }
-    });
-  }catch(error){
-    done(error,false);
-  }
 
-}));
+    return done;
+  }));
+
+
 
 // LOCAL STRATEGY
 passport.use(new LocalStrategy({
