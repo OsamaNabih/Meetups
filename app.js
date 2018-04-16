@@ -1,5 +1,5 @@
 const express = require('express');
-const keys = require('./config/keys');
+//const keys = require('./config/keys');
 const passport = require('passport');
 const http = require('http');
 const morgan = require('morgan');
@@ -28,6 +28,9 @@ app.use('/meetups', require('./routes/meetups'));
 
 
 
+
+try{
 app.listen(3000, ()=>{
   console.log('Listening on port 3000');
 });
+}catch(error){console.log(error);}

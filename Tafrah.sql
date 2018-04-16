@@ -11,6 +11,8 @@ create table Users
 	userType int not null, /* 1->Admin, 2 ->Speaker, 3->User,*/
 	birthDate date,
 	position varchar(320),
+    loginType int not null, /* 1->local, 2->Facebook,3->Google*/
+	foreignId text,
 
 	Primary key(userId)
 );

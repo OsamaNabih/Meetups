@@ -53,9 +53,15 @@ module.exports = {
     return next();
   },
 
+  googleOAuth: async(req,res,next)=>{
+    // Generate a token
+    const token = signToken(req.userId,req.userType);
+    res.status(200).json({token});
+  },
+
   facebookOAuth: (req, res, next) => {
    // Generate token
    const token = signToken(req.user);
    res.status(200).json({ token });
- },
+ }
 }
