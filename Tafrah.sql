@@ -6,14 +6,9 @@ create table Users
 	email varchar(320) UNIQUE not null,
 	firstName varchar(50) not null,
 	lastName varchar(50) not null,
-<<<<<<< HEAD
-	password varchar(100) ,
-	userType int  not null, /* 1->Admin, 2 ->Speaker, 3->User,*/
-=======
 	authField varchar(150) not null,
 	authType int not null, /* 1->Local, 2->Facebook, 3->Google */
 	userType int not null, /* 1->Admin, 2 ->Speaker, 3->User,*/
->>>>>>> c098b9ae9608a490ba77d13092caede5c2547d1e
 	birthDate date,
 	position varchar(320),
     loginType int not null, /* 1->local, 2->Facebook,3->Google*/

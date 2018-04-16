@@ -13,8 +13,5 @@ module.exports = {
   },
   GetUser: function(){
     return "Select * from Users where email = ? ";
-  },
-  GetUserByForeignId:function(){
-    return "Select * from Users where foreignId= ?";
   }
 }
