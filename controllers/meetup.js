@@ -1,6 +1,6 @@
 const MeetupModel = require('../models/meetup');
 const Database = require('../config/DB');
-const config = require('../config/keys').config;
+const config = require('../config/keys').DBconfig;
 
 module.exports = {
   GetMeetupAndSpeakers: (id) =>{
