@@ -1,33 +1,22 @@
 const MeetupModel = require('../models/meetup');
 const Database = require('../config/DB');
-const config = require('../config/keys').DBconfig;
-
+const DBconfig = require('../config/keys').DBconfig;
 module.exports = {
   GetAllMeetups: (req, res) =>{
     return new Promise (function(resolve, reject){
-      DB = new Database(config);
+      const DB = new Database(DBconfig);
       DB.query(MeetupModel.GetAllMeetups(),(error, result)=>{
          if (error){
-           reject(error.sqlMessage);
+           DB.close().then(()=>{
+             reject(error.sqlMessage);
+           });
          } else{
-           console.log('Meetups retrieved');
-            resolve(result);
+           DB.close().then(()=>{
+             console.log('Meetups retrieved');
+              resolve(result);
+             });
          }
      });
    });
-
-  },
-  Event: (req,res,ID) =>{
-    return new Promise (function(resolve, reject){
-      DB.query(MeetupModel.GetMeetup(),ID,(error, result)=>{
-         if (error){
-           reject(error.sqlMessage);
-         } else{
-           console.log('Meetups retrieved');
-            resolve(result);
-         }
-     });
-   });
-
   }
 }

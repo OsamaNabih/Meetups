@@ -1,13 +1,13 @@
 const MeetupModel = require('../models/meetup');
 const Database = require('../config/DB');
-const config = require('../config/keys').DBconfig;
+const DBconfig = require('../config/keys').DBconfig;
 
 module.exports = {
   GetMeetupAndSpeakers: (id) =>{
     return new Promise(function(resolve, reject){
-      DB = new Database(config);
+      const DB = new Database(DBconfig);
       let meetup, speakers, attendees;
-      DB.query(MeetupModel.GetMeetup(), id).then( result =>{
+      DB.query(MeetupModel.GetMeetup(), id).then(result =>{
         if (result.length == 0)
           throw 'No meetup exists with this ID';
         meetup = result[0];
@@ -17,8 +17,7 @@ module.exports = {
         return DB.query(MeetupModel.GetAttendees(), id);
       }).then(result =>{
         attendees = result;
-        DB.close();
-        resolve({meetup: meetup, speakers: speakers, attendees: attendees});
+        DB.close().then( ()=>{ resolve({meetup: meetup, speakers: speakers, attendees: attendees}); } );
       },err => {
         return DB.close().then( () => { throw err; } )
       }).catch(error =>{
