@@ -1,158 +1,419 @@
 
 
-
 <html lang="en">
-<head>
-  <title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
-    <!-- Bootstrap core CSS -->
-    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Your custom styles (optional) -->
-    <link href="/assets/css/style.css" rel="stylesheet">
-</head>
-<body>
+   <head>
+      <title>Bootstrap Example</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
+      <!-- Bootstrap core CSS -->
+      <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+      <!-- Your custom styles (optional) -->
+      <link href="/assets/css/OmarStyle.css" rel="stylesheet">
+   </head>
+   <body>
+      <nav id = "navBarHead" class="navbar navbar-fixed-top navbar-dark navbar-expand-md">
+         <a class="navbar-brand" href="#">
+         <img src="/assets/img/Tafrah.png" alt="Tafrah">
+         Tafrah
+         </a>
+         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+         <i style='color:black' class="fas fa-bars"></i>
+         </button>
+         <div class="collapse navbar-collapse " id="collapsibleNavbar">
+            <ul class="navbar-nav ml-auto">
+               <li class="nav-item">
+                  <a class="nav-link" href="/">Home</a>
+               </li>
+               <br>
+               <li class="nav-item">
+                  <a class="nav-link" href="/Events">Events</a>
+               </li>
+               <br>
+               <li class="nav-item">
+                  <a class="nav-link" href="#" id = "Profiling"></a>
+               </li>
+               <br>
+            </ul>
+         </div>
+      </nav>
+      <div  style = 'height:30vh;' class="jumbotron MainTron">
+         <p class="AddPageTitle" >Start a new event!</p>
+      </div>
+      <div id="OnDisplay">
 
-<nav id = "navBarHead" class="navbar navbar-fixed-top navbar-dark navbar-expand-md">
-
-                <a class="navbar-brand" href="#">
-                  <img src="/assets/img/Tafrah.png" alt="Tafrah">
-                  Tafrah
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-                  <i style='color:black' class="fas fa-bars"></i>
-                </button>
-                <div class="collapse navbar-collapse " id="collapsibleNavbar">
-                  <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                      <a class="nav-link" href="/">Home</a>
-                    </li>
-                    <br>
-                    <li class="nav-item">
-                      <a class="nav-link" href="/Events">Events</a>
-                    </li>
-                      <br>
-                    <li class="nav-item">
-                      <a class="nav-link" href="#" id = "Profiling"></a>
-                    </li>
-                      <br>
-                  </ul>
-                </div>
-              </nav>
-
-<div  style = 'height:200px;' class="jumbotron MainTron">
-    <p class="AddPageTitle" >Start a new event!</p>
-</div
-
-
-<form>
-<div>
-  <div class="row equal no-margin">
-<div class="col-sm no-padding">
-  <div class = "jumbotron PaddingTop">
-  <h3>Information</h3>
-    <h5 for="exampleInputEmail1">What will the event's name be?</h5>
-    <input class="form-control" id="EventName" aria-describedby="EventName" placeholder="Name">
-    <h5 for="exampleInputEmail1">What will the event's slogan be?</h5>
-    <input class="form-control" id="EventName" aria-describedby="EventName" placeholder="Slogan">
-    <h5 for="exampleTextarea">Describe your event</h5>
-    <textarea class="form-control" id="exampleTextarea" rows="5"></textarea>
-  </div>
-  </div>
-  <div class= "col-sm no-padding">
-<div class = "jumbotron PaddingTop">
-  <h3>Time</h3>
-        <h5 >Date</h5>
-  <div>
-    <input class="form-control" type="date" value="2018-04-05" id="example-date-input">
-  </div>
-  <h5 >Start Time</h5>
-  <div>
-    <input class="form-control"  id="example-date-input">
-  </div>
-  <h5 >End Time</h5>
-  <div>
-    <input class="form-control"  id="example-date-input">
-  </div>
-</div>
-</div>
- <div class= "col-sm no-padding">
-<div class = "jumbotron">
-  <h3>Place</h3>
-    <h5 >Location</h5>
-  <div>
-      <div id="gmap"></div>
-  </div>
-      <h5 >Venue</h5>
-  <div>
-    <input class="form-control" id="EventVenue" aria-describedby="EventVenue" placeholder="Venue">
-  </div>
-  <h5 >Capacity</h5>
-  <div>
-    <input class="form-control" id="EventCapacity" aria-describedby="EventCapacity" placeholder="Capacity">
-  </div>
-</div>
-</div>
-</div>
-</div>
-</div>
-  </form>
- 
-  
-
-
-<script>
- var map;
-        function initialize() {
-            var myLatlng = new google.maps.LatLng(30.01279,31.20852);
-            var myOptions = {
-                zoom:7,
-                center: myLatlng,
-                mapTypeId: google.maps.MapTypeId.ROADMAP
-            }
-            map = new google.maps.Map(document.getElementById("gmap"), myOptions);
-            // marker refers to a global variable
-            marker = new google.maps.Marker({
-                position: myLatlng,
-                map: map
-            });
-
-            google.maps.event.addListener(map, "click", function(event) {
-                // get lat/lon of click
-                var clickLat = event.latLng.lat();
-                var clickLon = event.latLng.lng();
-                    
-                // show in input box
-               console.log(clickLat.toFixed(5));
-               console.log(clickLon.toFixed(5));
-
-                  var marker = new google.maps.Marker({
-                        position: new google.maps.LatLng(clickLat,clickLon),
-                        map: map
-                     });
-            });
-    }   
-
-    window.onload = function () { initialize() };
-  </script> 
-
-   <style>
+      </div>
+   </body>
+</html>
+<style>
+   .InputForm
+   {
+   }
+   .btn:focus {
+   outline: none !important;
+   box-shadow:none !important;
+   }
+   #OnDisplay
+   {
+     min-height:49.5vh;
+   }
+   .input-group-text
+   {
+   background-color: #fff !important;
+   }
+   .container
+   {
+   margin-left:0 !important;
+   padding-left:0 !important;
+   margin-right:0 !important;
+   padding-right:0 !important;
+   max-width: none !important;
+   }
+   .formJumbotron:col-sm
+   {
+   padding: 0 !important;
+   margin: 0 !important;
+   }
+   .InputsList
+   {
+   padding-top:1rem;
+   background-color:white;
+   min-height:52vh;
+   }
+   .FormButton
+   {
+   margin-top: 1rem;
+   margin-right: 1rem;
+   margin-left: 1rem;
+   }
+   .formJumbotron{
+   padding-bottom:0px;
+   min-height:52vh;
+   padding-top: 0px !important;
+   margin-top:0px !important;
+   }
+   .QuestionForm
+   {
+   width:50%; 
+   margin-top: 20px;
+   }
+   html {
+   margin: 0px;
+   height: 100%;
+   width: 100%;
+   }
+   body {
+   margin: 0px;
+   min-height: 100%;
+   width: 100%;
+   overflow-x:hidden;
+   }
+   .AddPageTitle
+   {
+   margin-top:-120px;
+   text-align: center;
+   font-size: 2rem;
+   }
    h5
-  {
-     padding-top: 1rem;
-  }
- div#gmap {
-        width: 80%;
-        height: 400px;
- }
-    </style>
-    <!-- JQuery -->
-    <script type="text/javascript" src="/assets/js/jquery-3.2.1.min.js"></script>
-    <!-- Bootstrap tooltips -->
-    <script type="text/javascript" src="/assets/js/popper.min.js"></script>
-    <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3nfuwaNpvJldXYFHprFU0QwD0Jwr74Oc&callback=initMap" async defer></script>
+   {
+   padding-top: 1rem;
+   }
+   .col-sm
+   {
+   padding-right:0px;
+   padding-left:0px;
+   }
+   .no-padding
+   {
+   background-color: #e9ecef;
+   }
+   .no-margin
+   {
+      margin: 0px !important;
+   }
+   div#gmap {
+   width: 80%;
+   height: 300px;
+   }
+   #OnDisplay
+   {
+   margin-bottom:-50px;
+   }
+</style>
+<!-- JQuery -->
+<script type="text/javascript" src="/assets/js/jquery-3.2.1.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="/assets/js/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3nfuwaNpvJldXYFHprFU0QwD0Jwr74Oc&callback=initMap" async defer></script>
+<script> 
+   var FirstDiv = `<div id = "FirstDiv">
+   <form id="myForm">
+      <div  class = "InputForm" >
+         <div class="row equal no-margin">
+            <div class="col-sm no-padding">
+               <div class = "jumbotron">
+                  <h3>Information</h3>
+                  <h5 for="exampleInputEmail1">What will the event's name be?</h5>
+                  <input class="form-control" id="Name" aria-describedby="EventName" placeholder="Name">
+                  <h5 for="exampleInputEmail1">What will the event's slogan be?</h5>
+                  <input class="form-control" id="Slogan" aria-describedby="EventName" placeholder="Slogan">
+                  <h5 for="exampleTextarea">Describe your event</h5>
+                  <textarea class="form-control" id="Description" rows="5"></textarea>
+               </div>
+            </div>
+            <div class= "col-sm no-padding">
+               <div class = "jumbotron">
+                  <h3>Place</h3>
+                  <h5 >Location</h5>
+                  <div>
+                     <div id="gmap"></div>
+                  </div>
+                  <h5 >Venue</h5>
+                  <div>
+                     <input class="form-control" id="Venue" aria-describedby="EventVenue" placeholder="Venue">
+                  </div>
+                  <h5 >Capacity</h5>
+                  <div>
+                     <input class="form-control" id="Capacity" aria-describedby="EventCapacity" placeholder="Capacity">
+                  </div>
+                  <h5 >Price</h5>
+                  <div>
+                     <input class="form-control" id="Price" aria-describedby="EventPrice" placeholder="Price">
+                  </div>
+               </div>
+            </div>
+            <div class= "col-sm no-padding">
+               <div class = "jumbotron PaddingTop">
+                  <h3>Time</h3>
+                  <h5 >Date</h5>
+                  <div>
+                     <input class="form-control" type="date" value="2018-04-05" id="Date">
+                  </div>
+                  <h5 >Start Time</h5>
+                  <div>
+                     <input class="form-control"  id="Start">
+                  </div>
+                  <h5 >End Time</h5>
+                  <div>
+                     <input class="form-control"  id="End">
+                  </div>
+                  <button type="button"  id = "NextDiv" onclick='DisplaySecond()' style="margin-top:20px;" class="FormButton btn btn-outline-dark">Next</button>
+               </div>
+            </div>
+         </div>
+      </div>
+      </div>
+   </form>
+   </div>`;
+    var SecondDiv = `<div id = "SecondDiv">
+                      <div class="container">
+         <div class = "jumbotron formJumbotron">
+            <div class="row">
+               <div class="col-sm">
+               </div>
+               <div class="col-7">
+                  <center>
+                     <div class= "InputsList">
+                        <button type="button" onclick="AddParagraph()" class="FormButton btn btn-outline-dark">Paragraph question</button>
+                        <button type="button" onclick= "AddSingle()" class="FormButton btn btn-outline-dark">Single choice question</button>
+                        <button type="button" onclick= "AddMultiple()" class="FormButton btn btn-outline-dark">Multiple choice queston</button>
+                        <div id="Controller">
+                        </div>
+                        <button type="button" onclick="DisplayFirst()" class="FormButton btn btn-outline-dark">Previous</button>
+                        <button type="button" onclick="Clear()" class="FormButton btn btn-outline-dark">Clear</button>
+                        <button type="button" onclick="Submit()" class="FormButton btn btn-outline-dark">Submit</button>
+                        
+                  </center>
+               </div>
+               <div class="col-sm">
+               </div>
+            </div>
+         </div>
+      </div>
+                     </div>`;
+    var RegularQuestion = `
+                      <div class="QuestionForm input-group">
+                           <div class="input-group-prepend">
+                              <div class="input-group-text">
+                                 <input class = "CheckBoxes" type="checkbox" aria-label="Checkbox for following text input">
+                              </div>
+                           </div>
+                           <input placeholder ="Question" type="text" class="form-control Questions" aria-label="Text input with checkbox">
+                        </div>`
+     var ChoiceQuestion = `<div class="QuestionForm input-group">
+                           <div class="input-group-prepend">
+                              <div class="input-group-text">
+                                 <input class = "CheckBoxes" type="checkbox" aria-label="Checkbox for following text input">
+                              </div>
+                           </div>
+                           <input type="text" placeholder ="Question" class="form-control Questions"  aria-label="Text input with checkbox">
+                        </div>
+                        <div class="QuestionForm input-group">
+                        <input type="text" placeholder ="Answers seperated by |" class="Answers form-control" aria-label="Text input with checkbox">
+                        </div>`
+    var map;
+    markers = [];
+    var values = [];
+    var Markup = [];
+    var longandlat = {};
+           function initialize(longandflat = null) {
+             var myLatlng;
+             if (longandflat == null || longandlat.Lat == null)
+               myLatlng = new google.maps.LatLng(30.01279,31.20852);
+             else 
+             myLatlng = new google.maps.LatLng(longandlat.Lat,longandlat.Lon);
+               var myOptions = {
+                   zoom:7,
+                   center: myLatlng,
+                   mapTypeId: google.maps.MapTypeId.ROADMAP
+               }
+               map = new google.maps.Map(document.getElementById("gmap"), myOptions);
+               // marker refers to a global variable
+               if(longandflat == null)
+               {
+                 marker = new google.maps.Marker({
+                   position: myLatlng,
+                   map: map
+               });
+               }
+               else
+                 {
+                   marker = new google.maps.Marker({
+                   position: new google.maps.LatLng(longandlat.Lat,longandlat.Lon),
+                   map: map
+               });
+                 }
+               
+                     markers.push(marker);
+               google.maps.event.addListener(map, "click", function(event) {
+                   // get lat/lon of click
+                   deleteMarkers();
+                   var clickLat = event.latLng.lat();
+                   var clickLon = event.latLng.lng();
+                   longandlat = 
+                   {
+                     Lat: clickLat,
+                     Lon: clickLon
+                   };
+                   // show in input box
+                  console.log(clickLat.toFixed(5));
+                  console.log(clickLon.toFixed(5));
+   
+                     var marker = new google.maps.Marker({
+                           position: new google.maps.LatLng(clickLat,clickLon),
+                           map: map
+                        });
+                         markers.push(marker);
+               });
+               
+       }   
+   function deleteMarkers() {
+           clearMarkers();
+           markers = [];
+         }
+         function clearMarkers() {
+           setMapOnAll(null);
+         }
+   function setMapOnAll(map) {
+           for (var i = 0; i < markers.length; i++) {
+             markers[i].setMap(map);
+           }
+         }
+   
+    $(document).ready(function(){
+       $("#OnDisplay").html(FirstDiv);
+      initialize(null);
+   });
+       
+       function DisplayFirst(){
+         $("#OnDisplay").html(FirstDiv);
+   initialize(longandlat);
+      Markup = [];
+    $("#myForm").find('input').each(
+           function(unusedIndex, child) {
+               child.value = values[unusedIndex];
+           });
+           $('#Description').text(values[values.length - 1]);
+       }
+       function DisplaySecond(){
+         values = [];
+         $("#myForm").find('input').each(
+           function(unusedIndex, child) {
+             console.log(child);
+               values.push(child.value);
+           });
+           values[values.length] = $('#Description').val();
+    $("#OnDisplay").html(SecondDiv);
+       }
+                function AddParagraph()
+                {
+                  var Pusher ={Question:"",Type:1};
+                  Markup.push(Pusher);
+                    $('#Controller').append(RegularQuestion);
+                }
+                function AddSingle()
+                {
+                 var Pusher ={Question:"",Answers:"",Type:2};
+                  Markup.push(Pusher);
+                    $('#Controller').append(ChoiceQuestion);
+                }
+                function AddMultiple()
+                {  
+                  var Pusher ={Question:"",Answers:"",Type:3};
+                  Markup.push(Pusher);
+                    $('#Controller').append(ChoiceQuestion);
+                }
+                function Submit()
+                {
+                  var Counter = 0;
+                  $('.Questions').each(function(i, obj) {
+                        Markup[Counter].Question = $(obj).val();
+                        Counter++;
+                      });
+                  Counter = 0;
+                  $('.CheckBoxes').each(function(i, obj) {
+                        if ($(obj).is(':checked'))
+                        Markup[Counter].Required = true;
+                        else
+                         Markup[Counter].Required = false;
+                        Counter++;
+                      });
+                  Counter = 0;
+                  $('.Answers').each(function(i, obj) {
+                      while(Markup[Counter].Answers == null)
+                         Counter++;
+                        Markup[Counter].Answers = $(obj).val();
+                        Counter++;
+                      });
+                      console.log(Markup);
+                      console.log(values);
+                      values = {
+                        name: values[0],
+                        slogan: values[1],
+                        venue: values[2],
+                        capacity: values[3],
+                        price: values[4],
+                        date: values[5],
+                        startTime: values[6],
+                        endTime: values[7],
+                        long: longandlat.Long,
+                        lat: longandlat.Lat
+                      }
+                      DataSent = 
+                      {
+                        Questions: Markup,
+                        EventInformation: values
+                      }
+                      console.log(DataSent)
+                }
+                function Clear()
+                {
+                  Markup = [];
+                  $("#Controller").html("");
+                }
 
-    <script>
+              
+</script>
+
