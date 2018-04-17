@@ -1,15 +1,22 @@
 const JWT = require('jsonwebtoken');
 const UserModel = require('../models/user');
-const DB = require('../config/DB');
+const Database = require('../config/DB');
+const DBconfig = require('../config/keys').DBconfig;
 const bcrypt = require('bcryptjs');
+<<<<<<< HEAD
 const Database = require('../config/DB');
 const config = require('../config/keys').config;
 
+||||||| merged common ancestors
+
+=======
+>>>>>>> back-end
 const { JWT_SECRET } = require('../config/keys')
-signToken = (Id) =>{
+signToken = (Id, type) =>{
     return JWT.sign({
     iss: 'Tafrah',
     sub: Id,
+    type: type,
 }, JWT_SECRET,{expiresIn:'24h'});
 }
 
@@ -21,46 +28,48 @@ module.exports = {
     // MySQLDate is a string that's initialized by the concatenation of 3 strings
     // MySQL requires date format to be an integer, so we perform arithmetic operations
     // on it to turn it into a number
-    MySQLDate = MySQLDate / 2.0;
-    MySQLDate = MySQLDate * 2.0;
+    MySQLDate = Number(MySQLDate);
     req.value.body.birthDate = MySQLDate;
-    console.log(req.value.body);
     // Generate a salt
    const salt = await bcrypt.genSalt(10);
    // Generate a password hash (salt + hash)
-   const passwordHash = await bcrypt.hash(req.value.body.password, salt);
-   req.value.body.password = passwordHash;
-   DB = new Database(config);
-    DB.query(UserModel.InsertUser(), req.value.body, (error, result) =>{
-      if (error){
-        console.log(error.sqlMessage);//should return error page
-      } else{
-        console.log('insertion succeeded');
-        DB.query(UserModel.GetUserId(),req.value.body.email,(err,innerResult)=>{
-          if(error){
-            console.log(err.sqlMessage);//should return error page
-          }
-          else
-          {
-            console.log("Id retrieved");
-            let id = innerResult[0].userId;
-            let token = signToken(id);
-            //res.redirect(200,'/');
-            res.send({token});
-          }
-        });
-      }
+   const passwordHash = await bcrypt.hash(req.value.body.authField, salt);
+   req.value.body.authField = passwordHash;
+   const DB = new Database(DBconfig);
+   req.value.body.userType = 3;
+   req.value.body.authType = 1;
+   DB.query(UserModel.InsertUser(), req.value.body).then(result =>{
+      return DB.query(UserModel.GetUserIdAndTypeByEmail(),req.value.body.email);
+    }).then(innerResult =>{
+      let id = innerResult[0].userId;
+      let type = innerResult[0].userType;
+      let token = signToken(id, type);
+      return DB.close().then( () => { req.token = token; next(); } )
+    },err => {
+      return DB.close().then( () => { throw err; } )
+    }).catch(error=>{
+      req.error = error;
+      next();
     });
   },
 
+
   signIn: async(req, res, next) =>{
-    // Generate a token
-    const token = signToken(req.userId);
-    res.status(200).json({ token });
+    // Generate a token4
+    const token = signToken(req.user[0].userId, req.user[0].userType);
+    req.token = token;
+    return next();
   },
-/*
-  secret: async(req, res, next) =>{
-    res.json({secret: "resource"});
-  }
-*/
+
+  googleOAuth: async(req,res,next)=>{
+    // Generate a token
+    const token = signToken(req.userId,req.userType);
+    res.status(200).json({token});
+  },
+
+  facebookOAuth: (req, res, next) => {
+   // Generate token
+   const token = signToken(req.user);
+   res.status(200).json({ token });
+ }
 }

@@ -20,13 +20,13 @@ module.exports = {
   },
 
   schemas: {
-    authSchema: Joi.object().keys({
+    signupAuthSchema: Joi.object().keys({
       email: Joi.string().email().required(),
-      password: Joi.string().required().min(7).max(30),
+      authField: Joi.string().required().min(7).max(30),
       firstName: Joi.string().required(),
       lastName: Joi.string().required(),
       position: Joi.string(),
-      birthDate: Joi.date().min('1-1-1910').max(`${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`)
+      birthDate: Joi.date().required().min('1-1-1910').max(`${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`)
     })
   }
 }
