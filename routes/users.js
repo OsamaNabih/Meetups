@@ -5,21 +5,29 @@ const { validateBody, schemas} = require('../helpers/routeHelpers');
 const UsersController = require('../controllers/users');
 const passportSignIn = passport.authenticate('local', { session: false })
 const passportGoogle = passport.authenticate('googleToken',{session:false});
+const bodyParser = require('body-parser');
+const urlencodedParser = bodyParser.urlencoded({extended: false});
 //const passportJWT = passport.authenticate('jwt', { session: false});
 
 router.route('/signup')
-  .post(validateBody(schemas.signupAuthSchema), UsersController.signUp, (req, res)=>{
+  .post(urlencodedParser, validateBody(schemas.signupAuthSchema), UsersController.signUp, (req, res)=>{
     if (req.error){
+      console.log('error fel post');
       if (req.error.sqlMessage){
-        res.send(req.error.sqlMessage);
+        console.log(req.error.sqlMessage);
+        res.status(200).json({error: req.error.sqlMessage});
       }
       else{
-        res.send(req.error);
+        console.log(req.error);
+        res.status(200).json({error: req.error});
       }
     }
     else{
-      res.send({ token: req.token});
+      res.status(200).json({ token: req.token});
     }
+  })
+  .get((req, res)=>{
+    res.render('Registration');
   });
 
 router.route('/signin')

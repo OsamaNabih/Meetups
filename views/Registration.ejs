@@ -1,135 +1,181 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <head>
+        <meta charset="utf-8">
+        <title>Register</title>
+        <meta name="description" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
+        <link rel="stylesheet" href="../assets/css/style.css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <!--
+        <script>
+                $(document).ready(function(){
+                    $("button").click(function(){
+                        $.post("ay path",
+                        {
+                          name: "Donald Duck",
+                          city: "Duckburg"
+                        },
+                        function(data,status){
+                            alert("Data: " + data + "\nStatus: " + status);
+                        });
+                    });
+                });
+                </script>
+              -->
+    </head>
+    <body>
+        <!--hero section-->
+        <section class="hero">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-sm-8 mx-auto">
+                        <div class="card border-none">
+                            <div class="card-body">
+                                <div class="mt-2 text-center">
+                                    <h2>Create Your Account</h2>
+                                </div>
+                                <p class="mt-4 text-white lead text-center">
+                                    Sign up to get started with us
+                                </p>
+                                <div class="mt-4">
+                                    <form>
+                                        <div class="form-group">
+                                            <input type="text" id="firstName" class="form-control" name="first name" value="" placeholder="First Name" required>
+                                         </div>
+                                         <div class="form-group">
+                                                <input type="text" id="lastName" class="form-control" name="last name" value="" placeholder="Last Name" required>
+                                            </div>
+                                        <div class="form-group">
+                                            <input type="email" id="email" class="form-control" name="email" value="" placeholder="Enter email address" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" id="password" class="form-control" name="password" value="" placeholder="Enter password"  required>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" class="form-control" name="confirm password" value="" placeholder="Confirm password" id="confirm_password" required>
+                                        </div>
+                                        <div class="form-group">
+                                                <input type="text" id="position" class="form-control" name="position" id="position" value="" placeholder="position">
+                                            </div>
+                                        <div class="form-group">
+                                            <input type="date" id="birthDate" class="form-control" id="party" name="party" min="1920-01-01" max="2100-04-01" required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" required>
+                                        </div>
+
+                                        <button type="submit" class="btn btn-primary btn-block">Create Account</button>
+
+                                    </form>
+                                    <div class="clearfix"></div>
+                                    <p class="content-divider center mt-4"><span>or</span></p>
+                                </div>
 
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/css/mdb.min.css" rel="stylesheet">
-    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Your custom styles (optional) -->
-    <link href="/assets/css/styleRegistration.css" rel="stylesheet">
-  <script type="text/javascript" src="/assets/js/jquery-3.2.1.min.js"></script>
-  <!-- Bootstrap tooltips -->
-  <script type="text/javascript" src="/assets/js/popper.min.js"></script>
-  <!-- Bootstrap core JavaScript -->
-  <script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3nfuwaNpvJldXYFHprFU0QwD0Jwr74Oc&callback=initMap" async defer></script>    <!-- this on overrides the bootstrap stylesheet-->
-  <title>Hello, world!</title>
-        <!-- MDB core JavaScript -->
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/js/mdb.min.js"></script>
+                                <p class="">
+                                        <button class="loginBtn loginBtn--google" style="margin-left: 145px;">
+                                                Login with Google
+                                        </button>
 
-    <title> Registration </title>
-  </head>
-  <body>
-    <div class="container padding-top-10">
-      <div class="card">
-        <div class="card-header">Registration form</div>
-        <div class="card-body">
-          <form> <!-- when clicking on Name the first name recieves focus
-            <label for="firstName" class="control-label">Name:</label> -->
-            <div class="row">
-              <div class="col-md-6 padding-top-10">
-                  <label for="firstName" class="control-label">first name</label>
-                  <input type="text" class="form-control" id="firstName"/>
-              </div>
-              <div class="col-md-6  padding-top-10">
-                  <label for="lastName" class="control-label">last name</label>
-                  <input type="text" class="form-control" id="lastName"/>
+                                   <!-- <a href="#" class="btn btn-twitter"><em class="ion-social-twitter"></em></a> -->
+                                  <!--   <a href="#" class="btn btn-facebook"><em class="ion-social-facebook"></em></a>
+                                   <a href="#" class="btn btn-linkedin"><em class="ion-social-linkedin"></em></a>
+                                    <a href="#" class="btn btn-google"><em class="ion-social-googleplus"></em></a>
+                                    <a href="#" class="btn btn-github"><em class="ion-social-github"></em></a> -->
+                                </p>
+
+                                <p class="text-center">
+                                    Already have an account? <a href="index.html">Login Now</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-sm-12 mt-5 footer">
+                        <p class="text-white small text-center">
+                            &copy;
+                            <a href=""> Site</a>. Designed by <a href="https://twitter.com/">@Tafarah</a>
+                        </p>
+                    </div>
                 </div>
             </div>
-            <div class="row">
-              <div class="col-md-12 padding-top-10">
-                <label for="address1" class="control-label">Adress1</label>
-                <input type="text" class="form-control" id="address1">
-              </div>
-              <div class="col-md-12 padding-top-10" style="padding-top: 5px">
-                  <input type="text" class="form-control" id="adress2">
-              </div>
-            </div>
-            <div class="row padding-top-10">
-                <div class="col-md-6 ">
+        </section>
 
-                </div>
-                <div class="col-md-2 "></div>
+    </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>
 
 
-                <div class="col-md-4 ">
+     /*   function validatePassword()
+        {
+            if(password.value != confirm_password.value)
+            {
+                confirm_password.setCustomValidity("Passwords Don't Match");
+                confirm_password.reportValidity();
+            else if(password.value.trim() == "")
+            {
+                password.setCustomValidity("Passwords must not be empty");
+                password.reportValidity();
+            } else
+            }
+            {
+                password.setCustomValidity("they match!!!");
+            }
+        }
+*/
+         function validatePassword()
+        {
+            if(passwordPlace.value == confirm_password.value)
+            {
 
-                </div>
-            </div>
-            <div class="row padding-top-10">
-              <div class="col-md-6 padding-top-10">
-                  <label for="city" class="control-label">City</label>
-                  <input type="text" class="form-control" id="city">
-              </div>
-              <div class="col-md-2 padding-top-10">
-                  <label for="zipCode" class="control-label">zip code</label>
-                  <input type="text" class="form-control" id="zipCode">
-              </div>
-              <div class="col-md-4 padding-top-10">
-                  <label for="crap" class="control-label">crap</label>
-                  <input type="crap" class="form-control" id="crap">
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6 padding-top-10">
-                <label for="email" class="control-label">Email Address</label>
-                <input type="text" class="form-control" id="email" placeholder="Email address"/>
-              </div>
-              <div class="col-md-6 padding-top-10">
-                  <label for="communication" class="control-label">communication</label>
-                  <select id="communication" class="form-control">
-                    <option value="text"> text</option>
-                    <option value="text"> html</option>
-                  </select>
-                </div>
-            </div>
-           <div class="row">
-             <div class="col-md-6 padding-top-10">
-               <label for="password" class="control-label">Password</label>
-               <input type="password" class="form-control" id="password" placeholder="Enter password"/>
-             </div>
-             <div class="col-md-6 padding-top-10">
-                <label for="confirmPassword" class="control-label">Confirm Password</label>
-                <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm password"/>
-              </div>
-           </div>
-           <div class="row">
-             <div class="col-md-6 padding-top-10">
-               <div class="checkbox">
-                 <label>
-                   <input type="checkbox"/> Click here to subscribe
-                 </label>
-               </div>
-             </div>
-           </div>
-           <div class="row">
-             <div class="col-md-2">
-               <button type="button" class="btn btn-elegant">register</buttton>
-             </div>
-           </div>
+                confirm_password.setCustomValidity("Passwords Match");
+                confirm_password.reportValidity();
+            }
+            else if(password.value.trim() == "")
+            {
+                passwordPlace.setCustomValidity("Passwords must not be empty");
+                passwordPlace.reportValidity();
+            } else
+            {
+                confirm_password.setCustomValidity("Passwords Don't Match");
+                confirm_password.reportValidity();
 
-          </form>
-        </div>
-      </div>
+            }
+        }
+        var passwordPlace = document.getElementById("password");
+        var confirm_password = document.getElementById("confirm_password");
+        passwordPlace.onchange = validatePassword;
+        confirm_password.onkeyup = validatePassword;
+        $(document).ready(function(){
 
-    </div>
+            $("button").click(function(){
+              var firstName = $("#firstName").val();
+              var lastName = $("#lastName").val();
+              var email = $("#email").val();
+              var password = $("#password").val();
+              var birthDate = $("#birthDate").val();
+              var arr = birthDate.split('-');
+              birthDate = arr[1] + '-' + arr[2] + '-' + arr[0];
+              var position = $("#position").val();
 
-
-
-
-<!-- JQuery -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!-- Bootstrap tooltips -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
-<!-- Bootstrap core JavaScript -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<!-- MDB core JavaScript -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/js/mdb.min.js"></script>
-
-  </body>
+                $.post("./signup",
+                {
+                    firstName: firstName,
+                    lastName : lastName,
+                    email    :  email,
+                    authField : password,
+                    position : position,
+                    birthDate : birthDate
+                },
+                function(data, status){
+                    if (data.error){
+                      alert(data.error);
+                    }
+                    else {
+                      alert(data.token + ' Status: ' + status);
+                    }
+                });
+            });
+     });
+    </script>
 </html>

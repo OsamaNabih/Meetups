@@ -3,7 +3,6 @@ const Joi = require('joi');
 module.exports = {
   validateBody: (schema) => {
     return (req, res, next) => {
-      console.log(req.body.birthDate);
       const result = Joi.validate(req.body, schema);
       if (result.error) {
         console.log(result.error.message);
@@ -12,8 +11,7 @@ module.exports = {
 
       if (!req.value) { req.value = {};}
       req.value['body'] = result.value;
-      req.value.body['userType'] = 3;
-      req.value.body.birthDate = req.body.birthDate;
+      req.value.body['birthDate'] = req.body.birthDate;
       next();
       // req.value.body instead req.body
     }
@@ -26,7 +24,7 @@ module.exports = {
       firstName: Joi.string().required(),
       lastName: Joi.string().required(),
       position: Joi.string(),
-      birthDate: Joi.date().required().min('1-1-1910').max(`${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`)
+      birthDate: Joi.date().min('1-1-1910').max(`${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`)
     })
   }
 }

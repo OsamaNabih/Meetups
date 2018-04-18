@@ -6,7 +6,7 @@ create table Users
 	email varchar(320) UNIQUE not null,
 	firstName varchar(50) not null,
 	lastName varchar(50) not null,
-	authField varchar(150) not null,
+	authField varchar(200) not null,
 	authType int not null, /* 1->Local, 2->Facebook, 3->Google */
 	userType int not null, /* 1->Admin, 2 ->Speaker, 3->User,*/
 	birthDate date,

@@ -3,14 +3,6 @@ const UserModel = require('../models/user');
 const Database = require('../config/DB');
 const DBconfig = require('../config/keys').DBconfig;
 const bcrypt = require('bcryptjs');
-<<<<<<< HEAD
-const Database = require('../config/DB');
-const config = require('../config/keys').config;
-
-||||||| merged common ancestors
-
-=======
->>>>>>> back-end
 const { JWT_SECRET } = require('../config/keys')
 signToken = (Id, type) =>{
     return JWT.sign({
@@ -35,10 +27,11 @@ module.exports = {
    // Generate a password hash (salt + hash)
    const passwordHash = await bcrypt.hash(req.value.body.authField, salt);
    req.value.body.authField = passwordHash;
-   const DB = new Database(DBconfig);
-   req.value.body.userType = 3;
    req.value.body.authType = 1;
+   req.value.body.userType = 3;
+   const DB = new Database(DBconfig);
    DB.query(UserModel.InsertUser(), req.value.body).then(result =>{
+     console.log('user inserted');
       return DB.query(UserModel.GetUserIdAndTypeByEmail(),req.value.body.email);
     }).then(innerResult =>{
       let id = innerResult[0].userId;
