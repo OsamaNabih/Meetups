@@ -24,5 +24,11 @@ module.exports = {
         reject(error);
       });
     });
+  },
+  CreateMeetup: (req, res)=>{
+    //Assuming time format is HH:MM:SS, we concatenate them to insert into DB
+    req.body.startTime = Number(req.body.startTime.replace(/:/g, ''));
+    req.body.endTime = Number(req.body.endTime.replace(/:/g, ''));
+    req.body.meetupDate = Number(req.body.meetupDate.replace(/-/g, ''));
   }
 }

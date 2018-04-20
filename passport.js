@@ -14,7 +14,7 @@ const DBconfig = require('./config/keys.js').DBconfig;
 
 // JSON WEB TOKENS STRATEGY
 
-passport.use(new JwtStrategy({
+passport.use('admin-local', new JwtStrategy({
   jwtFromRequest: ExtractJwt.fromHeader('authorization'),
   secretOrKey: JWT_SECRET
 }, async (payload, done) =>{
@@ -27,6 +27,25 @@ passport.use(new JwtStrategy({
         return done(null, false);
       }
       else if (user[0].userType !== 1){
+        return done(null, false);
+      }
+      done(null, user);
+  } catch(error) {
+    done(error, false);
+  }
+}));
+
+
+passport.use('user-local', new JwtStrategy({
+  jwtFromRequest: ExtractJwt.fromHeader('authorization'),
+  secretOrKey: JWT_SECRET
+}, async (payload, done) =>{
+  try{
+      // Find the user specifided in token
+      const DB = new Database(DBconfig);
+      const user = await DB.query(UserModel.GetUserIdAndTypeById(), payload.sub);
+      await DB.close();
+      if (user.length === 0){
         return done(null, false);
       }
       done(null, user);

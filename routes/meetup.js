@@ -4,11 +4,16 @@ const DB = require('../config/DB');
 const MeetupController = require('../controllers/meetup');
 const MeetupModel = require('../models/meetup');
 const passportJWT = passport.authenticate('jwt', { session: false });
+const bodyParser = require('body-parser');
+const urlencodedParser = bodyParser.urlencoded({extended: false});
+const passportAdmin = passport.authenticate('admin-local', { session: false })
+const passportUser = passport.authenticate('user-local', { session: false })
 
 router.route('/create')
-  .get(passportJWT, (req, res)=>{
-    res.send('Consider the create meetup page is rendered')
-  });
+  .get((req, res)=>{ //passport strategy here to make sure only admin has access
+    res.render('AddPage')
+  })
+  .post(urlencodedParser, MeetupController.CreateMeetup);
 
 router.route('/:id')
   .get((req, res) =>{

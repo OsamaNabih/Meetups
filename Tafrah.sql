@@ -22,7 +22,11 @@ Create Table Meetups
 	description text character set utf8 collate utf8_bin,/* the character set utf8 is used to enter ☺,☻,♥ etc in the DB */
 	price int not null,
 	venue varchar(40),
-    meetupDate datetime not null,
+  meetupDate date not null,
+	startTime time,
+	endTime time,
+	longitude DOUBLE(16, 14),
+	latitude DOUBLE(16, 14),
 	slogan varchar(400),
 	district varchar(200),
 	Primary key(meetupId)
@@ -60,7 +64,8 @@ create table FormQuestions
 	meetupId int not null,
 	questionId int not null,
 	question varchar(400) not null,
-	questionType int not null,
+	questionType int not null, /*1 is a text question, 2 is a radio button, 3 is a checkbox */
+	required bool not null,
 	Primary Key(meetupId, questionId),
 	Foreign Key(meetupId) references Meetups(meetupId) on delete cascade on update cascade
 );
@@ -145,25 +150,25 @@ Values("admin@gmail.com", "Test", "Admin", "$2a$10$qECNSpwdIe.kacmtEakDuuuqcXPC2
 Inserting some Meetups--*/
 
 Insert Into Meetups(meetupName,capacity,description,price,venue,meetupDate,slogan,district)
-values ("helloworld1",50000,"how to procrastinate",0,"my house ",STR_TO_DATE('09-04-2018 23:30:50','%m-%d-%Y %H:%i:%s'),"Procrastinate FTW","Dokki");
+values ("helloworld1",50000,"how to procrastinate",0,"my house ",STR_TO_DATE('01-10-2018','%m-%d-%Y'),"Procrastinate FTW","Dokki");
 
 Insert Into Meetups(meetupName,capacity,description,price,venue,meetupDate,slogan,district)
-values ("helloworld2",4165000,"how to procrastinate",33,"my house ",STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Procrastinate FTW","Dokki");
+values ("helloworld2",4165000,"how to procrastinate",33,"my house ",STR_TO_DATE('01-09-2018','%m-%d-%Y'),"Procrastinate FTW","Dokki");
 
 Insert Into Meetups(meetupName,capacity,description,price,venue,meetupDate,slogan,district)
-values ("helloworld3",50000,"how to procrastinate",99,"my house ",STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Procrastinate FTW","Dokki");
+values ("helloworld3",50000,"how to procrastinate",99,"my house ",STR_TO_DATE('01-08-2018','%m-%d-%Y'),"Procrastinate FTW","Dokki");
 
 Insert Into Meetups(meetupName,capacity,description,price,venue,meetupDate,slogan,district)
-values ("helloworld4",50000,"how to procrastinate",40,"my house ",STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Procrastinate FTW","Dokki");
+values ("helloworld4",50000,"how to procrastinate",40,"my house ",STR_TO_DATE('01-07-2018','%m-%d-%Y'),"Procrastinate FTW","Dokki");
 
 Insert Into Meetups(meetupName,capacity,description,price,venue,meetupDate,slogan,district)
-values ("helloworld5",50000,"how to procrastinate",80,"my house ",STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Procrastinate FTW","Dokki");
+values ("helloworld5",50000,"how to procrastinate",80,"my house ",STR_TO_DATE('01-06-2018','%m-%d-%Y'),"Procrastinate FTW","Dokki");
 
 Insert Into Meetups(meetupName,capacity,description,price,venue,meetupDate,slogan,district)
-values ("helloworld6",50000,"how to procrastinate",650,"my house ",STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Procrastinate FTW","Dokki");
+values ("helloworld6",50000,"how to procrastinate",650,"my house ",STR_TO_DATE('01-05-2018','%m-%d-%Y'),"Procrastinate FTW","Dokki");
 
 Insert Into Meetups(meetupName,capacity,description,price,venue,meetupDate,slogan,district)
-values ("helloworld7",50000,"how to procrastinate",7440,"my house ",19830905202020,"Procrastinate FTW","Dokki");
+values ("helloworld7",50000,"how to procrastinate",7440,"my house ",20170205,"Procrastinate FTW","Dokki");
 
 
 Insert Into Meetups(meetupName,capacity,description,price,venue,meetupDate,slogan,district)
@@ -253,7 +258,7 @@ For any inquiries, please call us on +201111733122
 Tafrah is a platform that empowers MENA region techies to disrupt tech industries worldwide. We’re capable of doing that through our products.
 We started with conducting frequent rich meetups for techies (juniors/seniors) through #Tafrah_Meetup to tackle the latest updates and best practices, networking with like-minded people and enriching the mindsets with technical/non-technical experiences.
 
-Tafrah - Empowering Techies",120,"AUC Main Campus",20180317120001,"Artificial Intelligence Potential","Tahrir");
+Tafrah - Empowering Techies",120,"AUC Main Campus",20180317,"Artificial Intelligence Potential","Tahrir");
 
 
 Insert Into Meetups(meetupName,capacity,description,price,venue,meetupDate,slogan,district)
@@ -342,7 +347,7 @@ For any inquiries, please call us on +201111733122
 Tafrah is a platform that empowers MENA region techies to disrupt tech industries worldwide. We’re capable of doing that through our products.
 We started with conducting frequent rich meetups for techies (juniors/seniors) through #Tafrah_Meetup to tackle the latest updates and best practices, networking with like-minded people and enriching the mindsets with technical/non-technical experiences.
 
-Tafrah - Empowering Techies",120,"302Labs",20180331010000 ,"DevOps 101","Nasr City");
+Tafrah - Empowering Techies",120,"302Labs",20180331 ,"DevOps 101","Nasr City");
 /*--------------------------------------------------------------------------------------------------------------------
 Attaching speakers to meetups*/
 

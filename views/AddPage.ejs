@@ -94,7 +94,7 @@
    }
    .QuestionForm
    {
-   width:50%; 
+   width:50%;
    margin-top: 20px;
    }
    html {
@@ -147,7 +147,7 @@
 <!-- Bootstrap core JavaScript -->
 <script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3nfuwaNpvJldXYFHprFU0QwD0Jwr74Oc&callback=initMap" async defer></script>
-<script> 
+<script>
    var FirstDiv = `<div id = "FirstDiv">
    <form id="myForm">
       <div  class = "InputForm" >
@@ -224,7 +224,7 @@
                         <button type="button" onclick="DisplayFirst()" class="FormButton btn btn-outline-dark">Previous</button>
                         <button type="button" onclick="Clear()" class="FormButton btn btn-outline-dark">Clear</button>
                         <button type="button" onclick="Submit()" class="FormButton btn btn-outline-dark">Submit</button>
-                        
+
                   </center>
                </div>
                <div class="col-sm">
@@ -262,7 +262,7 @@
              var myLatlng;
              if (longandflat == null || longandlat.Lat == null)
                myLatlng = new google.maps.LatLng(30.01279,31.20852);
-             else 
+             else
              myLatlng = new google.maps.LatLng(longandlat.Lat,longandlat.Lon);
                var myOptions = {
                    zoom:7,
@@ -285,14 +285,14 @@
                    map: map
                });
                  }
-               
+
                      markers.push(marker);
                google.maps.event.addListener(map, "click", function(event) {
                    // get lat/lon of click
                    deleteMarkers();
                    var clickLat = event.latLng.lat();
                    var clickLon = event.latLng.lng();
-                   longandlat = 
+                   longandlat =
                    {
                      Lat: clickLat,
                      Lon: clickLon
@@ -300,15 +300,15 @@
                    // show in input box
                   console.log(clickLat.toFixed(5));
                   console.log(clickLon.toFixed(5));
-   
+
                      var marker = new google.maps.Marker({
                            position: new google.maps.LatLng(clickLat,clickLon),
                            map: map
                         });
                          markers.push(marker);
                });
-               
-       }   
+
+       }
    function deleteMarkers() {
            clearMarkers();
            markers = [];
@@ -321,12 +321,12 @@
              markers[i].setMap(map);
            }
          }
-   
+
     $(document).ready(function(){
        $("#OnDisplay").html(FirstDiv);
       initialize(null);
    });
-       
+
        function DisplayFirst(){
          $("#OnDisplay").html(FirstDiv);
    initialize(longandlat);
@@ -360,7 +360,7 @@
                     $('#Controller').append(ChoiceQuestion);
                 }
                 function AddMultiple()
-                {  
+                {
                   var Pusher ={Question:"",Answers:"",Type:3};
                   Markup.push(Pusher);
                     $('#Controller').append(ChoiceQuestion);
@@ -395,13 +395,14 @@
                         venue: values[2],
                         capacity: values[3],
                         price: values[4],
-                        date: values[5],
+                        meetupDate: values[5],
                         startTime: values[6],
                         endTime: values[7],
+                        description:values[8],
                         long: longandlat.Lng,
                         lat: longandlat.Lat
                       }
-                      DataSent = 
+                      DataSent =
                       {
                         Questions: Markup,
                         EventInformation: values
@@ -414,6 +415,5 @@
                   $("#Controller").html("");
                 }
 
-              
-</script>
 
+</script>
