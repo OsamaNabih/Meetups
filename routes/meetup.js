@@ -11,7 +11,7 @@ const passportUser = passport.authenticate('user-local', { session: false })
 
 router.route('/create')
   .get((req, res)=>{ //passport strategy here to make sure only admin has access
-    res.render('AddPage')
+    res.render('AddPage');
   })
   .post(urlencodedParser, MeetupController.CreateMeetup);
 

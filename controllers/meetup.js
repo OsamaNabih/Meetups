@@ -25,10 +25,61 @@ module.exports = {
       });
     });
   },
-  CreateMeetup: (req, res)=>{
-    //Assuming time format is HH:MM:SS, we concatenate them to insert into DB
-    req.body.startTime = Number(req.body.startTime.replace(/:/g, ''));
-    req.body.endTime = Number(req.body.endTime.replace(/:/g, ''));
-    req.body.meetupDate = Number(req.body.meetupDate.replace(/-/g, ''));
+   CreateMeetup: async (req, res)=>{
+    //Assuming time format is HH:MM:SS, we concatenate them to insert into DB as HHMMSS
+    /*If the format is HH:MM, it must be inserted into the DB as HHMM00 not HHMM or else
+    MYSQL interprets it as MM:SS*/
+    try{
+      req.body.EventInformation.startTime += '00';
+      req.body.EventInformation.endTime += '00';
+      req.body.EventInformation.startTime = Number(req.body.EventInformation.startTime.split(':').join(''));
+      req.body.EventInformation.endTime = Number(req.body.EventInformation.endTime.split(':').join(''));
+      req.body.EventInformation.meetupDate = Number(req.body.EventInformation.meetupDate.split('-').join(''));
+      const DB = new Database(DBconfig);
+      let meetupResult = await DB.query(MeetupModel.InsertMeetup(), req.body.EventInformation)
+      let meetupId = meetupResult.insertId;
+      let questionsNum = Object.keys(req.body.Questions).length;
+      let insertions = [];
+      let Answers = [];
+      for(let i = 1; i <= questionsNum; i++){
+        questionId = i;
+        let currQuestion = req.body.Questions[i - 1];
+        currQuestion['questionId'] = questionId;
+        currQuestion['meetupId'] = meetupId;
+        if (currQuestion.questionType === 1){
+          insertions.push(DB.query(MeetupModel.InsertQuestion(), currQuestion));
+          Answers.push('');
+        }
+        else {
+          Answers.push(currQuestion.Answers);
+          delete currQuestion["Answers"];
+          insertions.push(DB.query(MeetupModel.InsertQuestion(), currQuestion));
+        }
+      }
+      Promise.all(insertions).then((after)=>{
+        let optionInsertions = [];
+        for(let j = 1; j <= questionsNum; j++){
+          let currQuestion = req.body.Questions[j - 1];
+          currQuestion['questionId'] = j;
+          currQuestion['meetupId'] = meetupId;
+          if (currQuestion.questionType !== 1){
+            const Options = Answers[j - 1].split("|");
+            for(let k = 1; k <= Options.length; k++){
+              let currOption = {meetupId: currQuestion.meetupId, questionId: currQuestion.questionId,
+              optionString: Options[k - 1], optionId: k};
+              optionInsertions.push(DB.query(MeetupModel.InsertOption(), currOption));
+            }
+          }
+        }
+        return Promise.all(optionInsertions);
+      }).then(()=>{
+        return DB.close().then( () => { res.send('success, nigga'); } )
+      }).catch( (error)=>{
+        throw error;
+      });
+    }
+    catch(error){
+      console.log(error);
+    }
   }
 }

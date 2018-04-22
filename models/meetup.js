@@ -18,7 +18,13 @@ module.exports = {
           FROM (attended JOIN meetups ON attendedMeetupId = meetupId) JOIN users ON userId = attendeeId
           WHERE meetupId = ?`;
   },
-  CreateMeetup: function(){
+  InsertMeetup: function(){
     return "Insert Into Meetups set ?";
+  },
+  InsertQuestion: function(){
+    return "Insert Into FormQuestions set ?";
+  },
+  InsertOption: function(){
+    return "Insert Into QuestionOptions set ?";
   }
 }
