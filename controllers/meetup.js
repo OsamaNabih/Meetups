@@ -30,6 +30,7 @@ module.exports = {
     /*If the format is HH:MM, it must be inserted into the DB as HHMM00 not HHMM or else
     MYSQL interprets it as MM:SS*/
     try{
+      console.log(req.body);
       req.body.EventInformation.startTime += '00';
       req.body.EventInformation.endTime += '00';
       req.body.EventInformation.startTime = Number(req.body.EventInformation.startTime.split(':').join(''));

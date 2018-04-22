@@ -180,7 +180,7 @@
                   </div>
                   <h5 >Price</h5>
                   <div>
-                     <input class="form-control" id="Price" aria-describedby="EventPrice" placeholder="Price">
+                     <input class="form-control" pattern = "[0-9]{1,10}" id="Price" aria-describedby="EventPrice" placeholder="Price">
                   </div>
                </div>
             </div>
@@ -193,11 +193,11 @@
                   </div>
                   <h5 >Start Time</h5>
                   <div>
-                     <input class="form-control"  id="Start">
+                     <input pattern = "([01]?[0-9]|2[0-3]):[0-5][0-9]" class="form-control"  id="Start">
                   </div>
                   <h5 >End Time</h5>
                   <div>
-                     <input class="form-control"  id="End">
+                     <input  pattern = "([01]?[0-9]|2[0-3]):[0-5][0-9]" class="form-control"  id="End">
                   </div>
                   <button type="button"  id = "NextDiv" onclick='DisplaySecond()' style="margin-top:20px;" class="FormButton btn btn-outline-dark">Next</button>
                </div>
@@ -341,6 +341,13 @@
        }
        function DisplaySecond(){
          values = [];
+         var re = new RegExp("([01]?[0-9]|2[0-3]):[0-5][0-9]");
+         var re2 = new RegExp("[0-9]{1,10}");
+         var First = $('#Start').val();
+         var Second = $('#End').val()
+         var Third = $('#Price').val()
+         if((First == "" || re.test(First)) && (Second == "" || re.test(Second)) && (Third == "" || re2.test(Third)))
+         {
          $("#myForm").find('input').each(
            function(unusedIndex, child) {
              console.log(child);
@@ -348,6 +355,7 @@
            });
            values[values.length] = $('#Description').val();
     $("#OnDisplay").html(SecondDiv);
+         }
        }
                 function AddParagraph()
                 {
@@ -409,10 +417,12 @@
                         Questions: Markup,
                         EventInformation: values
                       }
-                      $.post( "/meetup/create", DataSent, function( data ) {
-                              console.log("S");
-                        }, "json");   
-                      console.log(DataSent)
+                      $.ajax({
+                            url: '/meetup/create', 
+                            type: 'POST', 
+                            contentType: 'application/json', 
+                            data: JSON.stringify(DataSent)}
+                        )
                 }
                 function Clear()
                 {
