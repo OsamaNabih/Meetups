@@ -37,7 +37,14 @@ app.get('/', (req, res) =>{
 app.get('/MakeEvent', (req, res) =>{
      res.render('AddPage');
 });
-
+app.get('/Validate/:id', (req, res) =>{
+    var result = MeetupController.GetMeetupAndSpeakers(req.params.id);
+    result.then(function(result){
+      res.render('Validateuser', {data: result});
+    }).catch(function(error){
+      res.send(error);
+    });
+  });
 app.listen(3000,()=>
 {
   console.log("Listening on port 3000");

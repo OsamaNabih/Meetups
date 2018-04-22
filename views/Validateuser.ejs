@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
+    <!-- Bootstrap core CSS -->
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="/assets/css/OmarStyle.css" rel="stylesheet">
+</head>
+<body>
+<nav id = "navBarHead" class="navbar navbar-fixed-top navbar-dark navbar-expand-md">
+
+                <a class="navbar-brand" href="#">
+                  <img src="/assets/img/Tafrah.png" alt="Tafrah">
+                  Tafrah
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                  <i style='color:black' class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse " id="collapsibleNavbar">
+                  <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                      <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <br>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/Events">Events</a>
+                    </li>
+                      <br>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#" id = "Profiling"></a>
+                    </li>
+                      <br>
+                  </ul>
+                </div>
+              </nav>
+
+
+
+
+<h4 class='Speakers'>Attendees</h4>
+  <div class = "ListWrapper">
+  <div class="List">
+  <div class="list-group">
+    <% data.attendees.forEach(function(data){ %>
+   <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+     <div class="d-flex w-100 justify-content-between">
+       <h5 class="mb-1"> <%= `${data.firstName} ${data.lastName}` %></h5>
+       <small>Today</small>
+     </div>
+     <p class="mb-1"> <%= data.position %> </p>
+     <small> <%= data.email %> </small>
+   </a>
+    <% })%>
+  </div>
+  </div>
+  </body>
+   <script type="text/javascript" src="/assets/js/jquery-3.2.1.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="/assets/js/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
