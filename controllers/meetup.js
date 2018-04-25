@@ -30,57 +30,97 @@ module.exports = {
     /*If the format is HH:MM, it must be inserted into the DB as HHMM00 not HHMM or else
     MYSQL interprets it as MM:SS*/
     try{
-      console.log(req.body);
       req.body.EventInformation.startTime += '00';
       req.body.EventInformation.endTime += '00';
-      req.body.EventInformation.startTime = Number(req.body.EventInformation.startTime.split(':').join(''));
-      req.body.EventInformation.endTime = Number(req.body.EventInformation.endTime.split(':').join(''));
-      req.body.EventInformation.meetupDate = Number(req.body.EventInformation.meetupDate.split('-').join(''));
+      req.body.EventInformation.startTime = Number(req.body.EventInformation.startTime.split(":").join(""));
+      req.body.EventInformation.endTime = Number(req.body.EventInformation.endTime.split(":").join(""));
+      req.body.EventInformation.meetupDate = Number(req.body.EventInformation.meetupDate.split("-").join(""));
       const DB = new Database(DBconfig);
       let meetupResult = await DB.query(MeetupModel.InsertMeetup(), req.body.EventInformation)
       let meetupId = meetupResult.insertId;
       let questionsNum = Object.keys(req.body.Questions).length;
-      let insertions = [];
-      let Answers = [];
-      for(let i = 1; i <= questionsNum; i++){
+      for(let i = 1; i <= questionsNum;i++){
         questionId = i;
         let currQuestion = req.body.Questions[i - 1];
         currQuestion['questionId'] = questionId;
         currQuestion['meetupId'] = meetupId;
         if (currQuestion.questionType === 1){
-          insertions.push(DB.query(MeetupModel.InsertQuestion(), currQuestion));
-          Answers.push('');
+          await DB.query(MeetupModel.InsertQuestion(), currQuestion);
         }
         else {
-          Answers.push(currQuestion.Answers);
+          const Options = currQuestion.Answers.split("|");
           delete currQuestion["Answers"];
-          insertions.push(DB.query(MeetupModel.InsertQuestion(), currQuestion));
-        }
-      }
-      Promise.all(insertions).then((after)=>{
-        let optionInsertions = [];
-        for(let j = 1; j <= questionsNum; j++){
-          let currQuestion = req.body.Questions[j - 1];
-          currQuestion['questionId'] = j;
-          currQuestion['meetupId'] = meetupId;
-          if (currQuestion.questionType !== 1){
-            const Options = Answers[j - 1].split("|");
-            for(let k = 1; k <= Options.length; k++){
-              let currOption = {meetupId: currQuestion.meetupId, questionId: currQuestion.questionId,
-              optionString: Options[k - 1], optionId: k};
-              optionInsertions.push(DB.query(MeetupModel.InsertOption(), currOption));
-            }
+          let result = await DB.query(MeetupModel.InsertQuestion(), currQuestion);
+          for(let j = 1; j <= Options.length; j++){
+            let currOption = {meetupId: currQuestion.meetupId, questionId: currQuestion.questionId,
+              optionString: Options[j - 1], optionId: j};
+              let innerResult = await DB.query(MeetupModel.InsertOption(), currOption);
+              //DB.query(MeetupModel.InsertOption(), currOption).catch((error)=> {throw error;});
           }
         }
-        return Promise.all(optionInsertions);
-      }).then(()=>{
-        return DB.close().then( () => { res.send('success, nigga'); } )
-      }).catch( (error)=>{
-        throw error;
+      }
+      DB.close().then(()=>{
+        console.log('kollo tamam');
+        res.send('success, nigga');
       });
     }
     catch(error){
+      console.log('fel catch');
       console.log(error);
     }
+  },
+  GetQuestions: async (req, res)=>{
+      try {
+        const DB = new Database(DBconfig);
+        //let paragraphQuestions = await DB.query(MeetupModel.GetParagraphQuestions(), req.params.id);
+        let meetup = await DB.query(MeetupModel.GetMeetup(), req.params.id);
+        meetup = meetup[0];
+        let result = await DB.query(MeetupModel.GetQuestions(), [req.params.id, req.params.id]);
+        await DB.close();
+        let temp = String(meetup.meetupDate).split(':')[0];
+        temp = temp.substr(0, temp.length - 2);
+        meetup.meetupDate = temp;
+        let Questions = [];
+        for(let j = 0; j < result.length; j++){
+          if (result[j].questionType === 1){
+            delete result[j]["optionString"];
+            delete result[j]["MAX"];
+            delete result[j]["questionId"];
+            delete result[j]["optionId"];
+            delete result[j]["meetupId"];
+            result[j].required = Boolean(result[j].required);
+            Questions.push(result[j]);
+            continue;
+          }
+          result[j].Answers = [result[j].optionString];
+          let k = 1;
+          while (k < result[j].MAX)
+          {
+            result[j].Answers.push(result[k + j].optionString);
+            k++;
+          }
+          delete result[j]["optionString"];
+          delete result[j]["MAX"];
+          delete result[j]["questionId"];
+          delete result[j]["optionId"];
+          delete result[j]["meetupId"];
+          result[j].required = Boolean(result[j].required);
+          Questions.push(result[j]);
+          j += k - 1;
+        }
+        //console.log(optionQuestions);
+        //for(let i = 0; i < result.length; i++){
+      //    paragraphQuestions.push(result[i]);
+        //}
+        //console.log(paragraphQuestions);
+        const data = {EventInformation: meetup, Questions: Questions};
+        //console.log(paragraphQuestions);
+        //console.log(result);
+        //console.log(data);
+        return res.send(data);
+      }
+      catch(error){
+        console.log(error);
+      }
   }
 }
