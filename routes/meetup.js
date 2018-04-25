@@ -11,13 +11,24 @@ const passportUser = passport.authenticate('user-local', { session: false })
 
 router.route('/create')
   .get((req, res)=>{ //passport strategy here to make sure only admin has access
-    res.render('AddPage')
+    res.render('AddPage');
   })
   .post(urlencodedParser, MeetupController.CreateMeetup);
 
+router.route('/:id/register')
+  .get((req, res)=>{
+    let result = MeetupController.GetQuestions(req, res);
+    result.then(function(result){
+      //console.log(result);
+    }).catch(function(error){
+      console.log('barra');
+    });
+
+  });
+
 router.route('/:id')
   .get((req, res) =>{
-    var result = MeetupController.GetMeetupAndSpeakers(req.params.id);
+    let result = MeetupController.GetMeetupAndSpeakers(req.params.id);
     result.then(function(result){
       res.render('Event', {data: result});
     }).catch(function(error){

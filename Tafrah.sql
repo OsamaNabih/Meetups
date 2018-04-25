@@ -15,7 +15,6 @@ create table Users
 );
 Create Table Meetups
 (
-
 	meetupId int not null auto_increment,
 	meetupName  varchar(500)  not null ,
 	capacity int not null,
@@ -23,10 +22,10 @@ Create Table Meetups
 	price int not null,
 	venue varchar(40),
   meetupDate date not null,
-	startTime time,
-	endTime time,
-	longitude DOUBLE(16, 14),
-	latitude DOUBLE(16, 14),
+	startTime time not null,
+	endTime time not null,
+	longitude DOUBLE(16, 14) not null,
+	latitude DOUBLE(16, 14) not null,
 	slogan varchar(400),
 	district varchar(200),
 	Primary key(meetupId)
@@ -45,7 +44,6 @@ create table Attended
 (
 	attendeeId int not null,
 	attendedMeetupId int not null,
-
 	Primary key (attendeeId,attendedMeetupId),
 	Foreign key (attendeeId) references Users(userId) On Delete cascade On Update cascade,
 	Foreign key (attendedMeetupId) references Meetups(meetupId) On Delete cascade On Update cascade
@@ -62,20 +60,31 @@ create table Images
 create table FormQuestions
 (
 	meetupId int not null,
-	questionId int not null,
-	question varchar(400) not null,
+	questionId tinyint UNSIGNED not null,
+	question text not null,
 	questionType int not null, /*1 is a text question, 2 is a radio button, 3 is a checkbox */
 	required bool not null,
 	Primary Key(meetupId, questionId),
 	Foreign Key(meetupId) references Meetups(meetupId) on delete cascade on update cascade
 );
 
+create table QuestionOptions
+(
+	meetupId int not null,
+	questionId tinyint UNSIGNED not null,
+	optionId tinyint UNSIGNED not null,
+	optionString tinytext not null,
+	Primary Key(meetupId, questionId, optionId),
+	Foreign Key(meetupId, questionId) references FormQuestions(meetupId, questionId) on delete cascade on update cascade
+);
+
 create table FormReplies
 (
 	meetupId int not null,
-	questionId int not null,
+	questionId tinyint UNSIGNED not null,
 	userId int not null,
-	userReply varchar(400) not null,
+	userReply text not null,
+	isChecked boolean not null,
 	Primary Key(meetupId, questionId, userId),
 	Foreign Key(meetupId, questionId) references FormQuestions(meetupId, questionId) on delete cascade on update cascade,
 	Foreign Key(userId) references Users(userId) on delete cascade on update cascade
@@ -83,10 +92,9 @@ create table FormReplies
 
 create table RadioCheck
 (
-	questionId int not null,
+	questionId tinyint UNSIGNED not null,
 	meetupId int not null,
 	userId int not null,
-	optionString tinytext not null,
 	isChecked bool not null,
 	Primary Key(meetupId, questionId, userId),
 	Foreign Key(meetupId, questionId) references FormQuestions(meetupId, questionId) on delete cascade on update cascade,

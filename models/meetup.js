@@ -18,7 +18,28 @@ module.exports = {
           FROM (attended JOIN meetups ON attendedMeetupId = meetupId) JOIN users ON userId = attendeeId
           WHERE meetupId = ?`;
   },
-  CreateMeetup: function(){
+  InsertMeetup: function(){
     return "Insert Into Meetups set ?";
+  },
+  InsertQuestion: function(){
+    return "Insert Into FormQuestions set ?";
+  },
+  InsertOption: function(){
+    return "Insert Into QuestionOptions set ?";
+  },
+  GetQuestions: function(){
+    return `SELECT question, required, FQ.meetupId , FQ.questionId, MAX, optionString, FQ.questionType
+            FROM FormQuestions as FQ LEFT JOIN
+	             (SELECT * FROM questionoptions NATURAL JOIN
+		                (SELECT questionId, meetupId, MAX(optionId) as MAX
+                    FROM QuestionOptions
+                    WHERE meetupId = ?
+                    GROUP BY questionId
+                    ORDER BY questionId)
+                as OptionsNum)
+            as Options
+            on FQ.meetupId = Options.meetupId AND FQ.questionId = Options.questionId
+            WHERE FQ.meetupId = ?
+            ORDER BY FQ.questionId`;
   }
 }

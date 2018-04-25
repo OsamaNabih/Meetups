@@ -94,7 +94,7 @@
    }
    .QuestionForm
    {
-   width:50%; 
+   width:50%;
    margin-top: 20px;
    }
    html {
@@ -147,7 +147,7 @@
 <!-- Bootstrap core JavaScript -->
 <script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3nfuwaNpvJldXYFHprFU0QwD0Jwr74Oc&callback=initMap" async defer></script>
-<script> 
+<script>
    var FirstDiv = `<div id = "FirstDiv">
    <form id="myForm">
       <div  class = "InputForm" >
@@ -180,7 +180,7 @@
                   </div>
                   <h5 >Price</h5>
                   <div>
-                     <input class="form-control" id="Price" aria-describedby="EventPrice" placeholder="Price">
+                     <input class="form-control" pattern = "[0-9]{1,10}" id="Price" aria-describedby="EventPrice" placeholder="Price">
                   </div>
                </div>
             </div>
@@ -193,11 +193,11 @@
                   </div>
                   <h5 >Start Time</h5>
                   <div>
-                     <input class="form-control"  id="Start">
+                     <input pattern = "([01]?[0-9]|2[0-3]):[0-5][0-9]" class="form-control"  id="Start">
                   </div>
                   <h5 >End Time</h5>
                   <div>
-                     <input class="form-control"  id="End">
+                     <input  pattern = "([01]?[0-9]|2[0-3]):[0-5][0-9]" class="form-control"  id="End">
                   </div>
                   <button type="button"  id = "NextDiv" onclick='DisplaySecond()' style="margin-top:20px;" class="FormButton btn btn-outline-dark">Next</button>
                </div>
@@ -224,7 +224,7 @@
                         <button type="button" onclick="DisplayFirst()" class="FormButton btn btn-outline-dark">Previous</button>
                         <button type="button" onclick="Clear()" class="FormButton btn btn-outline-dark">Clear</button>
                         <button type="button" onclick="Submit()" class="FormButton btn btn-outline-dark">Submit</button>
-                        
+
                   </center>
                </div>
                <div class="col-sm">
@@ -262,7 +262,7 @@
              var myLatlng;
              if (longandflat == null || longandlat.Lat == null)
                myLatlng = new google.maps.LatLng(30.01279,31.20852);
-             else 
+             else
              myLatlng = new google.maps.LatLng(longandlat.Lat,longandlat.Lon);
                var myOptions = {
                    zoom:7,
@@ -285,14 +285,14 @@
                    map: map
                });
                  }
-               
+
                      markers.push(marker);
                google.maps.event.addListener(map, "click", function(event) {
                    // get lat/lon of click
                    deleteMarkers();
                    var clickLat = event.latLng.lat();
                    var clickLon = event.latLng.lng();
-                   longandlat = 
+                   longandlat =
                    {
                      Lat: clickLat,
                      Lon: clickLon
@@ -300,15 +300,15 @@
                    // show in input box
                   console.log(clickLat.toFixed(5));
                   console.log(clickLon.toFixed(5));
-   
+
                      var marker = new google.maps.Marker({
                            position: new google.maps.LatLng(clickLat,clickLon),
                            map: map
                         });
                          markers.push(marker);
                });
-               
-       }   
+
+       }
        function initMap()
        {initialize();}
    function deleteMarkers() {
@@ -323,12 +323,12 @@
              markers[i].setMap(map);
            }
          }
-   
+
     $(document).ready(function(){
        $("#OnDisplay").html(FirstDiv);
       initialize(null);
    });
-       
+
        function DisplayFirst(){
          $("#OnDisplay").html(FirstDiv);
    initialize(longandlat);
@@ -341,6 +341,13 @@
        }
        function DisplaySecond(){
          values = [];
+         var re = new RegExp("([01]?[0-9]|2[0-3]):[0-5][0-9]");
+         var re2 = new RegExp("[0-9]{1,10}");
+         var First = $('#Start').val();
+         var Second = $('#End').val()
+         var Third = $('#Price').val()
+         if((First == "" || re.test(First)) && (Second == "" || re.test(Second)) && (Third == "" || re2.test(Third)))
+         {
          $("#myForm").find('input').each(
            function(unusedIndex, child) {
              console.log(child);
@@ -348,22 +355,23 @@
            });
            values[values.length] = $('#Description').val();
     $("#OnDisplay").html(SecondDiv);
+         }
        }
                 function AddParagraph()
                 {
-                  var Pusher ={Question:"",Type:1};
+                  var Pusher ={question:"",questionType:1};
                   Markup.push(Pusher);
                     $('#Controller').append(RegularQuestion);
                 }
                 function AddSingle()
                 {
-                 var Pusher ={Question:"",Answers:"",Type:2};
+                 var Pusher ={question:"",Answers:"",questionType:2};
                   Markup.push(Pusher);
                     $('#Controller').append(ChoiceQuestion);
                 }
                 function AddMultiple()
-                {  
-                  var Pusher ={Question:"",Answers:"",Type:3};
+                {
+                  var Pusher ={question:"",Answers:"",questionType:3};
                   Markup.push(Pusher);
                     $('#Controller').append(ChoiceQuestion);
                 }
@@ -371,15 +379,15 @@
                 {
                   var Counter = 0;
                   $('.Questions').each(function(i, obj) {
-                        Markup[Counter].Question = $(obj).val();
+                        Markup[Counter].question = $(obj).val();
                         Counter++;
                       });
                   Counter = 0;
                   $('.CheckBoxes').each(function(i, obj) {
                         if ($(obj).is(':checked'))
-                        Markup[Counter].Required = true;
+                        Markup[Counter].required = true;
                         else
-                         Markup[Counter].Required = false;
+                         Markup[Counter].required = false;
                         Counter++;
                       });
                   Counter = 0;
@@ -392,7 +400,7 @@
                       console.log(Markup);
                       console.log(values);
                       values = {
-                        name: values[0],
+                        meetupName: values[0],
                         slogan: values[1],
                         venue: values[2],
                         capacity: values[3],
@@ -401,18 +409,20 @@
                         startTime: values[6],
                         endTime: values[7],
                         description: values[8],
-                        long: longandlat.Lon,
-                        lat: longandlat.Lat
+                        longitude: longandlat.Lon,
+                        latitude: longandlat.Lat
                       }
-                      DataSent = 
+                      DataSent =
                       {
                         Questions: Markup,
                         EventInformation: values
                       }
-                      $.post( "/meetup/create", DataSent, function( data ) {
-                              console.log("S");
-                        }, "json");   
-                      console.log(DataSent)
+                      $.ajax({
+                            url: '/meetup/create',
+                            type: 'POST',
+                            contentType: 'application/json',
+                            data: JSON.stringify(DataSent)}
+                        )
                 }
                 function Clear()
                 {
@@ -420,6 +430,5 @@
                   $("#Controller").html("");
                 }
 
-              
-</script>
 
+</script>
