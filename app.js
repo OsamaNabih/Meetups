@@ -3,7 +3,6 @@ const express = require('express');
 const passport = require('passport');
 const http = require('http');
 const morgan = require('morgan');
-const MeetupController = require('./controllers/meetup');
 const bodyParser = require('body-parser');
 require('./config/DB');
 
@@ -34,26 +33,6 @@ app.get('/', (req, res) =>{
   res.render('MainPage');
 });
 
-app.get('/MakeEvent', (req, res) =>{
-     res.render('AddPage');
-});
-app.get('/Event/:id/register', (req, res) =>{
-  let result = MeetupController.GetQuestions(req,res);
-    result.then(function(result){
-        console.log(result);
-      res.render('Form', {data: result});
-    }).catch(function(error){
-      res.send(error);
-    });
-});
-app.get('/Validate/:id', (req, res) =>{
-    var result = MeetupController.GetMeetupAndSpeakers(req.params.id);
-    result.then(function(result){
-      res.render('Validateuser', {data: result});
-    }).catch(function(error){
-      res.send(error);
-    });
-  });
 app.listen(3000,()=>
 {
   console.log("Listening on port 3000");

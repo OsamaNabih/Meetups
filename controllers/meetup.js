@@ -25,6 +25,18 @@ module.exports = {
       });
     });
   },
+  GetAttendees: async (req, res)=>{
+    try {
+      const DB = new Database(DBconfig);
+      let result = await DB.query(MeetupModel.GetAttendees(), req.params.id);
+      DB.close().then(()=> {console.log('DB is closed')});
+      return result;
+    }
+    catch(error){
+      return error;
+    }
+
+  },
    CreateMeetup: async (req, res)=>{
     //Assuming time format is HH:MM:SS, we concatenate them to insert into DB as HHMMSS
     /*If the format is HH:MM, it must be inserted into the DB as HHMM00 not HHMM or else
