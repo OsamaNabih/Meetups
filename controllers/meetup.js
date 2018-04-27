@@ -117,7 +117,7 @@ module.exports = {
         //console.log(paragraphQuestions);
         //console.log(result);
         //console.log(data);
-        return res.send(data);
+        return data;
       }
       catch(error){
         console.log(error);
