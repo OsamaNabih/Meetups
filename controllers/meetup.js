@@ -33,6 +33,7 @@ module.exports = {
       console.log(req.body);
       req.body.EventInformation.startTime += '00';
       req.body.EventInformation.endTime += '00';
+      console.log(req.body.EventInformation.startTime.split(':').join(''))
       req.body.EventInformation.startTime = Number(req.body.EventInformation.startTime.split(':').join(''));
       req.body.EventInformation.endTime = Number(req.body.EventInformation.endTime.split(':').join(''));
       req.body.EventInformation.meetupDate = Number(req.body.EventInformation.meetupDate.split('-').join(''));
