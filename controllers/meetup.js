@@ -14,7 +14,7 @@ module.exports = {
         return DB.query(MeetupModel.GetSpeakers(), id);
       }).then(result =>{
         speakers = result;
-        return DB.query(MeetupModel.GetAttendees(), id);
+        return DB.query(MeetupModel.GetVerifiedAttendees(), id);
       }).then(result =>{
         attendees = result;
         DB.close().then( ()=>{ resolve({meetup: meetup, speakers: speakers, attendees: attendees}); } );
@@ -133,6 +133,7 @@ module.exports = {
       }
       catch(error){
         console.log(error);
+        return error;
       }
   }
 }
