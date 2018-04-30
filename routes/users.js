@@ -33,13 +33,18 @@ router.route('/signup')
   });
 
 router.route('/signin')
-  .post(passportSignIn , UsersController.signIn, (req, res)=>{
+  .post(urlencodedParser, passportSignIn, UsersController.signIn, (req, res)=>{
     if (req.token){
-      res.send({token: req.token});
+      console.log(req.token);
+      res.status(200).json({token: req.token});
     }
     else{
-      res.send(req.error);
+      console.log(req.error);
+      res.status(200).json({error: req.error});
     }
+  })
+  .get((req, res)=>{
+    res.render('SignIn');
   });
 
 router.route('/oauth/facebook')

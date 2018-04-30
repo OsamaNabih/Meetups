@@ -48,10 +48,18 @@ module.exports = {
 
 
   signIn: async(req, res, next) =>{
-    // Generate a token4
-    const token = signToken(req.user[0].userId, req.user[0].userType);
-    req.token = token;
-    return next();
+    // Generate a token
+    //console.log(req.user.error);
+    if (req.user.error){
+      req.error = req.user.error;
+      next();
+    }
+    else{
+      const token = signToken(req.user[0].userId, req.user[0].userType);
+      req.token = token;
+      next();
+    }
+
   },
 
   googleOAuth: async(req,res,next)=>{
