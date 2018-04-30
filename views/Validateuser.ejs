@@ -37,29 +37,45 @@
                   </ul>
                 </div>
               </nav>
-
-
-
-
+<div class = " MainValidate">
 <h4 class='Speakers'>Attendees</h4>
-  <div class = "ListWrapper">
-  <div class="List">
   <div class="list-group">
     <% data.forEach(function(data){ %>
-   <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+   <a class="list-group-item disabled list-group-item-action flex-column align-items-start">
      <div class="d-flex w-100 justify-content-between">
        <h5 class="mb-1"> <%= `${data.firstName} ${data.lastName}` %></h5>
-       <small>Today</small>
+         <div class="pull-right">
+     <input id="<%=data.userId%>" name="<%=data.userId%>" type="checkbox">
+     </div>
      </div>
      <p class="mb-1"> <%= data.position %> </p>
      <small> <%= data.email %> </small>
-   </a>
+   </a> 
     <% })%>
-  </div>
-  </div>
+    <a class="list-group-item  list-group-item-action flex-column align-items-start">
+      <button type="button" onclick = "SubmitFun()" class="float-right btn btn-primary">Primary</button>
+   </a> 
+</div>
   </body>
+  <style>
+  .MainValidate
+  {
+    padding-top: 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  </style>
    <script type="text/javascript" src="/assets/js/jquery-3.2.1.min.js"></script>
     <!-- Bootstrap tooltips -->
     <script type="text/javascript" src="/assets/js/popper.min.js"></script>
     <!-- Bootstrap core JavaScript -->
     <script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
+  <script>
+    function SubmitFun()
+      {
+            $('input').each(function() {
+               console.log($(this).is(':checked'));
+              });
+      }
+
+  </script>

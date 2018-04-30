@@ -37,9 +37,10 @@
          </div>
       </nav>
 <div class="mainDivForm" id = "<%= data.EventInformation.meetupId%>" >
-   <div class="hey" style="height:100%; background-color:#e9ecef; "></div>
-   <div class="hey" style="height:100%; background-color:white; ">
-   <form onsubmit= "return false;"  id = "Form1" class="FormQuestions">
+   <div class="hey" ></div>
+   <div>
+   <div class="hey SpecialHey" style="overflow-y:scroll; background-color:white; ">
+   <form onsubmit= "return false;"   id = "Form1" class="FormQuestions">
    <%
    counter = 0; %>
    <% data.Questions.forEach(function(date){ %>
@@ -81,10 +82,18 @@
    <button onclick = "Submitfun()" class="btn submitButton btn-primary">Submit</button>
    </form>
    </div>
-   <div class="hey" style="height:100%; background-color:#e9ecef; "></div> </div>
+   </div>
+   <div class="hey"></div> </div>
    </body>
 
    <style>
+   .SpecialHey
+   {
+       -ms-overflow-style: none;
+}
+.SpecialHey::-webkit-scrollbar {
+display: none;
+}
    .submitButton
    {
        margin-top: 0.5rem;
@@ -102,6 +111,7 @@
    .hey
    {
        flex:1;
+       height:100%; background-color:#e9ecef; 
    }
    #navBarHead
    {
@@ -109,6 +119,7 @@
    }
    .mainDivForm
    {
+      
        display: flex;
        flex-direction: row;
        width: 100%;

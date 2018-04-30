@@ -31,7 +31,7 @@ router.route('/:id/register')
   .get((req, res)=>{
     let result = MeetupController.GetQuestions(req, res);
     result.then(function(result){
-      //console.log(result);
+      res.render('Form',{data:result});
     }).catch(function(error){
       console.log('barra');
     });
