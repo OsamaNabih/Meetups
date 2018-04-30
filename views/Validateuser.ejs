@@ -37,15 +37,20 @@
                   </ul>
                 </div>
               </nav>
-<div class = " MainValidate">
+<div id ="<%=meetupId%>" class = " MainValidate">
 <h4 class='Speakers'>Attendees</h4>
   <div class="list-group">
+  <% console.log(data) %>
     <% data.forEach(function(data){ %>
    <a class="list-group-item disabled list-group-item-action flex-column align-items-start">
      <div class="d-flex w-100 justify-content-between">
        <h5 class="mb-1"> <%= `${data.firstName} ${data.lastName}` %></h5>
          <div class="pull-right">
-     <input id="<%=data.userId%>" name="<%=data.userId%>" type="checkbox">
+         <% if(data.verified == 0) { %>
+<input id="<%=data.userId%>" value = "<%= data.verified %>" name="<%=data.userId%>" type="checkbox">
+        <% } else { %>
+        <input id="<%=data.userId%>" value = "<%= data.verified %>" checked name="<%=data.userId%>" type="checkbox">
+        <% } %>
      </div>
      </div>
      <p class="mb-1"> <%= data.position %> </p>
@@ -73,9 +78,39 @@
   <script>
     function SubmitFun()
       {
+        var AnswersArray = [];
+        var OldAnswers = [];
+        var ChangedAnswers = [];
             $('input').each(function() {
+              OldAnswers.push($(this).attr('value'));
+              AnswersArray.push(
+                {
+                  verified:$(this).is(':checked'),
+                  userId: $(this).attr('id')
+                });
                console.log($(this).is(':checked'));
+               console.log($(this).attr('value'));
               });
+        for( var i = 0; i < AnswersArray.length; i++)
+        {
+              if(OldAnswers[i] != AnswersArray[i].verified)
+              {
+                ChangedAnswers.push(AnswersArray[i]);
+              }
+        }
+        var meetId = $('.MainValidate').attr('id');
+        var post = 
+        {
+          verifiedUsers: ChangedAnswers,
+          meetupId: meetId
+        }
+        console.log(post);
+        $.ajax({
+                            url: '/meetup/'+meetId+'/validate',
+                            type: 'POST',
+                            contentType: 'application/json',
+                            data: JSON.stringify(post)}
+                        )
       }
 
   </script>
