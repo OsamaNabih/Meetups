@@ -311,7 +311,8 @@ a, a:hover{
   }
   .img-container {
     max-width: 960px;
-    margin: 30px auto;
+    margin-top: -10px;
+    margin-bottom: -10px;
     padding: 20px;
   }
   .img-container h1 {
