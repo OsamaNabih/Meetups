@@ -14,7 +14,7 @@ module.exports = {
         return DB.query(MeetupModel.GetSpeakers(), id);
       }).then(result =>{
         speakers = result;
-        return DB.query(MeetupModel.GetAttendees(), id);
+        return DB.query(MeetupModel.GetVerifiedAttendees(), id);
       }).then(result =>{
         attendees = result;
         DB.close().then( ()=>{ resolve({meetup: meetup, speakers: speakers, attendees: attendees}); } );
@@ -24,6 +24,18 @@ module.exports = {
         reject(error);
       });
     });
+  },
+  GetAttendees: async (req, res)=>{
+    try {
+      const DB = new Database(DBconfig);
+      let result = await DB.query(MeetupModel.GetAttendees(), req.params.id);
+      DB.close().then(()=> {console.log('DB is closed')});
+      return result;
+    }
+    catch(error){
+      return error;
+    }
+
   },
    CreateMeetup: async (req, res)=>{
     //Assuming time format is HH:MM:SS, we concatenate them to insert into DB as HHMMSS
@@ -117,10 +129,11 @@ module.exports = {
         //console.log(paragraphQuestions);
         //console.log(result);
         //console.log(data);
-        return res.send(data);
+        return data;
       }
       catch(error){
         console.log(error);
+        return error;
       }
   }
 }

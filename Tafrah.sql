@@ -44,6 +44,7 @@ create table Attended
 (
 	attendeeId int not null,
 	attendedMeetupId int not null,
+	verified boolean not null default 0,
 	Primary key (attendeeId,attendedMeetupId),
 	Foreign key (attendeeId) references Users(userId) On Delete cascade On Update cascade,
 	Foreign key (attendedMeetupId) references Meetups(meetupId) On Delete cascade On Update cascade
@@ -417,27 +418,27 @@ values
 Insert Into Attended(attendeeId, attendedMeetupId)
 values
 (8,2);
-Insert Into Attended(attendeeId, attendedMeetupId)
+Insert Into Attended(attendeeId, attendedMeetupId, verified)
 values
-(9,2);
+(9,2,1);
 Insert Into Attended(attendeeId, attendedMeetupId)
 values
 (10,3);
-Insert Into Attended(attendeeId, attendedMeetupId)
+Insert Into Attended(attendeeId, attendedMeetupId, verified)
 values
-(3,5);
+(3,5,1);
 Insert Into Attended(attendeeId, attendedMeetupId)
 values
 (7,5);
-Insert Into Attended(attendeeId, attendedMeetupId)
+Insert Into Attended(attendeeId, attendedMeetupId, verified)
 values
-(8,5);
+(8,5,1);
 Insert Into Attended(attendeeId, attendedMeetupId)
 values
 (9,6);
-Insert Into Attended(attendeeId, attendedMeetupId)
+Insert Into Attended(attendeeId, attendedMeetupId, verified)
 values
-(10,6);
+(10,6,1);
 Insert Into Attended(attendeeId, attendedMeetupId)
 values
 (3,7);
@@ -450,9 +451,9 @@ values
 Insert Into Attended(attendeeId, attendedMeetupId)
 values
 (7,8);
-Insert Into Attended(attendeeId, attendedMeetupId)
+Insert Into Attended(attendeeId, attendedMeetupId, verified)
 values
-(8,8);
+(8,8,1);
 Insert Into Attended(attendeeId, attendedMeetupId)
 values
 (9,8);
@@ -465,15 +466,15 @@ values
 Insert Into Attended(attendeeId, attendedMeetupId)
 values
 (7,9);
-Insert Into Attended(attendeeId, attendedMeetupId)
+Insert Into Attended(attendeeId, attendedMeetupId, verified)
 values
-(8,9);
-Insert Into Attended(attendeeId, attendedMeetupId)
+(8,9,1);
+Insert Into Attended(attendeeId, attendedMeetupId, verified)
 values
-(9,9);
-Insert Into Attended(attendeeId, attendedMeetupId)
+(9,9,1);
+Insert Into Attended(attendeeId, attendedMeetupId, verified)
 values
-(10,9);
+(10,9,1);
 /*--------------------------------------------------------------------------------------------------------------------
 Some triggers performing checks on insertions--*/
 

@@ -15,11 +15,23 @@ router.route('/create')
   })
   .post(urlencodedParser, MeetupController.CreateMeetup);
 
+router.route('/:id/validateUser')
+  .get((req, res)=>{
+    console.log(req.params.id);
+    let result = MeetupController.GetAttendees(req, res);
+    result.then(result=>{
+      console.log(result);
+      res.render('Validateuser', {data: result});
+    }).catch(error=>{
+      res.status(200).json(error);
+    })
+  });
+
 router.route('/:id/register')
   .get((req, res)=>{
     let result = MeetupController.GetQuestions(req, res);
     result.then(function(result){
-      //console.log(result);
+      res.render('Form', {data: result});
     }).catch(function(error){
       console.log('barra');
     });

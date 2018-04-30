@@ -14,9 +14,14 @@ module.exports = {
             WHERE meetupId = ?`;
   },
   GetAttendees: function(){
-    return `SELECT userId, email, firstName, lastName, position
+    return `SELECT userId, email, firstName, lastName, position, verified
           FROM (attended JOIN meetups ON attendedMeetupId = meetupId) JOIN users ON userId = attendeeId
           WHERE meetupId = ?`;
+  },
+  GetVerifiedAttendees: function(){
+    return `SELECT userId, email, firstName, lastName, position
+          FROM (attended JOIN meetups ON attendedMeetupId = meetupId) JOIN users ON userId = attendeeId
+          WHERE meetupId = ? AND verified = true`;
   },
   InsertMeetup: function(){
     return "Insert Into Meetups set ?";

@@ -1,0 +1,172 @@
+<html lang="en">
+   <head>
+      <title>Bootstrap Example</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
+      <!-- Bootstrap core CSS -->
+      <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+      <!-- Your custom styles (optional) -->
+      <link href="/assets/css/OmarStyle.css" rel="stylesheet">
+   </head>
+   <body>
+  <nav id = "navBarHead" class="navbar navbar-fixed-top navbar-dark navbar-expand-md">
+
+         <a class="navbar-brand" href="#">
+         <img src="/assets/img/Tafrah.png" alt="Tafrah">
+         Tafrah
+         </a>
+         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+         <i style='color:black' class="fas fa-bars"></i>
+         </button>
+         <div class="collapse navbar-collapse " id="collapsibleNavbar">
+            <ul class="navbar-nav ml-auto">
+               <li class="nav-item">
+                  <a class="nav-link" href="/">Home</a>
+               </li>
+               <br>
+               <li class="nav-item">
+                  <a class="nav-link" href="/Events">Events</a>
+               </li>
+               <br>
+               <li class="nav-item">
+                  <a class="nav-link" href="#" id = "Profiling"></a>
+               </li>
+               <br>
+            </ul>
+         </div>
+      </nav>
+<div class="mainDivForm" id = "<%= data.EventInformation.meetupId%>" >
+   <div class="hey" style="height:100%; background-color:#e9ecef; "></div>
+   <div class="hey" style="height:100%; background-color:white; ">
+   <form onsubmit= "return false;"  id = "Form1" class="FormQuestions">
+   <%
+   counter = 0; %>
+   <% data.Questions.forEach(function(date){ %>
+        <h3> <%=date.question%> </h3>
+        <% if(date.questionType == 2) {
+             var answerCounter = 0;
+            date.Answers.forEach(function(answer){ 
+               %>
+                <div class="custom-control custom-radio">
+                <%  if(date.required == true) { %>
+                     <input type="radio" id="<%=String(counter + '|' + answerCounter).trim()%>" name = "<%=date.question%>" class="custom-control-input" required>
+                     <label class="custom-control-label" for="<%=String(counter + '|' + answerCounter).trim()%>"><%=answer%></label>
+                     <div class="invalid-feedback">Example invalid feedback text</div>
+                   <% } else { %>
+                     <input type="radio" id="<%=String(counter + '|' + answerCounter).trim()%>" name = "<%= date.question%>" class="custom-control-input">
+                     <label class="custom-control-label" for="<%=String(counter + '|' + answerCounter).trim()%>"><%=answer%></label>
+                    <% } %>
+                </div>
+          <%  answerCounter++; })} %>
+          <% if(date.questionType == 3) {
+               var answerCounter = 0;
+            date.Answers.forEach(function(answer){
+                 %>
+               <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" name = "<%= String(counter + '|' + answerCounter).trim()%>" id="<%=String(counter + '|' + answerCounter).trim()%>">
+                                            <label class="custom-control-label" for="<%=String(counter + '|' + answerCounter).trim()%>"><%=answer%></label>
+                </div>
+          <%  answerCounter++;})} %>
+          <% if(date.questionType == 1) {
+          if(date.required == true) { %>
+                <input placeholder ="Answer" required="true" name="<%=counter%>" type="text" class="form-control Questions" aria-label="Text input with checkbox">
+                 <div class="invalid-feedback">Example invalid feedback text</div>
+          <%  } %>
+          <% if(date.required == false) { %>
+                <input placeholder ="Answer"  name="<%=counter%>" type="text" class="form-control Questions" aria-label="Text input with checkbox">
+          <%  } %>
+          <%  } %>
+ <% counter++; })%>
+   <button onclick = "Submitfun()" class="btn submitButton btn-primary">Submit</button>
+   </form>
+   </div>
+   <div class="hey" style="height:100%; background-color:#e9ecef; "></div> </div>
+   </body>
+
+   <style>
+   .submitButton
+   {
+       margin-top: 0.5rem;
+       margin-left:0.5rem;
+   }
+   h3
+   {
+       padding-top:0.5rem;
+       padding-bottom:0.5rem;
+   }
+   .FormQuestions
+   {
+       padding: 0.5rem;
+   }
+   .hey
+   {
+       flex:1;
+   }
+   #navBarHead
+   {
+       border-bottom:1px solid rgba(0,0,0,.1);
+   }
+   .mainDivForm
+   {
+       display: flex;
+       flex-direction: row;
+       width: 100%;
+       white-space: nowrap;
+       margin-top:1rem;
+       height:100%;
+       padding:0;
+       margin-right:0;
+       margin-left:0;
+   }
+   </style>
+<script type="text/javascript" src="/assets/js/jquery-3.2.1.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="/assets/js/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3nfuwaNpvJldXYFHprFU0QwD0Jwr74Oc&callback=initMap" async defer></script>
+
+<script> 
+function Submitfun()
+{
+ var dataString = $('#Form1').serializeArray();
+ var AnswersArray = [];
+  console.log(dataString[0].name.indexOf('|'));
+ for (var i = 0;i<dataString.length; i++)
+ {
+    if(dataString[i].name.indexOf('|') == -1)
+    {
+        if(isNaN(Number(dataString[i].name)))
+        {
+                    var name = dataString[i].name;
+                   var QuestionNumber = $(`input[name="`+ name+ `"]:checked`, '#Form1').attr('id');
+                   var AnswerNumber = Number(QuestionNumber.split('|')[1]);
+                  var QuestionNumbr = Number(QuestionNumber.split('|')[0]);
+                    AnswersArray.push({Question:QuestionNumbr,Answer:AnswerNumber});
+
+        }
+        else
+        {
+            var QuestionNumber = Number(dataString[i].name);
+            console.log(dataString[i]);
+            AnswersArray.push({Question:QuestionNumber,Answer:String(dataString[i].value)});
+        }
+         
+    }
+    else
+    {
+        var QuestionNumber = Number(dataString[i].name.split('|')[0]);
+        var AnswerNumber = Number(dataString[i].name.split('|')[1]);
+        AnswersArray.push({Question:QuestionNumber,Answer:AnswerNumber});
+    }
+ }
+ var Result = 
+{
+    Questions: AnswersArray,
+    meetupId: $('.mainDivForm').attr('id')
+}
+console.log(Result);
+}
+
+</script>
