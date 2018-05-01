@@ -41,7 +41,7 @@
                                     Sign up to get started with us
                                 </p>
                                 <div class="mt-4">
-                                    <form>
+                                    <form id="test-form">
                                         <div class="form-group">
                                             <input type="text" id="firstName" class="form-control" name="first name" value="" placeholder="First Name" required>
                                          </div>
@@ -77,14 +77,13 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn btn-primary btn-block">Create Account</button>
+                                        <button id="test-btn" type="submit" class="btn btn-primary btn-block">Create Account</button>
 
                                     </form>
                                     <div class="clearfix"></div>
                                     <p class="content-divider center mt-4"><span>or</span></p>
                                 </div>
-                                
-
+            
                                 <p class="">
                                         <button class="loginBtn loginBtn--google" style="margin-left: 145px;">
                                                 Login with Google
@@ -118,24 +117,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script>
 
-
-     /*   function validatePassword()
-        {
-            if(password.value != confirm_password.value)
-            {
-                confirm_password.setCustomValidity("Passwords Don't Match");
-                confirm_password.reportValidity();
-            else if(password.value.trim() == "")
-            {
-                password.setCustomValidity("Passwords must not be empty");
-                password.reportValidity();
-            } else
-            }
-            {
-                password.setCustomValidity("they match!!!");
-            }
-        }
-*/
          function validatePassword()
         {
             if(passwordPlace.value == confirm_password.value)
@@ -160,7 +141,30 @@
         passwordPlace.onchange = validatePassword;
         confirm_password.onkeyup = validatePassword;
         $(document).ready(function(){
-
+            $("form#test-form").submit(function() {
+                var formData = new formData(this);
+                $.ajax({
+                url: './signup',
+                type: 'POST',
+                headers: {
+                    "appID": "some value",
+                    "version": "some value",
+                    "empID": "some value",
+                    "contentType": "application/x-www-form-urlencoded"
+                },
+                data: formData,
+                async: false,
+                processData: false,
+                contentType: false,
+                success: function() {
+                    console.log(data)
+                },
+                error: function(e) {
+                    console.log(e)
+                }
+                });
+                });
+/*
 
              $('form').submit(function() {
                 var formData = new FormData($(this)[0]);
@@ -176,7 +180,7 @@
                 });    
                 return false;
             });
-
+*/
            /* $("button").click(function(){
               var firstName = $("#firstName").val();
               var lastName = $("#lastName").val();
