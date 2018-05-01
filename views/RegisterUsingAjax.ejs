@@ -9,6 +9,22 @@
         <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
         <link rel="stylesheet" href="../assets/css/style.css"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <!--
+        <script>
+                $(document).ready(function(){
+                    $("button").click(function(){
+                        $.post("ay path",
+                        {
+                          name: "Donald Duck",
+                          city: "Duckburg"
+                        },
+                        function(data,status){
+                            alert("Data: " + data + "\nStatus: " + status);
+                        });
+                    });
+                });
+                </script>
+              -->
     </head>
     <body>
         <!--hero section-->
@@ -145,7 +161,23 @@
         confirm_password.onkeyup = validatePassword;
         $(document).ready(function(){
 
-            $("button").click(function(){
+
+             $('form').submit(function() {
+                var formData = new FormData($(this)[0]);
+                $.ajax({
+                url: './signup',
+                type: 'POST',
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false
+                }).then(function(data) {
+                $('#result').html(data);
+                });    
+                return false;
+            });
+
+           /* $("button").click(function(){
               var firstName = $("#firstName").val();
               var lastName = $("#lastName").val();
               var email = $("#email").val();
@@ -173,6 +205,7 @@
                     }
                 });
             });
+            */
      });
 
          function readURL(input) {

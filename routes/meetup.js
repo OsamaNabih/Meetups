@@ -37,7 +37,16 @@ router.route('/:id/register')
     });
 
   });
-
+router.route('/:id/edit')
+  .get((req, res) =>{
+    let result = MeetupController.GetQuestions(req,res);
+    result.then(function(result){
+          console.log(result);
+      res.render('EditPage', {data: result});
+    }).catch(function(error){
+      res.send(error);
+    });
+  });
 router.route('/:id')
   .get((req, res) =>{
     let result = MeetupController.GetMeetupAndSpeakers(req.params.id);

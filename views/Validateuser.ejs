@@ -109,8 +109,12 @@
                             url: '/meetup/'+meetId+'/validate',
                             type: 'POST',
                             contentType: 'application/json',
-                            data: JSON.stringify(post)}
-                        )
+                            data: JSON.stringify(post),
+                            success: function(data)
+                            {
+                                window.location.href = '/meetup/'+meetId
+                            }
+      })
       }
 
   </script>
