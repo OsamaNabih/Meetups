@@ -14,13 +14,10 @@ const urlencodedParser = bodyParser.urlencoded({extended: false});
 router.route('/signup')
   .post(urlencodedParser, validateBody(schemas.signupAuthSchema), UsersController.signUp, (req, res)=>{
     if (req.error){
-      console.log('error fel post');
       if (req.error.sqlMessage){
-        console.log(req.error.sqlMessage);
         res.status(200).json({error: req.error.sqlMessage});
       }
       else{
-        console.log(req.error);
         res.status(200).json({error: req.error});
       }
     }
@@ -35,11 +32,9 @@ router.route('/signup')
 router.route('/signin')
   .post(urlencodedParser, passportSignIn, UsersController.signIn, (req, res)=>{
     if (req.token){
-      console.log(req.token);
       res.status(200).json({token: req.token});
     }
     else{
-      console.log(req.error);
       res.status(200).json({error: req.error});
     }
   })

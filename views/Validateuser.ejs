@@ -55,11 +55,11 @@
      </div>
      <p class="mb-1"> <%= data.position %> </p>
      <small> <%= data.email %> </small>
-   </a> 
+   </a>
     <% })%>
     <a class="list-group-item  list-group-item-action flex-column align-items-start">
       <button type="button" onclick = "SubmitFun()" class="float-right btn btn-primary">Primary</button>
-   </a> 
+   </a>
 </div>
   </body>
   <style>
@@ -99,12 +99,11 @@
               }
         }
         var meetId = $('.MainValidate').attr('id');
-        var post = 
+        var post =
         {
           verifiedUsers: ChangedAnswers,
           meetupId: meetId
         }
-        console.log(post);
         $.ajax({
                             url: '/meetup/'+meetId+'/validate',
                             type: 'POST',
@@ -113,6 +112,11 @@
                             success: function(data)
                             {
                                 window.location.href = '/meetup/'+meetId
+                            },
+                            error: function(xhr, textStatus, error)
+                            {
+                              alert(xhr.responseJSON);
+                              alert(xhr.responseText);
                             }
       })
       }
