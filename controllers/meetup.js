@@ -89,9 +89,6 @@ module.exports = {
         meetup = meetup[0];
         let result = await DB.query(MeetupModel.GetQuestions(), [req.params.id, req.params.id]);
         await DB.close();
-        let temp = String(meetup.meetupDate).split(':')[0];
-        temp = temp.substr(0, temp.length - 2);
-        meetup.meetupDate = temp;
         let Questions = [];
         for(let j = 0; j < result.length; j++){
           if (result[j].questionType === 1){
@@ -135,5 +132,26 @@ module.exports = {
         console.log(error);
         return error;
       }
+  },
+  ValidateUsers: async(req, res)=>{
+    try{
+      if (req.body.verifiedUsers.length === 0){
+        console.log('no change');
+        throw 'no change';
+      }
+      let Ids = [];
+      for(let i = 0; i < req.body.verifiedUsers.length; i++){
+        //delete req.body.verifiedUsers[i]['verified'];
+        Ids.push(req.body.verifiedUsers[i].userId);
+      }
+      const DB = new Database(DBconfig);
+      let result = await DB.query(MeetupModel.VerifyAttendees(), [req.body.meetupId, Ids]);
+      console.log(result);
+      await DB.close();
+      return;
+    }
+    catch(error){
+      throw error;
+    }
   }
 }

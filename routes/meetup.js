@@ -15,16 +15,22 @@ router.route('/create')
   })
   .post(urlencodedParser, MeetupController.CreateMeetup);
 
-router.route('/:id/validateUser')
+router.route('/:id/validate')
   .get((req, res)=>{
-    console.log(req.params.id);
     let result = MeetupController.GetAttendees(req, res);
     result.then(result=>{
-      console.log(result);
       res.render('Validateuser', {data: result, meetupId: req.params.id});
     }).catch(error=>{
       res.status(200).json(error);
     })
+  })
+  .post(urlencodedParser, (req, res)=>{
+    let result = MeetupController.ValidateUsers(req, res);
+    result.then((result)=>{
+      res.status(200).json('Attendees updated');
+    }).catch((error)=>{
+      res.status(400).json(error);
+    });
   });
 
 router.route('/:id/register')
@@ -35,9 +41,17 @@ router.route('/:id/register')
     }).catch(function(error){
       console.log('barra');
     });
-
   });
-
+router.route('/:id/edit')
+  .get((req, res) =>{
+    let result = MeetupController.GetQuestions(req,res);
+    result.then(function(result){
+          console.log(result);
+      res.render('EditPage', {data: result});
+    }).catch(function(error){
+      res.send(error);
+    });
+  });
 router.route('/:id')
   .get((req, res) =>{
     let result = MeetupController.GetMeetupAndSpeakers(req.params.id);

@@ -46,5 +46,8 @@ module.exports = {
             on FQ.meetupId = Options.meetupId AND FQ.questionId = Options.questionId
             WHERE FQ.meetupId = ?
             ORDER BY FQ.questionId`;
+  },
+  VerifyAttendees: function(){
+    return `UPDATE Attended SET verified = !verified WHERE attendedMeetupId = ? AND attendeeId IN (?)`
   }
 }
