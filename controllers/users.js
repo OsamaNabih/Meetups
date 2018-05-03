@@ -64,5 +64,15 @@ module.exports = {
    // Generate token
    const token = signToken(req.user);
    res.status(200).json({ token });
- }
+ },
+ photoUploaded:async (req, res, next)=>{
+  //photo photouploaded
+  if(req.error)
+  {
+    console.log("error in photoUploaded");
+    res.status(404);
+  }
+  console.log("No error in photo uploading");
+    return next();
+}
 }

@@ -10,6 +10,7 @@ const Database = require('./config/DB');
 const bcrypt = require('bcryptjs');
 const config =require('./config/keys.js');
 const DBconfig = require('./config/keys.js').DBconfig;
+const GoogleStrategy = require('passport-google-oauth20');
 
 
 // JSON WEB TOKENS STRATEGY
@@ -56,6 +57,7 @@ passport.use('user-local', new JwtStrategy({
 
 
 //Google Oauth STRATEGY
+/*
 passport.use('googleToken', new GooglePlusTokenStrategy({
 
   clientID:config.oauth.google.clientID,
@@ -95,6 +97,54 @@ passport.use('googleToken', new GooglePlusTokenStrategy({
 
     return done;
   }));
+*/
+passport.use('google',new GoogleStrategy({
+
+  callbackURL:'/users/oauth/google/redirect',
+  clientID:config.oauth.google.clientID,
+  clientSecret:config.oauth.google.clientSecret
+
+}, async (accessToken,refreshToken,profile,done)=>{
+    DB = new Database(DBconfig);
+    DB.query(UserModel.GetUserIdAndTypeByEmail(),profile.emails[0].value).then(result=>{
+  //    console.log("Access Token",accessToken);
+  //    console.log("Referesh Token",refreshToken);
+  //    console.log("Profile",profile);
+      console.log("result",result);
+
+      if(result.length>0)
+          {
+            let user = {userId: result[0].userId, userType: result[0].userType};
+            done(null,user);
+            throw "User already exists in our DataBase "
+          }
+        else
+        {
+                console.log("User doesnt exist we are creating new user");
+                newUser={};
+                newUser['email']=profile.emails[0].value;
+                newUser['authField']=profile.id;
+                newUser['firstName']=profile.name.givenName;
+                newUser['lastName']=profile.name.familyName;
+                newUser['userType']=3;                // Normal User
+                newUser['authType']=3;              // Login by google
+                return DB.query(UserModel.InsertUser(),newUser)
+        }
+    }).then( () =>{
+                      let user = {userId: 3, userType: 3};
+                      done(null,user);
+                      return DB.close()
+                  }, err => { return DB.close().then( () =>{ throw err; }) }
+          ).catch(err => {
+            done(err,false,err.message);
+            console.log(err);
+          });
+
+
+    return done;
+
+  })
+);
 
 
 

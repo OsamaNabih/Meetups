@@ -41,6 +41,7 @@
                                     Sign up to get started with us
                                 </p>
                                 <div class="mt-4">
+
                                     <form>
                                         <div class="form-group">
                                             <input type="text" id="firstName" class="form-control" name="first name" value="" placeholder="First Name" required>
@@ -78,12 +79,11 @@
                                             </div>
                                         </div>
                                         <button type="submit" class="btn btn-primary btn-block">Create Account</button>
-
                                     </form>
                                     <div class="clearfix"></div>
                                     <p class="content-divider center mt-4"><span>or</span></p>
                                 </div>
-                                
+
 
                                 <p class="">
                                         <button class="loginBtn loginBtn--google" style="margin-left: 145px;">
@@ -178,7 +178,7 @@
                     email    :  email,
                     authField : password,
                     position : position,
-                    birthDate : birthDate
+                    birthDate : birthDate,
                 },
                 function(data, status){
                     if (data.error){

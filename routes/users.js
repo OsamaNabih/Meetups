@@ -9,10 +9,12 @@ const passportSignIn = passport.authenticate('local', { session: false })
 const passportGoogle = passport.authenticate('googleToken',{session:false});
 const bodyParser = require('body-parser');
 const urlencodedParser = bodyParser.urlencoded({extended: false});
+const Multer  = require('../Multer.js');
+
 //const passportJWT = passport.authenticate('jwt', { session: false});
 
 router.route('/signup')
-  .post(urlencodedParser, validateBody(schemas.signupAuthSchema), UsersController.signUp, (req, res)=>{
+  .post(urlencodedParser,Multer.uploadPhoto,UsersController.photoUploaded, validateBody(schemas.signupAuthSchema), UsersController.signUp, (req, res)=>{
     if (req.error){
       console.log('error fel post');
       if (req.error.sqlMessage){
@@ -20,6 +22,7 @@ router.route('/signup')
         res.status(200).json({error: req.error.sqlMessage});
       }
       else{
+        console.log("enta hena");
         console.log(req.error);
         res.status(200).json({error: req.error});
       }
@@ -29,7 +32,7 @@ router.route('/signup')
     }
   })
   .get((req, res)=>{
-    res.render('Registration');
+    res.render('RegisterUsingAjax');
   });
 
 router.route('/signin')
@@ -47,4 +50,11 @@ router.route('/oauth/facebook')
 
 router.route('/oauth/google')
   .post(passportGoogle,UsersController.googleOAuth);
+
+
+  //Applying Multer
+router.route('/addprofilepicture')
+  .post(Multer.uploadPhoto,UsersController.photoUploaded);
+
+
 module.exports = router;
