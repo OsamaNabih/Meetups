@@ -70,7 +70,7 @@ create table FormQuestions
 	Foreign Key(meetupId) references Meetups(meetupId) on delete cascade on update cascade
 );
 
-create table QuestionOptions
+create table FormOptions
 (
 	meetupId int not null,
 	questionId tinyint UNSIGNED not null,
@@ -86,20 +86,19 @@ create table FormReplies
 	questionId tinyint UNSIGNED not null,
 	userId int not null,
 	userReply text not null,
-	isChecked boolean not null,
 	Primary Key(meetupId, questionId, userId),
 	Foreign Key(meetupId, questionId) references FormQuestions(meetupId, questionId) on delete cascade on update cascade,
 	Foreign Key(userId) references Users(userId) on delete cascade on update cascade
 );
 
-create table RadioCheck
+create table FormOptionReplies
 (
-	questionId tinyint UNSIGNED not null,
 	meetupId int not null,
+	questionId tinyint UNSIGNED not null,
 	userId int not null,
-	isChecked bool not null,
-	Primary Key(meetupId, questionId, userId),
-	Foreign Key(meetupId, questionId) references FormQuestions(meetupId, questionId) on delete cascade on update cascade,
+	optionId tinyint UNSIGNED not null,
+	Primary Key(meetupId, questionId, userId, optionId),
+	Foreign Key(meetupId, questionId, optionId) references FormOptions(meetupId, questionId, optionId) on delete cascade on update cascade,
 	Foreign Key(userId) references Users(userId) on delete cascade on update cascade
 );
 /*

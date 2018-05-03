@@ -31,7 +31,6 @@ module.exports = {
    req.value.body.userType = 3;
    const DB = new Database(DBconfig);
    DB.query(UserModel.InsertUser(), req.value.body).then(result =>{
-     console.log('user inserted');
       return DB.query(UserModel.GetUserIdAndTypeByEmail(),req.value.body.email);
     }).then(innerResult =>{
       let id = innerResult[0].userId;
@@ -48,10 +47,17 @@ module.exports = {
 
 
   signIn: async(req, res, next) =>{
-    // Generate a token4
-    const token = signToken(req.user[0].userId, req.user[0].userType);
-    req.token = token;
-    return next();
+    // Generate a token
+    if (req.user.error){
+      req.error = req.user.error;
+      next();
+    }
+    else{
+      const token = signToken(req.user[0].userId, req.user[0].userType);
+      req.token = token;
+      next();
+    }
+
   },
 
   googleOAuth: async(req,res,next)=>{

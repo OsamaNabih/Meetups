@@ -149,7 +149,7 @@ passport.use('google',new GoogleStrategy({
 
 
   // LOCAL STRATEGY
-  passport.use(new LocalStrategy({
+  passport.use('local', new LocalStrategy({
     usernameField: 'email',
     passwordField: 'authField'
   }, async (email, authField, done) =>{
@@ -158,8 +158,8 @@ passport.use('google',new GoogleStrategy({
       const DB = new Database(DBconfig);
       let user = await DB.query(UserModel.GetUser(),email);
       await DB.close();
-      if(!user){
-        return done(null, false);
+      if(user.length === 0){
+        throw 'Invalid email or password';
       }
       let authType = user[0].authType;
       if (authType !== 1){  //Checking his acc was made locally
@@ -168,12 +168,16 @@ passport.use('google',new GoogleStrategy({
       const dbPassword = user[0].authField;
       let isMatch = await bcrypt.compare(authField,dbPassword);
       if (!isMatch){
-        return done(null, false);
+        user['error'] = 'Invalid email or password';
+        console.log(user);
+        done(null, user);
       }
        // Otherwise, return the user
       done(null, user);
     } catch(error){
-      done(error, false);
+      let user = {};
+      user.error = error;
+      done(null, user);
     }
   }));
   /*
