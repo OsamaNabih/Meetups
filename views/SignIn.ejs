@@ -18,7 +18,7 @@
                         <div class="card border-none">
                             <div class="card-body">
                                 <div class="mt-2">
-                                    <img src="img/male.jpg" alt="Male" class="brand-logo mx-auto d-block img-fluid rounded-circle"/>
+                                    <img src="../assets/img/Tafrah.png" alt="Male" class="brand-logo mx-auto d-block img-fluid rounded-circle"/>
                                 </div>
                                 <p class="mt-4 text-white lead text-center">
                                     Sign in to access your Authority account
@@ -36,7 +36,7 @@
                                             <span class="custom-control-indicator"></span>
                                             <span class="custom-control-description text-white">Keep me logged in</span>
                                         </label>
-                                        <button type="submit" class="btn btn-primary float-right">Sign in</button>
+                                        <button type="button" class="btn btn-primary float-right">Sign in</button>
                                     </form>
                                     <div class="clearfix"></div>
                                     <p class="content-divider center mt-4"><span>or</span></p>
@@ -55,7 +55,7 @@
                                 </p>
                             -->
                                 <p class="text-center">
-                                    Don't have an account yet? <a href="">Sign Up Now</a>
+                                    Don't have an account yet? <a href="/users/signup">Sign Up Now</a>
                                 </p>
                             </div>
                         </div>
@@ -63,7 +63,7 @@
                     <div class="clearfix"></div>
                     <div class="col-sm-12 mt-5 footer">
                         <p class="text-white small text-center">
-                            &copy; 2017  
+                            &copy; 2017
                             <a href="https://.com">Tafrah</a>. Designed by <a href="https://.com/">@something</a>
                         </p>
                     </div>
@@ -74,22 +74,26 @@
     </body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script>
-        
-        var email = $("#email").val(); 
-        var password = $("#password").val(); 
         $(document).ready(function(){
             $("button").click(function(){
-                $.post("localhost:3000/users/signup",
+              var email = $("#email").val();
+              var password = $("#password").val();
+                $.post("./signin",
                 {
-                    
+
                     email    :  email,
-                    password : password,
-                   
+                    authField : password
+
                 },
                 function(data, status){
-                    alert("Data: " + data + "\nStatus: " + status);
+                  if(data.error){
+                    alert(data.error);
+                  }
+                  else if (data.token){
+                    alert(data.token);
+                  }
                 });
             });
-     });    
+     });
     </script>
 </html>
