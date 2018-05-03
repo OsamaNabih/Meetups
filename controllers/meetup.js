@@ -117,15 +117,7 @@ module.exports = {
           Questions.push(result[j]);
           j += k - 1;
         }
-        //console.log(optionQuestions);
-        //for(let i = 0; i < result.length; i++){
-      //    paragraphQuestions.push(result[i]);
-        //}
-        //console.log(paragraphQuestions);
         const data = {EventInformation: meetup, Questions: Questions};
-        //console.log(paragraphQuestions);
-        //console.log(result);
-        //console.log(data);
         return data;
       }
       catch(error){
@@ -141,7 +133,6 @@ module.exports = {
       }
       let Ids = [];
       for(let i = 0; i < req.body.verifiedUsers.length; i++){
-        //delete req.body.verifiedUsers[i]['verified'];
         Ids.push(req.body.verifiedUsers[i].userId);
       }
       const DB = new Database(DBconfig);
@@ -151,6 +142,49 @@ module.exports = {
       return;
     }
     catch(error){
+      throw error;
+    }
+  },
+  SubmitReplies: async(req, res)=>{
+    try{
+      //Currenyl hardcoding the user ID and question types until the front-end sends them
+      let JSON = req.body;
+      JSON.userId = 6;
+      JSON.Questions[0].questionType = 2;
+      JSON.Questions[1].questionType = JSON.Questions[2].questionType = JSON.Questions[3].questionType = 1;
+      JSON.Questions[4].questionType = JSON.Questions[5].questionType = 3;
+      const DB = new Database(DBconfig);
+      let previousOptionsSubmission = await DB.query(MeetupModel.CheckPreviousOptionsSubmission(),
+                                    [JSON.meetupId, JSON.userId]);
+      let previousRepliesSubmission = await DB.query(MeetupModel.CheckPreviousRepliesSubmission(),
+                                    [JSON.meetupId, JSON.userId]);
+      if (previousOptionsSubmission.length !== 0 || previousRepliesSubmission.length !== 0)
+      {
+        //This user already registered for the meetup
+        console.log('Registered abl keda');
+        throw 'You have already registered for this meetup';
+      }
+      for(let i = 0; i < JSON.Questions.length; i++){
+        if(JSON.Questions[i].questionType !== 1){
+          let result = await DB.query(MeetupModel.InsertFormOptionReply(),
+                                        {meetupId: Number(JSON.meetupId),
+                                         questionId: JSON.Questions[i].Question + 1, //REMOVE THE +1
+                                         userId: JSON.userId,
+                                         optionId: JSON.Questions[i].Answer + 1});  //Remove when fixed on front
+        }
+        else{
+          let result = await DB.query(MeetupModel.InsertFormReply(),
+                                        {meetupId: Number(JSON.meetupId),
+                                         questionId: JSON.Questions[i].Question + 1, //REMOVE THE +1
+                                         userId: JSON.userId,
+                                         userReply: JSON.Questions[i].Answer});
+        }
+      }
+      await DB.close();
+      return 'Your registration has been completed successfully';
+    }
+    catch (error){
+      console.log(error);
       throw error;
     }
   }
