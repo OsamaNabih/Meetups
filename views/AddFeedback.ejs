@@ -1,0 +1,166 @@
+
+
+<html lang="en">
+   <head>
+      <title>Bootstrap Example</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
+      <!-- Bootstrap core CSS -->
+      <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+      <!-- Your custom styles (optional) -->
+      <link href="/assets/css/OmarStyle.css" rel="stylesheet">
+      <link href="/assets/css/AddPage.css" rel="stylesheet">
+   </head>
+   <body>
+      <nav id = "navBarHead" class="navbar navbar-fixed-top navbar-dark navbar-expand-md">
+         <a class="navbar-brand" href="#">
+         <img src="/assets/img/Tafrah.png" alt="Tafrah">
+         Tafrah
+         </a>
+         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+         <i style='color:black' class="fas fa-bars"></i>
+         </button>
+         <div class="collapse navbar-collapse " id="collapsibleNavbar">
+            <ul class="navbar-nav ml-auto">
+               <li class="nav-item">
+                  <a class="nav-link" href="/">Home</a>
+               </li>
+               <br>
+               <li class="nav-item">
+                  <a class="nav-link" href="/Events">Events</a>
+               </li>
+               <br>
+               <li class="nav-item">
+                  <a class="nav-link" href="#" id = "Profiling"></a>
+               </li>
+               <br>
+            </ul>
+         </div>
+      </nav>
+      <div  style = 'height:30vh;' class="jumbotron MainTron">
+         <p class="AddPageTitle" >Add your feedback form!</p>
+      </div>
+     <div id = "SecondDiv">
+        <div class="container">
+         <div id = "<%= meetupId %>" class = "jumbotron formJumbotron">
+            <div class="row">
+               <div class="col-sm">
+               </div>
+               <div class="col-7">
+                  <center>
+                     <div class= "InputsList">
+                        <button type="button" onclick="AddParagraph()" class="FormButton btn btn-outline-dark">Paragraph question</button>
+                        <button type="button" onclick= "AddSingle()" class="FormButton btn btn-outline-dark">Single choice question</button>
+                        <button type="button" onclick= "AddMultiple()" class="FormButton btn btn-outline-dark">Multiple choice queston</button>
+                        <div id="Controller2">
+                        </div>
+                        <button type="button" onclick="Clear()" class="FormButton btn btn-outline-dark">Clear</button>
+                        <button type="button" onclick="Submit()" class="FormButton btn btn-outline-dark">Submit</button>
+
+                  </center>
+               </div>
+               <div class="col-sm">
+               </div>
+            </div>
+         </div>
+      </div>
+                     </div>
+   </body>
+</html>
+<!-- JQuery -->
+<script type="text/javascript" src="/assets/js/jquery-3.2.1.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="/assets/js/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3nfuwaNpvJldXYFHprFU0QwD0Jwr74Oc&callback=initMap" async defer></script>
+<script>
+
+    var RegularQuestion = `
+                      <div class="QuestionForm input-group">
+                           <div class="input-group-prepend">
+                              <div class="input-group-text">
+                                 <input class = "CheckBoxes" type="checkbox" aria-label="Checkbox for following text input">
+                              </div>
+                           </div>
+                           <input placeholder ="Question" type="text" class="form-control Questions" aria-label="Text input with checkbox">
+                        </div>`
+     var ChoiceQuestion = `<div class="QuestionForm input-group">
+                           <div class="input-group-prepend">
+                              <div class="input-group-text">
+                                 <input class = "CheckBoxes" type="checkbox" aria-label="Checkbox for following text input">
+                              </div>
+                           </div>
+                           <input type="text" placeholder ="Question" class="form-control Questions"  aria-label="Text input with checkbox">
+                        </div>
+                        <div class="QuestionForm input-group">
+                        <input type="text" placeholder ="Answers seperated by |" class="Answers form-control" aria-label="Text input with checkbox">
+                        </div>`
+                        var Markup = [];
+       function AddParagraph()
+                {
+                  var Pusher ={question:"",questionType:1};
+                  Markup.push(Pusher);
+                    $('#Controller2').append(RegularQuestion);
+                }
+                function AddSingle()
+                {
+                 var Pusher ={question:"",Answers:"",questionType:2};
+                  Markup.push(Pusher);
+                    $('#Controller2').append(ChoiceQuestion);
+                }
+                function AddMultiple()
+                {
+                  var Pusher ={question:"",Answers:"",questionType:3};
+                  Markup.push(Pusher);
+                    $('#Controller2').append(ChoiceQuestion);
+                }
+                function Submit()
+                {
+                  var Counter = 0;
+                  $('.Questions').each(function(i, obj) {
+                        Markup[Counter].question = $(obj).val();
+                        Counter++;
+                      });
+                  Counter = 0;
+                  $('.CheckBoxes').each(function(i, obj) {
+                        if ($(obj).is(':checked'))
+                        Markup[Counter].required = true;
+                        else
+                         Markup[Counter].required = false;
+                        Counter++;
+                      });
+                  Counter = 0;
+                  $('.Answers').each(function(i, obj) {
+                      while(Markup[Counter].Answers == null)
+                         Counter++;
+                        Markup[Counter].Answers = $(obj).val();
+                        Counter++;
+                      });
+                      var meetupId = $(".formJumbotron").attr('id');
+                      DataSent =
+                      {
+                        Questions: Markup,
+                        id: meetupId
+                      }
+                      console.log(DataSent);
+                      $.ajax({
+                            url: '/meetup/'+meetupId+'/addFeedback',
+                            type: 'POST',
+                            contentType: 'application/json',
+                            data: JSON.stringify(DataSent),
+                            success: function(data)
+                            {
+                                window.location.href = '/meetups'
+                            }
+                })
+                }
+                function Clear()
+                {
+                  Markup = [];
+                  $("#Controller").html("");
+                }
+
+
+</script>

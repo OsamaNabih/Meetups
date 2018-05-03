@@ -35,7 +35,11 @@ router.route('/:id/register')
     }).catch(function(error){
       console.log('barra');
     });
-
+  });
+  router.route('/:id/addFeedback')
+  .get((req, res)=>{
+      res.render('AddFeedback',{meetupId:req.params.id});
+  
   });
 router.route('/:id/edit')
   .get((req, res) =>{
