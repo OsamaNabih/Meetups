@@ -1,41 +1,4 @@
-<html lang="en">
-   <head>
-      <title>Bootstrap Example</title>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
-      <!-- Bootstrap core CSS -->
-      <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
-      <!-- Your custom styles (optional) -->
-      <link href="/assets/css/OmarStyle.css" rel="stylesheet">
-   </head>
-   <body>
-  <nav id = "navBarHead" class="navbar navbar-fixed-top navbar-dark navbar-expand-md">
-
-         <a class="navbar-brand" href="#">
-         <img src="/assets/img/Tafrah.png" alt="Tafrah">
-         Tafrah
-         </a>
-         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-         <i style='color:black' class="fas fa-bars"></i>
-         </button>
-         <div class="collapse navbar-collapse " id="collapsibleNavbar">
-            <ul class="navbar-nav ml-auto">
-               <li class="nav-item">
-                  <a class="nav-link" href="/">Home</a>
-               </li>
-               <br>
-               <li class="nav-item">
-                  <a class="nav-link" href="/Events">Events</a>
-               </li>
-               <br>
-               <li class="nav-item">
-                  <a class="nav-link" href="#" id = "Profiling"></a>
-               </li>
-               <br>
-            </ul>
-         </div>
-      </nav>
+<% include partials/head %>
 <div class="mainDivForm" id = "<%= data.EventInformation.meetupId%>" >
    <div class="hey" ></div>
    <div class ="parentHey">

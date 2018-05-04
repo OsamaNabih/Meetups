@@ -1,43 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
-    <!-- Bootstrap core CSS -->
-    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Your custom styles (optional) -->
-    <link href="/assets/css/OmarStyle.css" rel="stylesheet">
-</head>
-<body>
 
-<nav id = "navBarHead" class="navbar navbar-fixed-top navbar-dark navbar-expand-md">
-
-                <a class="navbar-brand" href="#">
-                  <img src="/assets/img/Tafrah.png" alt="Tafrah">
-                  Tafrah
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-                  <i style='color:black' class="fas fa-bars"></i>
-                </button>
-                <div class="collapse navbar-collapse " id="collapsibleNavbar">
-                  <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                      <a class="nav-link" href="/">Home</a>
-                    </li>
-                    <br>
-                    <li class="nav-item">
-                      <a class="nav-link" href="/Events">Events</a>
-                    </li>
-                      <br>
-                    <li class="nav-item">
-                      <a class="nav-link" href="#" id = "Profiling"></a>
-                    </li>
-                      <br>
-                  </ul>
-                </div>
-              </nav>
+    <%- include partials/head %> 
 <div  class="jumbotron MainTron">
  <div class =' container-fluid SubTron'>
     <h2 class='Title' ><%= data.meetup.meetupName %></h2>
@@ -57,7 +19,13 @@
   <div class="row">
   <div class= "col-xs-12 col-sm-12 col-md-8">
   <h2 class='MainTitle'>Overview</h2>
-  <pre class= "OverViewText" > <%= data.meetup.description %> </pre> </div>
+  <pre class= "OverViewText" > <%= data.meetup.description %> </pre> 
+  <% if(data.meetup.meetupDate > Date.now()) { %>
+  <a href="/meetup/<%=data.meetup.meetupId%>/register" class="float-right FormButton btn btn-outline-dark">Register</a>
+  <% } else { %>
+  <a href="/meetup/<%=data.meetup.meetupId%>/feedback" class="float-right FormButton btn btn-outline-dark">Give us feedback</a>
+  <% } %>
+                        </div>
   <div class= " SecondDiv col-xs-12 col-sm-12 col-md-4">
     <div class="card">
  <div id="map"></div>
@@ -114,11 +82,15 @@
 
     <script>
          function initMap() {
-        var uluru = {lat: -25.363, lng: 131.044};
+        var uluru = {lat: <%=data.meetup.latitude%>, lng: <%=data.meetup.longitude%>};
         var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 4,
+          zoom: 10,
           center: uluru
         });
+        var marker = new google.maps.Marker({
+                           position: new google.maps.LatLng(<%=data.meetup.latitude%>,<%=data.meetup.longitude%>),
+                           map: map
+                        });
       }
 
     </script>
