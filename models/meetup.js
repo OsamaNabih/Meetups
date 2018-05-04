@@ -61,5 +61,8 @@ module.exports = {
   },
   InsertFormReply: function(){
     return "INSERT INTO FormReplies SET ?";
+  },
+  DeleteMeetup: function(){
+    return "DELETE FROM Meetups WHERE meetupId = ?"
   }
 }

@@ -63,12 +63,16 @@ router.route('/:id/edit')
   .get((req, res) =>{
     let result = MeetupController.GetQuestions(req,res);
     result.then(function(result){
-          console.log(result);
       res.render('EditPage', {data: result});
     }).catch(function(error){
       res.send(error);
     });
+  })
+  .post(urlencodedParser, (req, res)=>{
+    let result = MeetupController.UpdateMeetup(req, res);
+
   });
+
 router.route('/:id')
   .get((req, res) =>{
     let result = MeetupController.GetMeetupAndSpeakers(req.params.id);
