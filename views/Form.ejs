@@ -1,4 +1,5 @@
 <% include partials/head %>
+<link href="/assets/css/Form.css" rel="stylesheet">
 <div class="mainDivForm" id = "<%= data.EventInformation.meetupId%>" >
    <div class="hey" ></div>
    <div class ="parentHey">
@@ -49,57 +50,6 @@
    </div>
    <div class="hey"></div> </div>
    </body>
-
-   <style>
-   .SpecialHey
-   {
-       -ms-overflow-style: none;
-       white-space: wrap;
-}
-.SpecialHey::-webkit-scrollbar {
-display: none;
-}
-   .submitButton
-   {
-       margin-top: 0.5rem;
-       margin-left:0.5rem;
-   }
-   h3
-   {
-       padding-top:0.5rem;
-       padding-bottom:0.5rem;
-   }
-   .parentHey
-   {
-       max-width:70%;
-       overflow-wrap: break-word;
-   }
-   .FormQuestions
-   {
-       padding: 0.5rem;
-   }
-   .hey
-   {
-       flex:1;
-       height:100%; background-color:#e9ecef; 
-   }
-   #navBarHead
-   {
-       border-bottom:1px solid rgba(0,0,0,.1);
-   }
-   .mainDivForm
-   {
-      
-       display: flex;
-       flex-direction: row;
-       width: 100%;
-       margin-top:1rem;
-       height:100%;
-       padding:0;
-       margin-right:0;
-       margin-left:0;
-   }
-   </style>
 <script type="text/javascript" src="/assets/js/jquery-3.2.1.min.js"></script>
 <!-- Bootstrap tooltips -->
 <script type="text/javascript" src="/assets/js/popper.min.js"></script>
@@ -107,56 +57,4 @@ display: none;
 <script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3nfuwaNpvJldXYFHprFU0QwD0Jwr74Oc&callback=initMap" async defer></script>
 
-<script> 
-function Submitfun()
-{
- var dataString = $('#Form1').serializeArray();
- var AnswersArray = [];
-  console.log(dataString[0].name.indexOf('|'));
- for (var i = 0;i<dataString.length; i++)
- {
-    if(dataString[i].name.indexOf('|') == -1)
-    {
-        if(isNaN(Number(dataString[i].name)))
-        {
-                    var name = dataString[i].name;
-                   var QuestionNumber = $(`input[name="`+ name+ `"]:checked`, '#Form1').attr('id');
-                   var AnswerNumber = Number(QuestionNumber.split('|')[1]);
-                  var QuestionNumbr = Number(QuestionNumber.split('|')[0]);
-                    AnswersArray.push({Question:QuestionNumbr,Answer:AnswerNumber});
-
-        }
-        else
-        {
-            var QuestionNumber = Number(dataString[i].name);
-            console.log(dataString[i]);
-            AnswersArray.push({Question:QuestionNumber,Answer:String(dataString[i].value)});
-        }
-         
-    }
-    else
-    {
-        var QuestionNumber = Number(dataString[i].name.split('|')[0]);
-        var AnswerNumber = Number(dataString[i].name.split('|')[1]);
-        AnswersArray.push({Question:QuestionNumber,Answer:AnswerNumber});
-    }
- }
- var Result = 
-{
-    Questions: AnswersArray,
-    meetupId: $('.mainDivForm').attr('id')
-}
-console.log(Result);
-$.ajax({
-                            url: '/meetup/'+Result.meetupId+'/register',
-                            type: 'POST',
-                            contentType: 'application/json',
-                            data: JSON.stringify(Result),
-                            success: function(data)
-                            {
-                                window.location.href = '/meetup/'+Result.meetupId
-                            }
-})
-}
-
-</script>
+<script type="text/javascript" src= "/assets/js/Form.js" > </script>

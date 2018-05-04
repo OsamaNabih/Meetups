@@ -2,8 +2,65 @@
       <div  style = 'height:30vh;' class="jumbotron MainTron">
          <p id = "<%=data.EventInformation.meetupId%>" class="AddPageTitle" >Edit your event!</p>
       </div>
-      <div id="OnDisplay">
+      <div id = "FirstDiv">
+   <form id="myForm">
+      <div  class = "InputForm" >
+         <div class="row equal no-margin">
+            <div class="col-sm no-padding">
+               <div class = "jumbotron">
+                  <h3>Information</h3>
+                  <h5 for="exampleInputEmail1">What will the event's name be?</h5>
+                  <input class="form-control" id="Name" value="<%=data.EventInformation.meetupName%>" aria-describedby="EventName" placeholder="Name">
+                  <h5 for="exampleInputEmail1">What will the event's slogan be?</h5>
+                  <input class="form-control"  value="<%=data.EventInformation.slogan%>" id="Slogan" aria-describedby="EventName" placeholder="Slogan">
+                  <h5 for="exampleTextarea">Describe your event</h5>
+                  <textarea class="form-control"  id="Description" rows="5"><%=data.EventInformation.description%></textarea>
+               </div>
+            </div>
+            <div class= "col-sm no-padding">
+               <div class = "jumbotron">
+                  <h3>Place</h3>
+                  <h5 >Location</h5>
+                  <div>
+                     <div class = "<%=data.EventInformation.longitude%>/<%=data.EventInformation.latitude%>" id="gmap"></div>
+                  </div>
+                  <h5 >Venue</h5>
+                  <div>
+                     <input value="<%=data.EventInformation.venue%>" class="form-control" id="Venue" aria-describedby="EventVenue" placeholder="Venue">
+                  </div>
+                  <h5 >Capacity</h5>
+                  <div>
+                     <input class="form-control" value="<%=data.EventInformation.capacity%>" id="Capacity" aria-describedby="EventCapacity" placeholder="Capacity">
+                  </div>
+                  <h5 >Price</h5>
+                  <div>
+                     <input class="form-control" value="<%=data.EventInformation.price%>" pattern = "[0-9]{1,10}" id="Price" aria-describedby="EventPrice" placeholder="Price">
+                  </div>
+               </div>
+            </div>
+            <div class= "col-sm no-padding">
+               <div class = "jumbotron PaddingTop">
+                  <h3>Time</h3>
+                  <h5 >Date</h5>
+                  <div>
+                     <input class="form-control" type="date" value="<%=data.EventInformation.meetupDate.toISOString().split('T')[0]%>" id="Date">
+                  </div>
+                  <h5 >Start Time</h5>
+                  <div>
+                     <input value="<%=data.EventInformation.startTime%>"  pattern = "([01]?[0-9]|2[0-3]):[0-5][0-9]" class="form-control"  id="Start">
+                  </div>
+                  <h5 >End Time</h5>
+                  <div>
+                     <input  value="<%=data.EventInformation.endTime%>" pattern = "([01]?[0-9]|2[0-3]):[0-5][0-9]" class="form-control"  id="End">
+                  </div>
+                 <button type="button" onclick="Submit()" class="FormButton btn btn-outline-dark">Submit</button>
+               </div>
+            </div>
+         </div>
       </div>
+      </div>
+   </form>
+   </div>
    </body>
 </html>
 <!-- JQuery -->
@@ -14,4 +71,3 @@
 <script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3nfuwaNpvJldXYFHprFU0QwD0Jwr74Oc&callback=initMap" async defer></script>
 <script type="text/javascript" src="/assets/js/EditPage.js"></script>
-
