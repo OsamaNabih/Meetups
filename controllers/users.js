@@ -66,6 +66,8 @@ module.exports = {
 
   googleOAuth: async(req,res,next)=>{
     // Generate a token
+    console.log("req.userId=" , req.user.userId);
+    console.log("req.userType=" , req.user.userType);
     const token = signToken(req.userId,req.userType);
     res.status(200).json({token});
   },

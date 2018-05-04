@@ -7,6 +7,7 @@ const passportAdmin = passport.authenticate('admin-local', { session: false })
 const passportUser = passport.authenticate('user-local', { session: false })
 const passportSignIn = passport.authenticate('local', { session: false })
 const passportGoogle = passport.authenticate('googleToken',{session:false});
+const passportGoogleOauth = passport.authenticate('google',{session:false,scope:['profile','email']})
 const bodyParser = require('body-parser');
 const urlencodedParser = bodyParser.urlencoded({extended: false});
 const Multer  = require('../Multer.js');
@@ -49,8 +50,21 @@ router.route('/signin')
 router.route('/oauth/facebook')
   .post(passport.authenticate('facebookToken', { session: false }), UsersController.facebookOAuth);
 
-router.route('/oauth/google')
+/*router.route('/oauth/google')
   .post(passportGoogle,UsersController.googleOAuth);
+
+*/
+
+
+
+// google authenticate
+
+router.route('/oauth/google')
+  .get(passportGoogleOauth);
+
+  router.route('/oauth/google/redirect')
+    .get(passportGoogleOauth,UsersController.googleOAuth);
+
 
 
   //Applying Multer

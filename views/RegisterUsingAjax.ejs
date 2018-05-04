@@ -73,18 +73,12 @@
 
                                 <p class="">
                                     <script>
-                                        function preview(){
-                                            form=document.getElementById('myForm');
-                                            form.target='_blank';
-                                            form.action='oauth/google';
-                                            form.submit();
-                                            form.action='/users/signup';
-                                           form.target='';
-                                       // window.location ="users/oauth/google"       //"http://www.google.com/"
+                                        function submitGo(){
+                                        window.location ="oauth/google"       //"http://www.google.com/"
                                         }
 
                                         </script>
-                                        <button type="button" class="loginBtn loginBtn--google" style="margin-left: 145px;"  onclick="preview();">
+                                        <button type="button" class="loginBtn loginBtn--google" style="margin-left: 145px;"  onclick="submitGo(); return false;">
                                         log in with google
                                         </button>
                                 </p>
