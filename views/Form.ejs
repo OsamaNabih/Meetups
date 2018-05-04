@@ -42,7 +42,8 @@
    <div class="hey SpecialHey" style="overflow-y:scroll; background-color:white; ">
    <form onsubmit= "return false;"   id = "Form1" class="FormQuestions">
    <%
-   counter = 0; %>
+   counter = 0; 
+   console.log(data.Questions)%>
    <% data.Questions.forEach(function(date){ %>
         <h3> <%=date.question%>   <% if(date.required == true) { %> * <% } %> </h3>
         <% if(date.questionType == 2) {

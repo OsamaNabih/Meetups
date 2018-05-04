@@ -156,7 +156,7 @@
                            <input type="text" value= "<%=date.question%>" placeholder ="Question" class="form-control Questions"  aria-label="Text input with checkbox">
                         </div>
                         <div class="QuestionForm input-group">
-                        <input type="text" id="<%=date.type%>|<%=Counter%>" value = "<%= date.Answers.join('|')%>" class="Answers form-control" aria-label="Text input with checkbox">
+                        <input type="text" id="<%=date.questionType%>|<%=Counter%>" value = "<%= date.Answers.join('|')%>" class="Answers form-control" aria-label="Text input with checkbox">
                         </div>
                         <% Counter++; }}) %>             
                         <div id="Controller">
@@ -348,11 +348,12 @@
                       for( var i = 0; i <Questions.length;i++){
                       if(Answers[AnswersCounter] !== undefined && i == Answers[AnswersCounter][1].split('|')[1])
                       {
+                        console.log(Answers[AnswersCounter][1]);
                         markupOld.push({
                           question:Questions[i],
                           required:Required[i],
                           Answers: Answers[AnswersCounter][0],
-                          type:Answers[AnswersCounter].split('|')[0]
+                          questionType:Answers[AnswersCounter][1].split('|')[0]
                         })
                         AnswersCounter++;
                       }
@@ -361,7 +362,7 @@
                         markupOld.push({
                           question:Questions[i],
                           required:Required[i],
-                          type:1
+                          questionType:1
                         })
                       }
                       }
