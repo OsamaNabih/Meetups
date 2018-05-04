@@ -29,6 +29,10 @@ module.exports = {
    req.value.body.authField = passwordHash;
    req.value.body.authType = 1;
    req.value.body.userType = 3;
+   if(req.file)
+   {
+     req.value.body.imagePath=req.file.path;
+   }
    const DB = new Database(DBconfig);
    DB.query(UserModel.InsertUser(), req.value.body).then(result =>{
       return DB.query(UserModel.GetUserIdAndTypeByEmail(),req.value.body.email);
@@ -62,6 +66,8 @@ module.exports = {
 
   googleOAuth: async(req,res,next)=>{
     // Generate a token
+    console.log("req.userId=" , req.user.userId);
+    console.log("req.userType=" , req.user.userType);
     const token = signToken(req.userId,req.userType);
     res.status(200).json({token});
   },
@@ -78,6 +84,11 @@ module.exports = {
     console.log("error in photoUploaded");
     res.status(404);
   }
+  if(req.file == undefined)
+    {
+      console.log("No Photo Seleced");
+      return next();
+    }
   console.log("No error in photo uploading");
     return next();
 }

@@ -3,7 +3,6 @@ const Joi = require('joi');
 module.exports = {
   validateBody: (schema) => {
     return (req, res, next) => {
-      console.log(req);
       const result = Joi.validate(req.body, schema);
       if (result.error) {
         console.log(result.error.message);
