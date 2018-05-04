@@ -156,7 +156,7 @@
                            <input type="text" value= "<%=date.question%>" placeholder ="Question" class="form-control Questions"  aria-label="Text input with checkbox">
                         </div>
                         <div class="QuestionForm input-group">
-                        <input type="text" id="<%=Counter%>" value = "<%= date.Answers.join('|')%>" class="Answers form-control" aria-label="Text input with checkbox">
+                        <input type="text" id="<%=date.type%>|<%=Counter%>" value = "<%= date.Answers.join('|')%>" class="Answers form-control" aria-label="Text input with checkbox">
                         </div>
                         <% Counter++; }}) %>             
                         <div id="Controller">
@@ -346,12 +346,13 @@
                       var markupOld = [];
                       var AnswersCounter = 0;
                       for( var i = 0; i <Questions.length;i++){
-                      if(Answers[AnswersCounter] !== undefined && i == Answers[AnswersCounter][1])
+                      if(Answers[AnswersCounter] !== undefined && i == Answers[AnswersCounter][1].split('|')[1])
                       {
                         markupOld.push({
                           question:Questions[i],
                           required:Required[i],
-                          Answers: Answers[AnswersCounter][0]
+                          Answers: Answers[AnswersCounter][0],
+                          type:Answers[AnswersCounter].split('|')[0]
                         })
                         AnswersCounter++;
                       }
@@ -360,6 +361,7 @@
                         markupOld.push({
                           question:Questions[i],
                           required:Required[i]
+                          type:1
                         })
                       }
                       }
@@ -396,11 +398,11 @@
                         longitude: longandlat.Lon,
                         latitude: longandlat.Lat
                       }
+                      Markup = markupOld.concat(Markup);
                       DataSent =
                       {
-                        newQuestions: Markup,
+                        Questions: Markup,
                         EventInformation: values,
-                        oldQuestions: markupOld
                       }
                       console.log(DataSent);
                       $.ajax({
