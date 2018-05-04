@@ -8,47 +8,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
         <link rel="stylesheet" href="../assets/css/style.css"/>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script>
-        function readURL(input) {
-           if (input.files && input.files[0]) {
-               var reader = new FileReader();
-               reader.onload = function(e) {
-                   $('#imagePreview').css('background-image', 'url('+e.target.result +')');
-                   $('#imagePreview').hide();
-                   $('#imagePreview').fadeIn(650);
-               }
-               reader.readAsDataURL(input.files[0]);
-           }
-       }
-       $("#imageUpload").change(function() {
-           readURL(this);
-       });
-
-             function validatePassword()
-            {
-                if(passwordPlace.value == confirm_password.value)
-                {
-
-                    confirm_password.setCustomValidity("Passwords Match");
-                    confirm_password.reportValidity();
-                }
-                else if(password.value.trim() == "")
-                {
-                    passwordPlace.setCustomValidity("Passwords must not be empty");
-                    passwordPlace.reportValidity();
-                } else
-                {
-                    confirm_password.setCustomValidity("Passwords Don't Match");
-                    confirm_password.reportValidity();
-
-                }
-            }
-            var passwordPlace = document.getElementById("password");
-            var confirm_password = document.getElementById("confirm_password");
-            passwordPlace.onchange = validatePassword;
-            confirm_password.onkeyup = validatePassword;
-        </script>
+     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>  -->
 
     </head>
     <body>
@@ -67,7 +27,7 @@
                                 </p>
                                 <div class="mt-4">
 
-                                    <form action="/users/signup" method="POST" enctype="multipart/form-data">
+                                    <form action="/users/signup" method="POST" enctype="multipart/form-data" id="myForm">
                                         <div class="form-group">
                                             <input type="text" id="firstName" class="form-control" name="firstName" value="" placeholder="First Name" required>
                                         </div>
@@ -103,7 +63,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <input type="submit" class="btn btn-primary btn-block">Create Account
+                                        <input type="submit" class="btn btn-primary btn-block" value="create accout">
 
                                     </form>
 
@@ -112,15 +72,21 @@
                                 </div>
 
                                 <p class="">
-                                        <button class="loginBtn loginBtn--google" style="margin-left: 145px;">
-                                                Login with Google
-                                        </button>
+                                    <script>
+                                        function preview(){
+                                            form=document.getElementById('myForm');
+                                            form.target='_blank';
+                                            form.action='oauth/google';
+                                            form.submit();
+                                            form.action='/users/signup';
+                                           form.target='';
+                                       // window.location ="users/oauth/google"       //"http://www.google.com/"
+                                        }
 
-                                   <!-- <a href="#" class="btn btn-twitter"><em class="ion-social-twitter"></em></a> -->
-                                  <!--   <a href="#" class="btn btn-facebook"><em class="ion-social-facebook"></em></a>
-                                   <a href="#" class="btn btn-linkedin"><em class="ion-social-linkedin"></em></a>
-                                    <a href="#" class="btn btn-google"><em class="ion-social-googleplus"></em></a>
-                                    <a href="#" class="btn btn-github"><em class="ion-social-github"></em></a> -->
+                                        </script>
+                                        <button type="button" class="loginBtn loginBtn--google" style="margin-left: 145px;"  onclick="preview();">
+                                        log in with google
+                                        </button>
                                 </p>
 
                                 <p class="text-center">
@@ -140,58 +106,28 @@
             </div>
         </section>
 
-    </body>
-<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
+
     <script
     src="https://code.jquery.com/jquery-3.3.1.min.js"
     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
     <script>
+        function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            $('#imagePreview').css('background-image', 'url('+e.target.result +')');
+            $('#imagePreview').hide();
+            $('#imagePreview').fadeIn(650);
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+$("#imageUpload").change(function() {
+    readURL(this);
+});
 
-        /*
-        $(document).ready(function(){
-            $("form#test-form").submit(function() {
-                var formData = new formData(this);
-                $.ajax({
-                url: './signup',
-                type: 'POST',
-                headers: {
-                    "appID": "some value",
-                    "version": "some value",
-                    "empID": "some value",
-                    "contentType": "application/x-www-form-urlencoded"
-                },
-                data: formData,
-                async: false,
-                processData: false,
-                contentType: false,
-                success: function() {
-                    console.log(data)
-                },
-                error: function(e) {
-                    console.log(e)
-                }
-                });
-                });
-                */
-/*
-
-             $('form').submit(function() {
-                var formData = new FormData($(this)[0]);
-                $.ajax({
-                url: './signup',
-                type: 'POST',
-                data: formData,
-                cache: false,
-                contentType: false,
-                processData: false
-                }).then(function(data) {
-                $('#result').html(data);
-                });
-                return false;
-            });
-*/
            /* $("button").click(function(){
               var firstName = $("#firstName").val();
               var lastName = $("#lastName").val();
@@ -220,10 +156,12 @@
                     }
                 });
             });
-            */
 
-    // });
 
+     });
+     */
 
     </script>
+
+</body>
 </html>

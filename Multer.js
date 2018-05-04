@@ -30,13 +30,15 @@ module.exports = {
       next(err);
     }
     else{
-      console.log(req);
       console.log("photo is trying to upload itself");
       if(req.file == undefined)
-      {
+      {/*
         req.error = "No photo selected";
         console.log("No Photo Selected");
         next(req.error);
+        */
+        console.log("No Photo Selected");
+        next();
       }
       else
         next();
