@@ -8,6 +8,7 @@ const bodyParser = require('body-parser');
 const urlencodedParser = bodyParser.urlencoded({extended: false});
 const passportAdmin = passport.authenticate('admin-local', { session: false })
 const passportUser = passport.authenticate('user-local', { session: false })
+const feedbackController = require('../controllers/feedback');
 
 router.route('/create')
   .get((req, res)=>{ //passport strategy here to make sure only admin has access
@@ -51,10 +52,55 @@ router.route('/:id/register')
     });
   });
 
-
+  //test feedback input
   router.route('/:id/addFeedback')
   .get((req, res)=>{
       res.render('AddFeedback',{meetupId:req.params.id});
+  })
+  .post((req,res)=>{
+    let result = feedbackController.CreateFeedbackQuestions(req,res);
+    result.then(()=>{
+      res.status(200);
+    }).catch((error)=>{
+      res.status(400);
+    });
+  });
+
+//test get feedback question with answers put by the admin
+router.route('/:id/getFeedback')
+  .get((req,res)=>{
+    let data = feedbackController.GetFeedBackQuestions(req,res);
+    data.then((data)=> {
+      console.log(data);
+      res.render('Form',{data});
+    }).catch((error)=>{
+      res.status(400).json(error);
+    });
+  });
+
+router.route('/:id/register')
+  .get((req,res)=>{
+    res.render(''); // wagih shall put the view in it
+  })
+  .post((req,res)=>{
+      let result = feedbackController.SubmitFeedbackReplies(req,res);
+      result.then((result)=>{
+        res.status(200).json(result);
+      }).catch((error)=>{
+        res.status(400).json(error);
+      });
+  });
+
+//test get feedback questions with answers put by the Users
+
+router.route('/:id/getFeedbackReplies')
+  .get((req,res)=>{
+    let result = feedbackController.GetFeedBackQuestionswithreplies(req,res);
+    result.then((result)=>{
+      res.status(200).json(result);
+    }).catch((error)=>{
+      res.status(400)
+    });
   });
 
 
@@ -78,6 +124,7 @@ router.route('/:id')
       res.send(error);
     });
   });
+
 
 
 module.exports = router;

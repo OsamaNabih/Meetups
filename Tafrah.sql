@@ -66,6 +66,7 @@ create table FormQuestions
 	question text not null,
 	questionType int not null, /*1 is a text question, 2 is a radio button, 3 is a checkbox */
 	required bool not null,
+	feedback bool not null,    /* 0 question 1 feedback */
 	Primary Key(meetupId, questionId),
 	Foreign Key(meetupId) references Meetups(meetupId) on delete cascade on update cascade
 );
