@@ -13,7 +13,7 @@
    counter = 0;
    console.log(data.Questions)%>
    <% data.Questions.forEach(function(date){ %>
-        <h3> <%=date.question%>   <% if(date.required == true) { %> * <% } %> </h3>
+        <h3 id='<%=date.questionId%>|<%=date.questionType%>' class="H3Head" > <%=date.question%>   <% if(date.required == true) { %> * <% } %> </h3>
         <% if(date.questionType == 2) {
              var answerCounter = 0;
             date.Answers.forEach(function(answer){

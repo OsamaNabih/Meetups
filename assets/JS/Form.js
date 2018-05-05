@@ -1,10 +1,17 @@
 function Submitfun()
 {
  var dataString = $('#Form1').serializeArray();
+ console.log(dataString);
  var AnswersArray = [];
-  console.log(dataString[0].name.indexOf('|'));
+ var idArray = [];
+ var typeArray = [];
+ $("h3").each(function() {
+    idArray.push($(this).attr('id').split('|')[0])
+    typeArray.push($(this).attr('id').split('|')[1])
+});
  for (var i = 0;i<dataString.length; i++)
  {
+
     if(dataString[i].name.indexOf('|') == -1)
     {
         if(isNaN(Number(dataString[i].name)))
@@ -13,14 +20,14 @@ function Submitfun()
                    var QuestionNumber = $(`input[name="`+ name+ `"]:checked`, '#Form1').attr('id');
                    var AnswerNumber = Number(QuestionNumber.split('|')[1]);
                   var QuestionNumbr = Number(QuestionNumber.split('|')[0]);
-                    AnswersArray.push({Question:QuestionNumbr,Answer:AnswerNumber});
+                    AnswersArray.push({Question:QuestionNumbr,Answer:AnswerNumber,questionType:typeArray[i],questionId:idArray[i]});
 
         }
         else
         {
             var QuestionNumber = Number(dataString[i].name);
             console.log(dataString[i]);
-            AnswersArray.push({Question:QuestionNumber,Answer:String(dataString[i].value)});
+            AnswersArray.push({Question:QuestionNumber,Answer:String(dataString[i].value),questionType:typeArray[i],questionId:idArray[i]});
         }
          
     }
@@ -28,7 +35,7 @@ function Submitfun()
     {
         var QuestionNumber = Number(dataString[i].name.split('|')[0]);
         var AnswerNumber = Number(dataString[i].name.split('|')[1]);
-        AnswersArray.push({Question:QuestionNumber,Answer:AnswerNumber});
+        AnswersArray.push({Question:QuestionNumber,Answer:AnswerNumber,questionType:typeArray[i],questionId:idArray[i]});
     }
  }
  var Result = 
