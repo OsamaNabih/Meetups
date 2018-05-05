@@ -10,7 +10,7 @@ create table Users
 	authType int not null, /* 1->Local, 2->Facebook, 3->Google */
 	userType int not null, /* 1->Admin, 2 ->Speaker, 3->User,*/
 	birthDate date,
-    imagePath text,
+  imagePath text,
 	position varchar(320),
 	Primary key(userId)
 );

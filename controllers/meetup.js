@@ -29,7 +29,7 @@ module.exports = {
     try {
       const DB = new Database(DBconfig);
       let result = await DB.query(MeetupModel.GetAttendees(), req.params.id);
-      DB.close().then(()=> {console.log('DB is closed')});
+      await DB.close();
       return result;
     }
     catch(error){
@@ -42,8 +42,12 @@ module.exports = {
     /*If the format is HH:MM, it must be inserted into the DB as HHMM00 not HHMM or else
     MYSQL interprets it as MM:SS*/
     try{
-      req.body.EventInformation.startTime += '00';
-      req.body.EventInformation.endTime += '00';
+      if (req.body.EventInformation.startTime.length > 5){
+        req.body.EventInformation.startTime += '00';
+      }
+      if (req.body.EventInformation.endTime.length > 5){
+        req.body.EventInformation.endTime += '00';
+      }
       req.body.EventInformation.startTime = Number(req.body.EventInformation.startTime.split(":").join(""));
       req.body.EventInformation.endTime = Number(req.body.EventInformation.endTime.split(":").join(""));
       req.body.EventInformation.meetupDate = Number(req.body.EventInformation.meetupDate.split("-").join(""));
@@ -72,12 +76,10 @@ module.exports = {
         }
       }
       DB.close().then(()=>{
-        console.log('kollo tamam');
         res.send('success, nigga');
       });
     }
     catch(error){
-      console.log('fel catch');
       console.log(error);
     }
   },
@@ -110,7 +112,7 @@ module.exports = {
           }
           delete result[j]["optionString"];
           delete result[j]["MAX"];
-          delete result[j]["questionId"];
+          //delete result[j]["questionId"];
           delete result[j]["optionId"];
           delete result[j]["meetupId"];
           result[j].required = Boolean(result[j].required);
@@ -121,14 +123,12 @@ module.exports = {
         return data;
       }
       catch(error){
-        console.log(error);
         return error;
       }
   },
   ValidateUsers: async(req, res)=>{
     try{
       if (req.body.verifiedUsers.length === 0){
-        console.log('no change');
         throw 'no change';
       }
       let Ids = [];
@@ -137,7 +137,6 @@ module.exports = {
       }
       const DB = new Database(DBconfig);
       let result = await DB.query(MeetupModel.VerifyAttendees(), [req.body.meetupId, Ids]);
-      console.log(result);
       await DB.close();
       return;
     }
@@ -161,7 +160,6 @@ module.exports = {
       if (previousOptionsSubmission.length !== 0 || previousRepliesSubmission.length !== 0)
       {
         //This user already registered for the meetup
-        console.log('Registered abl keda');
         throw 'You have already registered for this meetup';
       }
       for(let i = 0; i < JSON.Questions.length; i++){
@@ -184,6 +182,24 @@ module.exports = {
       return 'Your registration has been completed successfully';
     }
     catch (error){
+      throw error;
+    }
+  },
+  UpdateMeetup: async (req, res)=>{
+    try{
+      console.log(req.body);
+      let JSON = req.body;
+      JSON.meetupId = req.body.EventInformation.meetupId = req.params.id;
+      //console.log(JSON);
+      console.log(req.params.id);
+      const DB = new Database(DBconfig);
+      let deletedMeetup = DB.query(MeetupModel.DeleteMeetup(), req.params.id);
+      req.body.oldQuestions.push(req.body.newQuestions);
+      req.body.Questions = req.body.oldQuestions;
+      delete req.body["oldQuestions"];
+      console.log(req.body);
+    }
+    catch(error){
       console.log(error);
       throw error;
     }

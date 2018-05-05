@@ -71,7 +71,6 @@ router.route('/:id/getFeedback')
   .get((req,res)=>{
     let data = feedbackController.GetFeedBackQuestions(req,res);
     data.then((data)=> {
-      console.log(data);
       res.render('Form',{data});
     }).catch((error)=>{
       res.status(400).json(error);
