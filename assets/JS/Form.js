@@ -38,7 +38,7 @@ function Submitfun()
 }
 console.log(Result);
 $.ajax({
-                            url: '/meetup/'+Result.meetupId+'/register',
+                            url: '/meetup/'+Result.meetupId+'/' + $('.SpecialHey').attr('id'), //This is to be /meetup/:id/register OR /meetup/:id/feedback
                             type: 'POST',
                             contentType: 'application/json',
                             data: JSON.stringify(Result),

@@ -3,7 +3,11 @@
 <div class="mainDivForm" id = "<%= data.EventInformation.meetupId%>" >
    <div class="hey" ></div>
    <div class ="parentHey">
-   <div class="hey SpecialHey" style="overflow-y:scroll; background-color:white; ">
+   <% if(feedback != undefined) { %>
+   <div id = "feedback" class="hey SpecialHey" style="overflow-y:scroll; background-color:white; ">
+   <% } else { %>
+   <div id = "register" class="hey SpecialHey" style="overflow-y:scroll; background-color:white; ">
+   <% } %>
    <form onsubmit= "return false;"   id = "Form1" class="FormQuestions">
    <%
    counter = 0;
