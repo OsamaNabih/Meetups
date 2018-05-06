@@ -20,14 +20,14 @@ function Submitfun()
                    var QuestionNumber = $(`input[name="`+ name+ `"]:checked`, '#Form1').attr('id');
                    var AnswerNumber = Number(QuestionNumber.split('|')[1]);
                   var QuestionNumbr = Number(QuestionNumber.split('|')[0]);
-                    AnswersArray.push({Question:QuestionNumbr,Answer:AnswerNumber,questionType:typeArray[i],questionId:idArray[i]});
+                    AnswersArray.push({Question:QuestionNumbr,Answer:AnswerNumber,questionType:typeArray[QuestionNumber],questionId:idArray[QuestionNumber]});
 
         }
         else
         {
             var QuestionNumber = Number(dataString[i].name);
             console.log(dataString[i]);
-            AnswersArray.push({Question:QuestionNumber,Answer:String(dataString[i].value),questionType:typeArray[i],questionId:idArray[i]});
+            AnswersArray.push({Question:QuestionNumber,Answer:String(dataString[i].value),questionType:typeArray[QuestionNumber],questionId:idArray[QuestionNumber]});
         }
          
     }
@@ -35,7 +35,7 @@ function Submitfun()
     {
         var QuestionNumber = Number(dataString[i].name.split('|')[0]);
         var AnswerNumber = Number(dataString[i].name.split('|')[1]);
-        AnswersArray.push({Question:QuestionNumber,Answer:AnswerNumber,questionType:typeArray[i],questionId:idArray[i]});
+        AnswersArray.push({Question:QuestionNumber,Answer:AnswerNumber,questionType:typeArray[QuestionNumber],questionId:idArray[QuestionNumber]});
     }
  }
  var Result = 
