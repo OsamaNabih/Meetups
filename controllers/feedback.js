@@ -106,12 +106,14 @@ module.exports= {
         throw 'You have already inserted a feedback for this meetup';
       }
       for(let i = 0; i < JSON.Questions.length; i++){
-        if(JSON.Questions[i].questionType !== 1){
+        console.log(JSON.Questions[i].questionType != 1);
+        console.log(JSON.Questions[i]);
+        if(JSON.Questions[i].questionType != 1){
           let result = await DB.query(MeetupModel.InsertFormOptionReply(),
                                         {meetupId: Number(JSON.meetupId),
                                          questionId: JSON.Questions[i].questionId, //REMOVE THE +1
                                          userId: JSON.userId,
-                                         optionId: JSON.Questions[i].Answer });  //Remove when fixed on front
+                                         optionId: JSON.Questions[i].Answer+1 });  //Remove when fixed on front
         }
         else{
           let result = await DB.query(MeetupModel.InsertFormReply(),
@@ -135,34 +137,47 @@ module.exports= {
     try{
          let meetupId = req.params.id;
          const DB = new Database(DBconfig);
-         let Questions = await DB.query(MeetupModel.GetFeedBackQuestionsOnly(),meetupId);
-         console.log(Questions);
-         for (var i = 0; i < Questions.length; i++) {
-           delete Questions[i]['required'];
-           delete Questions[i]['MAX'];
-           if(Questions[i].questionType === 1)
+         let questions = await DB.query(MeetupModel.GetFeedBackQuestionsOnly(),meetupId);
+        //  console.log(Questions);
+         for (var i = 0; i < questions.length; i++) {
+           delete questions[i]['required'];
+           delete questions[i]['MAX'];
+           if(questions[i].questionType === 1)
             {
-              delete Questions[i]['optionString'];
-              delete Questions[i]['Options'];
-              let replies = await DB.query(MeetupModel.GetFeedBackReplies(),Questions[i].questionId);
-              console.log("replies",replies);
-              Questions[i].replies = [];
+              delete questions[i]['optionString'];
+              delete questions[i]['Options'];
+              let replies = await DB.query(MeetupModel.GetFeedBackReplies(),[questions[i].questionId,meetupId]);
+          //    console.log("replies",replies);
+              questions[i].replies = [];
               for (var j = 0; j < replies.length; j++) {
-                Questions[i].replies.push(replies[j]);
+                questions[i].replies.push(replies[j]);
               }
             }
             else
             {
-              let Options = await DB.query(MeetupModel.GetFeedBackOptions(),[meetupId,Questions[i].questionId,meetupId,Questions[i].questionId]);
-              Questions[i].Options = [];
-              for (var j = 0; j <Options.length; j++) {
-                Questions[i].Options.push(Options[j]);
-              }
+                let frequencyMap = {};
+                let options = await DB.query(MeetupModel.GetFeedBackOptions(),[meetupId,questions[i].questionId,meetupId,questions[i].questionId]);
+                let frequency = await DB.query(MeetupModel.GetFeedBackOptionsCount(),[meetupId,questions[i].questionId]);
+                questions[i].options = [];
+                for (var j = 0; j <options.length; j++) {
+                  questions[i].options.push(options[j]);
+                }
+                for (var j = 0; j < frequency.length; j++) {
+                  if(frequencyMap[frequency[j].optionId]===undefined)
+                      frequencyMap[frequency[j].optionId] =1;
+                      else
+                      frequencyMap[frequency[j].optionId]++;
+                }
+                 for (var j = 0; j < questions[i].options.length ; j++) {
+                        questions[i].options[j].frequency = frequencyMap[frequency[j].optionId];
+                        delete questions[i].options[j]['optionId'];
+                  }
             }
          }
 
         await DB.close();
-        return Questions;
+        console.log(questions);
+        return questions;
     }
     catch(error){
       console.log(error);

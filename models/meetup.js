@@ -80,30 +80,36 @@ module.exports = {
               (Select *
                From FormQuestions
                where feedback = true) as questions
-               Where  meetupId= ? and userId = ? `
+               Where  meetupId= ? and userId = ? `;
     },
   CheckPreviousFeedbackOptionsSubmission: function(){
     return `SELECT Distinct userId,meetupId From FormOptionReplies as FR Natural JOIN
             (Select *
              From FormQuestions
              where feedback = true) as question
-             Where  meetupId= ? and userId = ? `
+             Where  meetupId= ? and userId = ? `;
   },
   GetFeedBackReplies: function()
   {
-    return " Select Distinct userId,userReply From FormReplies where questionId = ?"
+    return " Select Distinct userId,userReply From FormReplies where questionId = ? and meetupId = ? ";
   },
   GetFeedBackQuestionsOnly: function()
   {
-    return " Select question,questionId,questionType from FormQuestions where meetupId = ? and feedback= true "
+    return " Select question,questionId,questionType from FormQuestions where meetupId = ? and feedback= true ";
   },
   GetFeedBackOptions: function()
   {
-    return `Select Optionstring from FormOptions
-            where  meetupId = ? and questionId =  ? and OptionId In
-           ( select OptionId
+    return `Select optionString,optionId from FormOptions
+            where  meetupId = ? and questionId = ? and optionId In
+           ( select optionId
              from FormOptionReplies
-             where meetupId = ?   and questionId = ? ) `
+             where meetupId = ?   and questionId = ? ) `;
+  },
+  GetFeedBackOptionsCount: function()
+  {
+    return `select optionId
+      from FormOptionReplies
+      where meetupId = ?   and questionId = ?`;
   },
   VerifyAttendees: function(){
     return `UPDATE Attended SET verified = !verified WHERE attendedMeetupId = ? AND attendeeId IN (?)`;

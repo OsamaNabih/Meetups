@@ -67,17 +67,18 @@ router.route('/:id/register')
   });
 
 //test get feedback question with answers put by the admin
-router.route('/:id/getFeedback')
+router.route('/:id/Feedback')
   .get((req,res)=>{
     let data = feedbackController.GetFeedBackQuestions(req,res);
     data.then((data)=> {
+    //  console.log(data);
       res.render('Form',{data:data, feedback:1});
     }).catch((error)=>{
       res.status(400).json(error);
     });
   });
 
-router.route('/:id/register')
+router.route('/:id/feedback')
   .get((req,res)=>{
     res.render(''); // wagih shall put the view in it
   })

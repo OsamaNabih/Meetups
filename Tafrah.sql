@@ -12,7 +12,15 @@ create table Users
 	birthDate date,
   imagePath text,
 	position varchar(320),
+	aboutme text,
 	Primary key(userId)
+);
+create table Links
+(
+	userId int not null,
+	email text,
+	Primary key(userId,email),
+	Foreign Key(userId) references (Users) on Delete cascade on Update cascade
 );
 Create Table Meetups
 (
