@@ -25,7 +25,7 @@
                                 </div>
                                
                                 <div class="mt-4">
-                                    <form action="/users/signup" method="POST" enctype="multipart/form-data">
+                                    <form id="form1" action="" method="POST" enctype="multipart/form-data">
                                         <div class="form-group">
                                             <input type="text" id="firstName" class="form-control" name="firstName" value="" placeholder="First Name" required>
                                         </div>
@@ -62,7 +62,7 @@
                                     <div style="">
                                             <div class="control-group" id="fields">
                                                 <div class="controls"> 
-                                                    <form role="form" autocomplete="off">
+                                                    <form id="form2" action="" method="POST" role="form" autocomplete="off">
                                                         <div class="entry input-group col-xs-3">
                                                             <input class="form-control" name="fields[]" type="text" placeholder="Type something" />
                                                             <span class="input-group-btn">
@@ -82,9 +82,15 @@
                                             <h1 style="text-align: left; margin-top: -5px;">about you</h1>
                                             <textarea cols="10" rows="10" class="form-control" style="margin-bottom: 20px; margin-top: 20px; "></textarea>
                                         </div>
-
+                                        <script>
+                                        submitForms = function(){
+                                            document.getElementById("form1").submit();
+                                            document.getElementById("form2").submit();
+                                        }
+                                        
+                                        </script>
                                       
-                                        <input type="submit" class="btn btn-primary btn-block" value="Done"> <!-- you will need to submit multi forms -->
+                                        <input type="submit" class="btn btn-primary btn-block" value="Done" onclick="submitForms()"> <!-- you will need to submit multi forms -->
                                     
                                 </div>
                             </div>
@@ -101,7 +107,7 @@
             </div>
         </section>
         <script>
-         $(document).ready(function(){
+$(document).ready(function(){
             $(function()
 {
     $(document).on('click', '.btn-add', function(e)
@@ -123,33 +129,25 @@
 
 		e.preventDefault();
 		return false;
-	});
-});
+	             });
+          });
 
-///////////////////////
+        }); 
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#imagePreview').css('background-image', 'url('+e.target.result +')');
+                    $('#imagePreview').hide();
+                    $('#imagePreview').fadeIn(650);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        $("#imageUpload").change(function() {
+            readURL(this);
+        });
 
-
-    
-    }); 
-
-
-
-
-                   function readURL(input) {
-                      if (input.files && input.files[0]) {
-                          var reader = new FileReader();
-                          reader.onload = function(e) {
-                              $('#imagePreview').css('background-image', 'url('+e.target.result +')');
-                              $('#imagePreview').hide();
-                              $('#imagePreview').fadeIn(650);
-                          }
-                          reader.readAsDataURL(input.files[0]);
-                      }
-                  }
-                  $("#imageUpload").change(function() {
-                      readURL(this);
-                  });
-           
                </script>
     </body>
 
