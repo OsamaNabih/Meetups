@@ -53,6 +53,7 @@ router.route('/:id/register')
     });
   });
 
+
   //test feedback input
   router.route('/:id/addFeedback')
   .get((req, res)=>{
@@ -68,7 +69,7 @@ router.route('/:id/register')
   });
 
 //test get feedback question with answers put by the admin
-router.route('/:id/Feedback')
+router.route('/:id/feedback')
   .get((req,res)=>{
     let data = feedbackController.GetFeedBackQuestions(req,res);
     data.then((data)=> {
@@ -77,9 +78,7 @@ router.route('/:id/Feedback')
     }).catch((error)=>{
       res.status(400).json(error);
     });
-  });
-
-router.route('/:id/feedback')
+  })
   .post((req,res)=>{
       let result = feedbackController.SubmitFeedbackReplies(req,res);
       result.then((result)=>{
@@ -89,13 +88,14 @@ router.route('/:id/feedback')
       });
   });
 
+
 //test get feedback questions with answers put by the Users
 
 router.route('/:id/getFeedbackReplies')
   .get((req,res)=>{
     let result = feedbackController.GetFeedBackQuestionswithreplies(req,res);
     result.then((result)=>{
-      res.status(200).json(result);
+     res.render('GetFeedback',{data:result});
     }).catch((error)=>{
       res.status(400).json(error);
     });
@@ -107,12 +107,20 @@ router.route('/:id/edit')
   .get((req, res) =>{
     let result = MeetupController.GetQuestions(req,res);
     result.then(function(result){
-          console.log(result);
       res.render('EditPage', {data: result});
     }).catch(function(error){
       res.send(error);
     });
+  })
+  .post(urlencodedParser, (req, res)=>{
+    let result = MeetupController.UpdateMeetup(req, res);
+    result.then((result)=>{
+      res.status(200).json(result);
+    }).catch((error)=>{
+      res.status(400).json(error);
+    });
   });
+
 router.route('/:id')
   .get((req, res) =>{
     let result = MeetupController.GetMeetupAndSpeakers(req.params.id);

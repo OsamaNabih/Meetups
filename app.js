@@ -3,6 +3,7 @@ const express = require('express');
 const passport = require('passport');
 const http = require('http');
 const morgan = require('morgan');
+const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser');
 require('./config/DB');
 
@@ -17,6 +18,8 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 app.use('/assets',express.static('assets'));
 
+
+app.use(cookieParser())
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(morgan('dev'));

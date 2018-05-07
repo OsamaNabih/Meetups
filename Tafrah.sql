@@ -45,12 +45,12 @@ Create Table Spoke_In
 
 create table Attended
 (
-	attendeeId int not null,
-	attendedMeetupId int not null,
+	userId int not null,
+	meetupId int not null,
 	verified boolean not null default 0,
-	Primary key (attendeeId,attendedMeetupId),
-	Foreign key (attendeeId) references Users(userId) On Delete cascade On Update cascade,
-	Foreign key (attendedMeetupId) references Meetups(meetupId) On Delete cascade On Update cascade
+	Primary key (userId,meetupId),
+	Foreign key (userId) references Users(userId) On Delete cascade On Update cascade,
+	Foreign key (meetupId) references Meetups(meetupId) On Delete cascade On Update cascade
 );
 
 create table Images
@@ -139,22 +139,22 @@ values
 
 Insert Into Users(email,firstName,lastName,authField,authType,userType,birthDate,position)
 values
-("Attendee@gmail.com", "Eager", "Learner", 1234,1, 3, 20010622, "Student");
+("user@gmail.com", "Eager", "Learner", 1234,1, 3, 20010622, "Student");
 
 Insert Into Users(email,firstName,lastName,authField,authType,userType,birthDate,position)
-Values("Attendee2@gmail.com", "Tafrah", "Lover", "4321",1, 3, 19950415, "Junior front-end developer");
+Values("user2@gmail.com", "Tafrah", "Lover", "4321",1, 3, 19950415, "Junior front-end developer");
 
 Insert Into Users(email,firstName,lastName,authField,authType,userType,birthDate,position)
-Values("Attendee3@gmail.com", "Real", "Person", "1111",1, 3, 19900602, "Junior back-end developer");
+Values("user3@gmail.com", "Real", "Person", "1111",1, 3, 19900602, "Junior back-end developer");
 
 Insert Into Users(email,firstName,lastName,authField,authType,userType,birthDate,position)
-Values("Attendee4@gmail.com", "Very", "Enthusiastic", "2222",1, 3, 19900413, "Machine Learning Engineer");
+Values("user4@gmail.com", "Very", "Enthusiastic", "2222",1, 3, 19900413, "Machine Learning Engineer");
 
 Insert Into Users(email,firstName,lastName,authField,authType,userType,birthDate,position)
-Values("Attendee5@gmail.com", "Techie", "Goals", "randomFacebookToken23qwekmlkdmasd90i3e39msmdakmalksd",2, 3, 19900413, "Senior Machine Learning Engineer");
+Values("user5@gmail.com", "Techie", "Goals", "randomFacebookToken23qwekmlkdmasd90i3e39msmdakmalksd",2, 3, 19900413, "Senior Machine Learning Engineer");
 
 Insert Into Users(email,firstName,lastName,authField,authType,userType,birthDate,position)
-Values("Attendee6@gmail.com", "Google", "Rocks", "randomGoogleTokena2sd6lklm9asd3",3, 3, 19900413, "Senior Machine Learning Engineer");
+Values("user6@gmail.com", "Google", "Rocks", "randomGoogleTokena2sd6lklm9asd3",3, 3, 19900413, "Senior Machine Learning Engineer");
 
 Insert Into Users(email,firstName,lastName,authField,authType,userType,birthDate,position)
 Values("admin@gmail.com", "Test", "Admin", "$2a$10$qECNSpwdIe.kacmtEakDuuuqcXPC2WkZqHqQrNJ1sAMb2PA2mo0hm",1, 1, 19900413, "The admin");
@@ -410,72 +410,72 @@ values
 (5,2);
 
 /*--------------------------------------------------------------------------------------------------------------------
-Attaching attendees to meetups*/
+Attaching users to meetups*/
 /*
-Insert Into Attended(attendeeId, attendedMeetupId)
+Insert Into Attended(userId, meetupId)
 values
 (3,1);
-Insert Into Attended(attendeeId, attendedMeetupId)
+Insert Into Attended(userId, meetupId)
 values
 (7,1);
-Insert Into Attended(attendeeId, attendedMeetupId)
+Insert Into Attended(userId, meetupId)
 values
 (8,2);
-Insert Into Attended(attendeeId, attendedMeetupId, verified)
+Insert Into Attended(userId, meetupId, verified)
 values
 (9,2,1);
-Insert Into Attended(attendeeId, attendedMeetupId)
+Insert Into Attended(userId, meetupId)
 values
 (10,3);
-Insert Into Attended(attendeeId, attendedMeetupId, verified)
+Insert Into Attended(userId, meetupId, verified)
 values
 (3,5,1);
-Insert Into Attended(attendeeId, attendedMeetupId)
+Insert Into Attended(userId, meetupId)
 values
 (7,5);
-Insert Into Attended(attendeeId, attendedMeetupId, verified)
+Insert Into Attended(userId, meetupId, verified)
 values
 (8,5,1);
-Insert Into Attended(attendeeId, attendedMeetupId)
+Insert Into Attended(userId, meetupId)
 values
 (9,6);
-Insert Into Attended(attendeeId, attendedMeetupId, verified)
+Insert Into Attended(userId, meetupId, verified)
 values
 (10,6,1);
-Insert Into Attended(attendeeId, attendedMeetupId)
+Insert Into Attended(userId, meetupId)
 values
 (3,7);
-Insert Into Attended(attendeeId, attendedMeetupId)
+Insert Into Attended(userId, meetupId)
 values
 (10,7);
-Insert Into Attended(attendeeId, attendedMeetupId)
+Insert Into Attended(userId, meetupId)
 values
 (3,8);
-Insert Into Attended(attendeeId, attendedMeetupId)
+Insert Into Attended(userId, meetupId)
 values
 (7,8);
-Insert Into Attended(attendeeId, attendedMeetupId, verified)
+Insert Into Attended(userId, meetupId, verified)
 values
 (8,8,1);
-Insert Into Attended(attendeeId, attendedMeetupId)
+Insert Into Attended(userId, meetupId)
 values
 (9,8);
-Insert Into Attended(attendeeId, attendedMeetupId)
+Insert Into Attended(userId, meetupId)
 values
 (10,8);
-Insert Into Attended(attendeeId, attendedMeetupId)
+Insert Into Attended(userId, meetupId)
 values
 (3,9);
-Insert Into Attended(attendeeId, attendedMeetupId)
+Insert Into Attended(userId, meetupId)
 values
 (7,9);
-Insert Into Attended(attendeeId, attendedMeetupId, verified)
+Insert Into Attended(userId, meetupId, verified)
 values
 (8,9,1);
-Insert Into Attended(attendeeId, attendedMeetupId, verified)
+Insert Into Attended(userId, meetupId, verified)
 values
 (9,9,1);
-Insert Into Attended(attendeeId, attendedMeetupId, verified)
+Insert Into Attended(userId, meetupId, verified)
 values
 (10,9,1);
 /*--------------------------------------------------------------------------------------------------------------------

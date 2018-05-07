@@ -1,0 +1,73 @@
+<% include partials/head %>
+<table class ="Charts">
+      <tr class="Piecharts">
+      </tr>
+</table>
+<div class ="Type1Questions">
+  <% data.forEach(function(date){
+      if (date.questionType == 1) { %>
+      <h3> <%= date.question%> </h3>
+      <% date.replies.forEach(function(reply){ %>
+<a class="list-group-item disabled list-group-item-action flex-column align-items-start">
+     <div class="d-flex w-100 justify-content-between">
+       <h5 class="mb-1"> <%= reply.userId %></h5>
+     </div>
+     <p class="mb-1"> <%= reply.userReply %> </p>
+   </a>
+     <% })%>
+   
+    <% }})%>
+
+</div>
+<style>
+.Charts
+{
+    margin-top:10px;
+    margin-bottom:10px;
+}
+
+
+</style>
+</body>
+</html>
+<!-- JQuery -->
+<script type="text/javascript" src="/assets/js/jquery-3.2.1.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="/assets/js/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/assets/js/Charts.js"></script>
+    
+    <script type="text/javascript">
+      // Load the Visualization API and the corechart package.
+      google.charts.load('current', {'packages':['corechart']});
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.charts.setOnLoadCallback(drawChart);
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      
+      function drawChart() {
+    <%  data.forEach(function(date){
+        if(date.questionType !== 1)
+        { %>
+        // Create the data table.
+var Data =new google.visualization.DataTable();
+Data.addColumn('string', 'Answer');
+Data.addColumn('number', 'Frequency');
+<% date.options.forEach(function(Option){ %>
+  Data.addRow(['<%= Option.optionString %>',<%= Option.frequency %>]);
+<% }); %>
+        var options = {'title':'<%=date.question%>',
+                       'width':300,
+                       'height':400,
+          is3D: true,
+          'backgroundColor':'#fff',
+        };
+        $('.PieCharts').append('<td><div id = "<%=date.questionId%>"> </div></td>')
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.PieChart(document.getElementById('<%=date.questionId%>'));
+        chart.draw(Data, options);
+    <%    }}) %>
+      }
+    </script>

@@ -21,12 +21,12 @@ module.exports = {
   },
   GetAttendees: function(){
     return `SELECT userId, email, firstName, lastName, position, verified
-          FROM (attended JOIN meetups ON attendedMeetupId = meetupId) JOIN users ON userId = attendeeId
+          FROM (attended JOIN meetups ON attendedMeetupId = meetupId) JOIN users ON userId = userId
           WHERE meetupId = ?`;
   },
   GetVerifiedAttendees: function(){
     return `SELECT userId, email, firstName, lastName, position
-          FROM (attended JOIN meetups ON attendedMeetupId = meetupId) JOIN users ON userId = attendeeId
+          FROM (attended JOIN meetups ON attendedMeetupId = meetupId) JOIN users ON userId = userId
           WHERE meetupId = ? AND verified = true`;
   },
   InsertMeetup: function(){
@@ -123,7 +123,7 @@ module.exports = {
     return `Select Max(questionId) as questionId From FormQuestions where meetupId =?`;
   },
   VerifyAttendees: function(){
-    return `UPDATE Attended SET verified = !verified WHERE attendedMeetupId = ? AND attendeeId IN (?)`;
+    return `UPDATE Attended SET verified = !verified WHERE attendedMeetupId = ? AND userId IN (?)`;
   },
   CheckPreviousOptionsSubmission: function(){
     return "SELECT DISTINCT userId FROM FormOptionReplies WHERE meetupId = ? AND userId = ?";
@@ -139,5 +139,12 @@ module.exports = {
   },
   DeleteMeetup: function(){
     return "DELETE FROM Meetups WHERE meetupId = ?"
+  },
+  UpdateMeetup: function(){
+    return `UPDATE Meetups SET meetupId = ?, meetupName = ?, capacity = ?, description = ?, price = ?,
+            venue = ?, meetupDate = ?, startTime = ?, endTime = ?, longitude = ?, latitude = ?, slogan = ?`;
+  },
+  AddAttendee: function(){
+    return "INSERT INTO Attended SET ?"
   }
 }

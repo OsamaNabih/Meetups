@@ -5,7 +5,7 @@
         <title>Free Bootstrap 4 Login/Register Forms By Wired Dots</title>
         <meta name="description" content="Love Authority." />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+        <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
         <link rel="stylesheet" href="../assets/css/style.css"/>
     </head>
@@ -72,9 +72,10 @@
         </section>
 
     </body>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+   <script type="text/javascript" src="/assets/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="/assets/js/popper.min.js"></script>
+<script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
     <script>
-        $(document).ready(function(){
             $("button").click(function(){
               var email = $("#email").val();
               var password = $("#password").val();
@@ -90,10 +91,10 @@
                     alert(data.error);
                   }
                   else if (data.token){
-                    alert(data.token);
+                    document.cookie='access_token='+data.token + ";path=/;;max-age=60*60*24*7";
+                    window.location.href = '/meetups'
                   }
                 });
             });
-     });
     </script>
 </html>
