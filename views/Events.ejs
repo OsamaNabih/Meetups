@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <% include partials/head %>
 <hr>
+
 <h3 class='MainTitle'> Events </h3>
  <% meetups.forEach(function(data){ %>
 <div  class="col-xs-10 col-sm-10 col-md-10 mx-auto jumbotron MainTron">
@@ -29,3 +30,6 @@
     <!-- Bootstrap core JavaScript -->
     <script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3nfuwaNpvJldXYFHprFU0QwD0Jwr74Oc&callback=initMap" async defer></script>
+    <script>
+console.log(document.cookie)
+</script>

@@ -15,7 +15,7 @@
                longandlat =
                    {
                      Lat: Lat,
-                     Lon: Longs
+                     Lon: Long
                    };
 
              }
