@@ -54,20 +54,9 @@ router.route('/cookies')
 router.route('/oauth/facebook')
   .post(passport.authenticate('facebookToken', { session: false }), UsersController.facebookOAuth);
 
-<<<<<<< HEAD
 
 // edit users information
 router.route('/editProfile')
-||||||| merged common ancestors
-/*router.route('/oauth/google')
-  .post(passportGoogle,UsersController.googleOAuth);
-
-*/
-// edit users information
-router.route('/editProfile')
-=======
-router.route('/:id/editprofile')
->>>>>>> 8dcaae2f25ef63a57eec8f7ee9f3f8b4bc9f0336
   .get((req,res)=>{
     res.render('editProfile');
   })
@@ -76,21 +65,6 @@ router.route('/:id/editprofile')
     res.send("");
   });
 
-<<<<<<< HEAD
-||||||| merged common ancestors
-/*router.route('/editProfile2')
-  .post(urlencodedParser,(req,res)=>{
-    console.log("body2",req.body);
-    res.send("7beb wana gmbk a7la el nas");
-
-  });
-  */
-// google authenticate
-
-=======
-// google authenticate
-
->>>>>>> 8dcaae2f25ef63a57eec8f7ee9f3f8b4bc9f0336
 router.route('/oauth/google')
   .get(passportGoogleOauth);
 
