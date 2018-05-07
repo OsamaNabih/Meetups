@@ -61,7 +61,6 @@ module.exports = {
       req.token = token;
       next();
     }
-
   },
 
   googleOAuth: async(req,res,next)=>{

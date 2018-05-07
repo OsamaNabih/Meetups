@@ -2,21 +2,20 @@ const MeetupModel = require('../models/meetup');
 const Database = require('../config/DB');
 const DBconfig = require('../config/keys').DBconfig;
 module.exports = {
-  GetAllMeetups: (req, res) =>{
-    return new Promise (function(resolve, reject){
+  GetAllMeetups: async (req, res) =>{
+    try{
       const DB = new Database(DBconfig);
-      DB.query(MeetupModel.GetAllMeetups(),(error, result)=>{
-         if (error){
-           DB.close().then(()=>{
-             reject(error.sqlMessage);
-           });
-         } else{
-           DB.close().then(()=>{
-             console.log('Meetups retrieved');
-              resolve(result);
-             });
-         }
-     });
-   });
+      let meetups = await DB.query(MeetupModel.GetAllMeetups());
+      let numberOfUsers = await DB.query(MeetupModel.GetCountOfAllUsers());
+      let numberOfMeetups = await DB.query(MeetupModel.GetCountOfALLMeetups());
+      meetups['numberOfUsers'] = numberOfUsers[0].userCount;
+      meetups['numberOfMeetups'] = numberOfMeetups[0].meetupCount;
+      return meetups;
+    }
+    catch(error)
+    {
+      console.log(error);
+      throw error;
+    }
   }
 }

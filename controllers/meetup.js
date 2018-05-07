@@ -89,7 +89,7 @@ module.exports = {
         //let paragraphQuestions = await DB.query(MeetupModel.GetParagraphQuestions(), req.params.id);
         let meetup = await DB.query(MeetupModel.GetMeetup(), req.params.id);
         meetup = meetup[0];
-        let result = await DB.query(MeetupModel.GetQuestions(), [req.params.id, req.params.id]);
+        let result = await DB.query(MeetupModel.GetQuestions(), [req.params.id, req.params.id,0]);
         await DB.close();
         let Questions = [];
         for(let j = 0; j < result.length; j++){
