@@ -6,6 +6,8 @@ const DB = require('../config/DB');
 router.route('/')
   .get((req, res)=>{
    var result = MeetupsController.GetAllMeetups(req, res);
+   rc = req;
+console.log(rc);
    result.then(function(result){
      res.render('Events', {meetups: result});
    }).catch(error =>{

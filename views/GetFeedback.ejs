@@ -36,8 +36,8 @@
 <script type="text/javascript" src="/assets/js/popper.min.js"></script>
 <!-- Bootstrap core JavaScript -->
 <script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3nfuwaNpvJldXYFHprFU0QwD0Jwr74Oc&callback=initMap" async defer></script>
-    <script type="text/javascript" src="/assets/js/Charts.js"></script>
+<script type="text/javascript" src="/assets/js/Charts.js"></script>
+    
     <script type="text/javascript">
       // Load the Visualization API and the corechart package.
       google.charts.load('current', {'packages':['corechart']});
@@ -48,7 +48,6 @@
       // draws it.
       
       function drawChart() {
-          console.log('<%=data%>');
     <%  data.forEach(function(date){
         if(date.questionType !== 1)
         { %>

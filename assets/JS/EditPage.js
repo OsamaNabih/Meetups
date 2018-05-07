@@ -12,6 +12,12 @@
                         var Long = Number(LongLat.split('/')[0]);
                         var Lat = Number(LongLat.split('/')[1])
                myLatlng = new google.maps.LatLng(Lat,Long);
+               longandlat =
+                   {
+                     Lat: Lat,
+                     Lon: Longs
+                   };
+
              }
              else
              myLatlng = new google.maps.LatLng(longandlat.Lat,longandlat.Lon);
