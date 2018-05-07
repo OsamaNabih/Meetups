@@ -38,7 +38,8 @@ router.route('/:id/register')
   .get(passportUser, (req, res)=>{
     let result = MeetupController.GetQuestions(req, res);
     result.then(function(result){
-      res.render('Form',{data:result, feedback:undefined});
+      console.log(result);
+      res.render('Form',{data:result,feedback:undefined});
     }).catch(function(error){
       console.log('barra');
     });
@@ -68,7 +69,7 @@ router.route('/:id/register')
   });
 
 //test get feedback question with answers put by the admin
-router.route('/:id/Feedback')
+router.route('/:id/feedback')
   .get((req,res)=>{
     let data = feedbackController.GetFeedBackQuestions(req,res);
     data.then((data)=> {
@@ -77,11 +78,6 @@ router.route('/:id/Feedback')
     }).catch((error)=>{
       res.status(400).json(error);
     });
-  });
-
-router.route('/:id/feedback')
-  .get((req,res)=>{
-    res.render(''); // wagih shall put the view in it
   })
   .post((req,res)=>{
       let result = feedbackController.SubmitFeedbackReplies(req,res);
@@ -92,6 +88,7 @@ router.route('/:id/feedback')
       });
   });
 
+
 //test get feedback questions with answers put by the Users
 
 router.route('/:id/getFeedbackReplies')
@@ -100,7 +97,7 @@ router.route('/:id/getFeedbackReplies')
     result.then((result)=>{
      res.render('GetFeedback',{data:result});
     }).catch((error)=>{
-      res.status(400)
+      res.status(400).json(error);
     });
   });
 

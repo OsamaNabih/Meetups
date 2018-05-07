@@ -7,6 +7,7 @@ router.route('/')
   .get((req, res)=>{
    var result = MeetupsController.GetAllMeetups(req, res);
    result.then(function(result){
+     console.log(result);
      res.render('Events', {meetups: result});
    }).catch(error =>{
      res.send(error);
