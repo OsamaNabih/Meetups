@@ -11,13 +11,13 @@ const passportUser = passport.authenticate('user-local', { session: false })
 const feedbackController = require('../controllers/feedback');
 
 router.route('/create')
-  .get((req, res)=>{ //passport strategy here to make sure only admin has access
+  .get(passportAdmin, (req, res)=>{ //passport strategy here to make sure only admin has access
     res.render('AddPage');
   })
-  .post(urlencodedParser, MeetupController.CreateMeetup);
+  .post(passportAdmin, urlencodedParser, MeetupController.CreateMeetup);
 
 router.route('/:id/validate')
-  .get((req, res)=>{
+  .get(passportAdmin, (req, res)=>{
     let result = MeetupController.GetAttendees(req, res);
     result.then(result=>{
       res.render('Validateuser', {data: result, meetupId: req.params.id});
@@ -25,7 +25,7 @@ router.route('/:id/validate')
       res.status(200).json(error);
     })
   })
-  .post(urlencodedParser, (req, res)=>{
+  .post(passportAdmin, urlencodedParser, (req, res)=>{
     let result = MeetupController.ValidateUsers(req, res);
     result.then((result)=>{
       res.status(200).json('Attendees updated');
@@ -35,7 +35,7 @@ router.route('/:id/validate')
   });
 
 router.route('/:id/register')
-  .get((req, res)=>{
+  .get(passportUser, (req, res)=>{
     let result = MeetupController.GetQuestions(req, res);
     result.then(function(result){
       res.render('Form',{data:result, feedback:undefined});
@@ -43,7 +43,7 @@ router.route('/:id/register')
       console.log('barra');
     });
   })
-  .post(urlencodedParser, (req, res)=>{
+  .post(passportUser, urlencodedParser, (req, res)=>{
     let result = MeetupController.SubmitReplies(req, res);
     result.then((result)=>{
       res.status(200).json(result);
@@ -55,10 +55,10 @@ router.route('/:id/register')
 
   //test feedback input
   router.route('/:id/addFeedback')
-  .get((req, res)=>{
+  .get(passportAdmin, (req, res)=>{
       res.render('AddFeedback',{meetupId:req.params.id});
   })
-  .post((req,res)=>{
+  .post(passportAdmin, (req,res)=>{
     let result = feedbackController.CreateFeedbackQuestions(req,res);
     result.then(()=>{
       res.status(200);
@@ -95,7 +95,7 @@ router.route('/:id/feedback')
 //test get feedback questions with answers put by the Users
 
 router.route('/:id/getFeedbackReplies')
-  .get((req,res)=>{
+  .get(passportAdmin, (req,res)=>{
     let result = feedbackController.GetFeedBackQuestionswithreplies(req,res);
     result.then((result)=>{
      res.render('GetFeedback',{data:result});
@@ -107,7 +107,7 @@ router.route('/:id/getFeedbackReplies')
 
 
 router.route('/:id/edit')
-  .get((req, res) =>{
+  .get(passportAdmin, (req, res) =>{
     let result = MeetupController.GetQuestions(req,res);
     result.then(function(result){
       res.render('EditPage', {data: result});
@@ -115,7 +115,7 @@ router.route('/:id/edit')
       res.send(error);
     });
   })
-  .post(urlencodedParser, (req, res)=>{
+  .post(passportAdmin, urlencodedParser, (req, res)=>{
     let result = MeetupController.UpdateMeetup(req, res);
     result.then((result)=>{
       res.status(200).json(result);
@@ -123,7 +123,7 @@ router.route('/:id/edit')
       res.status(400).json(error);
     });
   });
-    
+
 router.route('/:id')
   .get((req, res) =>{
     let result = MeetupController.GetMeetupAndSpeakers(req.params.id);

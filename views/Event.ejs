@@ -31,27 +31,28 @@
                     <li class="nav-item">
                       <a class="nav-link" href="/meetups">Events</a>
                     </li>
-                    <% if(data.user.userType == 1) { %> 
+                    <!--
+                    <% if(data.user.userType == 1) { %>
                     <li class="nav-item">
                       <a class="nav-link" href="/meetup/create">Create Event</a>
                     </li>
                     <% } %>
-                    <% if(data.user.userType == 1) { %> 
+                    <% if(data.user.userType == 1) { %>
                     <li class="nav-item">
                       <a class="nav-link" href="/meetup/<%=data.meetup.meetupId%>/edit">Edit Event</a>
                     </li>
                     <% } %>
-                    <% if(data.user.userType == 1) { %> 
+                    <% if(data.user.userType == 1) { %>
                     <li class="nav-item">
                       <a class="nav-link" href="/meetup/<%=data.meetup.meetupId%>/vaidate">Validate users</a>
                     </li>
                     <% } %>
                     <% if(data.user.userType == 1) {
-                      if (Feedback == 0){ %> 
+                      if (Feedback == 0){ %>
                     <li class="nav-item">
                       <a class="nav-link" href="/meetup/<%=data.meetup.meetupId%>/addFeedback">Add Feedback Form</a>
                     </li>
-                    <% }} %>
+                    <% }} %>-->
                       <br>
                   </ul>
                 </div>
@@ -75,7 +76,7 @@
   <div class="row">
   <div class= "col-xs-12 col-sm-12 col-md-8">
   <h2 class='MainTitle'>Overview</h2>
-  <pre class= "OverViewText" > <%= data.meetup.description %> </pre> 
+  <pre class= "OverViewText" > <%= data.meetup.description %> </pre>
   <% if(data.meetup.meetupDate > Date.now()) { %>
   <a href="/meetup/<%=data.meetup.meetupId%>/register" class="float-right FormButton btn btn-outline-dark">Register</a>
   <% } else { %>
@@ -90,7 +91,7 @@
 <h4 class='Speakers'>Speakers</h4>
 <div class = "ListWrapper">
 <div class="List">
-<div class="list-group"> 
+<div class="list-group">
 <% console.log(data); %>
   <% data.speakers.forEach(function(data){ %>
  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">

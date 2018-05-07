@@ -37,6 +37,7 @@ router.route('/signup')
 router.route('/signin')
   .post(urlencodedParser, passportSignIn, UsersController.signIn, (req, res)=>{
     if (req.token){
+      res.cookie('jwt', req.token, {expires: newDate(Date.now() + 60 * 60 * 24)}); // add cookie here
       res.status(200).json({token: req.token});
     }
     else{
@@ -47,13 +48,13 @@ router.route('/signin')
     res.render('SignIn');
   });
 
+router.route('/cookies')
+  .get(passportAdmin);
+
 router.route('/oauth/facebook')
   .post(passport.authenticate('facebookToken', { session: false }), UsersController.facebookOAuth);
 
-/*router.route('/oauth/google')
-  .post(passportGoogle,UsersController.googleOAuth);
 
-*/
 // edit users information
 router.route('/editProfile')
   .get((req,res)=>{
@@ -63,15 +64,6 @@ router.route('/editProfile')
       console.log("body",req.body);
       res.send("7beb wana gmbk a7la el nas");
   });
-
-/*router.route('/editProfile2')
-  .post(urlencodedParser,(req,res)=>{
-    console.log("body2",req.body);
-    res.send("7beb wana gmbk a7la el nas");
-
-  });
-  */
-// google authenticate
 
 router.route('/oauth/google')
   .get(passportGoogleOauth);
