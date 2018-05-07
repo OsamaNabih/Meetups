@@ -74,7 +74,7 @@ router.route('/oauth/google')
 
   //Applying Multer
 router.route('/addprofilepicture')
-  .post(Multer.uploadPhoto,UsersController.photoUploaded);
+  .post(passportUser, Multer.uploadPhoto,UsersController.photoUploaded);
 
 
 module.exports = router;

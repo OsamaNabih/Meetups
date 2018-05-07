@@ -70,7 +70,7 @@ router.route('/:id/register')
 
 //test get feedback question with answers put by the admin
 router.route('/:id/feedback')
-  .get((req,res)=>{
+  .get(passportUser, (req,res)=>{
     let data = feedbackController.GetFeedBackQuestions(req,res);
     data.then((data)=> {
     //  console.log(data);
@@ -79,7 +79,7 @@ router.route('/:id/feedback')
       res.status(400).json(error);
     });
   })
-  .post((req,res)=>{
+  .post(passportUser, (req,res)=>{
       let result = feedbackController.SubmitFeedbackReplies(req,res);
       result.then((result)=>{
         res.status(200).json(result);
