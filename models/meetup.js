@@ -132,13 +132,6 @@ module.exports = {
   },
   DeleteMeetup: function(){
     return "DELETE FROM Meetups WHERE meetupId = ?"
-<<<<<<< Updated upstream
-||||||| merged common ancestors
-  },
-  UpdateMeetup: function(){
-    return `UPDATE Meetups SET meetupId = ?, meetupName = ?, capacity = ?, description = ?, price = ?,
-            venue = ?, meetupDate = ?, startTime = ?, endTime = ?, longitude = ?, latitude = ?, slogan = ?`;
-=======
   },
   UpdateMeetup: function(){
     return `UPDATE Meetups SET meetupId = ?, meetupName = ?, capacity = ?, description = ?, price = ?,
@@ -146,6 +139,5 @@ module.exports = {
   },
   AddAttendee: function(){
     return "INSERT INTO Attended SET ?"
->>>>>>> Stashed changes
   }
 }
