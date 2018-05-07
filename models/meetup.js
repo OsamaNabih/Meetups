@@ -111,6 +111,10 @@ module.exports = {
       from FormOptionReplies
       where meetupId = ?   and questionId = ?`;
   },
+  GetMaxIdOfQuestions: function()
+  {
+    return `Select Max(questionId) as questionId From FormQuestions where meetupId =?`;
+  },
   VerifyAttendees: function(){
     return `UPDATE Attended SET verified = !verified WHERE attendedMeetupId = ? AND attendeeId IN (?)`;
   },

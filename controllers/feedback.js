@@ -7,10 +7,13 @@ module.exports= {
   CreateFeedbackQuestions: async (req,res)=>{
 
     try{
-        const DB = new Database(DBconfig);
-        let feedbackNums = Object.keys(req.body.Questions).length;
+          const DB = new Database(DBconfig);
+          let feedbackNums = Object.keys(req.body.Questions).length;
+          let  maxId = await DB.query(MeetupModel.GetMaxIdOfQuestions(),req.body.id);
           for(let i = 1; i <= feedbackNums;i++){
-            let feedbackId = i;
+            let feedbackId = i + maxId[0].questionId;
+            console.log(maxId);
+            console.log(feedbackId);
             let currFeedbackQuestion = req.body.Questions[i-1];
             currFeedbackQuestion['questionId'] = feedbackId;
             currFeedbackQuestion['meetupId'] = req.body.id;           // if it is seprated then  i must have the meetup id sent to me

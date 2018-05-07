@@ -18,7 +18,7 @@ create table Users
 create table Links
 (
 	userId int not null,
-	email text,
+	link text,
 	Primary key(userId,email),
 	Foreign Key(userId) references (Users) on Delete cascade on Update cascade
 );

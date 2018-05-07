@@ -60,6 +60,7 @@ module.exports = {
         let currQuestion = req.body.Questions[i - 1];
         currQuestion['questionId'] = questionId;
         currQuestion['meetupId'] = meetupId;
+        currQuestion['feedback'] = false;
         if (currQuestion.questionType === 1){
           await DB.query(MeetupModel.InsertQuestion(), currQuestion);
         }

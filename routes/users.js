@@ -54,9 +54,23 @@ router.route('/oauth/facebook')
   .post(passportGoogle,UsersController.googleOAuth);
 
 */
+// edit users information
+router.route('/editProfile')
+  .get((req,res)=>{
+    res.render('editProfile');
+  })
+  .post(urlencodedParser,(req,res)=>{
+      console.log("body",req.body);
+      res.send("7beb wana gmbk a7la el nas");
+  });
 
+/*router.route('/editProfile2')
+  .post(urlencodedParser,(req,res)=>{
+    console.log("body2",req.body);
+    res.send("7beb wana gmbk a7la el nas");
 
-
+  });
+  */
 // google authenticate
 
 router.route('/oauth/google')
@@ -64,7 +78,6 @@ router.route('/oauth/google')
 
   router.route('/oauth/google/redirect')
     .get(passportGoogleOauth,UsersController.googleOAuth);
-
 
 
   //Applying Multer
