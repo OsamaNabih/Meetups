@@ -172,7 +172,7 @@ line-height: 1;
 }
 .nav-item /* The margin right is to make the "spaces" between the words, the text overflow and the whitespace is to make the text not wrap */
 {
-  margin-right: 7%;
+  margin-right: 4%;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
