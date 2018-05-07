@@ -142,6 +142,7 @@ module.exports= {
     try{
          let meetupId = req.params.id;
          const DB = new Database(DBconfig);
+         let numberOfMultipleFeedbackQuestions = await DB.query(MeetupModel.GetNumberOfMultipleFeedbackQuestions(),meetupId);
          let questions = await DB.query(MeetupModel.GetFeedBackQuestionsOnly(),meetupId);
         //  console.log(Questions);
         if(questions.length === 0)
@@ -154,7 +155,6 @@ module.exports= {
               delete questions[i]['optionString'];
               delete questions[i]['Options'];
               let replies = await DB.query(MeetupModel.GetFeedBackReplies(),[questions[i].questionId,meetupId]);
-          //    console.log("replies",replies);
               questions[i].replies = [];
               for (var j = 0; j < replies.length; j++) {
                 questions[i].replies.push(replies[j]);
@@ -165,7 +165,6 @@ module.exports= {
                 let frequencyMap = {};
                 let options = await DB.query(MeetupModel.GetFeedBackOptions(),[meetupId,questions[i].questionId,meetupId,questions[i].questionId]);
                 let frequency = await DB.query(MeetupModel.GetFeedBackOptionsCount(),[meetupId,questions[i].questionId]);
-
             //    console.log(options);
             //    console.log(frequency);
                 questions[i].options = [];
@@ -189,7 +188,8 @@ module.exports= {
          }
 
         await DB.close();
-    //    console.log(questions);
+        questions['chartsNumber'] = numberOfMultipleFeedbackQuestions.length;
+        console.log(questions);
         return questions;
     }
     catch(error){
