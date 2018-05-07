@@ -20,6 +20,7 @@ router.route('/:id/validate')
   .get(passportAdmin, (req, res)=>{
     let result = MeetupController.GetAttendees(req, res);
     result.then(result=>{
+         console.log(req.cookies);
       res.render('Validateuser', {data: result, meetupId: req.params.id});
     }).catch(error=>{
       res.status(200).json(error);
@@ -57,6 +58,7 @@ router.route('/:id/register')
   //test feedback input
   router.route('/:id/addFeedback')
   .get(passportAdmin, (req, res)=>{
+
       res.render('AddFeedback',{meetupId:req.params.id});
   })
   .post(passportAdmin, (req,res)=>{
@@ -78,6 +80,12 @@ router.route('/:id/feedback')
     }).catch((error)=>{
       res.status(400).json(error);
     });
+  });
+
+router.route('/:id/feedback')
+  .get((req,res)=>{
+       console.log(req.cookies);
+    res.render(''); // wagih shall put the view in it
   })
   .post(passportUser, (req,res)=>{
       let result = feedbackController.SubmitFeedbackReplies(req,res);
@@ -123,6 +131,7 @@ router.route('/:id/edit')
 
 router.route('/:id')
   .get((req, res) =>{
+       console.log(req.cookies);
     let result = MeetupController.GetMeetupAndSpeakers(req.params.id);
     result.then(function(result){
       res.render('Event', {data: result});
