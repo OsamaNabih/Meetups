@@ -50,27 +50,15 @@ router.route('/signin')
 router.route('/oauth/facebook')
   .post(passport.authenticate('facebookToken', { session: false }), UsersController.facebookOAuth);
 
-/*router.route('/oauth/google')
-  .post(passportGoogle,UsersController.googleOAuth);
-
-*/
-// edit users information
-router.route('/editProfile')
+router.route('/:id/editprofile')
   .get((req,res)=>{
     res.render('editProfile');
   })
-  .post(urlencodedParser,(req,res)=>{
-      console.log("body",req.body);
-      res.send("7beb wana gmbk a7la el nas");
+  .post(urlencodedParser, (req,res)=>{
+    console.log(req.body);
+    res.send("");
   });
 
-/*router.route('/editProfile2')
-  .post(urlencodedParser,(req,res)=>{
-    console.log("body2",req.body);
-    res.send("7beb wana gmbk a7la el nas");
-
-  });
-  */
 // google authenticate
 
 router.route('/oauth/google')

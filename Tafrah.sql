@@ -15,13 +15,7 @@ create table Users
 	aboutme text,
 	Primary key(userId)
 );
-create table Links
-(
-	userId int not null,
-	link text,
-	Primary key(userId,email),
-	Foreign Key(userId) references (Users) on Delete cascade on Update cascade
-);
+
 Create Table Meetups
 (
 	meetupId int not null auto_increment,

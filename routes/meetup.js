@@ -38,7 +38,8 @@ router.route('/:id/register')
   .get((req, res)=>{
     let result = MeetupController.GetQuestions(req, res);
     result.then(function(result){
-      res.render('Form',{data:result});
+      console.log(result);
+      res.render('Form',{data:result,feedback:undefined});
     }).catch(function(error){
       console.log('barra');
     });
@@ -79,9 +80,6 @@ router.route('/:id/Feedback')
   });
 
 router.route('/:id/feedback')
-  .get((req,res)=>{
-    res.render(''); // wagih shall put the view in it
-  })
   .post((req,res)=>{
       let result = feedbackController.SubmitFeedbackReplies(req,res);
       result.then((result)=>{
@@ -99,7 +97,7 @@ router.route('/:id/getFeedbackReplies')
     result.then((result)=>{
       res.status(200).json(result);
     }).catch((error)=>{
-      res.status(400)
+      res.status(400).json(error);
     });
   });
 

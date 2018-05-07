@@ -49,8 +49,10 @@ module.exports= {
         const DB = new Database(DBconfig);
         //let paragraphQuestions = await DB.query(MeetupModel.GetParagraphQuestions(), req.params.id);
         let meetup = await DB.query(MeetupModel.GetMeetup(), req.params.id);
+        if(meetup.length === 0)
+          throw 'No meetup exists with this Id';
         meetup = meetup[0];
-        let result = await DB.query(MeetupModel.GetFeedBackQuestions(), [req.params.id, req.params.id]);
+        let result = await DB.query(MeetupModel.GetQuestions(), [req.params.id, req.params.id,true]);
         await DB.close();
         let Questions = [];
         for(let j = 0; j < result.length; j++){
@@ -85,14 +87,14 @@ module.exports= {
       }
       catch(error){
         console.log(error);
-        return error;
+        throw error;
       }
   },
   SubmitFeedbackReplies: async(req, res)=>{
     try{
       //Currenyl hardcoding the user ID and question types until the front-end sends them
       let JSON = req.body;
-      JSON.userId = 6;
+      JSON.userId = 7;
     /*  JSON.Questions[0].questionType = 2;
       JSON.Questions[1].questionType = JSON.Questions[2].questionType = JSON.Questions[3].questionType = 1;
       JSON.Questions[4].questionType = JSON.Questions[5].questionType = 3;
@@ -142,6 +144,8 @@ module.exports= {
          const DB = new Database(DBconfig);
          let questions = await DB.query(MeetupModel.GetFeedBackQuestionsOnly(),meetupId);
         //  console.log(Questions);
+        if(questions.length === 0)
+          throw 'No meetup exists with this ID';
          for (var i = 0; i < questions.length; i++) {
            delete questions[i]['required'];
            delete questions[i]['MAX'];
@@ -161,25 +165,31 @@ module.exports= {
                 let frequencyMap = {};
                 let options = await DB.query(MeetupModel.GetFeedBackOptions(),[meetupId,questions[i].questionId,meetupId,questions[i].questionId]);
                 let frequency = await DB.query(MeetupModel.GetFeedBackOptionsCount(),[meetupId,questions[i].questionId]);
+
+            //    console.log(options);
+            //    console.log(frequency);
                 questions[i].options = [];
                 for (var j = 0; j <options.length; j++) {
                   questions[i].options.push(options[j]);
                 }
                 for (var j = 0; j < frequency.length; j++) {
-                  if(frequencyMap[frequency[j].optionId]===undefined)
-                      frequencyMap[frequency[j].optionId] =1;
+                  if(frequencyMap[frequency[j].optionId] === undefined)
+                      frequencyMap[frequency[j].optionId] = 1;
                       else
                       frequencyMap[frequency[j].optionId]++;
                 }
+            //            console.log(frequencyMap)
                  for (var j = 0; j < questions[i].options.length ; j++) {
-                        questions[i].options[j].frequency = frequencyMap[frequency[j].optionId];
+                    //    console.log(frequencyMap[frequency[j].optionId]);
+            //            console.log(options[j].optionId);
+                        questions[i].options[j].frequency = frequencyMap[options[j].optionId];
                         delete questions[i].options[j]['optionId'];
                   }
             }
          }
 
         await DB.close();
-        console.log(questions);
+    //    console.log(questions);
         return questions;
     }
     catch(error){

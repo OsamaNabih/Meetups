@@ -1,6 +1,12 @@
 module.exports = {
   GetAllMeetups: function(){
-    return "SELECT * FROM meetups ORDER BY meetupDate DESC";
+    return `SELECT * FROM meetups ORDER BY meetupDate DESC`;
+  },
+  GetCountOfAllUsers: function(){
+    return "Select Count(userId) as userCount from Users";
+  },
+  GetCountOfALLMeetups: function(){
+    return `Select Count(meetupId) meetupCount from Meetups`;
   },
   GetSpeakersId: function(){
     return "SELECT * FROM spoke_in WHERE meetupId = ?";
@@ -44,7 +50,7 @@ module.exports = {
                 as OptionsNum)
             as Options
             on FQ.meetupId = Options.meetupId AND FQ.questionId = Options.questionId
-            WHERE FQ.meetupId = ?
+            WHERE FQ.meetupId = ? and FQ.feedback = ?
             ORDER BY FQ.questionId`;
   },
 /*  GetFeedBackQuestions: function(){
@@ -59,7 +65,7 @@ module.exports = {
             where FQ.meetupId = ?
             ORDER BY FQ.questionId`;
   },
-  */  GetFeedBackQuestions: function(){
+  */ /* GetFeedBackQuestions: function(){
       return `SELECT question, required, FQ.meetupId , FQ.questionId, MAX, optionString, FQ.questionType
               FROM FormQuestions as FQ LEFT JOIN
   	             (SELECT * FROM FormOptions NATURAL JOIN
@@ -70,10 +76,11 @@ module.exports = {
                       ORDER BY questionId)
                   as OptionsNum)
               as Options
-              on FQ.meetupId = Options.meetupId AND FQ.questionId = Options.questionId and FQ.feedback= true
-              WHERE FQ.meetupId = ?
+              on FQ.meetupId = Options.meetupId AND FQ.questionId = Options.questionId
+              WHERE FQ.meetupId = ? and FQ.feedback= true
               ORDER BY FQ.questionId`;
     },
+    */
 
   CheckPreviousFeedbackSubmission: function(){           // not sure from the query
       return `SELECT Distinct userId,meetupId From FormReplies as FR Natural JOIN
@@ -91,7 +98,7 @@ module.exports = {
   },
   GetFeedBackReplies: function()
   {
-    return " Select Distinct userId,userReply From FormReplies where questionId = ? and meetupId = ? ";
+    return "Select userId,userReply,US.email,US.firstName from FormReplies NATURAL JOIN (Select firstName,email,userId from Users) as US where questionId=? and  meetupId=? "
   },
   GetFeedBackQuestionsOnly: function()
   {
