@@ -14,15 +14,29 @@ const GoogleStrategy = require('passport-google-oauth20');
 
 
 // JSON WEB TOKENS STRATEGY
+var cookieExtractor = function(req) {
+  console.log('original token: ');
+  console.log(req.cookies);
+  var token = null;
+  if (req && req.cookies) token = req.cookies['jwt'];
+  console.log('ba3d el extraction');
+  console.log(token);
+  return token;
+};
 
 passport.use('admin-local', new JwtStrategy({
-  jwtFromRequest: ExtractJwt.fromHeader('authorization'),
+  //jwtFromRequest: ExtractJwt.fromHeader('authorization'),
+  jwtFromRequest: cookieExtractor,
   secretOrKey: JWT_SECRET
 }, async (payload, done) =>{
   try{
+    console.log('fel strat, payload: ');
+    console.log(payload);
       // Find the user specifided in token
       const DB = new Database(DBconfig);
-      const user = await DB.query(UserModel.GetUserIdAndTypeById(), payload.sub);
+      const user = await DB.query(UserModel.GetUserIdAndTypeById(), payload.userId);
+      console.log('ba3d el query');
+      console.log(user);
       await DB.close();
       if (user.length === 0){
         return done(null, false);
@@ -30,74 +44,35 @@ passport.use('admin-local', new JwtStrategy({
       else if (user[0].userType !== 1){
         return done(null, false);
       }
-      done(null, user);
+      console.log('kollo tamam');
+      done(null, user[0]);
   } catch(error) {
+    console.log('error: ');
+    console.log(error);
     done(error, false);
   }
 }));
 
 
 passport.use('user-local', new JwtStrategy({
-  jwtFromRequest: ExtractJwt.fromHeader('authorization'),
+  jwtFromRequest: cookieExtractor,
   secretOrKey: JWT_SECRET
 }, async (payload, done) =>{
   try{
       // Find the user specifided in token
       const DB = new Database(DBconfig);
-      const user = await DB.query(UserModel.GetUserIdAndTypeById(), payload.sub);
+      const user = await DB.query(UserModel.GetUserIdAndTypeById(), payload.userId);
       await DB.close();
       if (user.length === 0){
         return done(null, false);
       }
-      done(null, user);
+      done(null, user[0]);
   } catch(error) {
     done(error, false);
   }
 }));
 
 
-//Google Oauth STRATEGY
-/*
-passport.use('googleToken', new GooglePlusTokenStrategy({
-
-  clientID:config.oauth.google.clientID,
-  clientSecret:config.oauth.google.clientSecret
-
-},async(accessToken,refereshToken,profile,done)=>{
-    DB = new Database(DBconfig);
-    DB.query(UserModel.GetUserIdAndTypeByEmail(),profile.emails[0].value).then(result=>{
-      if(result.length>0)
-          {
-            let user = {userId: result[0].userId, userType: result[0].userType};
-            done(null,user);
-            throw "User already exists in our DataBase "
-          }
-        else
-        {
-          console.log("User doesnt exist we are creating new user");
-                newUser={};
-                newUser['email']=profile.emails[0].value;
-                newUser['authField']=profile.id;
-                newUser['firstName']=profile.name.givenName;
-                newUser['lastName']=profile.name.familyName;
-                newUser['userType']=3;                // Normal User
-                newUser['authType']=3;              // Login by google
-                return DB.query(UserModel.InsertUser(),newUser)
-        }
-    }).then( () =>{
-                      let user = {userId: result[0].userId, userType: result[0].userType};
-                      done(null,user);
-                      return DB.close()
-                  }, err => { return DB.close().then( () =>{ throw err; }) }
-          ).catch(err => {
-            done(err,false,err.message);
-            console.log(err);
-          });
-
-
-    return done;
-  }));
-*/
 passport.use('google',new GoogleStrategy({
 
   callbackURL:'/users/oauth/google/redirect',
@@ -139,10 +114,7 @@ passport.use('google',new GoogleStrategy({
             done(err,false,err.message);
             console.log(err);
           });
-
-
     return done;
-
   })
 );
 

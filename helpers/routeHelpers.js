@@ -24,7 +24,7 @@ module.exports = {
       firstName: Joi.string().required(),
       lastName: Joi.string().required(),
       position: Joi.string(),
-      birthDate: Joi.date().min('1-1-1910').max(`${new Date().getFullYear()}-${new Date().getMonth() + 3}-${new Date().getDate()}`)
+      birthDate: Joi.date().min('1-1-1910').max(`${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`)
     })
   }
 }

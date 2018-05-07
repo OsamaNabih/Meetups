@@ -9,22 +9,17 @@ const mainpageController = require('./controllers/MainPage');
 require('./config/DB');
 
 const app = express();
-// Setting up the MySQL DB
-
-
-
 
 // Setting view engine
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 app.use('/assets',express.static('assets'));
 
-
-app.use(cookieParser())
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(morgan('dev'));
 app.use(bodyParser.json());
+app.use(cookieParser())
 
 // Routes
 app.use('/users', require('./routes/users'));

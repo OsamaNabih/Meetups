@@ -7,8 +7,8 @@ const { JWT_SECRET } = require('../config/keys')
 signToken = (Id, type) =>{
     return JWT.sign({
     iss: 'Tafrah',
-    sub: Id,
-    type: type,
+    userId: Id,
+    userType: type,
 }, JWT_SECRET,{expiresIn:'24h'});
 }
 
@@ -61,7 +61,6 @@ module.exports = {
       req.token = token;
       next();
     }
-
   },
 
   googleOAuth: async(req,res,next)=>{

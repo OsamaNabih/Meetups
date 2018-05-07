@@ -27,6 +27,7 @@ router.route('/signup')
       }
     }
     else{
+      res.cookie('jwt', req.token); // add cookie here
       res.status(200).json({ token: req.token});
     }
   })
@@ -37,6 +38,7 @@ router.route('/signup')
 router.route('/signin')
   .post(urlencodedParser, passportSignIn, UsersController.signIn, (req, res)=>{
     if (req.token){
+      res.cookie('jwt', req.token); // add cookie here
       res.status(200).json({token: req.token});
     }
     else{
@@ -47,10 +49,15 @@ router.route('/signin')
     res.render('SignIn');
   });
 
+router.route('/cookies')
+  .get(passportAdmin);
+
 router.route('/oauth/facebook')
   .post(passport.authenticate('facebookToken', { session: false }), UsersController.facebookOAuth);
 
-router.route('/:id/editprofile')
+
+// edit users information
+router.route('/editProfile')
   .get((req,res)=>{
     res.render('editProfile');
   })
@@ -58,8 +65,6 @@ router.route('/:id/editprofile')
     console.log(req.body);
     res.send("");
   });
-
-// google authenticate
 
 router.route('/oauth/google')
   .get(passportGoogleOauth);
@@ -70,7 +75,7 @@ router.route('/oauth/google')
 
   //Applying Multer
 router.route('/addprofilepicture')
-  .post(Multer.uploadPhoto,UsersController.photoUploaded);
+  .post(passportUser, Multer.uploadPhoto,UsersController.photoUploaded);
 
 
 module.exports = router;

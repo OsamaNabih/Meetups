@@ -21,23 +21,8 @@
     <link rel="stylesheet" href="/assets/css/style.min.css">
 
     <title>Tafrah</title>
-    <script>
-            // This is a trial function, it detects when the browser is scrolled down and makes changes accordingly
-            // The Signup/Profile should be according to every user
-           $(window).scroll(function() {
-              if($(this).scrollTop() > 50)  /*height in pixels when the navbar becomes non opaque*/
-              {
-                  $('#Profiling').text('Sign up');
-              } else {
-
-                   $('#Profiling').text('Profile');
-              }
-          });
-          $(window).ready(function()
-          {
-             $('#Profiling').text('Sign up');
-          });
-          </script>
+   
+        
   </head>
 
 <body>
@@ -64,6 +49,21 @@
                       <a class="nav-link" href="/users/signup" id = "Profiling"></a>
                     </li>
                       <br>
+                     <% if(user == 1) { %> 
+                    <li class="nav-item">
+                      <a class="nav-link" href="">profile</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="">sign out</a>
+                    </li>
+                    <% }else{ %> 
+                    <li class="nav-item">
+                      <a class="nav-link" href="">sign in</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="">sign up</a>
+                    </li><%} %>
+                    
                   </ul>
                 </div>
               </nav>
@@ -252,67 +252,11 @@
         </div>
         </div>
     </section>    -->
-    <!-- start section sign in-->
+    <!--
+    <!-- start section sign in -->
 
-        <section class="hero">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8 col-sm-8 mx-auto">
-                        <div class="card border-none">
-                            <div class="card-body">
-                                <div class="mt-2 text-center">
-                                    <h2>Create Your Account</h2>
-                                </div>
-                                <p class="mt-4 text-white lead text-center">
-                                    Sign up and don't worry about spam we hate it too.
-                                </p>
-                                <div class="mt-4">
-                                    <form>
-                                        <div class="form-group">
-                                            <input type="email" class="form-control" name="email" value="" placeholder="Enter email address">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="password" class="form-control" name="password" value="" placeholder="Enter password">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="password" class="form-control" name="confirm-password" value="" placeholder="Confirm password">
-                                        </div>
-                                        <button type="submit" class="btn btn-primary btn-block">Create Account</button>
-                                    </form>
-                                    <div class="clearfix"></div>
-                                    <p class="content-divider center mt-4"><span>or</span></p>
-                                </div>
-                                <button class="loginBtn loginBtn--facebook" style="margin-left: 100px;">
-                                    Login with Facebook
-                                  </button>
-
-                                  <button class="loginBtn loginBtn--google"  style="margin-left: 70px;">
-                                    Login with Google
-                                  </button>
-                              <!--  <p class="mt-4 social-login text-center">
-                                    <a href="#" class="loginBtn loginBtn--google"></a>
-                                    <a href="#" class="btn btn-facebook"><em class="ion-social-facebook"></em></a>
-                                    <a href="#" class="btn btn-linkedin"><em class="ion-social-linkedin"></em></a>
-                                    <a href="#" class="btn btn-google"><em class="ion-social-googleplus"></em></a>
-                                    <a href="#" class="btn btn-github"><em class="ion-social-github"></em></a>
-                                </p> -->
-                                <p class="text-center">
-                                    Already have an account? <a href="index.html">Login Now</a>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="clearfix"></div>
-               <!--     <div class="col-sm-12 mt-5 footer">
-                        <p class="text-white small text-center">
-                            &copy; 2017 Login/Register Forms. A FREE Bootstrap 4 component by
-                            <a href="https://wireddots.com">Wired Dots</a>. Designed by <a href="https://twitter.com/attacomsian">@attacomsian</a>
-                        </p>
-                    </div> -->
-                </div>
-            </div>
-        </section>
-     <!-- end section sign in-->
+      
+    
     <!-- start section statistics -->
 
     <section class="statistics text-center">
@@ -361,7 +305,7 @@
                     <div class="skillsInfo">
                         <h3> About Us</h3>
                         <p class="lead">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Error dignissimos iusto nostrum illo aspernatur, animi sequi veritatis, iure ea dolorem doloremque. Fugiat cum soluta optio inventore, laudantium tenetur harum quisquam.</p>
-                        <button type="button" class=" btn btn-primary">Discover More</button>
+                        <button type="button" class=" btn btn-primary">Discover More (sign in)</button>
                     </div>
                 </div>
                 <!-- end team info -->
@@ -378,9 +322,9 @@
                     <h3>Sitemap</h3>
                     <ul class="list-unstyled three colomns">
                         <li>Home</li>
-                        <li>about</li>
-                        <li>company</li>
-                        <li>contact us</li>
+                        <li>events</li>
+
+                        
                     </ul>
                     <ul class="list-unstyled socialList">
                       <!--  <li><img src="../Main Page/imgif_circle-facebook.png" /></li> -->
@@ -388,6 +332,7 @@
                         <li><img src="../assets/img/if_linkedin_64.png"/></li>
                     </ul>
                 </div>
+                <!--
                 <div class="col-lg-4 col-md-6">
                     <h3>latest news</h3>
                     <div class="media">
@@ -413,6 +358,7 @@
                         </div>
                     </div>
                 </div>
+                -->
 <!--
                 <div class="col-lg-4">
                     <h3>This is our awesome world</h3>
