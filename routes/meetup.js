@@ -97,7 +97,7 @@ router.route('/:id/getFeedbackReplies')
   .get((req,res)=>{
     let result = feedbackController.GetFeedBackQuestionswithreplies(req,res);
     result.then((result)=>{
-      res.status(200).json(result);
+     res.render('GetFeedback',{data:result});
     }).catch((error)=>{
       res.status(400)
     });
