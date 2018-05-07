@@ -179,10 +179,12 @@ module.exports = {
                                          userReply: JSON.Questions[i].Answer});
         }
       }
+      let result =  await DB.query(MeetupModel.AddAttendee(), [JSON.userId, JSON.meetupId]);
       await DB.close();
       return 'Your registration has been completed successfully';
     }
     catch (error){
+      console.log(error);
       throw error;
     }
   },
