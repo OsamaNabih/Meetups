@@ -5,6 +5,7 @@ const http = require('http');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser');
+const mainpageController = require('./controllers/MainPage');
 require('./config/DB');
 
 const app = express();
@@ -33,7 +34,8 @@ app.use('/meetups', require('./routes/meetups'));
 
 
 app.get('/', (req, res) =>{
-  res.render('MainPage');
+  let result = mainpageController.GetMainPageStats();
+  res.render('MainPage',result);
 });
 
 app.listen(3000,()=>

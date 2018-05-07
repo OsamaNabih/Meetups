@@ -6,10 +6,6 @@ module.exports = {
     try{
       const DB = new Database(DBconfig);
       let meetups = await DB.query(MeetupModel.GetAllMeetups());
-      let numberOfUsers = await DB.query(MeetupModel.GetCountOfAllUsers());
-      let numberOfMeetups = await DB.query(MeetupModel.GetCountOfALLMeetups());
-      meetups['numberOfUsers'] = numberOfUsers[0].userCount;
-      meetups['numberOfMeetups'] = numberOfMeetups[0].meetupCount;
       return meetups;
     }
     catch(error)
