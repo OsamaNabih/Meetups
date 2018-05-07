@@ -27,6 +27,7 @@ router.route('/signup')
       }
     }
     else{
+      res.cookie('jwt', req.token); // add cookie here
       res.status(200).json({ token: req.token});
     }
   })
@@ -37,7 +38,7 @@ router.route('/signup')
 router.route('/signin')
   .post(urlencodedParser, passportSignIn, UsersController.signIn, (req, res)=>{
     if (req.token){
-      res.cookie('jwt', req.token, {expires: newDate(Date.now() + 60 * 60 * 24)}); // add cookie here
+      res.cookie('jwt', req.token); // add cookie here
       res.status(200).json({token: req.token});
     }
     else{

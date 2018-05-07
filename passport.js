@@ -34,7 +34,7 @@ passport.use('admin-local', new JwtStrategy({
     console.log(payload);
       // Find the user specifided in token
       const DB = new Database(DBconfig);
-      const user = await DB.query(UserModel.GetUserIdAndTypeById(), payload.sub);
+      const user = await DB.query(UserModel.GetUserIdAndTypeById(), payload.userId);
       console.log('ba3d el query');
       console.log(user);
       await DB.close();
@@ -45,7 +45,7 @@ passport.use('admin-local', new JwtStrategy({
         return done(null, false);
       }
       console.log('kollo tamam');
-      done(null, user);
+      done(null, user[0]);
   } catch(error) {
     console.log('error: ');
     console.log(error);
@@ -55,18 +55,18 @@ passport.use('admin-local', new JwtStrategy({
 
 
 passport.use('user-local', new JwtStrategy({
-  jwtFromRequest: ExtractJwt.fromHeader('authorization'),
+  jwtFromRequest: cookieExtractor,
   secretOrKey: JWT_SECRET
 }, async (payload, done) =>{
   try{
       // Find the user specifided in token
       const DB = new Database(DBconfig);
-      const user = await DB.query(UserModel.GetUserIdAndTypeById(), payload.sub);
+      const user = await DB.query(UserModel.GetUserIdAndTypeById(), payload.userId);
       await DB.close();
       if (user.length === 0){
         return done(null, false);
       }
-      done(null, user);
+      done(null, user[0]);
   } catch(error) {
     done(error, false);
   }
