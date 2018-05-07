@@ -38,7 +38,7 @@ router.route('/:id/register')
   .get((req, res)=>{
     let result = MeetupController.GetQuestions(req, res);
     result.then(function(result){
-      res.render('Form',{data:result});
+      res.render('Form',{data:result, feedback:undefined});
     }).catch(function(error){
       console.log('barra');
     });
@@ -51,6 +51,7 @@ router.route('/:id/register')
       res.status(400).json(error);
     });
   });
+
 
   //test feedback input
   router.route('/:id/addFeedback')
@@ -109,12 +110,20 @@ router.route('/:id/edit')
   .get((req, res) =>{
     let result = MeetupController.GetQuestions(req,res);
     result.then(function(result){
-          console.log(result);
       res.render('EditPage', {data: result});
     }).catch(function(error){
       res.send(error);
     });
+  })
+  .post(urlencodedParser, (req, res)=>{
+    let result = MeetupController.UpdateMeetup(req, res);
+    result.then((result)=>{
+      res.status(200).json(result);
+    }).catch((error)=>{
+      res.status(400).json(error);
+    });
   });
+    
 router.route('/:id')
   .get((req, res) =>{
     let result = MeetupController.GetMeetupAndSpeakers(req.params.id);
