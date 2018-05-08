@@ -75,8 +75,8 @@ module.exports = {
    // Generate token
    const token = signToken(req.user);
    res.status(200).json({ token });
- },
- photoUploaded:async (req, res, next)=>{
+  },
+  photoUploaded:async (req, res, next)=>{
   //photo photouploaded
   if(req.error)
   {
@@ -90,5 +90,17 @@ module.exports = {
     }
   console.log("No error in photo uploading");
     return next();
-}
+  },
+  GetUserInfo: async(req, res)=>{
+    try{
+      const DB = new Database(DBconfig);
+      let result = await DB.query(UserModel.GetUserById(), req.params.id);
+      await DB.close();
+      return result;
+    }
+    catch (error){
+      console.log(error);
+      throw error;
+    }
+  }
 }

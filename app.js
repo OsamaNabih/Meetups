@@ -5,7 +5,8 @@ const http = require('http');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser');
-const mainpageController = require('./controllers/MainPage');
+const passportUser = passport.authenticate('user-local', { session: false })
+const mainPageController = require('./controllers/MainPage');
 require('./config/DB');
 
 const app = express();
@@ -29,8 +30,15 @@ app.use('/meetups', require('./routes/meetups'));
 
 
 app.get('/', (req, res) =>{
-  let result = mainpageController.GetMainPageStats();
-  res.render('MainPage',result);
+  let result = mainPageController.GetMainPageStats();
+  req.result = result;
+  if(req.cookies.jwt === undefined){
+    res.render('MainPage', {result: result, userType: 0});
+  }
+  }, passportUser, (req, res)=>{
+    req.result.then((result)=>{
+      res.render('MainPage', {result: result, userType: req.user.userType});
+    });
 });
 
 app.listen(3000,()=>

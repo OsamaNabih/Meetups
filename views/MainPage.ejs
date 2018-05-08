@@ -21,8 +21,8 @@
     <link rel="stylesheet" href="/assets/css/style.min.css">
 
     <title>Tafrah</title>
-   
-        
+
+
   </head>
 
 <body>
@@ -36,7 +36,7 @@
                   <i style='color:black' class="fas fa-bars"></i>
                 </button>
                 <div class="collapse navbar-collapse " id="collapsibleNavbar">
-                  <ul class="navbar-nav ml-auto">
+                  <ul class="navbar-nav align-items-end">
                     <li class="nav-item">
                       <a class="nav-link" href="/">Home</a>
                     </li>
@@ -44,26 +44,22 @@
                     <li class="nav-item">
                       <a class="nav-link" href="/meetups">Events</a>
                     </li>
-                      <br>
-                    <li class="nav-item">
-                      <a class="nav-link" href="/users/signup" id = "Profiling"></a>
-                    </li>
-                      <br>
-                     <% if(user == 1) { %> 
+                    <br>
+                     <% if(userType == 1) { %>
                     <li class="nav-item">
                       <a class="nav-link" href="">profile</a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" href="">sign out</a>
                     </li>
-                    <% }else{ %> 
+                    <% }else{ %>
                     <li class="nav-item">
                       <a class="nav-link" href="">sign in</a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" href="">sign up</a>
                     </li><%} %>
-                    
+
                   </ul>
                 </div>
               </nav>
@@ -255,8 +251,8 @@
     <!--
     <!-- start section sign in -->
 
-      
-    
+
+
     <!-- start section statistics -->
 
     <section class="statistics text-center">
@@ -324,7 +320,7 @@
                         <li>Home</li>
                         <li>events</li>
 
-                        
+
                     </ul>
                     <ul class="list-unstyled socialList">
                       <!--  <li><img src="../Main Page/imgif_circle-facebook.png" /></li> -->

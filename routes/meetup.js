@@ -73,6 +73,7 @@ router.route('/:id/register')
 //test get feedback question with answers put by the admin
 router.route('/:id/feedback')
   .get(passportUser, (req,res)=>{
+       console.log(req.cookies);
     let data = feedbackController.GetFeedBackQuestions(req,res);
     data.then((data)=> {
     //  console.log(data);
@@ -80,12 +81,6 @@ router.route('/:id/feedback')
     }).catch((error)=>{
       res.status(400).json(error);
     });
-  });
-
-router.route('/:id/feedback')
-  .get((req,res)=>{
-       console.log(req.cookies);
-    res.render(''); // wagih shall put the view in it
   })
   .post(passportUser, (req,res)=>{
       let result = feedbackController.SubmitFeedbackReplies(req,res);
@@ -134,6 +129,7 @@ router.route('/:id')
        console.log(req.cookies);
     let result = MeetupController.GetMeetupAndSpeakers(req.params.id);
     result.then(function(result){
+      console.log(result);
       res.render('Event', {data: result});
     }).catch(function(error){
       res.send(error);

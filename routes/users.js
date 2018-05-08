@@ -49,8 +49,15 @@ router.route('/signin')
     res.render('SignIn');
   });
 
-router.route('/cookies')
-  .get(passportAdmin);
+router.route('/:id')
+  .get((req, res)=>{
+    let result = UsersController.GetUserInfo(req, res);
+    result.then((result)=>{
+      res.status(200).json({user: result});
+    }).catch((error)=>{
+      res.status(400).json(error);
+    });
+  });
 
 router.route('/oauth/facebook')
   .post(passport.authenticate('facebookToken', { session: false }), UsersController.facebookOAuth);
