@@ -159,8 +159,8 @@
                        <figure class="snip0019">
                           <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample11.jpg"alt="sample11" height="250px"/>
                           <figcaption>
-                              <div><h2><%=res.upcoming[0].name%></h2></div>
-                              <div><p><%=res.upcoming[0].slogan%></p></div>
+                              <div><h2><%=result.upcoming[0].meetupName%></h2></div>
+                              <div><p><%=result.upcoming[0].slogan%></p></div>
                               <a href="#"></a>
                           </figcaption>
                       </figure>
@@ -171,8 +171,8 @@
                       <figure class="snip0019">
                           <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample11.jpg"alt="sample11" height="250px"/>
                           <figcaption>
-                              <div><h2><%=res.upcoming[1].name%></h2></div>
-                              <div><p><%=res.upcoming[1].slogan%></p></div>
+                              <div><h2><%=result.upcoming[1].meetupName%></h2></div>
+                              <div><p><%=result.upcoming[1].slogan%></p></div>
                               <a href="#"></a>
                           </figcaption>
                       </figure>
@@ -263,15 +263,13 @@
                     <div class="col-lg-6 col-sm-12">
                         <div class="stats">
                             <i class="fa fa-users fa-6x"></i>
-                            <p>528</p>
-                            <span><%=res.noOfUsers%></span>
+                            <p><%=result.numberOfUsers%></p>
                         </div>
                     </div>
                     <div class="col-lg-6 col-sm-12">
                         <div class="stats">
                             <i class="fas fa-calendar-alt fa-6x"></i>
-                            <p>5278</p>
-                            <span><%=res.noOfEvents%></span>
+                            <p><%=result.numberOfMeetups%></p>
                         </div>
                     </div>
 
@@ -318,7 +316,7 @@
                     <h3>Sitemap</h3>
                     <ul class="list-unstyled three colomns">
                         <li>Home</li>
-                        <li>events</li>
+                        <li>Events</li>
                     </ul>
                     <ul class="list-unstyled socialList">
                         <li><img src="../assets/img/if_twitter.png" width="65" height="65"/></li>
