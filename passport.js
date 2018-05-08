@@ -62,6 +62,7 @@ passport.use('user-local', new JwtStrategy({
       }
       done(null, user[0]);
   } catch(error) {
+    console.log('f error passport');
     done(error, false);
   }
 }));

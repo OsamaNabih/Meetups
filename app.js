@@ -29,13 +29,20 @@ app.use('/meetups', require('./routes/meetups'));
 
 
 
-app.get('/', (req, res) =>{
+app.get('/', (req, res, next) =>{
   let result = mainPageController.GetMainPageStats();
-  req.result = result;
   if(req.cookies.jwt === undefined){
-    res.render('MainPage', {result: result, userType: 0});
+    result.then((result)=>{
+      res.render('MainPage', {result: result, userType: 0});
+    })
+  }
+  else{
+    req.result = result;
+    console.log('moving on');
+    next();
   }
   }, passportUser, (req, res)=>{
+    console.log(req.user);
     req.result.then((result)=>{
       res.render('MainPage', {result: result, userType: req.user.userType});
     });
