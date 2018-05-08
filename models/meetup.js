@@ -1,6 +1,6 @@
 module.exports = {
   GetAllMeetups: function(){
-    return `SELECT meetupName, slogan, meetupId, meetupDate, district FROM meetups ORDER BY meetupDate DESC`;
+    return `SELECT meetupName, slogan, meetupId, meetupDate, district, ticketLink FROM meetups ORDER BY meetupDate DESC`;
   },
   GetCountOfAllUsers: function(){
     return "Select Count(userId) as userCount from Users";
