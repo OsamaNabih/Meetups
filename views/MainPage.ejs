@@ -16,11 +16,11 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous">
     <link rel="stylesheet" href="/assets/css/Sign_in_style.css">
     <link rel="stylesheet" href="/assets/css/img_hover.css">
+    <title>Tafrah</title>
     <link rel="stylesheet" href="/assets/css/nav_bar_style.css">
     <link rel="stylesheet" href="/assets/css/styleMainPage.css">
     <link rel="stylesheet" href="/assets/css/style.min.css">
 
-    <title>Tafrah</title>
 
 
   </head>
@@ -52,11 +52,11 @@
                     <li class="nav-item">
                         <script>
                             function del_cookie(name) {
-                                document.cookie = document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+                                document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
                                 window.location = "/";
                             } 
                         </script>
-                      <a class="nav-link" href="javascript:del_cookie(jwt);">sign out</a>
+                      <a class="nav-link" onclick="del_cookie('jwt');">sign out</a>
                     </li>
                     <% }else{ %>
                     <li class="nav-item">
@@ -186,6 +186,7 @@
 
           </div>
     </div>
+-->
 
 </section>
    <!-- end section features-->
