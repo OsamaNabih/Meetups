@@ -27,8 +27,8 @@ Create Table Meetups
   meetupDate date not null,
 	startTime time not null,
 	endTime time not null,
-	longitude DOUBLE(16, 14) not null,
-	latitude DOUBLE(16, 14) not null,
+	longitude DOUBLE(16, 14) DEFAULT 31.2372225 not null,
+	latitude DOUBLE(16, 14) DEFAULT 30.0443319 not null,
 	slogan varchar(400),
 	district varchar(200),
 	Primary key(meetupId)
@@ -158,6 +158,7 @@ Values("user6@gmail.com", "Google", "Rocks", "randomGoogleTokena2sd6lklm9asd3",3
 
 Insert Into Users(email,firstName,lastName,authField,authType,userType,birthDate,position, imagePath)
 Values("admin@gmail.com", "Test", "Admin", "$2a$10$qECNSpwdIe.kacmtEakDuuuqcXPC2WkZqHqQrNJ1sAMb2PA2mo0hm",1, 1, 19900413, "The admin", "Images/default-avatar.png");
+
 /*--------------------------------------------------------------------------------------------------------------------
 Inserting some Meetups--*/
 
@@ -184,7 +185,7 @@ values ("helloworld7",50000,"how to procrastinate",7440,"my house ",20170205,"Pr
 
 
 Insert Into Meetups(meetupName,capacity,description,price,venue,meetupDate,slogan,district)
-value("tafrah meetup #05: artificial intelligence potential",60,"The potential behind Artificial Intelligence is increasing every day with disrupting industries. Didn’t you wonder how can that solve challenges human race face till now such as healthcare ones! What are the actual insights and case studies regardless the hype of facebook posts! How can we connect all the dots from data science to machine learning to learn and develop such helpful solutions?
+value("Tafrah meetup #05: artificial intelligence potential",60,"The potential behind Artificial Intelligence is increasing every day with disrupting industries. Didn’t you wonder how can that solve challenges human race face till now such as healthcare ones! What are the actual insights and case studies regardless the hype of facebook posts! How can we connect all the dots from data science to machine learning to learn and develop such helpful solutions?
 
 This round of #Tafrah_Meetup, we will be tackling the journey of Artificial Intelligence starting from how was it in the past going through the present state and what do we expect in the future, with focus on healthcare case studies, meeting different experienced people to share with you their insights and hands on experience and also getting to know a glimpse of Tafrah Artificial Intelligence community.
 

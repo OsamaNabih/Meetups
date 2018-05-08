@@ -11,7 +11,6 @@ const bcrypt = require('bcryptjs');
 const config =require('./config/keys.js');
 const DBconfig = require('./config/keys.js').DBconfig;
 const GoogleStrategy = require('passport-google-oauth20');
-const passportSignIn = passport.authenticate('local', { session: false })
 
 // JSON WEB TOKENS STRATEGY
 var cookieExtractor = function(req) {
@@ -22,16 +21,15 @@ var cookieExtractor = function(req) {
 };
 
 module.exports.passportUser = (req, res, next)=>{
-  console.log('besmellah');
   if (req.cookies.jwt){
-    console.log('fi cookie');
+    console.log(req.cookies);
     passport.authenticate('user-local', { session: false })(req, res, next);
   }
   else{
     let user = {};
     user['userType'] == 0;
     req.user = user;
-    console.log('mafeesh cookie yastaaaa');
+    console.log('No cookie');
     next();
   }
 }
@@ -44,17 +42,35 @@ passport.use('user-local', new JwtStrategy({
     console.log('fel strat');
       // Find the user specifided in token
       const DB = new Database(DBconfig);
+      console.log(payload.userId);
       const user = await DB.query(UserModel.GetUserIdAndTypeById(), payload.userId);
       await DB.close();
       if (user.length === 0){
-        return done(null, false);
+        console.log(user);
+        user[0]['userType'] = 0;
+        console.log(user);
+        return done(null, user[0]);
       }
       done(null, user[0]);
   } catch(error) {
+    //let user = {userType: 0};
+    let user = {};
+    user.userType = Number(0);
     console.log('f error passport');
-    done(error, false);
+    done(error, user);
   }
 }));
+
+module.exports.passportAdmin = (req, res, next)=>{
+  if (req.cookies.jwt){
+    console.log(req.cookies);
+    passport.authenticate('admin-local', { session: false })(req, res, next);
+  }
+  else{
+    console.log('maloosh 7a2');
+    res.sendStatus(401);
+  }
+}
 
 passport.use('admin-local', new JwtStrategy({
   //jwtFromRequest: ExtractJwt.fromHeader('authorization'),
@@ -79,11 +95,6 @@ passport.use('admin-local', new JwtStrategy({
     return done(error, false);
   }
 }));
-
-module.exports.cout = ()=>{
-  console.log('cout');
-}
-
 
 
 

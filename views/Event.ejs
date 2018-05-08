@@ -1,7 +1,7 @@
 
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title><%= data.meetup.meetupName %></title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
@@ -50,7 +50,7 @@
                     <li class="nav-item">
                       <a class="nav-link" href="/meetup/<%=data.meetup.meetupId%>/addFeedback">Add Feedback Form</a>
                     </li>
-                    <% }} %>
+                    <% } %>
                       <br>
                   </ul>
                 </div>
@@ -78,10 +78,9 @@
   <% if(data.meetup.meetupDate > Date.now()) { %>
   <a href="/meetup/<%=data.meetup.meetupId%>/register" class="float-right FormButton btn btn-outline-dark">Register</a>
   <% } else { %>
-  <% if (data.Registered == 1){ %>
   <a href="/meetup/<%=data.meetup.meetupId%>/feedback" class="float-right FormButton btn btn-outline-dark">Give us feedback</a>
-  <% }} %>
-                        </div>
+  <% } %>
+  </div>
   <div class= " SecondDiv col-xs-12 col-sm-12 col-md-4">
     <div class="card">
  <div id="map"></div>
@@ -92,7 +91,7 @@
 <div class="list-group">
 <% console.log(data); %>
   <% data.speakers.forEach(function(data){ %>
- <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+ <a href="../users/<%= data.userId %>" class="list-group-item list-group-item-action flex-column align-items-start">
    <div class="d-flex w-100 justify-content-between">
      <h5 class="mb-1"> <%= `${data.firstName} ${data.lastName}` %></h5>
      <small>Today</small>
@@ -110,7 +109,7 @@
   <div class="List">
   <div class="list-group">
     <% data.attendees.forEach(function(data){ %>
-   <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+   <a href="../users/<%= data.userId %>" class="list-group-item list-group-item-action flex-column align-items-start">
      <div class="d-flex w-100 justify-content-between">
        <h5 class="mb-1"> <%= `${data.firstName} ${data.lastName}` %></h5>
        <small>Today</small>
@@ -140,7 +139,7 @@
          function initMap() {
         var uluru = {lat: <%=data.meetup.latitude%>, lng: <%=data.meetup.longitude%>};
         var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 10,
+          zoom: 12,
           center: uluru
         });
         var marker = new google.maps.Marker({

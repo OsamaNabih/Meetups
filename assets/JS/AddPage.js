@@ -278,8 +278,8 @@
                             {
                                 console.log("Here");
                                   if(feedback == 1)
-                                     url = '/meetup/'+data.id+'/addFeedback';
-                                  else 
+                                     url = '/meetup/'+data.meetupId+'/addFeedback';
+                                  else
                                      url = '/meetups';
                                 window.location.href = url;
                             }
@@ -290,4 +290,3 @@
                   Markup = [];
                   $("#Controller").html("");
                 }
-

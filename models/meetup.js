@@ -21,12 +21,12 @@ module.exports = {
   },
   GetAttendees: function(){
     return `SELECT userId, email, firstName, lastName, position, verified
-          FROM (attended JOIN meetups ON attendedMeetupId = meetupId) JOIN users ON userId = userId
+          FROM (Attended NATURAL JOIN Meetups) NATURAL JOIN Users
           WHERE meetupId = ?`;
   },
   GetVerifiedAttendees: function(){
     return `SELECT userId, email, firstName, lastName, position
-          FROM (attended JOIN meetups ON attendedMeetupId = meetupId) JOIN users ON userId = userId
+          FROM (Attended NATURAL JOIN Meetups ) NATURAL JOIN Users
           WHERE meetupId = ? AND verified = true`;
   },
   InsertMeetup: function(){

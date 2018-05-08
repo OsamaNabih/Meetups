@@ -190,7 +190,6 @@ module.exports = {
   UpdateMeetup: async (req, res)=>{
     try{
       let JSON = req.body.EventInformation;
-      console.log(JSON);
       const DB = new Database(DBconfig);
       let result = await DB.query(MeetupModel.UpdateMeetup(), [JSON.meetupId, JSON.meetupName, JSON.capacity,
                             JSON.descrption, JSON.price, JSON.venue, JSON.meetupDate, JSON.startTime,
