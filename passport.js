@@ -15,13 +15,12 @@ const GoogleStrategy = require('passport-google-oauth20');
 
 // JSON WEB TOKENS STRATEGY
 var cookieExtractor = function(req) {
-  console.log('original token: ');
-  console.log(req.cookies);
-  var token = null;
-  if (req && req.cookies) token = req.cookies['jwt'];
-  console.log('ba3d el extraction');
-  console.log(token);
-  return token;
+    var token = null;
+    if (req && req.cookies) token = req.cookies['jwt'];
+    if (token === undefined) throw 'No cookies found';
+    console.log('ba3d el extraction');
+    console.log(token);
+    return token;
 };
 
 passport.use('admin-local', new JwtStrategy({
@@ -35,8 +34,6 @@ passport.use('admin-local', new JwtStrategy({
       // Find the user specifided in token
       const DB = new Database(DBconfig);
       const user = await DB.query(UserModel.GetUserIdAndTypeById(), payload.userId);
-      console.log('ba3d el query');
-      console.log(user);
       await DB.close();
       if (user.length === 0){
         return done(null, false);
@@ -44,12 +41,9 @@ passport.use('admin-local', new JwtStrategy({
       else if (user[0].userType !== 1){
         return done(null, false);
       }
-      console.log('kollo tamam');
       done(null, user[0]);
   } catch(error) {
-    console.log('error: ');
-    console.log(error);
-    done(error, false);
+    return done(error, false);
   }
 }));
 

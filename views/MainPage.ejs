@@ -21,8 +21,8 @@
     <link rel="stylesheet" href="/assets/css/style.min.css">
 
     <title>Tafrah</title>
-   
-        
+
+
   </head>
 
 <body>
@@ -36,7 +36,7 @@
                   <i style='color:black' class="fas fa-bars"></i>
                 </button>
                 <div class="collapse navbar-collapse " id="collapsibleNavbar">
-                  <ul class="navbar-nav ml-auto">
+                  <ul class="navbar-nav align-items-end">
                     <li class="nav-item">
                       <a class="nav-link" href="/">Home</a>
                     </li>
@@ -44,26 +44,22 @@
                     <li class="nav-item">
                       <a class="nav-link" href="/meetups">Events</a>
                     </li>
-                      <br>
-                    <li class="nav-item">
-                      <a class="nav-link" href="/users/signup" id = "Profiling"></a>
-                    </li>
-                      <br>
-                     <% if(user == 1) { %> 
+                    <br>
+                     <% if(userType == 1) { %>
                     <li class="nav-item">
                       <a class="nav-link" href="">profile</a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" href="">sign out</a>
                     </li>
-                    <% }else{ %> 
+                    <% }else{ %>
                     <li class="nav-item">
                       <a class="nav-link" href="">sign in</a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" href="">sign up</a>
                     </li><%} %>
-                    
+
                   </ul>
                 </div>
               </nav>
@@ -163,8 +159,8 @@
                        <figure class="snip0019">
                           <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample11.jpg"alt="sample11" height="250px"/>
                           <figcaption>
-                              <div><h2>What <span>state</span> do you live in?</h2></div>
-                              <div><p>Denial. Miss Wormwood: I don't suppose I can argue with that.</p></div>
+                              <div><h2><%=res.upcoming[0].name%></h2></div>
+                              <div><p><%=res.upcoming[0].slogan%></p></div>
                               <a href="#"></a>
                           </figcaption>
                       </figure>
@@ -175,8 +171,8 @@
                       <figure class="snip0019">
                           <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample11.jpg"alt="sample11" height="250px"/>
                           <figcaption>
-                              <div><h2>What <span>state</span> do you live in?</h2></div>
-                              <div><p>Denial. Miss Wormwood: I don't suppose I can argue with that.</p></div>
+                              <div><h2><%=res.upcoming[1].name%></h2></div>
+                              <div><p><%=res.upcoming[1].slogan%></p></div>
                               <a href="#"></a>
                           </figcaption>
                       </figure>
@@ -255,8 +251,8 @@
     <!--
     <!-- start section sign in -->
 
-      
-    
+
+
     <!-- start section statistics -->
 
     <section class="statistics text-center">
@@ -268,14 +264,14 @@
                         <div class="stats">
                             <i class="fa fa-users fa-6x"></i>
                             <p>528</p>
-                            <span>Commuinty Members</span>
+                            <span><%=res.noOfUsers%></span>
                         </div>
                     </div>
                     <div class="col-lg-6 col-sm-12">
                         <div class="stats">
                             <i class="fas fa-calendar-alt fa-6x"></i>
                             <p>5278</p>
-                            <span>Events</span>
+                            <span><%=res.noOfEvents%></span>
                         </div>
                     </div>
 
@@ -323,11 +319,8 @@
                     <ul class="list-unstyled three colomns">
                         <li>Home</li>
                         <li>events</li>
-
-                        
                     </ul>
                     <ul class="list-unstyled socialList">
-                      <!--  <li><img src="../Main Page/imgif_circle-facebook.png" /></li> -->
                         <li><img src="../assets/img/if_twitter.png" width="65" height="65"/></li>
                         <li><img src="../assets/img/if_linkedin_64.png"/></li>
                     </ul>

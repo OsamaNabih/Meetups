@@ -12,6 +12,9 @@ module.exports = {
     return "Select userId, userType from Users where userId = ?";
   },
   GetUser: function(){
-    return "Select * from Users where email = ? ";
+    return "Select * from Users where email = ?";
+  },
+  GetUserById: function(){
+    return "Select * from Users where userId = ?";
   }
 }
