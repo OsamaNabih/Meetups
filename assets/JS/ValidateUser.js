@@ -37,8 +37,8 @@
                             },
                             error: function(xhr, textStatus, error)
                             {
-                              alert(xhr.responseJSON);
-                              alert(xhr.responseText);
+                              //alert(xhr.responseJSON);
+                              //alert(xhr.responseText);
                             }
       })
       }

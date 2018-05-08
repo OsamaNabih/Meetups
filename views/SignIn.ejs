@@ -37,9 +37,15 @@
                                     <p class="content-divider center mt-4"><span>or</span></p>
                                 </div>
                                 <p class="">
-                                    <button class="loginBtn loginBtn--google" style="margin-left: 145px;">
-                                            sign in with google
+                                  <script>
+                                      function submitGo(){
+                                      window.location ="oauth/google";
+                                      }
+                                      </script>
+                                    <button type="button" class="loginBtn loginBtn--google" style="margin-left: 145px;"  onclick="submitGo(); return false;">
+                                            Sign in with google
                                     </button>
+                                    </p>
                                 <p class="text-center">
                                     Don't have an account yet? <a href="/users/signup">Sign Up Now</a>
                                 </p>

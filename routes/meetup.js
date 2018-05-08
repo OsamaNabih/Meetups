@@ -47,7 +47,7 @@ router.route('/:id/register')
   .get(passportUser, (req, res)=>{
     let result = MeetupController.GetQuestions(req, res);
     result.then(function(result){
-      res.render('Form',{data:result,feedback:undefined});
+      res.render('Form',{data:result,feedback:undefined, userType: req.user.userType});
     }).catch(function(error){
       console.log('barra');
     });

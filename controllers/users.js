@@ -70,9 +70,12 @@ module.exports = {
     // Generate a token
     console.log("req.userId=" , req.user.userId);
     console.log("req.userType=" , req.user.userType);
-    const token = signToken(req.userId,req.userType);
-    res.status(200).json({token});
+    const token = signToken(req.user.userId,req.user.userType);
+    res.cookie('jwt', token); // add cookie here
+    //res.status(200).json({token});
+    res.redirect('/');
   },
+
 
   facebookOAuth: (req, res, next) => {
    // Generate token

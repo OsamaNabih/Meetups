@@ -28,10 +28,11 @@
                                     <script>
                                     function redirect() {
                                         window.location.replace("/");
+                                        console.log('I got redirect');
                                         return false;
                                             }
                                     </script>
-                                    <form action="/users/signup" method="POST" enctype="multipart/form-data" id="myForm"  onsubmit="return redirect()" >
+                                    <form action="/users/signup" method="POST" enctype="multipart/form-data" id="myForm" >
                                         <div class="form-group">
                                             <input type="text" id="firstName" class="form-control" name="firstName" value="" placeholder="First Name" required>
                                         </div>
@@ -44,7 +45,7 @@
                                         <div class="form-group">
                                             <input type="password" id="password" class="form-control" name="authField" value="" placeholder="Enter password"  required>
                                         </div>
-                                       
+
                                         <div class="form-group">
                                                 <input type="text" id="position" class="form-control" name="position" id="position" value="" placeholder="position">
                                         </div>
@@ -66,7 +67,7 @@
                                             </div>
                                         </div>
 
-                                        <input type="submit" class="btn btn-primary btn-block" value="create accout">
+                                        <input type="submit" class="btn btn-primary btn-block" value="create account">
 
                                     </form>
 
@@ -77,12 +78,12 @@
                                 <p class="">
                                     <script>
                                         function submitGo(){
-                                        window.location ="oauth/google"      
+                                        window.location ="oauth/google";
                                         }
 
                                         </script>
                                         <button type="button" class="loginBtn loginBtn--google" style="margin-left: 145px;"  onclick="submitGo(); return false;">
-                                        log in with google
+                                        Sign up with google
                                         </button>
                                 </p>
 
@@ -110,6 +111,9 @@
     crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
     <script>
+    $('#myForm').bind('ajax:complete',function(){
+      redirect();
+    });
         function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();

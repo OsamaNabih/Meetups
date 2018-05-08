@@ -127,7 +127,7 @@ module.exports = {
     return `Select Max(questionId) as questionId From FormQuestions where meetupId =?`;
   },
   VerifyAttendees: function(){
-    return `UPDATE Attended SET verified = !verified WHERE attendedMeetupId = ? AND userId IN (?)`;
+    return `UPDATE Attended SET verified = !verified WHERE meetupId = ? AND userId IN (?)`;
   },
   CheckPreviousOptionsSubmission: function(){
     return "SELECT DISTINCT userId FROM FormOptionReplies WHERE meetupId = ? AND userId = ?";

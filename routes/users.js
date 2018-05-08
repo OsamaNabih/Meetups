@@ -30,7 +30,7 @@ router.route('/signup')
     }
     else{
       res.cookie('jwt', req.token); // add cookie here
-      res.status(200).json({ token: req.token});
+      res.redirect('/');
     }
   })
   .get((req, res)=>{

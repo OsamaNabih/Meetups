@@ -101,7 +101,6 @@ module.exports = {
           if (result[j].questionType === 1){
             delete result[j]["optionString"];
             delete result[j]["MAX"];
-            delete result[j]["questionId"];
             delete result[j]["optionId"];
             delete result[j]["meetupId"];
             result[j].required = Boolean(result[j].required);
@@ -117,7 +116,6 @@ module.exports = {
           }
           delete result[j]["optionString"];
           delete result[j]["MAX"];
-          //delete result[j]["questionId"];
           delete result[j]["optionId"];
           delete result[j]["meetupId"];
           result[j].required = Boolean(result[j].required);
@@ -153,37 +151,34 @@ module.exports = {
     try{
       //Currenyl hardcoding the user ID and question types until the front-end sends them
       let JSON = req.body;
-      JSON.userId = 6;
-      JSON.Questions[0].questionType = 2;
-      JSON.Questions[1].questionType = JSON.Questions[2].questionType = JSON.Questions[3].questionType = 1;
-      JSON.Questions[4].questionType = JSON.Questions[5].questionType = 3;
+      console.log(JSON);
       const DB = new Database(DBconfig);
       let previousOptionsSubmission = await DB.query(MeetupModel.CheckPreviousOptionsSubmission(),
-                                    [JSON.meetupId, JSON.userId]);
+                                    [JSON.meetupId, req.user.userId]);
       let previousRepliesSubmission = await DB.query(MeetupModel.CheckPreviousRepliesSubmission(),
-                                    [JSON.meetupId, JSON.userId]);
+                                    [JSON.meetupId, req.user.userId]);
       if (previousOptionsSubmission.length !== 0 || previousRepliesSubmission.length !== 0)
       {
         //This user already registered for the meetup
         throw 'You have already registered for this meetup';
       }
       for(let i = 0; i < JSON.Questions.length; i++){
-        if(JSON.Questions[i].questionType !== 1){
+        if(Number(JSON.Questions[i].questionType) !== 1){
           let result = await DB.query(MeetupModel.InsertFormOptionReply(),
                                         {meetupId: Number(JSON.meetupId),
-                                         questionId: JSON.Questions[i].Question + 1, //REMOVE THE +1
-                                         userId: JSON.userId,
+                                         questionId: JSON.Questions[i].questionId, //REMOVE THE +1
+                                         userId: req.user.userId,
                                          optionId: JSON.Questions[i].Answer + 1});  //Remove when fixed on front
         }
         else{
           let result = await DB.query(MeetupModel.InsertFormReply(),
                                         {meetupId: Number(JSON.meetupId),
-                                         questionId: JSON.Questions[i].Question + 1, //REMOVE THE +1
-                                         userId: JSON.userId,
+                                         questionId: JSON.Questions[i].questionId, //REMOVE THE +1
+                                         userId: req.user.userId,
                                          userReply: JSON.Questions[i].Answer});
         }
       }
-      let result =  await DB.query(MeetupModel.AddAttendee(), [JSON.userId, JSON.meetupId]);
+      let result =  await DB.query(MeetupModel.AddAttendee(), {userId: req.user.userId, meetupId: JSON.meetupId});
       await DB.close();
       return 'Your registration has been completed successfully';
     }

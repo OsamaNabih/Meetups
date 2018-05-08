@@ -54,7 +54,7 @@ app.get('/', (req, res, next) =>{
 app.get('/', passportUser, (req, res) =>{
   let result = mainPageController.GetMainPageStats();
   result.then((result)=>{
-    res.render('MainPage', {result: result, userType: req.user.userType, userId: req.user.userId});
+    res.render('MainPage', {result: result, userType: Boolean(req.user.userType), userId: req.user.userId});
   }).catch((error)=>{
     res.status(400).json(error);
   });

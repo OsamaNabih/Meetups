@@ -138,8 +138,11 @@ passport.use('google',new GoogleStrategy({
                       return DB.close()
                   }, err => { return DB.close().then( () =>{ throw err; }) }
           ).catch(err => {
-            done(err,false,err.message);
-            console.log(err);
+            if(err.message !== "User already exists in our DataBase ")
+            {
+              done(err,false,err.message);
+              console.log(err);
+            }
           });
     return done;
   })
