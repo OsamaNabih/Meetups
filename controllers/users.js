@@ -31,16 +31,22 @@ module.exports = {
      req.value.body.imagePath = "Images/default-avatar.png";
    }
    const DB = new Database(DBconfig);
+   console.log(req.value.body);
    DB.query(UserModel.InsertUser(), req.value.body).then(result =>{
       return DB.query(UserModel.GetUserIdAndTypeByEmail(),req.value.body.email);
     }).then(innerResult =>{
+      console.log('signed up successfully');
       let id = innerResult[0].userId;
       let type = innerResult[0].userType;
       let token = signToken(id, type);
       return DB.close().then( () => { req.token = token; next(); } )
     },err => {
+      console.log('err');
+      console.log(err);
       return DB.close().then( () => { throw err; } )
     }).catch(error=>{
+      console.log('error');
+      console.log(error);
       req.error = error;
       next();
     });

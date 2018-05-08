@@ -52,10 +52,9 @@ app.get('/', (req, res, next) =>{
 });
 */
 app.get('/', passportUser, (req, res) =>{
-  console.log('a7la kalam');
   let result = mainPageController.GetMainPageStats();
   result.then((result)=>{
-    res.render('MainPage', {result: result, userType: req.user.userType});
+    res.render('MainPage', {result: result, userType: req.user.userType, userId: req.user.userId});
   }).catch((error)=>{
     res.status(400).json(error);
   });

@@ -62,9 +62,10 @@
       <br>
       <div  class="LocationAndTime">
       <p style = 'color:lightgray'>
-    <span  style = 'color:lightgray' class="fas fa-calendar-alt"></span> <%= data.meetup.meetupDate %> &emsp;
-    <span style = 'color:lightgray' class="fas fa-map-marker"></span> <%= data.meetup.district %></p>
-    <a class="button1">Buy Ticket</a>
+    <span  style = 'color:lightgray' class="fas fa-calendar-alt"></span> <%= data.meetup.meetupDate.toISOString().split('T')[0] %> &emsp;
+    <span style = 'color:lightgray' class="fas fa-map-marker"></span> <%= data.meetup.district %> &emsp;
+    <span style = 'color:lightgray' class="fas fa-credit-card"></span> <%= data.meetup.price %></p>
+    <a class="button1" href ="<%=data.meetup.ticketLink%>">Buy Ticket</a>
     </div>
  </div>
   </div>

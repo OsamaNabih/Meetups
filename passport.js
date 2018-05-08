@@ -27,7 +27,8 @@ module.exports.passportUser = (req, res, next)=>{
   }
   else{
     let user = {};
-    user['userType'] == 0;
+    user['userType'] = 0;
+    user['userId'] = 0;
     req.user = user;
     console.log('No cookie');
     next();
@@ -57,6 +58,7 @@ passport.use('user-local', new JwtStrategy({
     let user = {};
     user.userType = Number(0);
     console.log('f error passport');
+    console.log(user);
     done(error, user);
   }
 }));

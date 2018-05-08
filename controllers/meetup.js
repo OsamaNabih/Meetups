@@ -3,21 +3,26 @@ const Database = require('../config/DB');
 const DBconfig = require('../config/keys').DBconfig;
 
 module.exports = {
-  GetMeetupAndSpeakers: (id) =>{
+  GetMeetupAndSpeakers: (req, res) =>{
     return new Promise(function(resolve, reject){
       const DB = new Database(DBconfig);
       let meetup, speakers, attendees;
-      DB.query(MeetupModel.GetMeetup(), id).then(result =>{
+      DB.query(MeetupModel.GetMeetup(), req.params.id).then(result =>{
         if (result.length == 0)
           throw 'No meetup exists with this ID';
         meetup = result[0];
-        return DB.query(MeetupModel.GetSpeakers(), id);
+        return DB.query(MeetupModel.GetSpeakers(), req.params.id);
       }).then(result =>{
         speakers = result;
-        return DB.query(MeetupModel.GetVerifiedAttendees(), id);
+        return DB.query(MeetupModel.GetVerifiedAttendees(), req.params.id);
       }).then(result =>{
         attendees = result;
-        DB.close().then( ()=>{ resolve({meetup: meetup, speakers: speakers, attendees: attendees}); } );
+        console.log('you made it');
+        return DB.query(MeetupModel.IsAttended(), [req.user.userId, req.params.id]);
+      }).then(result =>{
+        console.log('reached');
+        Registered = Boolean(result.length);
+        DB.close().then( ()=>{ resolve({meetup: meetup, speakers: speakers, attendees: attendees, Registered: Registered}); } );
       },err => {
         return DB.close().then( () => { throw err; } )
       }).catch(error =>{

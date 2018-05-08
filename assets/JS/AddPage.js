@@ -1,3 +1,4 @@
+  var IsMapClicked = false;
   var FirstDiv = `<div id = "FirstDiv">
    <form id="myForm">
       <div  class = "InputForm" >
@@ -28,6 +29,14 @@
                   <div>
                      <input class="form-control" id="Capacity" aria-describedby="EventCapacity" placeholder="Capacity">
                   </div>
+                  <h5 >District</h5>
+                  <div>
+                     <input class="form-control" id="District" aria-describedby="EcentDistrict" placeholder="District">
+                  </div>
+                  <h5 >Ticket Link</h5>
+                  <div>
+                     <input class="form-control" id="Ticket" aria-describedby="EventTicket" placeholder="Ticket Link">
+                  </div>
                   <h5 >Price</h5>
                   <div>
                      <input class="form-control" pattern = "[0-9]{1,10}" id="Price" aria-describedby="EventPrice" placeholder="Price">
@@ -43,11 +52,11 @@
                   </div>
                   <h5 >Start Time</h5>
                   <div>
-                     <input pattern = "([01]?[0-9]|2[0-3]):[0-5][0-9]" class="form-control"  id="Start">
+                     <input placeholder = "12:00" pattern = "([01]?[0-9]|2[0-3]):[0-5][0-9]" class="form-control"  id="Start">
                   </div>
                   <h5 >End Time</h5>
                   <div>
-                     <input  pattern = "([01]?[0-9]|2[0-3]):[0-5][0-9]" class="form-control"  id="End">
+                     <input  placeholder = "12:00" pattern = "([01]?[0-9]|2[0-3]):[0-5][0-9]" class="form-control"  id="End">
                   </div>
                   <button type="button"  id = "NextDiv" onclick='DisplaySecond()' style="margin-top:20px;" class="FormButton btn btn-outline-dark">Next</button>
                </div>
@@ -115,7 +124,7 @@
              else
              myLatlng = new google.maps.LatLng(longandlat.Lat,longandlat.Lon);
                var myOptions = {
-                   zoom:7,
+                   zoom:10,
                    center: myLatlng,
                    mapTypeId: google.maps.MapTypeId.ROADMAP
                }
@@ -138,6 +147,7 @@
 
                      markers.push(marker);
                google.maps.event.addListener(map, "click", function(event) {
+                 IsMapClicked = true;
                    // get lat/lon of click
                    deleteMarkers();
                    var clickLat = event.latLng.lat();
@@ -190,14 +200,20 @@
            $('#Description').text(values[values.length - 1]);
        }
        function DisplaySecond(){
+         if(IsMapClicked == false){
+           alert("Please add a map location");
+           return;
+         }
          values = [];
          var re = new RegExp("([01]?[0-9]|2[0-3]):[0-5][0-9]");
          var re2 = new RegExp("[0-9]{1,10}");
          var First = $('#Start').val();
          var Second = $('#End').val()
+         var First1 = Number(First.split(':')[0])
+         var Second1 = Number(Second.split(':')[0])
          var Third = $('#Price').val()
          var Fourth = $('#Price').val()
-         if((re.test(First)) && (re.test(Second)) && (re2.test(Fourth)) && (re2.test(Third)))
+         if((re.test(First)) && (re.test(Second)) && (re2.test(Fourth)) && (re2.test(Third)) && (Second1 > First1))
          {
          $("#myForm").find('input').each(
            function(unusedIndex, child) {
@@ -248,18 +264,18 @@
                         Markup[Counter].Answers = $(obj).val();
                         Counter++;
                       });
-                      console.log(Markup);
-                      console.log(values);
                       values = {
                         meetupName: values[0],
                         slogan: values[1],
                         venue: values[2],
                         capacity: values[3],
-                        price: values[4],
-                        meetupDate: values[5],
-                        startTime: values[6],
-                        endTime: values[7],
-                        description: values[8],
+                        district: values[4],
+                        ticketLink: values[5],
+                        price: values[6],
+                        meetupDate: values[7],
+                        startTime: values[8],
+                        endTime: values[9],
+                        description: values[10],
                         longitude: longandlat.Lon,
                         latitude: longandlat.Lat
                       }
@@ -268,6 +284,7 @@
                         Questions: Markup,
                         EventInformation: values
                       }
+                      console.log(DataSent);
                       var url;
                       $.ajax({
                             url: '/meetup/create',

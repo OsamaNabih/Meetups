@@ -130,7 +130,7 @@ router.route('/:id/edit')
 
 router.route('/:id')
   .get(passportUser, (req, res) =>{
-    let result = MeetupController.GetMeetupAndSpeakers(req.params.id);
+    let result = MeetupController.GetMeetupAndSpeakers(req, res);
     result.then(function(result){
       res.render('Event', {data: result, userType: req.user.userType});
     }).catch(function(error){

@@ -29,6 +29,7 @@ Create Table Meetups
 	endTime time not null,
 	longitude DOUBLE(16, 14) DEFAULT 31.2372225 not null,
 	latitude DOUBLE(16, 14) DEFAULT 30.0443319 not null,
+	ticketLink text,
 	slogan varchar(400),
 	district varchar(200),
 	Primary key(meetupId)
@@ -162,29 +163,29 @@ Values("admin@gmail.com", "Test", "Admin", "$2a$10$qECNSpwdIe.kacmtEakDuuuqcXPC2
 /*--------------------------------------------------------------------------------------------------------------------
 Inserting some Meetups--*/
 
-Insert Into Meetups(meetupName,capacity,description,price,venue,meetupDate,slogan,district)
-values ("helloworld1",50000,"how to procrastinate",0,"my house ",STR_TO_DATE('01-10-2018','%m-%d-%Y'),"Procrastinate FTW","Dokki");
+Insert Into Meetups(meetupName,capacity,description,price,venue,meetupDate,slogan,district, ticketLink)
+values ("helloworld1",50000,"how to procrastinate",0,"my house ",STR_TO_DATE('01-10-2018','%m-%d-%Y'),"Procrastinate FTW","Dokki", "https://paymestore.co/085617");
 
-Insert Into Meetups(meetupName,capacity,description,price,venue,meetupDate,slogan,district)
-values ("helloworld2",4165000,"how to procrastinate",33,"my house ",STR_TO_DATE('01-09-2018','%m-%d-%Y'),"Procrastinate FTW","Dokki");
+Insert Into Meetups(meetupName,capacity,description,price,venue,meetupDate,slogan,district, ticketLink)
+values ("helloworld2",4165000,"how to procrastinate",33,"my house ",STR_TO_DATE('01-09-2018','%m-%d-%Y'),"Procrastinate FTW","Dokki", "https://paymestore.co/085617");
 
-Insert Into Meetups(meetupName,capacity,description,price,venue,meetupDate,slogan,district)
-values ("helloworld3",50000,"how to procrastinate",99,"my house ",STR_TO_DATE('01-08-2018','%m-%d-%Y'),"Procrastinate FTW","Dokki");
+Insert Into Meetups(meetupName,capacity,description,price,venue,meetupDate,slogan,district, ticketLink)
+values ("helloworld3",50000,"how to procrastinate",99,"my house ",STR_TO_DATE('01-08-2018','%m-%d-%Y'),"Procrastinate FTW","Dokki", "https://paymestore.co/085617");
 
-Insert Into Meetups(meetupName,capacity,description,price,venue,meetupDate,slogan,district)
-values ("helloworld4",50000,"how to procrastinate",40,"my house ",STR_TO_DATE('01-07-2018','%m-%d-%Y'),"Procrastinate FTW","Dokki");
+Insert Into Meetups(meetupName,capacity,description,price,venue,meetupDate,slogan,district, ticketLink)
+values ("helloworld4",50000,"how to procrastinate",40,"my house ",STR_TO_DATE('01-07-2018','%m-%d-%Y'),"Procrastinate FTW","Dokki", "https://paymestore.co/085617");
 
-Insert Into Meetups(meetupName,capacity,description,price,venue,meetupDate,slogan,district)
-values ("helloworld5",50000,"how to procrastinate",80,"my house ",STR_TO_DATE('01-06-2018','%m-%d-%Y'),"Procrastinate FTW","Dokki");
+Insert Into Meetups(meetupName,capacity,description,price,venue,meetupDate,slogan,district, ticketLink)
+values ("helloworld5",50000,"how to procrastinate",80,"my house ",STR_TO_DATE('01-06-2018','%m-%d-%Y'),"Procrastinate FTW","Dokki", "https://paymestore.co/085617");
 
-Insert Into Meetups(meetupName,capacity,description,price,venue,meetupDate,slogan,district)
-values ("helloworld6",50000,"how to procrastinate",650,"my house ",STR_TO_DATE('01-05-2018','%m-%d-%Y'),"Procrastinate FTW","Dokki");
+Insert Into Meetups(meetupName,capacity,description,price,venue,meetupDate,slogan,district, ticketLink)
+values ("helloworld6",50000,"how to procrastinate",650,"my house ",STR_TO_DATE('01-05-2018','%m-%d-%Y'),"Procrastinate FTW","Dokki", "https://paymestore.co/085617");
 
-Insert Into Meetups(meetupName,capacity,description,price,venue,meetupDate,slogan,district)
-values ("helloworld7",50000,"how to procrastinate",7440,"my house ",20170205,"Procrastinate FTW","Dokki");
+Insert Into Meetups(meetupName,capacity,description,price,venue,meetupDate,slogan,district, ticketLink)
+values ("helloworld7",50000,"how to procrastinate",7440,"my house ",20170205,"Procrastinate FTW","Dokki", "https://paymestore.co/085617");
 
 
-Insert Into Meetups(meetupName,capacity,description,price,venue,meetupDate,slogan,district)
+Insert Into Meetups(meetupName,capacity,description,price,venue,meetupDate,slogan,district, ticketLink)
 value("Tafrah meetup #05: artificial intelligence potential",60,"The potential behind Artificial Intelligence is increasing every day with disrupting industries. Didn’t you wonder how can that solve challenges human race face till now such as healthcare ones! What are the actual insights and case studies regardless the hype of facebook posts! How can we connect all the dots from data science to machine learning to learn and develop such helpful solutions?
 
 This round of #Tafrah_Meetup, we will be tackling the journey of Artificial Intelligence starting from how was it in the past going through the present state and what do we expect in the future, with focus on healthcare case studies, meeting different experienced people to share with you their insights and hands on experience and also getting to know a glimpse of Tafrah Artificial Intelligence community.
@@ -271,10 +272,10 @@ For any inquiries, please call us on +201111733122
 Tafrah is a platform that empowers MENA region techies to disrupt tech industries worldwide. We’re capable of doing that through our products.
 We started with conducting frequent rich meetups for techies (juniors/seniors) through #Tafrah_Meetup to tackle the latest updates and best practices, networking with like-minded people and enriching the mindsets with technical/non-technical experiences.
 
-Tafrah - Empowering Techies",120,"AUC Main Campus",20180317,"Artificial Intelligence Potential","Tahrir");
+Tafrah - Empowering Techies",120,"AUC Main Campus",20180317,"Artificial Intelligence Potential","Tahrir", "https://paymestore.co/085617");
 
 
-Insert Into Meetups(meetupName,capacity,description,price,venue,meetupDate,slogan,district)
+Insert Into Meetups(meetupName,capacity,description,price,venue,meetupDate,slogan,district, ticketLink)
 values ("Tafrah Meetup #06: DevOps 101",60,"Whether you are reading this as DevOps Engineer or enthusiast about the topic, Didn’t you question yourself at the very beginning when you heard about this term -DevOps- Is it a new Technology? Or just a practice and philosophy? Has it something linked between Software Operations and Software Development only? Didn’t you wonder before about the history of it? How is the global companies and the local ones dealing with it? How Agile methodologies for planning and development do affect on DevOps? Is there a difference when it comes to SysAdmins Vs DevOps?
 
 This round of #Tafrah_Meetup, we will be tackling a glimpse of the journey of DevOps starting from how was it in the past going through the present state and what do we expect in the future, meeting different experienced people to share with you their insights and hands on experience and also getting to know Tafrah DevOps Community.
@@ -360,7 +361,7 @@ For any inquiries, please call us on +201111733122
 Tafrah is a platform that empowers MENA region techies to disrupt tech industries worldwide. We’re capable of doing that through our products.
 We started with conducting frequent rich meetups for techies (juniors/seniors) through #Tafrah_Meetup to tackle the latest updates and best practices, networking with like-minded people and enriching the mindsets with technical/non-technical experiences.
 
-Tafrah - Empowering Techies",120,"302Labs",20180331 ,"DevOps 101","Nasr City");
+Tafrah - Empowering Techies",120,"302Labs",20180331 ,"DevOps 101","Nasr City", "https://paymestore.co/085617");
 /*--------------------------------------------------------------------------------------------------------------------
 Attaching speakers to meetups*/
 

@@ -152,6 +152,9 @@ module.exports = {
     return "INSERT INTO Attended SET ?"
   },
   GetTwoMeetups: function(){
-    return "SELECT meetupName, slogan FROM meetups ORDER BY meetupDate DESC"
+    return "SELECT meetupName, slogan, meetupId FROM meetups ORDER BY meetupDate DESC"
+  },
+  IsAttended: function(){
+    return "SELECT userId FROM Attended WHERE userId = ? AND meetupId = ? AND verified = true";
   }
 }
