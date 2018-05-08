@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
     <!-- this on overrides the bootstrap stylesheet-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous">
-       <link rel="stylesheet" href="/assets/css/Sign_in_style.css">
+    <link rel="stylesheet" href="/assets/css/Sign_in_style.css">
     <link rel="stylesheet" href="/assets/css/img_hover.css">
     <link rel="stylesheet" href="/assets/css/nav_bar_style.css">
     <link rel="stylesheet" href="/assets/css/styleMainPage.css">
@@ -47,17 +47,23 @@
                     <br>
                      <% if(userType == 1) { %>
                     <li class="nav-item">
-                      <a class="nav-link" href="">profile</a>
+                      <a class="nav-link" href="/id">profile</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="">sign out</a>
+                        <script>
+                            function del_cookie(name) {
+                                document.cookie = document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+                                window.location = "/";
+                            } 
+                        </script>
+                      <a class="nav-link" href="javascript:del_cookie(jwt);">sign out</a>
                     </li>
                     <% }else{ %>
                     <li class="nav-item">
-                      <a class="nav-link" href="">sign in</a>
+                      <a class="nav-link" href="/users/signin">sign in</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="">sign up</a>
+                      <a class="nav-link" href="/users/signup">sign up</a>
                     </li><%} %>
 
                   </ul>
@@ -180,7 +186,6 @@
 
           </div>
     </div>
--->
 
 </section>
    <!-- end section features-->
@@ -264,12 +269,14 @@
                         <div class="stats">
                             <i class="fa fa-users fa-6x"></i>
                             <p><%=result.numberOfUsers%></p>
+                            <span>our community members</span>
                         </div>
                     </div>
                     <div class="col-lg-6 col-sm-12">
                         <div class="stats">
                             <i class="fas fa-calendar-alt fa-6x"></i>
                             <p><%=result.numberOfMeetups%></p>
+                            <span>our events</span>
                         </div>
                     </div>
 
@@ -298,8 +305,8 @@
                 <div class="col-md-8 col-md-offset-1">
                     <div class="skillsInfo">
                         <h3> About Us</h3>
-                        <p class="lead">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Error dignissimos iusto nostrum illo aspernatur, animi sequi veritatis, iure ea dolorem doloremque. Fugiat cum soluta optio inventore, laudantium tenetur harum quisquam.</p>
-                        <button type="button" class=" btn btn-primary">Discover More (sign in)</button>
+                        <p class="lead">Tafrah is a platform that empowers MENA region techies to disrupt tech industries worldwide.</p>
+                        <button type="button" class=" btn btn-primary" onclick="location.href = 'users/signin';" >Discover More (sign in)</button>
                     </div>
                 </div>
                 <!-- end team info -->
@@ -315,12 +322,14 @@
                 <div class="col-lg-4 col-md-6">
                     <h3>Sitemap</h3>
                     <ul class="list-unstyled three colomns">
-                        <li>Home</li>
-                        <li>Events</li>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/meetups">Events</a></li>
                     </ul>
                     <ul class="list-unstyled socialList">
-                        <li><img src="../assets/img/if_twitter.png" width="65" height="65"/></li>
-                        <li><img src="../assets/img/if_linkedin_64.png"/></li>
+                        <li><a href="https://www.facebook.com/tafranetwork/"><img src="../assets/img/if_facebook_64.png"/></a></li>
+                        <li><a href="https://twitter.com/tafranetwork"><img src="../assets/img/if_twitter.png" width="65" height="65"/></a></li>
+                        <li><a href="https://www.linkedin.com/company/tafranetwork/"><img src="../assets/img/if_linkedin_64.png"/></a></li>
+                        
                     </ul>
                 </div>
                 <!--
