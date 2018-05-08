@@ -26,8 +26,13 @@
                                     Sign up to get started with us
                                 </p>
                                 <div class="mt-4">
-
-                                    <form action="/users/signup" method="POST" enctype="multipart/form-data" id="myForm">
+                                    <script>
+                                    function redirect() {
+                                        window.location.replace("/");
+                                        return false;
+                                            }
+                                    </script>
+                                    <form action="/users/signup" method="POST" enctype="multipart/form-data" id="myForm"  onsubmit="return redirect()" >
                                         <div class="form-group">
                                             <input type="text" id="firstName" class="form-control" name="firstName" value="" placeholder="First Name" required>
                                         </div>
@@ -61,6 +66,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <input type="hidden" name="address" value="/" />
                                         <input type="submit" class="btn btn-primary btn-block" value="create accout">
 
                                     </form>
