@@ -5,7 +5,7 @@
         <title>Register</title>
         <meta name="description" content="" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+        <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
         <link rel="stylesheet" href="../assets/css/style.css"/>
      <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>  -->
@@ -26,8 +26,13 @@
                                     Sign up to get started with us
                                 </p>
                                 <div class="mt-4">
-
-                                    <form action="/users/signup" method="POST" enctype="multipart/form-data" id="myForm">
+                                    <script>
+                                    function redirect() {
+                                        window.location.replace("/");
+                                        return false;
+                                            }
+                                    </script>
+                                    <form action="/users/signup" method="POST" enctype="multipart/form-data" id="myForm"  onsubmit="return redirect()" >
                                         <div class="form-group">
                                             <input type="text" id="firstName" class="form-control" name="firstName" value="" placeholder="First Name" required>
                                         </div>
@@ -40,9 +45,7 @@
                                         <div class="form-group">
                                             <input type="password" id="password" class="form-control" name="authField" value="" placeholder="Enter password"  required>
                                         </div>
-                                        <div class="form-group">
-                                            <input type="password" class="form-control" value="" placeholder="Confirm password" id="confirm_password" required>
-                                        </div>
+                                       
                                         <div class="form-group">
                                                 <input type="text" id="position" class="form-control" name="position" id="position" value="" placeholder="position">
                                         </div>
@@ -63,6 +66,7 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                         <input type="submit" class="btn btn-primary btn-block" value="create accout">
 
                                     </form>
@@ -74,7 +78,7 @@
                                 <p class="">
                                     <script>
                                         function submitGo(){
-                                        window.location ="oauth/google"       //"http://www.google.com/"
+                                        window.location ="oauth/google"      
                                         }
 
                                         </script>
@@ -122,38 +126,7 @@ $("#imageUpload").change(function() {
     readURL(this);
 });
 
-           /* $("button").click(function(){
-              var firstName = $("#firstName").val();
-              var lastName = $("#lastName").val();
-              var email = $("#email").val();
-              var password = $("#password").val();
-              var birthDate = $("#birthDate").val();
-              var arr = birthDate.split('-');
-              birthDate = arr[1] + '-' + arr[2] + '-' + arr[0];
-              var position = $("#position").val();
 
-                $.post("./signup",
-                {
-                    firstName: firstName,
-                    lastName : lastName,
-                    email    :  email,
-                    authField : password,
-                    position : position,
-                    birthDate : birthDate
-                },
-                function(data, status){
-                    if (data.error){
-                      alert(data.error);
-                    }
-                    else {
-                      alert(data.token + ' Status: ' + status);
-                    }
-                });
-            });
-
-
-     });
-     */
 
     </script>
 

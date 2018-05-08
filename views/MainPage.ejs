@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -16,16 +16,16 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous">
     <link rel="stylesheet" href="/assets/css/Sign_in_style.css">
     <link rel="stylesheet" href="/assets/css/img_hover.css">
+    <title>Tafrah</title>
     <link rel="stylesheet" href="/assets/css/nav_bar_style.css">
     <link rel="stylesheet" href="/assets/css/styleMainPage.css">
     <link rel="stylesheet" href="/assets/css/style.min.css">
 
-    <title>Tafrah</title>
 
 
   </head>
 
-<body>
+<body>  
         <nav id = "navBarHead" class="navbar navbar-fixed-top navbar-dark navbar-expand-md">
 
                 <a class="navbar-brand" href="#">
@@ -52,11 +52,11 @@
                     <li class="nav-item">
                         <script>
                             function del_cookie(name) {
-                                document.cookie = document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+                                document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
                                 window.location = "/";
                             } 
                         </script>
-                      <a class="nav-link" href="javascript:del_cookie(jwt);">sign out</a>
+                      <a class="nav-link" onclick="del_cookie('jwt');">sign out</a>
                     </li>
                     <% }else{ %>
                     <li class="nav-item">
@@ -167,7 +167,7 @@
                           <figcaption>
                               <div><h2><%=result.upcoming[0].meetupName%></h2></div>
                               <div><p><%=result.upcoming[0].slogan%></p></div>
-                              <a href="#"></a>
+                              <a href="/meetup/<%=result.upcoming[0].meetupId%>"></a>
                           </figcaption>
                       </figure>
                  </div>
@@ -179,13 +179,14 @@
                           <figcaption>
                               <div><h2><%=result.upcoming[1].meetupName%></h2></div>
                               <div><p><%=result.upcoming[1].slogan%></p></div>
-                              <a href="#"></a>
+                              <a href="/meetup/<%=result.upcoming[1].meetupId%>"></a>
                           </figcaption>
                       </figure>
               </div>
 
           </div>
     </div>
+-->
 
 </section>
    <!-- end section features-->
