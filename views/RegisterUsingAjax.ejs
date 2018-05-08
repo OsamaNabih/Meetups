@@ -40,9 +40,7 @@
                                         <div class="form-group">
                                             <input type="password" id="password" class="form-control" name="authField" value="" placeholder="Enter password"  required>
                                         </div>
-                                        <div class="form-group">
-                                            <input type="password" class="form-control" value="" placeholder="Confirm password" id="confirm_password" required>
-                                        </div>
+                                       
                                         <div class="form-group">
                                                 <input type="text" id="position" class="form-control" name="position" id="position" value="" placeholder="position">
                                         </div>
@@ -122,38 +120,7 @@ $("#imageUpload").change(function() {
     readURL(this);
 });
 
-           /* $("button").click(function(){
-              var firstName = $("#firstName").val();
-              var lastName = $("#lastName").val();
-              var email = $("#email").val();
-              var password = $("#password").val();
-              var birthDate = $("#birthDate").val();
-              var arr = birthDate.split('-');
-              birthDate = arr[1] + '-' + arr[2] + '-' + arr[0];
-              var position = $("#position").val();
 
-                $.post("./signup",
-                {
-                    firstName: firstName,
-                    lastName : lastName,
-                    email    :  email,
-                    authField : password,
-                    position : position,
-                    birthDate : birthDate
-                },
-                function(data, status){
-                    if (data.error){
-                      alert(data.error);
-                    }
-                    else {
-                      alert(data.token + ' Status: ' + status);
-                    }
-                });
-            });
-
-
-     });
-     */
 
     </script>
 
