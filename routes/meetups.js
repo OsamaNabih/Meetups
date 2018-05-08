@@ -3,7 +3,8 @@ const MeetupsController = require('../controllers/meetups');
 const MeetupModel = require('../models/meetup');
 const DB = require('../config/DB');
 const passport = require('passport');
-const passportUser = passport.authenticate('user-local', { session: false })
+//const passportUser = passport.authenticate('user-local', { session: false })
+const passportUser = require('../passport').passportUser;
 const bodyParser = require('body-parser');
 const urlencodedParser = bodyParser.urlencoded({extended: false});
 

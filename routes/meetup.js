@@ -7,7 +7,8 @@ const passportJWT = passport.authenticate('jwt', { session: false });
 const bodyParser = require('body-parser');
 const urlencodedParser = bodyParser.urlencoded({extended: false});
 const passportAdmin = passport.authenticate('admin-local', { session: false })
-const passportUser = passport.authenticate('user-local', { session: false })
+//const passportUser = passport.authenticate('user-local', { session: false })
+const passportUser = require('../passport').passportUser;
 const feedbackController = require('../controllers/feedback');
 
 router.route('/create')
@@ -125,12 +126,12 @@ router.route('/:id/edit')
   });
 
 router.route('/:id')
-  .get((req, res) =>{
+  .get(passportUser, (req, res) =>{
        console.log(req.cookies);
     let result = MeetupController.GetMeetupAndSpeakers(req.params.id);
     result.then(function(result){
       console.log(result);
-      res.render('Event', {data: result});
+      res.render('Event', {data: result, userType: req.user.userType});
     }).catch(function(error){
       res.send(error);
     });

@@ -3,6 +3,13 @@ const Joi = require('joi');
 module.exports = {
   validateBody: (schema) => {
     return (req, res, next) => {
+      req.body.birthDate = Number(req.body.birthDate.split('-').join(''));
+      /*
+      let arr = req.body.birthDate.split("-"); // We'll assume months < 10 are prefixed with 0 e.g. 03 for March
+      let arr2 = [arr[2], arr[1],arr[0]];
+      arr2 = Number(arr2.join(''));
+      req.body.birthDate = arr2;
+      */
       const result = Joi.validate(req.body, schema);
       if (result.error) {
         console.log(result.error.message);

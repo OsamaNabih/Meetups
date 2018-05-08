@@ -192,7 +192,7 @@ module.exports = {
       let JSON = req.body.EventInformation;
       console.log(JSON);
       const DB = new Database(DBconfig);
-      let result = DB.query(MeetupModel.UpdateMeetup(), [JSON.meetupId, JSON.meetupName, JSON.capacity,
+      let result = await DB.query(MeetupModel.UpdateMeetup(), [JSON.meetupId, JSON.meetupName, JSON.capacity,
                             JSON.descrption, JSON.price, JSON.venue, JSON.meetupDate, JSON.startTime,
                             JSON.endTime, JSON.longitude, JSON.latitude, JSON.slogan]);
       await DB.close();
@@ -202,5 +202,5 @@ module.exports = {
       console.log(error);
       throw error;
     }
-  }
+  },
 }

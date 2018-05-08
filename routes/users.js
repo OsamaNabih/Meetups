@@ -4,7 +4,8 @@ const passportConf = require('../passport');
 const { validateBody, schemas} = require('../helpers/routeHelpers');
 const UsersController = require('../controllers/users');
 const passportAdmin = passport.authenticate('admin-local', { session: false })
-const passportUser = passport.authenticate('user-local', { session: false })
+//const passportUser = passport.authenticate('user-local', { session: false })
+const passportUser = require('../passport').passportUser;
 const passportSignIn = passport.authenticate('local', { session: false })
 const passportGoogle = passport.authenticate('googleToken',{session:false});
 const passportGoogleOauth = passport.authenticate('google',{session:false,scope:['profile','email']})
@@ -53,7 +54,7 @@ router.route('/:id')
   .get((req, res)=>{
     let result = UsersController.GetUserInfo(req, res);
     result.then((result)=>{
-      res.status(200).json({user: result});
+      res.render('profile', {user: result});
     }).catch((error)=>{
       res.status(400).json(error);
     });
