@@ -1,6 +1,6 @@
 module.exports = {
   GetAllMeetups: function(){
-    return `SELECT * FROM meetups ORDER BY meetupDate DESC`;
+    return `SELECT meetupName, slogan, meetupId, meetupDate, district FROM meetups ORDER BY meetupDate DESC`;
   },
   GetCountOfAllUsers: function(){
     return "Select Count(userId) as userCount from Users";
@@ -21,12 +21,12 @@ module.exports = {
   },
   GetAttendees: function(){
     return `SELECT userId, email, firstName, lastName, position, verified
-          FROM (attended JOIN meetups ON attendedMeetupId = meetupId) JOIN users ON userId = userId
+          FROM (Attended NATURAL JOIN Meetups) NATURAL JOIN Users
           WHERE meetupId = ?`;
   },
   GetVerifiedAttendees: function(){
     return `SELECT userId, email, firstName, lastName, position
-          FROM (attended JOIN meetups ON attendedMeetupId = meetupId) JOIN users ON userId = userId
+          FROM (Attended NATURAL JOIN Meetups ) NATURAL JOIN Users
           WHERE meetupId = ? AND verified = true`;
   },
   InsertMeetup: function(){
@@ -150,5 +150,8 @@ module.exports = {
   },
   AddAttendee: function(){
     return "INSERT INTO Attended SET ?"
+  },
+  GetTwoMeetups: function(){
+    return "SELECT meetupName, slogan FROM meetups ORDER BY meetupDate DESC"
   }
 }

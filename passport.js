@@ -12,16 +12,65 @@ const config =require('./config/keys.js');
 const DBconfig = require('./config/keys.js').DBconfig;
 const GoogleStrategy = require('passport-google-oauth20');
 
-
 // JSON WEB TOKENS STRATEGY
 var cookieExtractor = function(req) {
     var token = null;
     if (req && req.cookies) token = req.cookies['jwt'];
     if (token === undefined) throw 'No cookies found';
-    console.log('ba3d el extraction');
-    console.log(token);
     return token;
 };
+
+module.exports.passportUser = (req, res, next)=>{
+  if (req.cookies.jwt){
+    console.log(req.cookies);
+    passport.authenticate('user-local', { session: false })(req, res, next);
+  }
+  else{
+    let user = {};
+    user['userType'] == 0;
+    req.user = user;
+    console.log('No cookie');
+    next();
+  }
+}
+
+passport.use('user-local', new JwtStrategy({
+  jwtFromRequest: cookieExtractor,
+  secretOrKey: JWT_SECRET
+}, async (payload, done) =>{
+  try{
+    console.log('fel strat');
+      // Find the user specifided in token
+      const DB = new Database(DBconfig);
+      console.log(payload.userId);
+      const user = await DB.query(UserModel.GetUserIdAndTypeById(), payload.userId);
+      await DB.close();
+      if (user.length === 0){
+        console.log(user);
+        user[0]['userType'] = 0;
+        console.log(user);
+        return done(null, user[0]);
+      }
+      done(null, user[0]);
+  } catch(error) {
+    //let user = {userType: 0};
+    let user = {};
+    user.userType = Number(0);
+    console.log('f error passport');
+    done(error, user);
+  }
+}));
+
+module.exports.passportAdmin = (req, res, next)=>{
+  if (req.cookies.jwt){
+    console.log(req.cookies);
+    passport.authenticate('admin-local', { session: false })(req, res, next);
+  }
+  else{
+    console.log('maloosh 7a2');
+    res.sendStatus(401);
+  }
+}
 
 passport.use('admin-local', new JwtStrategy({
   //jwtFromRequest: ExtractJwt.fromHeader('authorization'),
@@ -47,25 +96,6 @@ passport.use('admin-local', new JwtStrategy({
   }
 }));
 
-
-passport.use('user-local', new JwtStrategy({
-  jwtFromRequest: cookieExtractor,
-  secretOrKey: JWT_SECRET
-}, async (payload, done) =>{
-  try{
-      // Find the user specifided in token
-      const DB = new Database(DBconfig);
-      const user = await DB.query(UserModel.GetUserIdAndTypeById(), payload.userId);
-      await DB.close();
-      if (user.length === 0){
-        return done(null, false);
-      }
-      done(null, user[0]);
-  } catch(error) {
-    console.log('f error passport');
-    done(error, false);
-  }
-}));
 
 
 passport.use('google',new GoogleStrategy({

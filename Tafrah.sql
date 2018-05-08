@@ -27,8 +27,8 @@ Create Table Meetups
   meetupDate date not null,
 	startTime time not null,
 	endTime time not null,
-	longitude DOUBLE(16, 14) not null,
-	latitude DOUBLE(16, 14) not null,
+	longitude DOUBLE(16, 14) DEFAULT 31.2372225 not null,
+	latitude DOUBLE(16, 14) DEFAULT 30.0443319 not null,
 	slogan varchar(400),
 	district varchar(200),
 	Primary key(meetupId)
@@ -113,51 +113,52 @@ create table FormOptionReplies
 -------------------------------------------------------------------------------------------------------------------
 --Inserting some users--
 */
-Insert Into Users(email,firstName,lastName,authField,authType,userType,birthDate,position)
-values ("walidashraf423@gmail.com","waleed","ashraf",123,1,1,STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Professional Procrastinator");
+Insert Into Users(email,firstName,lastName,authField,authType,userType,birthDate,position, imagePath)
+values ("walidashraf423@gmail.com","waleed","ashraf",123,1,1,STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Professional Procrastinator", "Images/default-avatar.png");
 
-Insert Into Users(email,firstName,lastName,authField,authType,userType,birthDate,position)
-values ("OmarWagih@gmail.com","Omar","Wagih",11111,1,2,STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Professional Procrastinator");
+Insert Into Users(email,firstName,lastName,authField,authType,userType,birthDate,position, imagePath)
+values ("OmarWagih@gmail.com","Omar","Wagih",11111,1,2,STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Professional Procrastinator", "Images/default-avatar.png");
 
-Insert Into Users(email,firstName,lastName,authField,authType,userType,birthDate,position)
-values ("OsamaNabih@gmail.com","Osama","Nabih",4444,1,3,STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Professional Procrastinator");
+Insert Into Users(email,firstName,lastName,authField,authType,userType,birthDate,position, imagePath)
+values ("OsamaNabih@gmail.com","Osama","Nabih",4444,1,3,STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Professional Procrastinator", "Images/Osama.jpg");
 
-Insert Into Users(email,firstName,lastName,authField,authType,userType,birthDate,position)
-values ("YasmeenAhmed@gmail.com","Yasmeen","Ahmed",5555,1,1,STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Professional Procrastinator");
+Insert Into Users(email,firstName,lastName,authField,authType,userType,birthDate,position, imagePath)
+values ("YasmeenAhmed@gmail.com","Yasmeen","Ahmed",5555,1,1,STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Professional Procrastinator", "Images/default-avatar.png");
 
 
-
-Insert Into Users
-(email,firstName,lastName,authField,authType,userType,birthDate,position)
-values
-("Speaker1@gmail.com", "Speaker1firstName", "Speaker1lastName", "authField1",1, 2, 19900622, "Machine Learning Engineer at Microsoft");
 
 Insert Into Users
-(email,firstName,lastName,authField,authType,userType,birthDate,position)
+(email,firstName,lastName,authField,authType,userType,birthDate,position, imagePath)
 values
-("Speaker2@gmail.com","Speaker2firstName", "Speaker2lastName", "authField2",1, 2, 19941201, "DevOps Engineer at Google");
+("Speaker1@gmail.com", "Speaker1firstName", "Speaker1lastName", "authField1",1, 2, 19900622, "Machine Learning Engineer at Microsoft", "Images/default-avatar.png");
 
-Insert Into Users(email,firstName,lastName,authField,authType,userType,birthDate,position)
+Insert Into Users
+(email,firstName,lastName,authField,authType,userType,birthDate,position, imagePath)
 values
-("user@gmail.com", "Eager", "Learner", 1234,1, 3, 20010622, "Student");
+("Speaker2@gmail.com","Speaker2firstName", "Speaker2lastName", "authField2",1, 2, 19941201, "DevOps Engineer at Google", "Images/default-avatar.png");
 
-Insert Into Users(email,firstName,lastName,authField,authType,userType,birthDate,position)
-Values("user2@gmail.com", "Tafrah", "Lover", "4321",1, 3, 19950415, "Junior front-end developer");
+Insert Into Users(email,firstName,lastName,authField,authType,userType,birthDate,position, imagePath)
+values
+("user@gmail.com", "Eager", "Learner", 1234,1, 3, 20010622, "Student", "Images/default-avatar.png");
 
-Insert Into Users(email,firstName,lastName,authField,authType,userType,birthDate,position)
-Values("user3@gmail.com", "Real", "Person", "1111",1, 3, 19900602, "Junior back-end developer");
+Insert Into Users(email,firstName,lastName,authField,authType,userType,birthDate,position, imagePath)
+Values("user2@gmail.com", "Tafrah", "Lover", "4321",1, 3, 19950415, "Junior front-end developer", "Images/default-avatar.png");
 
-Insert Into Users(email,firstName,lastName,authField,authType,userType,birthDate,position)
-Values("user4@gmail.com", "Very", "Enthusiastic", "2222",1, 3, 19900413, "Machine Learning Engineer");
+Insert Into Users(email,firstName,lastName,authField,authType,userType,birthDate,position, imagePath)
+Values("user3@gmail.com", "Real", "Person", "1111",1, 3, 19900602, "Junior back-end developer", "Images/default-avatar.png");
 
-Insert Into Users(email,firstName,lastName,authField,authType,userType,birthDate,position)
-Values("user5@gmail.com", "Techie", "Goals", "randomFacebookToken23qwekmlkdmasd90i3e39msmdakmalksd",2, 3, 19900413, "Senior Machine Learning Engineer");
+Insert Into Users(email,firstName,lastName,authField,authType,userType,birthDate,position, imagePath)
+Values("user4@gmail.com", "Very", "Enthusiastic", "2222",1, 3, 19900413, "Machine Learning Engineer", "Images/default-avatar.png");
 
-Insert Into Users(email,firstName,lastName,authField,authType,userType,birthDate,position)
-Values("user6@gmail.com", "Google", "Rocks", "randomGoogleTokena2sd6lklm9asd3",3, 3, 19900413, "Senior Machine Learning Engineer");
+Insert Into Users(email,firstName,lastName,authField,authType,userType,birthDate,position, imagePath)
+Values("user5@gmail.com", "Techie", "Goals", "randomFacebookToken23qwekmlkdmasd90i3e39msmdakmalksd",2, 3, 19900413, "Senior Machine Learning Engineer", "Images/default-avatar.png");
 
-Insert Into Users(email,firstName,lastName,authField,authType,userType,birthDate,position)
-Values("admin@gmail.com", "Test", "Admin", "$2a$10$qECNSpwdIe.kacmtEakDuuuqcXPC2WkZqHqQrNJ1sAMb2PA2mo0hm",1, 1, 19900413, "The admin");
+Insert Into Users(email,firstName,lastName,authField,authType,userType,birthDate,position, imagePath)
+Values("user6@gmail.com", "Google", "Rocks", "randomGoogleTokena2sd6lklm9asd3",3, 3, 19900413, "Senior Machine Learning Engineer", "Images/default-avatar.png");
+
+Insert Into Users(email,firstName,lastName,authField,authType,userType,birthDate,position, imagePath)
+Values("admin@gmail.com", "Test", "Admin", "$2a$10$qECNSpwdIe.kacmtEakDuuuqcXPC2WkZqHqQrNJ1sAMb2PA2mo0hm",1, 1, 19900413, "The admin", "Images/default-avatar.png");
+
 /*--------------------------------------------------------------------------------------------------------------------
 Inserting some Meetups--*/
 
@@ -184,7 +185,7 @@ values ("helloworld7",50000,"how to procrastinate",7440,"my house ",20170205,"Pr
 
 
 Insert Into Meetups(meetupName,capacity,description,price,venue,meetupDate,slogan,district)
-value("tafrah meetup #05: artificial intelligence potential",60,"The potential behind Artificial Intelligence is increasing every day with disrupting industries. Didn’t you wonder how can that solve challenges human race face till now such as healthcare ones! What are the actual insights and case studies regardless the hype of facebook posts! How can we connect all the dots from data science to machine learning to learn and develop such helpful solutions?
+value("Tafrah meetup #05: artificial intelligence potential",60,"The potential behind Artificial Intelligence is increasing every day with disrupting industries. Didn’t you wonder how can that solve challenges human race face till now such as healthcare ones! What are the actual insights and case studies regardless the hype of facebook posts! How can we connect all the dots from data science to machine learning to learn and develop such helpful solutions?
 
 This round of #Tafrah_Meetup, we will be tackling the journey of Artificial Intelligence starting from how was it in the past going through the present state and what do we expect in the future, with focus on healthcare case studies, meeting different experienced people to share with you their insights and hands on experience and also getting to know a glimpse of Tafrah Artificial Intelligence community.
 

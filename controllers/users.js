@@ -15,13 +15,6 @@ signToken = (Id, type) =>{
 module.exports = {
   signUp: async(req, res, next) =>{
     //403 = forbidden
-    let arr = req.value.body.birthDate.split("-"); // We'll assume months < 10 are prefixed with 0 e.g. 03 for March
-    let MySQLDate = arr[2] + arr[0] + arr[1];
-    // MySQLDate is a string that's initialized by the concatenation of 3 strings
-    // MySQL requires date format to be an integer, so we perform arithmetic operations
-    // on it to turn it into a number
-    MySQLDate = Number(MySQLDate);
-    req.value.body.birthDate = MySQLDate;
     // Generate a salt
    const salt = await bcrypt.genSalt(10);
    // Generate a password hash (salt + hash)
@@ -32,6 +25,10 @@ module.exports = {
    if(req.file)
    {
      req.value.body.imagePath=req.file.path;
+   }
+   else
+   {
+     req.value.body.imagePath = "Images/default-avatar.png";
    }
    const DB = new Database(DBconfig);
    DB.query(UserModel.InsertUser(), req.value.body).then(result =>{
@@ -96,7 +93,7 @@ module.exports = {
       const DB = new Database(DBconfig);
       let result = await DB.query(UserModel.GetUserById(), req.params.id);
       await DB.close();
-      return result;
+      return result[0];
     }
     catch (error){
       console.log(error);
