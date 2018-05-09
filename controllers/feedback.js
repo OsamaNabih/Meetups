@@ -146,7 +146,7 @@ module.exports= {
          let questions = await DB.query(MeetupModel.GetFeedBackQuestionsOnly(),meetupId);
         //  console.log(Questions);
         if(questions.length === 0)
-          throw 'No meetup exists with this ID';
+          throw 'No feedback questions added to this meetup';
          for (var i = 0; i < questions.length; i++) {
            delete questions[i]['required'];
            delete questions[i]['MAX'];

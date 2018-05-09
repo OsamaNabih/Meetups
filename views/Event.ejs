@@ -34,7 +34,7 @@
                     </li>
                     <% if(userType == 1) { %>
                     <li class="nav-item">
-                      <a class="nav-link" href="/meetup/create">Create Event</a>
+                      <a class="nav-link" href="/meetup/create">Add Event</a>
                     </li>
                     <% } %>
                     <% if(userType == 1) { %>
@@ -52,6 +52,12 @@
                       <a class="nav-link" href="/meetup/<%=data.meetup.meetupId%>/addFeedback">Add Feedback Form</a>
                     </li>
                     <% } %>
+                      <br>
+                      <% if(userType == 1) {%>
+                      <li class="nav-item">
+                        <a class="nav-link" href="/meetup/<%=data.meetup.meetupId%>/getFeedbackReplies">View Feedback</a>
+                      </li>
+                      <% } %>
                       <br>
                   </ul>
                 </div>

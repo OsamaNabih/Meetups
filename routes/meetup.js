@@ -100,6 +100,7 @@ router.route('/:id/feedback')
 
 router.route('/:id/getFeedbackReplies')
   .get(passportAdmin, (req,res)=>{
+    console.log('hena');
     let result = feedbackController.GetFeedBackQuestionswithreplies(req,res);
     result.then((result)=>{
      res.render('GetFeedback',{data:result, userType: req.user.userType});
