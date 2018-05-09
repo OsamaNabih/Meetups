@@ -8,6 +8,12 @@ module.exports= {
 
     try{
           const DB = new Database(DBconfig);
+          let feedbackexist = await DB.query(MeetupModel.GetFeedBackQuestionsOnly(),req.body.id);
+          if(feedbackexist.length > 0)
+            {
+              await DB.close();
+              res.send("Already contains  feedback Questions");
+            }
           let feedbackNums = Object.keys(req.body.Questions).length;
           let  maxId = await DB.query(MeetupModel.GetMaxIdOfQuestions(),req.body.id);
           for(let i = 1; i <= feedbackNums;i++){
@@ -20,6 +26,7 @@ module.exports= {
             currFeedbackQuestion['feedback'] = true;
             if (currFeedbackQuestion.questionType === 1){
               await DB.query(MeetupModel.InsertQuestion(), currFeedbackQuestion);
+              console.log("insertedquestions of type single");
             }
             else{
                 const Options = currFeedbackQuestion.Answers.split("|");
@@ -30,12 +37,12 @@ module.exports= {
                       optionString: Options[j - 1], optionId: j};
                       let innerResult = await DB.query(MeetupModel.InsertOption(), currOption);
                   }
+                  console.log("insertedquestions of type multiple");
             }
 
         }
         DB.close().then(()=>{
             console.log('feedback inserted');
-            res.send('success, nigga');
           });
 
       }catch(error){
