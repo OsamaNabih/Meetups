@@ -68,7 +68,7 @@ router.route('/:id/register')
       res.render('AddFeedback',{meetupId:req.params.id, userType: req.user.userType});
   })
   .post(passportAdmin, (req,res)=>{
-    let result = meetupController.CreateFeedbackQuestions(req,res);
+    let result = MeetupController.CreateFeedbackQuestions(req,res);
     result.then(()=>{
       res.status(200);
     }).catch((error)=>{
@@ -79,7 +79,7 @@ router.route('/:id/register')
 //test get feedback question with answers put by the admin
 router.route('/:id/feedback')
   .get(passportUser, (req,res)=>{
-    let data = meetupController.GetFeedBackQuestions(req,res);
+    let data = MeetupController.GetFeedBackQuestions(req,res);
     data.then((data)=> {
       res.render('Form',{data:data, feedback:1, userType: req.user.userType});
     }).catch((error)=>{
@@ -87,7 +87,7 @@ router.route('/:id/feedback')
     });
   })
   .post(passportUser, (req,res)=>{
-      let result = meetupController.SubmitFeedbackReplies(req,res);
+      let result = MeetupController.SubmitFeedbackReplies(req,res);
       result.then((result)=>{
         res.status(200).json(result);
       }).catch((error)=>{
@@ -101,7 +101,7 @@ router.route('/:id/feedback')
 router.route('/:id/getFeedbackReplies')
   .get(passportAdmin, (req,res)=>{
     console.log('hena');
-    let result = meetupController.GetFeedBackQuestionswithreplies(req,res);
+    let result = MeetupController.GetFeedBackQuestionswithreplies(req,res);
     result.then((result)=>{
      res.render('GetFeedback',{data:result, userType: req.user.userType});
     }).catch((error)=>{
