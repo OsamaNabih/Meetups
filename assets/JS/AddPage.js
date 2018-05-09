@@ -52,7 +52,7 @@
                   </div>
                   <h5 >Start Time</h5>
                   <div>
-                     <input placeholder = "12:00" pattern = "([01]?[0-9]|2[0-3]):[0-5][0-9]" class="form-control"  id="Start">
+                     <input placeholder = "12:00 End time must be more than Start time" pattern = "([01]?[0-9]|2[0-3]):[0-5][0-9]" class="form-control"  id="Start">
                   </div>
                   <h5 >End Time</h5>
                   <div>
