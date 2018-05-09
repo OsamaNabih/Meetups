@@ -191,9 +191,8 @@ module.exports = {
     try{
       let JSON = req.body.EventInformation;
       const DB = new Database(DBconfig);
-      let result = await DB.query(MeetupModel.UpdateMeetup(), [JSON.meetupId, JSON.meetupName, JSON.capacity,
-                            JSON.descrption, JSON.price, JSON.venue, JSON.meetupDate, JSON.startTime,
-                            JSON.endTime, JSON.longitude, JSON.latitude, JSON.slogan]);
+      console.log(JSON);
+      let result = await DB.query(MeetupModel.UpdateMeetup(), [JSON, req.params.id]);
       await DB.close();
       return 'Meetup has been updated successfully';
     }

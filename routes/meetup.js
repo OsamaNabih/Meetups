@@ -115,6 +115,7 @@ router.route('/:id/edit')
   .get(passportAdmin, (req, res) =>{
     let result = MeetupController.GetQuestions(req,res);
     result.then(function(result){
+      console.log(result);
       res.render('EditPage', {data: result, userType: req.user.userType});
     }).catch(function(error){
       res.send(error);

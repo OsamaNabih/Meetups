@@ -145,8 +145,7 @@ module.exports = {
     return "DELETE FROM Meetups WHERE meetupId = ?"
   },
   UpdateMeetup: function(){
-    return `UPDATE Meetups SET meetupId = ?, meetupName = ?, capacity = ?, description = ?, price = ?,
-            venue = ?, meetupDate = ?, startTime = ?, endTime = ?, longitude = ?, latitude = ?, slogan = ?`;
+    return `UPDATE Meetups SET ? WHERE meetupId = ?`;
   },
   AddAttendee: function(){
     return "INSERT INTO Attended SET ?"
