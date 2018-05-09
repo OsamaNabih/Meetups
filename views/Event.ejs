@@ -44,7 +44,7 @@
                     <% } %>
                     <% if(userType == 1) { %>
                     <li class="nav-item">
-                      <a class="nav-link" href="/meetup/<%=data.meetup.meetupId%>/vaidate">Validate users</a>
+                      <a class="nav-link" href="/meetup/<%=data.meetup.meetupId%>/validate">Validate users</a>
                     </li>
                     <% } %>
                     <% if(userType == 1) {%>
@@ -56,6 +56,12 @@
                       <% if(userType == 1) {%>
                       <li class="nav-item">
                         <a class="nav-link" href="/meetup/<%=data.meetup.meetupId%>/getFeedbackReplies">View Feedback</a>
+                      </li>
+                      <% } %>
+                      <br>
+                      <% if(userType == 1) {%>
+                      <li class="nav-item">
+                        <a class="nav-link" href="/meetup/<%=data.meetup.meetupId%>/getFormReplies">View Form Replies</a>
                       </li>
                       <% } %>
                       <br>
