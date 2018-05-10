@@ -1,0 +1,864 @@
+Commit: 50c754a04b9851a68ea20020a29672fd0acc075c
+Date: Wed May 9 23:06:56 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: final version
+
+Commit: 3b8247bc5e325fd1cee71442d64fcd15d0af7cb9
+Date: Wed May 9 21:56:56 2018 +0200
+Author: walidashraf walidashraf423@gmail.com
+Message:  meetup controller renamed as MeetupController
+
+Commit: ca4253c42d0ba5d4e0d26a201c49fa74d7124920
+Date: Wed May 9 21:54:26 2018 +0200
+Author: walidashraf walidashraf423@gmail.com
+Message: feedback controller become meetup controller
+
+Commit: 7a8deddff655e44aadedea7ff839fc30815cfdc7
+Date: Wed May 9 21:48:59 2018 +0200
+Author: Omar Wagih o.wagih.ow@gmail.com
+Message: Added form
+
+Commit: 42f3e37876f497a8243d1b2bc8e96d80ca473da3
+Date: Wed May 9 21:36:46 2018 +0200
+Author: Omar Wagih o.wagih.ow@gmail.com
+Message: Fixed
+
+Commit: 1e2839b2e997c8fa8a4c9c0bcc8efcd8c48e5140
+Date: Wed May 9 21:27:23 2018 +0200
+Author: Omar Wagih o.wagih.ow@gmail.com
+Message: Login now
+
+Commit: 1db01691769d8340f6be2d56bd8f85a4530d70a9
+Date: Wed May 9 21:16:42 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: Merge branch 'Merged' of https://github.com/OsamaNabih/Meetups into merged
+
+Commit: de50897b307bb2b0ac4ea283c29deaa54491e38c
+Date: Wed May 9 21:16:02 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: Fixed some naming issues
+
+Commit: 2c74590b04214defd028aabdce454a88421208ee
+Date: Wed May 9 20:21:51 2018 +0200
+Author: walidashraf walidashraf423@gmail.com
+Message: tested feedback questions
+
+Commit: 7791d296305892cec5d19f91063e0b27d312d77a
+Date: Tue May 8 22:52:48 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: Added logos and titles to all pages, fixed buy details button in meetups page
+
+Commit: c4daa088daf7ec672e3fbeda60a5b6b853cd8241
+Date: Tue May 8 22:13:49 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: Fixed bugs with registration and replies
+
+Commit: 6da9debb97b685febe74a50b137d5cb7a0188785
+Date: Tue May 8 20:18:14 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: Merge branch 'Merged' of https://github.com/OsamaNabih/Meetups into merged
+
+Commit: 2e2f21c0ed9a644135f51cf2202b62d6307a3506
+Date: Tue May 8 20:18:05 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: Added ticketlink and price functionalities, enforced map selection on meetup creation
+
+Commit: 29eba00b5b055712f700903673691a8f3ce419bb
+Date: Tue May 8 19:41:31 2018 +0200
+Author: yasmeen ahmed yeasmeenahmed@gmail.com
+Message: forgot to add changes
+
+Commit: 5c72b9b5e093ff1b92552a8e2ffa7f43ef03e18d
+Date: Tue May 8 18:56:42 2018 +0200
+Author: yasmeen ahmed yeasmeenahmed@gmail.com
+Message: merging
+
+Commit: 9c6fdc5f1ea45672a64a363241a0838c8efdf7dd
+Date: Tue May 8 18:54:52 2018 +0200
+Author: yasmeen ahmed yeasmeenahmed@gmail.com
+Message: remonving comments
+
+Commit: 977f361be89b80573f5b604fe748d045424887d9
+Date: Tue May 8 18:43:47 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: Merge branch 'Merged' of https://github.com/OsamaNabih/Meetups into merged
+
+Commit: 6f1ce69e0b27d7a3edec575f85e3a9f72d7040f8
+Date: Tue May 8 18:43:37 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: Fixed all routes for different user authentications
+
+Commit: 40cd2ba78b8f9c5b166cacd0da09161863467ce5
+Date: Tue May 8 18:43:12 2018 +0200
+Author: yasmeen ahmed yeasmeenahmed@gmail.com
+Message: added the upcoming routes
+
+Commit: fc3409f9f65a71e42c0285b1687b9e487f15757c
+Date: Tue May 8 17:39:38 2018 +0200
+Author: yasmeen ahmed yeasmeenahmed@gmail.com
+Message: redirect after registeration
+
+Commit: ff6d985012cdfeda941ab0aa8b3116a7a136a89c
+Date: Tue May 8 16:59:24 2018 +0200
+Author: yasmeen ahmed yeasmeenahmed@gmail.com
+Message: deleted confuim passwords
+
+Commit: 105583bb22b8df78549bef4ef4040af9063b2782
+Date: Tue May 8 16:55:38 2018 +0200
+Author: yasmeen ahmed yeasmeenahmed@gmail.com
+Message: sign out is working :D
+
+Commit: 3f949e02081ef0b699afc8068850947acb1bdf9c
+Date: Tue May 8 16:33:53 2018 +0200
+Author: yasmeen ahmed yeasmeenahmed@gmail.com
+Message: addig config
+
+Commit: 36b3813e628eb25bc89394532272731f7efb198c
+Date: Tue May 8 16:31:18 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: Merge branch 'Merged' of https://github.com/OsamaNabih/Meetups into merged
+
+Commit: bcf447f3e4eb8e09c73c3964584bf025409843ec
+Date: Tue May 8 16:30:26 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: Solved merge
+
+Commit: 68841daf545121fa7cc590cd0cb2bfe061f234b8
+Date: Tue May 8 16:28:23 2018 +0200
+Author: yasmeen ahmed yeasmeenahmed@gmail.com
+Message: sign out not tested
+
+Commit: 66353aa64f4c6d2cbe4e7def61df56158f7b5098
+Date: Tue May 8 16:27:06 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: Merge branch 'Merged' of https://github.com/OsamaNabih/Meetups into merged
+
+Commit: 414363d5a963529f0b3062882dc9b6b019e350ce
+Date: Tue May 8 16:25:24 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: Fixed birth date error at sign up, fixed passport issues with other pages, changed profile title in the browser
+
+Commit: 69d5b231fa01c6ae7ae09e2ddac0de694d4b332e
+Date: Tue May 8 13:57:11 2018 +0200
+Author: yasmeen ahmed yeasmeenahmed@gmail.com
+Message: fixed img again
+
+Commit: fade722db933330b9b999ff4a77b781fe0b8c2f1
+Date: Tue May 8 13:53:24 2018 +0200
+Author: yasmeen ahmed yeasmeenahmed@gmail.com
+Message: merging
+
+Commit: 6268302bddc86f9e36f82821cbebe6003c0dd34c
+Date: Tue May 8 13:51:33 2018 +0200
+Author: yasmeen ahmed yeasmeenahmed@gmail.com
+Message: added image in profile
+
+Commit: f0b9b35317cb8eb767f9529b9227fd199aac7fa7
+Date: Tue May 8 13:30:01 2018 +0200
+Author: yasmeen ahmed yeasmeenahmed@gmail.com
+Message: merging
+
+Commit: d2d14510890f96b1138cae1c4e5dd25cdfc9da3c
+Date: Tue May 8 13:27:45 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: Merge branch 'Merged' of https://github.com/OsamaNabih/Meetups into merged
+
+Commit: 10035c78898ddfa5e38869d2db3ec1250a51f16f
+Date: Tue May 8 13:27:36 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: Fixed main page for logged in users
+
+Commit: 691b1a9082c924c88c0b8a1bbaa8d5b5a722446f
+Date: Tue May 8 13:25:48 2018 +0200
+Author: yasmeen ahmed yeasmeenahmed@gmail.com
+Message: added profile page
+
+Commit: 247d60ae01f22707548a7dae96f408ccdd222102
+Date: Tue May 8 13:01:30 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: Solved conflict in main page
+
+Commit: 8861d8ede4a4ab69ac3e306ab362d1f09bb3e486
+Date: Tue May 8 12:59:03 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: Finished back-end for main page events and token handling
+
+Commit: 9c03c01aec4e0414298c608fc8a67f2f058a352d
+Date: Tue May 8 12:40:29 2018 +0200
+Author: Omar Wagih o.wagih.ow@gmail.com
+Message: added upcomig events and stats (not tested) yasmeen
+
+Commit: a43ca811847537950117b785f4aff564d22f3094
+Date: Mon May 7 20:11:35 2018 +0200
+Author: Omar Wagih o.wagih.ow@gmail.com
+Message: Merge branch 'Merged' of github.com:OsamaNabih/Meetups into Merged
+
+Commit: 8b3be6354bd084e50c34dd6f0d109ac47d7a249a
+Date: Mon May 7 20:10:53 2018 +0200
+Author: Omar Wagih o.wagih.ow@gmail.com
+Message: Sup
+
+Commit: 04cb17402b357176c7796f30d7af1aa0f02f95a5
+Date: Mon May 7 20:07:30 2018 +0200
+Author: walidashraf walidashraf423@gmail.com
+Message: Merge branch 'Merged' of https://github.com/OsamaNabih/Meetups into Merged
+
+Commit: 0199d2edca462a9c6f3d4e35ea9e440c857317c8
+Date: Mon May 7 20:06:59 2018 +0200
+Author: walidashraf walidashraf423@gmail.com
+Message: meetup count and user count sent to main page
+
+Commit: a8fcdcc6c0de6b636546fda3fbd062b10965da2b
+Date: Mon May 7 19:58:50 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: Sent userType to meetups page
+
+Commit: c62e07e9ab753d7906b6b160b48cedd228f605a8
+Date: Mon May 7 19:27:26 2018 +0200
+Author: walidashraf walidashraf423@gmail.com
+Message:  charts number is sent with feedbackreplies
+
+Commit: bb190365d74b641e0bef3018ac97c6953a188b1c
+Date: Mon May 7 19:21:03 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: Merging
+
+Commit: 50d0f23ef89c167534332a40d0646d5bb6d1bb70
+Date: Mon May 7 19:22:10 2018 +0200
+Author: Omar Wagih o.wagih.ow@gmail.com
+Message: Aa
+
+Commit: 84bde7c314502e53973efcc4015e6bf675fe760f
+Date: Mon May 7 19:19:34 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: nothing important
+
+Commit: bdf7b3a214dcdaebf792da8d56ee741e969c3487
+Date: Mon May 7 19:18:30 2018 +0200
+Author: Omar Wagih o.wagih.ow@gmail.com
+Message: Wazzap
+
+Commit: 65b597fa3c33a18f5e5161bdb2bffbf52c58a15f
+Date: Mon May 7 18:45:33 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: Merging
+
+Commit: 7e386a51c98011424be38ccab5038ef1636ea8d5
+Date: Mon May 7 18:45:15 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: Merging
+
+Commit: d66b4ffce94999bc70f28e8ab7dfa5b53ae45f56
+Date: Mon May 7 18:42:14 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: Fixed passportAdmin, put token in cookie as jwt
+
+Commit: 8dcaae2f25ef63a57eec8f7ee9f3f8b4bc9f0336
+Date: Mon May 7 18:38:51 2018 +0200
+Author: walidashraf walidashraf423@gmail.com
+Message: feedback frequency corrected and Number of meetups and number of users sent to main page
+
+Commit: 315acff289c5b51f072c4e8aee688dac2131a21c
+Date: Mon May 7 18:31:33 2018 +0200
+Author: walidashraf walidashraf423@gmail.com
+Message: frequency in feedback replies corrected and returns meetupcount and userscount
+
+Commit: 0e7e9f8409f0042deb8acd30c9aedd3fb036cf23
+Date: Mon May 7 16:34:43 2018 +0200
+Author: Omar Wagih o.wagih.ow@gmail.com
+Message: Update
+
+Commit: 611feac3749180e42138c29fd02a6b1ec75956fb
+Date: Mon May 7 16:07:07 2018 +0200
+Author: Omar Wagih o.wagih.ow@gmail.com
+Message: Adding tokens
+
+Commit: a9eb1cc81faa35a5d40eb61e8e0203ed830f5064
+Date: Mon May 7 15:39:51 2018 +0200
+Author: Omar Wagih o.wagih.ow@gmail.com
+Message: Merge branch 'Merged' of github.com:OsamaNabih/Meetups into Merged
+
+Commit: fe3e918833b809ccbb6544f5da4fdb5591d403de
+Date: Mon May 7 15:29:49 2018 +0200
+Author: Omar Wagih o.wagih.ow@gmail.com
+Message: Code
+
+Commit: ecafdde1bb5a2772590dbc2f372c3b39c48e8f21
+Date: Mon May 7 14:38:16 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: Fixed general stuff
+
+Commit: 33f0b1fd8e848a9556251073b005c2a6e4f77ee6
+Date: Mon May 7 14:31:33 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: Syncing, added inserting users in attended table when registering
+
+Commit: 9727fae5aa2a344251a986c16b822a09951daa47
+Date: Mon May 7 13:51:23 2018 +0200
+Author: Omar Wagih o.wagih.ow@gmail.com
+Message: Charts
+
+Commit: 768ea5314b022ea0c2c404648ea79a929dbda1cc
+Date: Mon May 7 12:51:57 2018 +0200
+Author: walidashraf walidashraf423@gmail.com
+Message: tested feedback front/end
+
+Commit: 56a9f83b1196a53a811575f1f11fec3e331a377d
+Date: Sun May 6 17:48:11 2018 +0200
+Author: yasmeen ahmed yeasmeenahmed@gmail.com
+Message: added function to submit both forms
+
+Commit: 20652b4d4d163b03d5aad373b10ac435b3289c15
+Date: Sun May 6 17:39:32 2018 +0200
+Author: yasmeen ahmed yeasmeenahmed@gmail.com
+Message: added edit profile
+
+Commit: 75fa233945a30a47f6787cfb3a276a4759d0d255
+Date: Sun May 6 16:15:52 2018 +0200
+Author: walidashraf walidashraf423@gmail.com
+Message: backend of feedback finished frontend missing getting the feedback for the admin
+
+Commit: 4d1b6ef11ebc8ce2d3bd2c1f458b7e675e38512a
+Date: Sun May 6 10:30:12 2018 +0200
+Author: Omar Wagih o.wagih.ow@gmail.com
+Message: 3ashank tany ya walid
+
+Commit: 11d033a7974f4218d5df4038f4bfbcb44d7cf001
+Date: Sat May 5 23:18:03 2018 +0200
+Author: Omar Wagih o.wagih.ow@gmail.com
+Message: 3ashank ya walid kalna el 7adeed
+
+Commit: cc09d2385c16f3d89c5b3f21cea1afdf529bc343
+Date: Sat May 5 21:37:28 2018 +0200
+Author: Omar Wagih o.wagih.ow@gmail.com
+Message: Adding feedback post
+
+Commit: 99ee676d49c770e937d4182dc608781edccf3818
+Date: Sat May 5 20:20:42 2018 +0200
+Author: walidashraf walidashraf423@gmail.com
+Message: feedback get and set are done working on users add feedback and admin seeing it
+
+Commit: bf6bec403763cfa947547eb480135192caedbb7e
+Date: Sat May 5 20:06:23 2018 +0200
+Author: walidashraf walidashraf423@gmail.com
+Message: submiting feedbacks and getting them for users are done working on the rest of feedback
+
+Commit: 5f36d9cf1eb7b51963458b63a2b0a5f4ea12115d
+Date: Fri May 4 22:15:17 2018 +0200
+Author: Omar Wagih o.wagih.ow@gmail.com
+Message: Just a fix
+
+Commit: ac4f639be1af456e32a8fab24571dc4f1e4218d9
+Date: Fri May 4 22:13:57 2018 +0200
+Author: Omar Wagih o.wagih.ow@gmail.com
+Message: Cleaned the code, did the edit page
+
+Commit: d7d404418a173cf9a1af108d791f0b062c8191c5
+Date: Fri May 4 21:45:31 2018 +0200
+Author: Omar Wagih o.wagih.ow@gmail.com
+Message: Added partials
+
+Commit: 550dbde645f67caadb7878e132dec38e53f950b5
+Date: Fri May 4 19:59:13 2018 +0200
+Author: Omar Wagih o.wagih.ow@gmail.com
+Message: WA
+
+Commit: c11d95d83cce937b6ffbd7c29b825413ff42b37d
+Date: Fri May 4 19:40:03 2018 +0200
+Author: Omar Wagih o.wagih.ow@gmail.com
+Message: Fix
+
+Commit: f448ac5e5c234772fa3d56edd888d156834a66d5
+Date: Fri May 4 19:28:06 2018 +0200
+Author: Omar Wagih o.wagih.ow@gmail.com
+Message: Death
+
+Commit: b8c8c9e45113324e8bd36def4a9e3fb7b23068f7
+Date: Fri May 4 18:47:04 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: Merge branch 'Merged' of https://github.com/OsamaNabih/Meetups into merged
+
+Commit: 5f6cfde27e25ba01c94773ad0fa505b7f7d6ee40
+Date: Fri May 4 18:46:37 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: Back-end now returns questionId for the form page, added base code for editing meetup
+
+Commit: 20c7b55cee05952e4379347cd551325058438318
+Date: Fri May 4 18:41:36 2018 +0200
+Author: walidashraf walidashraf423@gmail.com
+Message: google signup and uploading picture full working
+
+Commit: 4551f1f90d6699efd1dd4ade7ca69218533fed9b
+Date: Fri May 4 16:55:07 2018 +0200
+Author: walidashraf walidashraf423@gmail.com
+Message: picture uploading is done with saving the path to DB
+
+Commit: 6da7b3859f6818fd7ff22f5306d6bcd630ecd60a
+Date: Thu May 3 21:48:25 2018 +0200
+Author: walidashraf walidashraf423@gmail.com
+Message: image uploaded to the local storage done with front end
+
+Commit: 5d328037544b18875082f8acfd2643da12fbae45
+Date: Thu May 3 21:07:51 2018 +0200
+Author: walidashraf walidashraf423@gmail.com
+Message: uploading pictures but didnt put the path in database yet
+
+Commit: 175cb57389080f911c4be806a5e4b1c815271b9e
+Date: Thu May 3 19:37:38 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: Added user replies for meetup form back-end, hardcoded userId and questionType temporarily
+
+Commit: 982694c15b491bbfbd6fe9a0a4d5bf6a55be7e82
+Date: Thu May 3 15:14:25 2018 +0200
+Author: Omar Wagih o.wagih.ow@gmail.com
+Message: Adding Form Request
+
+Commit: 083893e6bc9c534212ade79fb57e57a566b01b4f
+Date: Thu May 3 15:11:58 2018 +0200
+Author: Omar Wagih o.wagih.ow@gmail.com
+Message: Adding Form Feedback
+
+Commit: 0710f41aacd486cd44ce6825c2fc40aea8ce4036
+Date: Wed May 2 17:37:55 2018 +0200
+Author: yasmeen ahmed yeasmeenahmed@gmail.com
+Message: merging
+
+Commit: da7152a1df95197857648942d9d0c5b1570942c4
+Date: Tue May 1 23:21:34 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: Added back-end for validating attendees
+
+Commit: 42963f3e7eb0fa441af6f6eaa4643fb6a837bcb2
+Date: Tue May 1 22:58:52 2018 +0200
+Author: yasmeen ahmed yeasmeenahmed@gmail.com
+Message: try different ajax post request
+
+Commit: 3307f6c1820ea00b1980f819813384bb5c7d6f2b
+Date: Tue May 1 19:22:49 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: Merge branch 'Merged' of https://github.com/OsamaNabih/Meetups into merged
+
+Commit: e213b40c52d7b81997a90c5220e4a6e0078a8898
+Date: Tue May 1 18:27:21 2018 +0200
+Author: Omar Wagih o.wagih.ow@gmail.com
+Message: Merge branch 'Merged' of https://github.com/OsamaNabih/Meetups into Merged
+
+Commit: ece95628ce8f6cee56c930927aefdc02387586be
+Date: Tue May 1 18:26:33 2018 +0200
+Author: Omar Wagih o.wagih.ow@gmail.com
+Message: Added Edit event page, fixed some stuff
+
+Commit: b437e1f524c763e0d0474db360850fc8649073b1
+Date: Tue May 1 15:55:55 2018 +0200
+Author: yasmeen ahmed yeasmeenahmed@gmail.com
+Message: tried posting with ajax
+
+Commit: b3950f6b010c370d9d296073ea3b0e483d72e060
+Date: Tue May 1 09:48:04 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: Merge branch 'Merged' of https://github.com/OsamaNabih/Meetups into merged
+
+Commit: 08ad79e0e33503e41fc5b60516df8e277615a9cc
+Date: Mon Apr 30 19:49:23 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: Integrated Sign In front-end with the back-end
+
+Commit: 6030f016af3133fc1d364d39c8f91c14e8d9baec
+Date: Mon Apr 30 18:24:58 2018 +0200
+Author: Omar Wagih o.wagih.ow@gmail.com
+Message: Merge branch 'Merged' of https://github.com/OsamaNabih/Meetups into Merged
+
+Commit: dc8c24a2381e8ec1d4807856f333031264157a8b
+Date: Mon Apr 30 18:24:14 2018 +0200
+Author: Omar Wagih o.wagih.ow@gmail.com
+Message: POSTing from validateUser and Form
+
+Commit: b2ed601e1d4cf5d6f6a0ec3dd4dff09ec98e29b1
+Date: Mon Apr 30 16:26:08 2018 +0200
+Author: Omar Wagih o.wagih.ow@gmail.com
+Message: Merge branch 'Merged' of https://github.com/OsamaNabih/Meetups into Merged
+
+Commit: 6df6d286e78d09b337c6ecf785c4fdd70cd611b0
+Date: Mon Apr 30 16:25:34 2018 +0200
+Author: yasmeen ahmed yeasmeenahmed@gmail.com
+Message: added SignIn.ejs
+
+Commit: dcf549fe01d51a5c07c55aef636e24b65896af90
+Date: Mon Apr 30 16:25:20 2018 +0200
+Author: Omar Wagih o.wagih.ow@gmail.com
+Message: Whatup
+
+Commit: 2000e2c6d87cd9071cda573c9237d3ac748acc07
+Date: Mon Apr 30 16:16:24 2018 +0200
+Author: yasmeen ahmed yeasmeenahmed@gmail.com
+Message: added a sign in page
+
+Commit: 517b37ba9003afda27bfdd6c1c8939ea1eab4e04
+Date: Mon Apr 30 16:13:06 2018 +0200
+Author: Omar Wagih o.wagih.ow@gmail.com
+Message: Whatup
+
+Commit: 4b375d4e519eb7024d7b10fda2f2d74ca4bcfdd4
+Date: Sat Apr 28 18:39:48 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: Added verified attribute to Attended table
+
+Commit: dec2b495073cec510b9d047135f79027ff0574c0
+Date: Fri Apr 27 20:08:40 2018 +0200
+Author: Omar Wagih o.wagih.ow@gmail.com
+Message: Adding Form
+
+Commit: 06ce68b9f381589258180069c08649864dfb086e
+Date: Fri Apr 27 20:04:05 2018 +0200
+Author: Omar Wagih o.wagih.ow@gmail.com
+Message: Updating
+
+Commit: 7364f3488503b1d6c19abf45c7ab8d5ef100a49b
+Date: Fri Apr 27 13:38:37 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: Added back-end for validateUser page
+
+Commit: 973a863262e8e6dac6d59d0879bd544bc180b663
+Date: Fri Apr 27 02:51:48 2018 +0200
+Author: Omar Wagih o.wagih.ow@gmail.com
+Message: Conflict resolve
+
+Commit: 12b4f9297cc4f346cd3394c36ce8894b065d0274
+Date: Fri Apr 27 02:49:38 2018 +0200
+Author: Omar Wagih o.wagih.ow@gmail.com
+Message: sd
+
+Commit: ab0cf2f6575ee9c1d19e63118a21443b4022a419
+Date: Wed Apr 25 20:13:21 2018 +0200
+Author: yasmeen ahmed yeasmeenahmed@gmail.com
+Message: changed margin
+
+Commit: b1e3c93fdbc40bc35832b021a385f3a0501bf178
+Date: Wed Apr 25 20:08:06 2018 +0200
+Author: yasmeen ahmed yeasmeenahmed@gmail.com
+Message: merging
+
+Commit: 34dbb785a660d920d84fe996e88b5b78dacc9ba5
+Date: Wed Apr 25 20:05:58 2018 +0200
+Author: yasmeen ahmed yeasmeenahmed@gmail.com
+Message: added uplaod img
+
+Commit: d97d7ae889812162d4fb4f3f4e4272f0da134f83
+Date: Wed Apr 25 15:39:27 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: Finished meetup registration form back-end
+
+Commit: 9dd6c7e6d4647db84ccf1cd6ff8a28fdb56831fb
+Date: Mon Apr 23 00:14:03 2018 +0200
+Author: Omar Wagih o.wagih.ow@gmail.com
+Message: Adding Regex patterns and fixing the post request
+
+Commit: 9dc24148e679aadf8fb81c24a18fdb52c6f90464
+Date: Sun Apr 22 21:53:25 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: Merge branch 'Merged' of https://github.com/OsamaNabih/Meetups into merged
+
+Commit: a517b5b5a8fc3767ea7d153e302408aef4e64071
+Date: Sun Apr 22 21:52:47 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: Finished create meetup back-end
+
+Commit: a98adb50cdbb013897c79a755f3646f47ff3a7d4
+Date: Sat Apr 21 21:40:02 2018 +0200
+Author: Omar Wagih o.wagih.ow@gmail.com
+Message: Posting to meetup/create
+
+Commit: 3a1743231073c27bb382886207c4e0196b6744c0
+Date: Fri Apr 20 14:17:31 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: Added infrastructure for creating meetup
+
+Commit: 8ebc8c646412de583897501d6d788fe5ef8a2398
+Date: Wed Apr 18 18:07:00 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: Integrated registration front and back
+
+Commit: 7c2f5a91e1945e54f5b0e651efda3c39873b7f76
+Date: Tue Apr 17 04:25:54 2018 +0200
+Author: Omar Wagih o.wagih.ow@gmail.com
+Message: Just a little fix
+
+Commit: 5bd9cb39dba7bb7569fb6e6ddce32458c40d05f4
+Date: Tue Apr 17 04:23:13 2018 +0200
+Author: Omar Wagih o.wagih.ow@gmail.com
+Message: Merge branch 'Merged' of https://github.com/OsamaNabih/Meetups into Merged
+
+Commit: cdc4e5cebdf66e027de3ab090752147f245b60b7
+Date: Tue Apr 17 04:21:08 2018 +0200
+Author: Omar Wagih o.wagih.ow@gmail.com
+Message: Doing the Add Event
+
+Commit: 590fb60ab299568263415866c5c17976e501b474
+Date: Mon Apr 16 22:56:02 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: Updated Merged with back-end
+
+Commit: 191c8a764a881a9f4e03f43231ab256adf79c022
+Date: Mon Apr 16 22:47:38 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: Changed config to DBconfig
+
+Commit: 5bb712c13218e153ed56091fda40a0fdc2b1d833
+Date: Mon Apr 16 17:23:59 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: Merge branch 'back-end' of https://github.com/OsamaNabih/Meetups into back-end
+
+Commit: 4816b9d8489d7c8b1c10d35479d44e845016ae11
+Date: Mon Apr 16 17:17:35 2018 +0200
+Author: walidashraf walidashraf423@gmail.com
+Message: Google with refactored Promises
+
+Commit: 52793904b9563589954f8c83f2a9b108a35cdf14
+Date: Sun Apr 15 22:56:59 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: fixed some indentation
+
+Commit: 64e012ddb019573981d5a59003202ee9b3a8ce36
+Date: Sun Apr 15 22:33:12 2018 +0200
+Author: walidashraf walidashraf423@gmail.com
+Message: fully working google auth with the changes to the database and code refactored (promises)
+
+Commit: c7d7becad86205d58697bae93c12595bdacb8ce8
+Date: Sun Apr 15 18:17:37 2018 +0200
+Author: walidashraf walidashraf423@gmail.com
+Message: Google auth full working
+
+Commit: c098b9ae9608a490ba77d13092caede5c2547d1e
+Date: Sun Apr 15 18:12:56 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: Refactored some code, added type to tokens, extracted tokens to allow admin
+
+Commit: 60a5a2406ce213f64d41a0711846e771aaf0e067
+Date: Sat Apr 14 18:47:19 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: Refactored local strategy to async/await, attempted to add facebook strategy, commented it out for now, added fields to JOI schema
+
+Commit: 7bb230ea6d03af19731ecf689623c8fad513b905
+Date: Sat Apr 14 18:40:29 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: Refactored some old code to use promises and open/close DB connections properly
+
+Commit: c1b165044e5a8ec665744f7ed8b7c22f801bedfc
+Date: Sat Apr 14 18:39:25 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: Fixed userType attribute in the manual insertions of users
+
+Commit: a5b49182d35d903f10ba2944b15efafd6cb8dc96
+Date: Fri Apr 13 12:04:50 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: Commented out carousel, fixed Navbar routes
+
+Commit: 46b3984b078b9354593f3bdefc72e5d6a33a4931
+Date: Tue Apr 10 23:13:56 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: Finalized fixing home page
+
+Commit: 91623b535ffcf221d16fcd19c21177f6542390a2
+Date: Tue Apr 10 22:55:12 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: Merged with Yasmeen's MainPage
+
+Commit: 063750490f64e118f79108a9460e00ea71048ccd
+Date: Tue Apr 10 22:50:24 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: Moves some routes from app to their router
+
+Commit: 54188034ebdbea0918a6d14fc3e43133116e0785
+Date: Tue Apr 10 22:44:39 2018 +0200
+Author: yasmeenahmed yeasmeenahmed@gmail.com
+Message: fixed imgs not sure
+
+Commit: d22556133092bbd2eef44c7b4b7805737c9f1a35
+Date: Tue Apr 10 22:41:36 2018 +0200
+Author: yasmeenahmed yeasmeenahmed@gmail.com
+Message: fixed img in footer
+
+Commit: 1433eeed901cbd27a248c053eeb889948d726ef6
+Date: Tue Apr 10 20:39:47 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: Added get for home page
+
+Commit: 870a419fa8e1c9092eec00292a3224bf18349306
+Date: Tue Apr 10 20:10:18 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: Integrated back and front ends on meetup and meetups pages
+
+Commit: 9fb10e4d88f400f671c3ccb48ea97ece9f18ba28
+Date: Tue Apr 10 19:32:55 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: Updated merged branch with back-end
+
+Commit: ea9ed626318be0b90fb4c9cac6373d117d16141b
+Date: Tue Apr 10 03:30:08 2018 +0200
+Author: Omar Wagih o.wagih.ow@gmail.com
+Message: Finalizing
+
+Commit: 2365ac509d1c9d486fad0a839ed1077103d9da59
+Date: Tue Apr 10 03:25:59 2018 +0200
+Author: Omar Wagih o.wagih.ow@gmail.com
+Message: Finalizing
+
+Commit: 83141d90dd344d6d2ea25faa95e1947bac80ed5e
+Date: Mon Apr 9 19:33:53 2018 +0200
+Author: yasmeenahmed yeasmeenahmed@gmail.com
+Message: deleted test
+
+Commit: f05ddfc2abcd9da5a9ac0c00474c5f8c8f33c456
+Date: Mon Apr 9 19:30:55 2018 +0200
+Author: yasmeen ahmed yeasmeenahmed@gmail.com
+Message: linked css files in assets
+
+Commit: 426fad2a4c98de8b92010b0ad633b356c80e281d
+Date: Mon Apr 9 18:55:59 2018 +0200
+Author: yasmeen ahmed yeasmeenahmed@gmail.com
+Message: NAN
+
+Commit: 49d851c6e70c8765745dab9341ad02f1cdf43303
+Date: Mon Apr 9 18:51:52 2018 +0200
+Author: yasmeen ahmed yeasmeenahmed@gmail.com
+Message: footer has no use for now
+
+Commit: 6295ef2eefcb96e7e2462fe55c3de71df6cd213d
+Date: Sun Apr 8 23:37:40 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: reset to last commit
+
+Commit: 04b545655ea07932c87bcdaa1cc7b19354db3871
+Date: Sun Apr 8 23:24:07 2018 +0200
+Author: walidashraf walidashraf423@gmail.com
+Message: made the google authentication but not fully working
+
+Commit: ebfb936a7c5b64b08748ea10f228cbbeff73331e
+Date: Sun Apr 8 23:02:15 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: reverted back to connection.end(), open new connection in each controller and close it after last query
+
+Commit: 56dd360db2501dbff63aa37745b7477f1349f85b
+Date: Sun Apr 8 22:27:00 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: Refactored meetup query with Database wrapper class for promises
+
+Commit: 3803be11c6e93bf73a3c972e63cc47cf24c66595
+Date: Wed Apr 4 23:12:49 2018 +0200
+Author: walidashraf walidashraf423@gmail.com
+Message: Merge branch 'back-end' of https://github.com/OsamaNabih/Meetups into back-end
+
+Commit: 55903ac742fd513da03f72574fd72b50d3c04cd9
+Date: Wed Apr 4 22:52:59 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: Handled all single meetup page queries/json
+
+Commit: e5d76ea0f239cfaa7e3792735fb10bc134793ae1
+Date: Wed Apr 4 20:24:32 2018 +0200
+Author: walidashraf walidashraf423@gmail.com
+Message: Merge branch 'back-end' of https://github.com/OsamaNabih/Meetups into back-end
+
+Commit: 45dac2f66f7b37060bda808e82b52117a700a6ec
+Date: Tue Apr 3 20:34:51 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: Updated all the backend files (no views) to match the Merged branch
+
+Commit: 0e12c95c1b40ba4ca3c940754b5fb1b75820ed92
+Date: Sat Mar 31 21:39:59 2018 +0200
+Author: walidashraf walidashraf423@gmail.com
+Message: added sign in in the backend
+
+Commit: 2ff03b74ee99ae85695254efab24f5b6ef87befb
+Date: Sat Mar 31 13:36:35 2018 +0200
+Author: walidashraf walidashraf423@gmail.com
+Message: back-end merged with frontend containing meetups page ,home page,backend meetups and user
+
+Commit: 0a987113a238d48045675e98ce55a82dfdcb54d9
+Date: Sat Mar 31 13:10:22 2018 +0200
+Author: walidashraf walidashraf423@gmail.com
+Message: didnt change anything to the files of 30/3/2018
+
+Commit: ac202cc601ddb09460fdbcd2f9efcf93860e88e2
+Date: Fri Mar 30 19:06:33 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: Added promise to meetups controller
+
+Commit: 01fb58287fa8a514c9677773d76cf29673f8bd9f
+Date: Fri Mar 30 16:01:52 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: Switched DB to camelCase, added insert user query
+
+Commit: 4c15c20144fdc093fb55f24302fa12fa6eafabbb
+Date: Fri Mar 30 13:59:50 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: Made email unique
+
+Commit: c9f48048a3973769068f2fec0d2f03ce2bf4bdae
+Date: Tue Mar 27 22:32:58 2018 +0200
+Author: walidashraf walidashraf423@gmail.com
+Message: Fullstack 27/3/2018 contain the overview of the backend and Event Pages and Registration Page not complete and main page
+
+Commit: 0fad3d0d4cbc180c4db84e227459252849ebcaaf
+Date: Tue Mar 27 13:00:12 2018 +0200
+Author: walidashraf walidashraf423@gmail.com
+Message: Untested Database Script
+
+Commit: a7099b9efa06358f0a016a34236e4e94eb47ad1f
+Date: Mon Mar 26 21:24:49 2018 +0200
+Author: walidashraf walidashraf423@gmail.com
+Message: stashing
+
+Commit: a73e1f441361cf6d4e0ec923bedadfcba33b7969
+Date: Mon Mar 26 21:16:51 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: Removed duplicate insertion queries
+
+Commit: 259c5d60e35d1adfea0d3e3c7df956fab67407e1
+Date: Mon Mar 26 21:15:03 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: Attached speakers and attendees to meetups
+
+Commit: 6e2fc5bc9120e67a6bd20d7916a8cec73c073208
+Date: Mon Mar 26 20:34:32 2018 +0200
+Author: walidashraf walidashraf423@gmail.com
+Message: Resolved special characters in DataBase
+
+Commit: fed9f58ceb10a8adb1d5239aa406047290067441
+Date: Mon Mar 26 18:39:57 2018 +0200
+Author: walidashraf walidashraf423@gmail.com
+Message: Working Insertions
+
+Commit: 762b6bd3300ce3e087dd9660ab453973a9bf21ea
+Date: Mon Mar 26 18:31:31 2018 +0200
+Author: walidashraf walidashraf423@gmail.com
+Message: Added Working Insertions
+
+Commit: 033e46a5e4c70317d0ee229173e276c5dca499fb
+Date: Mon Mar 26 17:32:03 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: Fixed a typo in insertion statements, added some indendation for readability
+
+Commit: 5cc02a88a8c2d2af472418735ec79d0502b04a2a
+Date: Mon Mar 26 17:12:13 2018 +0200
+Author: walidashraf walidashraf423@gmail.com
+Message: Adding some insertions in the database
+
+Commit: 762f9728be5df04e58dea48458919cf20fc9a7ac
+Date: Sat Mar 17 18:43:02 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: Adding the basic folder layout of the project
+
+Commit: 437e64cfe1b207abf1e0982e36fe10dde82ac71a
+Date: Fri Mar 16 17:00:46 2018 +0200
+Author: walidashraf walidashraf423@gmail.com
+Message: Tafrah Database
+
+Commit: c993f5eb670db84249110d000afeb13f9db7b453
+Date: Wed Feb 28 21:45:26 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: Updating ReadMe
+
+Commit: 52f219ecc6312580161f8c265ff367dd0ad9bcf6
+Date: Wed Feb 28 21:42:55 2018 +0200
+Author: Osama Nabih Nabih_The_4th@yahoo.com
+Message: Initial commit

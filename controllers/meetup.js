@@ -400,6 +400,8 @@ module.exports = {
       console.log(error);
       throw error;
     }
-
+  },
+  GetFormReplies: async (req, res)=>{
+    
   }
 }

@@ -103,13 +103,21 @@ router.route('/:id/getFeedbackReplies')
     console.log('hena');
     let result = MeetupController.GetFeedBackQuestionswithreplies(req,res);
     result.then((result)=>{
-     res.render('GetFeedback',{data:result, userType: req.user.userType});
+     res.render('GetFeedback',{data: result, userType: req.user.userType});
     }).catch((error)=>{
       res.status(400).json(error);
     });
   });
 
-
+router.route('/:id/getFormReplies')
+  .get(passportAdmin, (req, res)=>{
+    let result = MeetupController.GetFormReplies(req, res);
+    result.then((result)=>{
+      res.render('GetRegistered', {data: result, userType: req.user.userType});
+    }).catch((error)=>{
+      res.status(400).json(error);
+    });
+  });
 
 router.route('/:id/edit')
   .get(passportAdmin, (req, res) =>{
