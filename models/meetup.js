@@ -100,6 +100,14 @@ module.exports = {
   {
     return "Select userId,userReply,US.email,US.firstName from FormReplies NATURAL JOIN (Select firstName,email,userId from Users) as US where questionId=? and  meetupId=? "
   },
+  GetRegisteredChoiceReplies: function()
+  {
+    return "SELECT questionId,question, optionString,userId,firstName,lastName,email FROM `formoptionreplies` NATURAL JOIN `formoptions` NATURAL JOIN `users` NATURAL JOIN `formquestions` WHERE meetupId = ?"
+  },
+  GetRegisteredParagraphReplies: function()
+  {
+    return "SELECT questionId,question, userReply as optionString ,userId,firstName,lastName,email FROM `formreplies` NATURAL JOIN `users` NATURAL JOIN `formquestions` WHERE meetupId = ?"
+  },
   GetFeedBackQuestionsOnly: function()
   {
     return " Select question,questionId,questionType from FormQuestions where meetupId = ? and feedback= true ";

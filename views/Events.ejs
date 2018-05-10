@@ -12,7 +12,7 @@
       <br>
       <div  class="LocationAndTime">
       <p style = 'color:lightgray'>
-    <span  style = 'color:lightgray' class="fas fa-calendar-alt"></span> <%= data.meetupDate %> &emsp;
+    <span  style = 'color:lightgray' class="fas fa-calendar-alt"></span> <%= data.meetupDate.toISOString().split('T')[0]; %> &emsp;
     <span style = 'color:lightgray' class="fas fa-map-marker"></span> <%= data.district %></p>
     <% var hrf = '/meetup/' + data.meetupId %>
     <a href = <%= hrf %> class="button1">Details</a> &emsp;

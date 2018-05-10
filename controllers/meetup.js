@@ -1,7 +1,7 @@
 const MeetupModel = require('../models/meetup');
 const Database = require('../config/DB');
 const DBconfig = require('../config/keys').DBconfig;
-
+const UserModel = require('../models/user');
 module.exports = {
   GetMeetupAndSpeakers: (req, res) =>{
     return new Promise(function(resolve, reject){
@@ -36,6 +36,48 @@ module.exports = {
       let result = await DB.query(MeetupModel.GetAttendees(), req.params.id);
       await DB.close();
       return result;
+    }
+    catch(error){
+      return error;
+    }
+
+  },
+  GetRegistered: async(req,res)=>{
+ try {
+      const DB = new Database(DBconfig);
+      let result = await DB.query(MeetupModel.GetRegisteredChoiceReplies(), req.params.id);
+      let result2 = await DB.query(MeetupModel.GetRegisteredParagraphReplies(), req.params.id);
+      let bothResults = result.concat(result2);
+      var uniqueIds = [];
+      await bothResults.forEach(function(date)
+      {
+        found = false;
+        uniqueIds.forEach(function(id){
+          if(id.userId == date.userId)
+          found = true;
+        });
+        if(found===false)
+        uniqueIds.push({
+          userId: date.userId,
+          firstName: date.firstName,
+          lastName:date.lastName,
+          email:date.email
+        });
+      });
+     await uniqueIds.forEach(function(data)
+      {
+          var choiceQuestions = [];
+          var paragraphQuestions = [];
+          bothResults.forEach(function(date)
+          {
+            if(data.userId == date.userId)
+              paragraphQuestions.push({question:date.question,questionId:date.questionId,answer:date.optionString})
+          });
+          data.Questions = paragraphQuestions;
+      });
+      await DB.close();
+      
+      return uniqueIds;
     }
     catch(error){
       return error;

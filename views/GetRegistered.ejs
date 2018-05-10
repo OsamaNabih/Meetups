@@ -1,28 +1,31 @@
 <% include partials/head %>
 <title>Tafrah - View Registered</title>
 <div class ="Type1Questions">
-  <% data.forEach(function(date){
-        <h3> <%= date.firstName + ' ' + date.lastName %></h3>
+  <% data.forEach(function(date){ %>
+  <a class="list-group-item disabled list-group-item-action flex-column align-items-start">
+        <h5> <%= date.firstName + ' ' + date.lastName %></h3>
         <small><%= date.email%></small>
-        <% date.Questions.forEach(function(question){
-      <h3> <%= question.question%> </h3>
-<a class="list-group-item disabled list-group-item-action flex-column align-items-start">
+        <% date.Questions.forEach(function(question){ %>
      <div class="d-flex w-100 justify-content-between">
-       <h5 class="mb-1"> <%= question.answer %></h5>
+       <p class="mb-1"> <%= question.question %></p>
      </div>
-   </a>
-    <% }})%>
+     <p class="mb-1"> <%= question.answer %> </p>
 
+    <% })%>
+   </a>
     <% })%>
 
 </div>
 <style>
-.Charts
+.Type1Questions
 {
-    margin-top:10px;
-    margin-bottom:10px;
+    margin-top:20px;
+    margin-bottom:20px;
 }
-
+.h5
+{
+  padding-top:0rem;
+}
 
 </style>
 </body>
