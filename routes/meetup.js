@@ -75,8 +75,17 @@ router.route('/:id/register')
       res.status(400);
     });
   });
-
-//test get feedback question with answers put by the admin
+    //test feedback input
+  router.route('/:id/getRegistered')
+  .get(passportAdmin, (req, res)=>{
+      let data = MeetupController.GetRegistered(req,res);
+      data.then((data)=>{
+          res.render('GetRegistered',{data:data, userType: req.user.userType});
+      });
+      
+  });
+  
+  //test get feedback question with answers put by the admin
 router.route('/:id/feedback')
   .get(passportUser, (req,res)=>{
     let data = MeetupController.GetFeedBackQuestions(req,res);

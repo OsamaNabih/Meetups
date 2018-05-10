@@ -16,5 +16,8 @@ module.exports = {
   },
   GetUserById: function(){
     return "Select * from Users where userId = ?";
+  },
+  GetUserNameAndEmailById: function(){
+    return "Select firstName,lastName,email from Users where userId = ?"
   }
 }
