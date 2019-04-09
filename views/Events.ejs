@@ -1,93 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
-    <!-- Bootstrap core CSS -->
-    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Your custom styles (optional) -->
-    <link href="/assets/css/style.css" rel="stylesheet">
-</head>
-<body>
-
-<nav id = "navBarHead" class="navbar navbar-fixed-top navbar-dark navbar-expand-md">
-
-  <a class="navbar-brand" href="#">
-  <img src="/assets/img/Tafrah.png" alt="Tafrah">
-    Tafrah
-  </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-    <i style='color:black' class="fas fa-bars"></i>
-  </button>
-  <div class="collapse navbar-collapse " id="collapsibleNavbar">
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="#">Home</a>
-      </li>
-      <br>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Events</a>
-      </li>
-        <br>
-      <li class="nav-item">
-        <a class="nav-link" href="#" id = "Profiling"></a>
-      </li>
-        <br>
-    </ul>
-  </div>
-</nav>
+<% include partials/head %>
+<title>Tafrah - Meetups</title>
 <hr>
+<%console.log("user",userType);%>
 <h3 class='MainTitle'> Events </h3>
+ <% meetups.forEach(function(data){ %>
 <div  class="col-xs-10 col-sm-10 col-md-10 mx-auto jumbotron MainTron">
  <div class ='container-fluid SubTron'>
-    <h2 class='Title' >Title</h2>
-    <p class="SubTitle">This is where the Event slogan or some shit would be.</p>
-    <p class = "Text" > This is where the description of the event would be.</p>
+    <h2 class='Title' > <%= data.meetupName %> </h2>
+    <p class="SubTitle"><%= data.slogan %> </p>
       <br>
       <div  class="LocationAndTime">
       <p style = 'color:lightgray'>
-    <span  style = 'color:lightgray' class="fas fa-calendar-alt"></span> March 17, 2017 &emsp;
-    <span style = 'color:lightgray' class="fas fa-map-marker"></span> Cairo</p>
-    <a class="button1">Wuzzap</a>  &emsp;
-    <a class="button1">Wuzzap</a>
+    <span  style = 'color:lightgray' class="fas fa-calendar-alt"></span> <%= data.meetupDate.toISOString().split('T')[0]; %> &emsp;
+    <span style = 'color:lightgray' class="fas fa-map-marker"></span> <%= data.district %></p>
+    <% var hrf = '/meetup/' + data.meetupId %>
+    <a href = <%= hrf %> class="button1">Details</a> &emsp;
+    <a href = "<%= data.ticketLink %>" class="button1">Buy Ticket</a>
     </div>
  </div>
   </div>
 </div>
-<div  class="col-xs-10 col-sm-10 col-md-10 mx-auto jumbotron MainTron">
- <div class ='container-fluid SubTron'>
-    <h2 class='Title' >Event Title</h2>
-    <p class="SubTitle">This is where the Event slogan or some shit would be.</p>
-    <p class = "Text" > This is where the description of the event would be.</p>
-      <br>
-      <div  class="LocationAndTime">
-      <p style = 'color:lightgray'>
-    <span  style = 'color:lightgray' class="fas fa-calendar-alt"></span> March 17, 2017 &emsp;
-    <span style = 'color:lightgray' class="fas fa-map-marker"></span> Cairo</p>
-    <a class="button1">Wuzzap</a>  &emsp;
-    <a class="button1">Wuzzap</a>
-    </div>
- </div>
-  </div>
-</div>
-<div  class="col-xs-10 col-sm-10 col-md-10 mx-auto jumbotron MainTron">
- <div class ='container-fluid SubTron'>
-    <h2 class='Title' >Event Title</h2>
-    <p class="SubTitle">This is where the Event slogan or some shit would be.</p>
-    <p class = "Text" > This is where the description of the event would be.</p>
-      <br>
-      <div  class="LocationAndTime">
-      <p style = 'color:lightgray'>
-    <span  style = 'color:lightgray' class="fas fa-calendar-alt"></span> March 17, 2017 &emsp;
-    <span style = 'color:lightgray' class="fas fa-map-marker"></span> Cairo</p>
-    <a class="button1">Wuzzap</a>  &emsp;
-    <a class="button1">Wuzzap</a>
-    </div>
- </div>
-  </div>
-</div>
+ <% })%>
 
  <!-- SCRIPTS -->
     <!-- JQuery -->
@@ -97,3 +31,6 @@
     <!-- Bootstrap core JavaScript -->
     <script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3nfuwaNpvJldXYFHprFU0QwD0Jwr74Oc&callback=initMap" async defer></script>
+    <script>
+console.log(<%=userType%>);
+</script>

@@ -1,0 +1,221 @@
+.SecondDiv
+{
+  padding-top: 1rem;
+}
+.jumbotron
+{
+ margin-bottom: 0 !important;
+}
+@-moz-document url-prefix() {
+.ListWrapper
+{
+  overflow: hidden;
+}
+.List
+{
+  width:104.5%;
+  height:400px;
+  overflow-y: auto;
+}
+}
+.List
+{
+  height:400px;
+  overflow-y: auto;
+}
+.List {
+-ms-overflow-style: none;
+}
+.List::-webkit-scrollbar {
+display: none;
+}
+.card
+{
+  background: #f6f7f8 !important;
+}
+ #map {
+  height: 200px;
+  width: 100%;
+ }
+ .list-group
+ {
+   height:100px !important;
+ }
+ .OverViewText
+  {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    white-space: pre-wrap;
+  }
+  #navlist
+  {
+    text-align: center;
+    padding-left:2rem;
+  }
+  #navlist li
+{
+font-size: 1.5rem;
+display: inline;
+list-style-type: none;
+text-decoration: none;
+
+}
+#navlist a, #navlist a:hover, #navlist a:active, #navlist a:visited, #navlist a:focus {
+    text-decoration:none;
+    outline: none;
+    color: crimson;
+}
+.active
+{
+    color: #3fa6a4 !important;
+}
+  .MainDiv
+  {
+
+    padding: 1% 2% 1% 2% !important;
+    box-sizing: border-box;
+  }
+.MainTitle
+{
+  font-size: 3rem;
+  font-weight: 200;
+  color:crimson;
+  padding-left: 2rem;
+}
+.Speakers
+{
+  font-size: 2rem;
+  font-weight: 200;
+  color:crimson;
+}
+a.button1{
+display:inline-block;
+padding:0.35em 1.2em;
+border:0.1em solid #FFFFFF;
+margin:0 0.3em 0.3em 0;
+border-radius:0.12em;
+box-sizing: border-box;
+text-decoration:none;
+font-family:'Roboto',sans-serif;
+font-weight:300;
+color:#FFFFFF;
+text-align:center;
+transition: all 0.5s;
+text-shadow: none;
+}
+a.button1:hover{
+color:#000000 !important;
+background-color:#FFFFFF;
+}
+@media all and (max-width:30em){
+ a.button1{
+display:block;
+margin:0.4em auto;
+ }
+}
+    .TopCard
+  {
+    padding-top:2em;
+    word-wrap: break-word;
+    display:block;
+    overflow:auto;
+  }
+  .Title
+  {
+    font-size: 3em;
+font-weight: 400;
+line-height: 1;
+    margin: 1% 0 0 1%;
+  }
+  #navBarHead
+  {
+    margin-bottom: -1rem;
+  }
+  .Text
+  {
+    font-weight: 200;
+    line-height: 1;
+    margin: 1% 0 0 1%;
+  }
+  .SubTitle
+  {
+    font-size: 2em;
+    font-weight: 200;
+    line-height: 1;
+    margin: 1% 0 -0.5% 1%;
+  }
+  .LocationAndTime
+  {
+    font-size: 1em;
+    margin: -1% 0 0 1%;
+  }
+   .SubTron
+{
+  width:100% !important;
+  padding:0 0 0 0 !important;
+  background: rgba(0,0,0,0.7);
+  color: #fff;
+  text-align: center;
+}
+.MainTron
+{
+  background-image: url(../img/egypt.jpg);
+  background-position: 0% 25%;
+  background-size: cover;
+  border-radius: 0px;
+  background-repeat: no-repeat;
+  color: white;
+  text-shadow: black 0.3em 0.3em 0.3em;
+  margin-top: 1rem;
+  margin-bottom: 0;
+  padding: 15rem 0 0 0;
+}
+.nav-item /* The margin right is to make the "spaces" between the words, the text overflow and the whitespace is to make the text not wrap */
+{
+  margin-right: 4%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.navbar /* making the navbar cover the whole page (full width) and unpadded */
+{
+  background: rgb(grey) !important;
+  transition: 0.5s;
+  width:100%;
+  padding: 0%;
+}
+.show /* show and collapsing are classes that get added to the data toggler, if you remove the padding left the text will stick to the left of the page*/
+      /* try removing collapsing first and see how it looks and then try to remove them both, watch div with id collapsibleNavbar in the inspector on google chrome */
+{
+  padding-left: 15px;
+}
+.collapsing
+{
+  padding-left: 15px;
+}
+.nav-link,.navbar-brand
+{
+   color: black !important;
+
+}
+#Profiling  /* this is just an arbitrary number by trial and error */
+{
+  margin-right: 50px !important;
+}
+.navbar-toggler:focus {outline:0;}
+.navbar-fixed-top {height: 50px !important;}
+.navbar-brand img {height: 40px;} /* so the image doesn't overflow the navbar*/
+@media (max-width: 767px) { /* when the screen is small and you're going to make a toggler have the drop down menu colored in transparent white, so the text can be seen */
+  .navbar-collapse
+    {
+        background-color:rgba(255,255,255,0.8);
+        z-index: 1;
+    }
+  .navbar-toggler
+  {
+    margin-right:2%;
+  }
+  .MainTron
+{
+  padding: 15rem 0 0 0;
+}
+}

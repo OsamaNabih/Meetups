@@ -7,24 +7,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
-        <link rel="stylesheet" href="../assets/css/style.css"/>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <!--
-        <script>
-                $(document).ready(function(){
-                    $("button").click(function(){
-                        $.post("ay path",
-                        {
-                          name: "Donald Duck",
-                          city: "Duckburg"
-                        },
-                        function(data,status){
-                            alert("Data: " + data + "\nStatus: " + status);
-                        });
-                    });
-                });
-                </script>
-              -->
+        <link rel="stylesheet" href="../../assets/css/style.css"/>
+     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>  -->
+
     </head>
     <body>
         <!--hero section-->
@@ -42,27 +27,27 @@
                                 </p>
                                 <div class="mt-4">
 
-                                    <form>
+                                    <form action="/users/5/editprofile" method="POST" enctype="multipart/form-data" id="myForm">
                                         <div class="form-group">
-                                            <input type="text" id="firstName" class="form-control" name="first name" value="" placeholder="First Name" required>
-                                         </div>
-                                         <div class="form-group">
-                                                <input type="text" id="lastName" class="form-control" name="last name" value="" placeholder="Last Name" required>
-                                            </div>
+                                            <input type="text" id="firstName" class="form-control" name="firstName" value="" placeholder="First Name" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" id="lastName" class="form-control" name="lastName" value="" placeholder="Last Name" required>
+                                        </div>
                                         <div class="form-group">
                                             <input type="email" id="email" class="form-control" name="email" value="" placeholder="Enter email address" required>
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" id="password" class="form-control" name="password" value="" placeholder="Enter password"  required>
+                                            <input type="password" id="password" class="form-control" name="authField" value="" placeholder="Enter password"  required>
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control" name="confirm password" value="" placeholder="Confirm password" id="confirm_password" required>
+                                            <input type="password" class="form-control" value="" placeholder="Confirm password" id="confirm_password" required>
                                         </div>
                                         <div class="form-group">
                                                 <input type="text" id="position" class="form-control" name="position" id="position" value="" placeholder="position">
-                                            </div>
+                                        </div>
                                         <div class="form-group">
-                                            <input type="date" id="birthDate" class="form-control" id="party" name="party" min="1920-01-01" max="2100-04-01" required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" required>
+                                            <input type="date" id="birthDate" class="form-control" id="party" name="birthDate" min="1920-01-01" max="2100-04-01" required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" required>
                                         </div>
                                         <div class="img-container">
                                             <h1>upload your image
@@ -70,7 +55,7 @@
                                             </h1>
                                             <div class="avatar-upload">
                                                 <div class="avatar-edit">
-                                                    <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
+                                                    <input name="MyImage" type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
                                                     <label for="imageUpload"></label>
                                                 </div>
                                                 <div class="avatar-preview">
@@ -78,23 +63,24 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn btn-primary btn-block">Create Account</button>
+                                        <input type="submit" class="btn btn-primary btn-block" value="create accout">
+
                                     </form>
+
                                     <div class="clearfix"></div>
                                     <p class="content-divider center mt-4"><span>or</span></p>
                                 </div>
 
-                        
                                 <p class="">
-                                        <button class="loginBtn loginBtn--google" style="margin-left: 145px;">
-                                                Login with Google
-                                        </button>
+                                    <script>
+                                        function submitGo(){
+                                        window.location ="oauth/google"       //"http://www.google.com/"
+                                        }
 
-                                   <!-- <a href="#" class="btn btn-twitter"><em class="ion-social-twitter"></em></a> -->
-                                  <!--   <a href="#" class="btn btn-facebook"><em class="ion-social-facebook"></em></a>
-                                   <a href="#" class="btn btn-linkedin"><em class="ion-social-linkedin"></em></a>
-                                    <a href="#" class="btn btn-google"><em class="ion-social-googleplus"></em></a>
-                                    <a href="#" class="btn btn-github"><em class="ion-social-github"></em></a> -->
+                                        </script>
+                                        <button type="button" class="loginBtn loginBtn--google" style="margin-left: 145px;"  onclick="submitGo(); return false;">
+                                        log in with google
+                                        </button>
                                 </p>
 
                                 <p class="text-center">
@@ -114,54 +100,29 @@
             </div>
         </section>
 
-    </body>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
     <script>
-
-
-     /*   function validatePassword()
-        {
-            if(password.value != confirm_password.value)
-            {
-                confirm_password.setCustomValidity("Passwords Don't Match");
-                confirm_password.reportValidity();
-            else if(password.value.trim() == "")
-            {
-                password.setCustomValidity("Passwords must not be empty");
-                password.reportValidity();
-            } else
-            }
-            {
-                password.setCustomValidity("they match!!!");
-            }
+        function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            $('#imagePreview').css('background-image', 'url('+e.target.result +')');
+            $('#imagePreview').hide();
+            $('#imagePreview').fadeIn(650);
         }
-*/
-         function validatePassword()
-        {
-            if(passwordPlace.value == confirm_password.value)
-            {
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+$("#imageUpload").change(function() {
+    readURL(this);
+});
 
-                confirm_password.setCustomValidity("Passwords Match");
-                confirm_password.reportValidity();
-            }
-            else if(password.value.trim() == "")
-            {
-                passwordPlace.setCustomValidity("Passwords must not be empty");
-                passwordPlace.reportValidity();
-            } else
-            {
-                confirm_password.setCustomValidity("Passwords Don't Match");
-                confirm_password.reportValidity();
-
-            }
-        }
-        var passwordPlace = document.getElementById("password");
-        var confirm_password = document.getElementById("confirm_password");
-        passwordPlace.onchange = validatePassword;
-        confirm_password.onkeyup = validatePassword;
-        $(document).ready(function(){
-
-            $("button").click(function(){
+           /* $("button").click(function(){
               var firstName = $("#firstName").val();
               var lastName = $("#lastName").val();
               var email = $("#email").val();
@@ -178,7 +139,7 @@
                     email    :  email,
                     authField : password,
                     position : position,
-                    birthDate : birthDate,
+                    birthDate : birthDate
                 },
                 function(data, status){
                     if (data.error){
@@ -189,21 +150,12 @@
                     }
                 });
             });
-     });
 
-         function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    $('#imagePreview').css('background-image', 'url('+e.target.result +')');
-                    $('#imagePreview').hide();
-                    $('#imagePreview').fadeIn(650);
-                }
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-        $("#imageUpload").change(function() {
-            readURL(this);
-        });
+
+     });
+     */
+
     </script>
+
+</body>
 </html>

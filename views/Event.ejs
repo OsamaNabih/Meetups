@@ -1,53 +1,84 @@
-<!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title><%= data.meetup.meetupName %></title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
     <!-- Bootstrap core CSS -->
+    <link rel="icon" href="../assets/img/Tafrah Logo.ico">
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
     <!-- Your custom styles (optional) -->
-    <link href="/assets/css/style.css" rel="stylesheet">
+    <link href="/assets/css/AddPage.css" rel="stylesheet">
+    <link href="/assets/css/OmarStyle.css" rel="stylesheet">
 </head>
 <body>
 
 <nav id = "navBarHead" class="navbar navbar-fixed-top navbar-dark navbar-expand-md">
 
-  <a class="navbar-brand" href="#">
-    <img src="/assets/img/Tafrah.png" alt="Tafrah">
-    Tafrah
-  </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-    <i style='color:black' class="fas fa-bars"></i>
-  </button>
-  <div class="collapse navbar-collapse " id="collapsibleNavbar">
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="#">Home</a>
-      </li>
-      <br>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Events</a>
-      </li>
-        <br>
-      <li class="nav-item">
-        <a class="nav-link" href="#" id = "Profiling"></a>
-      </li>
-        <br>
-    </ul>
-  </div>
-</nav>
+                <a class="navbar-brand" href="#">
+                  <img src="/assets/img/Tafrah.png" alt="Tafrah">
+                  Tafrah
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                  <i style='color:black' class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse " id="collapsibleNavbar">
+                  <ul class="navbar-nav align-items-end">
+                    <li class="nav-item">
+                      <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <br>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/meetups">Events</a>
+                    </li>
+                    <% if(userType == 1) { %>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/meetup/create">Add Event</a>
+                    </li>
+                    <% } %>
+                    <% if(userType == 1) { %>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/meetup/<%=data.meetup.meetupId%>/edit">Edit Event</a>
+                    </li>
+                    <% } %>
+                    <% if(userType == 1) { %>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/meetup/<%=data.meetup.meetupId%>/validate">Validate users</a>
+                    </li>
+                    <% } %>
+                    <% if(userType == 1) {%>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/meetup/<%=data.meetup.meetupId%>/addFeedback">Add Feedback Form</a>
+                    </li>
+                    <% } %>
+                      <br>
+                      <% if(userType == 1) {%>
+                      <li class="nav-item">
+                        <a class="nav-link" href="/meetup/<%=data.meetup.meetupId%>/getFeedbackReplies">View Feedback</a>
+                      </li>
+                      <% } %>
+                      <br>
+                      <% if(userType == 1) {%>
+                      <li class="nav-item">
+                        <a class="nav-link" href="/meetup/<%=data.meetup.meetupId%>/getFormReplies">View Form Replies</a>
+                      </li>
+                      <% } %>
+                      <br>
+                  </ul>
+                </div>
+              </nav>
 <div  class="jumbotron MainTron">
  <div class =' container-fluid SubTron'>
-    <h2 class='Title' >Event Title</h2>
-    <p class="SubTitle">This is where the Event slogan or some shit would be.</p>
+    <h2 class='Title' ><%= data.meetup.meetupName %></h2>
+    <p class="SubTitle"><%= data.meetup.slogan %></p>
       <br>
       <div  class="LocationAndTime">
       <p style = 'color:lightgray'>
-    <span  style = 'color:lightgray' class="fas fa-calendar-alt"></span> March 17, 2017 &emsp;
-    <span style = 'color:lightgray' class="fas fa-map-marker"></span> Cairo</p>
-    <a class="button1">Buy Ticket</a>
+    <span  style = 'color:lightgray' class="fas fa-calendar-alt"></span> <%= data.meetup.meetupDate.toISOString().split('T')[0] %> &emsp;
+    <span style = 'color:lightgray' class="fas fa-map-marker"></span> <%= data.meetup.district %> &emsp;
+    <span style = 'color:lightgray' class="fas fa-credit-card"></span> <%= data.meetup.price %></p>
+    <a class="button1" href ="<%=data.meetup.ticketLink%>">Buy Ticket</a>
     </div>
  </div>
   </div>
@@ -57,8 +88,14 @@
   <div class="row">
   <div class= "col-xs-12 col-sm-12 col-md-8">
   <h2 class='MainTitle'>Overview</h2>
-  <p class= "OverViewText" >Whether you are reading this as DevOps Engineer or enthusiast about the topic, Didn’t you question yourself at the very beginning when you heard about this term -DevOps- Is it a new Technology? Or just a practice and philosophy? Has it something linked between Software Operations and Software Development only? Didn’t you wonder before about the history of it? How is the global companies and the local ones dealing with it? How Agile methodologies for planning and development do affect on DevOps? Is there a difference when it comes to SysAdmins Vs DevOps?<br><br>This round of #Tafrah_Meetup, we will be tackling a glimpse of the journey of DevOps starting from how was it in the past going through the present state and what do we expect in the future, meeting different experienced people to share with you their insights and hands on experience and also getting to know Tafrah DevOps Community.<br><br>Join 4 Hrs of #Tafrah_Meetup to engage, learn, get to know the community and have answers for all the topics mentioned above.<br><br>- For whom this Meetup:<br>1. Development and Quality Team Leaders.<br>2. Junior/Senior DevOps Engineers.<br>3. Software Engineers.<br>4. IT Department Lead.<br>5. CIOs.<br>6. CTOs<br>7. Everyone who is passionate about building reliable systems.<br>8. Interested in platform automation, delivering continuously and monitoring distributed systems.<br>9. CEOs and Founders of Technology-Based Ventures.<br>10. Interested Students &amp; Fresh Graduates.<br><br>- We will be tackling the following:<br>1. History of DevOps.<br>2. Fundamentals of DevOps.<br>3. Toolchain Stages.<br>4. What to do to pursue a career in DevOps?<br>5. How to apply for a Job in DevOps in Europe?<br>6. Linux Adminstration.<br>7. Career Opportunities inside and outside Egypt.<br><br>- Venue, Date, Time &amp; Duration:<br>302Labs - G2 Room<br>Saturday 31-03-2018<br>(13:00 to 17:00)<br>4 Essential Hours for DevOps Enthusiasts and Practitioners.<br><br>- Meetup Agenda:<br>13:00-13:30 … Keynote, Ice Breaking &amp; Networking Activity<br>13:30-14:30 … Talk #01<br>14:30-14:45 … Coffee Break<br>14:45-15:45 … Talk #02<br>15:45-16:00 … Alasr Prayer Break + Coffee Break<br>16:00-17:00 … Talk #03<br><br>- Who’re the Speakers?<br>We’ll be revealing them veeeeery soon, until then... Guess who? ;)<br><br>- How to attend?<br>You MUST register and pay the investment fees to be eligible to attend, Check this link for knowing how to: <a class="link" href="https://goo.gl/Nak1Eh" title="https://goo.gl/Nak1Eh" target="__blank">https://goo.gl/Nak1Eh</a></p>
-   </div>
+  <pre class= "OverViewText" > <%= data.meetup.description %> </pre>
+  <% if(data.meetup.meetupDate > Date.now()) { %>
+  <a href="/meetup/<%=data.meetup.meetupId%>/register" class="float-right FormButton btn btn-outline-dark">Register</a>
+  <% } else {
+    if(Registered === true) {%>
+  <a href="/meetup/<%=data.meetup.meetupId%>/feedback" class="float-right FormButton btn btn-outline-dark">Give us feedback</a>
+  <% }} %>
+  </div>
   <div class= " SecondDiv col-xs-12 col-sm-12 col-md-4">
     <div class="card">
  <div id="map"></div>
@@ -67,107 +104,41 @@
 <div class = "ListWrapper">
 <div class="List">
 <div class="list-group">
-  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
-    <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">List group item heading</h5>
-      <small>3 days ago</small>
-    </div>
-    <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-    <small>Donec id elit non mi porta.</small>
-  </a>
-  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-    <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">List group item heading</h5>
-      <small class="text-muted">3 days ago</small>
-    </div>
-    <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-    <small class="text-muted">Donec id elit non mi porta.</small>
-  </a>
-  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-    <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">List group item heading</h5>
-      <small class="text-muted">3 days ago</small>
-    </div>
-    <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-    <small class="text-muted">Donec id elit non mi porta.</small>
-  </a>
-  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-    <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">List group item heading</h5>
-      <small class="text-muted">3 days ago</small>
-    </div>
-    <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-    <small class="text-muted">Donec id elit non mi porta.</small>
-  </a>
-  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-    <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">List group item heading</h5>
-      <small class="text-muted">3 days ago</small>
-    </div>
-    <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-    <small class="text-muted">Donec id elit non mi porta.</small>
-  </a>
-  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-    <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">List group item heading</h5>
-      <small class="text-muted">3 days ago</small>
-    </div>
-    <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-    <small class="text-muted">Donec id elit non mi porta.</small>
-  </a>
-  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-    <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">List group item heading</h5>
-      <small class="text-muted">3 days ago</small>
-    </div>
-    <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-    <small class="text-muted">Donec id elit non mi porta.</small>
-  </a>
-  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-    <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">List group item heading</h5>
-      <small class="text-muted">3 days ago</small>
-    </div>
-    <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-    <small class="text-muted">Donec id elit non mi porta.</small>
-  </a>
-  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-    <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">List group item heading</h5>
-      <small class="text-muted">3 days ago</small>
-    </div>
-    <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-    <small class="text-muted">Donec id elit non mi porta.</small>
-  </a>
-  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-    <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">List group item heading</h5>
-      <small class="text-muted">3 days ago</small>
-    </div>
-    <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-    <small class="text-muted">Donec id elit non mi porta.</small>
-  </a>
-  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-    <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">List group item heading</h5>
-      <small class="text-muted">3 days ago</small>
-    </div>
-    <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-    <small class="text-muted">Donec id elit non mi porta.</small>
-  </a>
-  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-    <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">List group item heading</h5>
-      <small class="text-muted">3 days ago</small>
-    </div>
-    <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-    <small class="text-muted">Donec id elit non mi porta.</small>
-  </a>
+<% console.log(data); %>
+  <% data.speakers.forEach(function(data){ %>
+ <a href="../users/<%= data.userId %>" class="list-group-item list-group-item-action flex-column align-items-start">
+   <div class="d-flex w-100 justify-content-between">
+     <h5 class="mb-1"> <%= `${data.firstName} ${data.lastName}` %></h5>
+     <small>Today</small>
+   </div>
+   <p class="mb-1"> <%= data.position %> </p>
+   <small> <%= data.email %> </small>
+ </a>
+  <% })%>
 </div>
 </div>
-  </div>
   </div>
 
+  <h4 class='Speakers'>Attendees</h4>
+  <div class = "ListWrapper">
+  <div class="List">
+  <div class="list-group">
+    <% data.attendees.forEach(function(data){ %>
+   <a href="../users/<%= data.userId %>" class="list-group-item list-group-item-action flex-column align-items-start">
+     <div class="d-flex w-100 justify-content-between">
+       <h5 class="mb-1"> <%= `${data.firstName} ${data.lastName}` %></h5>
+       <small>Today</small>
+     </div>
+     <p class="mb-1"> <%= data.position %> </p>
+     <small> <%= data.email %> </small>
+   </a>
+    <% })%>
+  </div>
+  </div>
+    </div>
+
+
+  </div>
 
 
     <!-- SCRIPTS -->
@@ -181,11 +152,15 @@
 
     <script>
          function initMap() {
-        var uluru = {lat: -25.363, lng: 131.044};
+        var uluru = {lat: <%=data.meetup.latitude%>, lng: <%=data.meetup.longitude%>};
         var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 4,
+          zoom: 12,
           center: uluru
         });
+        var marker = new google.maps.Marker({
+                           position: new google.maps.LatLng(<%=data.meetup.latitude%>,<%=data.meetup.longitude%>),
+                           map: map
+                        });
       }
 
     </script>

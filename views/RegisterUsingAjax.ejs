@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Tafrah - Sign up</title>
+        <link rel="icon" href="../assets/img/Tafrah Logo.ico">
+        <meta name="description" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
+        <link rel="stylesheet" href="../assets/css/style.css"/>
+
+    </head>
+    <body>
+        <!--hero section-->
+        <section class="hero">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-sm-8 mx-auto">
+                        <div class="card border-none">
+                            <div class="card-body">
+                                <div class="mt-2 text-center">
+                                    <h2>Create Your Account</h2>
+                                </div>
+                                <p class="mt-4 text-white lead text-center">
+                                    Sign up to get started with us
+                                </p>
+                                <div class="mt-4">
+                                    <script>
+                                    function redirect() {
+                                        window.location.replace("/");
+                                        console.log('I got redirect');
+                                        return false;
+                                            }
+                                    </script>
+                                    <form action="/users/signup" method="POST" enctype="multipart/form-data" id="myForm" >
+                                        <div class="form-group">
+                                            <input type="text" id="firstName" class="form-control" name="firstName" value="" placeholder="First Name" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" id="lastName" class="form-control" name="lastName" value="" placeholder="Last Name" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="email" id="email" class="form-control" name="email" value="" placeholder="Enter email address" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" id="password" class="form-control" name="authField" value="" placeholder="Enter password"  required>
+                                        </div>
+
+                                        <div class="form-group">
+                                                <input type="text" id="position" class="form-control" name="position" id="position" value="" placeholder="position">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="date" id="birthDate" class="form-control" id="party" name="birthDate" min="1920-01-01" max="2100-04-01" required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" required>
+                                        </div>
+                                        <div class="img-container">
+                                            <h1>upload your image
+                                                <small>with preview</small>
+                                            </h1>
+                                            <div class="avatar-upload">
+                                                <div class="avatar-edit">
+                                                    <input name="MyImage" type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
+                                                    <label for="imageUpload"></label>
+                                                </div>
+                                                <div class="avatar-preview">
+                                                    <div id="imagePreview" style="background-image: url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwoQDQ0ODQ0NDQ4NDg8KDg0NDw8NDw4KFREiGBURFRMYHCgsGBolGxMTITEhJSkrLi4uFyszODMtNygtLisBCgoKBQUFDgUFDisZExkrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrK//AABEIAOEA4QMBIgACEQEDEQH/xAAbAAEBAQADAQEAAAAAAAAAAAAABQQBAgMGB//EADMQAQACAAMDCwMDBQEAAAAAAAABAgMEMQURURIhMjNBcXKBkbHBImFiUqHRFUKy4fAj/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/AP3EAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGXMZ3DpzdK3CPmQahIxM/izpMVj7fzLwnFvOtrT5yC8IEYl40taPOXvh57Gjt5UcLfyCwMmXz1Lc0/Tb76T5tYAAAAAAAAAAAAAAAAAAAAAMe0cxyY5MdK37VB453OTz1pPNpNviGAAAAAAGzJ5yazFbzvrpEz2MYD6CJcsGzcxv8AonWI318PBvAAAAAAAAAAAAAAAAAAAQ81icq9p++6PDCxj23UtPCsyhAAAAAAAAA74V5rato7J3+XauxPb5vn1vJ234dO7cD2AAAAAAAAAAAAAAAAAB5ZqP8Azv4ZQ30Fo3xMcY3IFo3TMcJ3A4AAAAAAAAWch1VPOf3Rl7Bpya1jhER5g7gAAAAAAAAAAAAAAAAAJO0sHdflRpb/ACVnnj4UXrNZ7f2niCEO+LhWraa2194dAAAAAAdsOk2mIrG+ZB75DB5V44V+qe/sWHjlsGKViI11meMvYAAAAAAAAAAAAAAAAAAAAHlmMCt43T5TGsJWYyuJTWN9f1Rp5rQD54WcTKYVuea7p415nhOzadlrR6SCaKUbNp22tPlEPfDyWDX+3fP5c4JeBl736Mc36p0Vctl6Ujm55nW06y9ocgAAAAAAAAAAAAAAAAAAAADPj5vDr2754Qw4u0MSejurHrIKzxtmcKNb19d6Ne9p6Uzbvne6gr2z+D+qZ7qy6/1HC/L0SgFX+o4X5ejtXP4PGY74lIAW65rBnS9fOd3u9YmOx8+5ra0dGZjumYB9AJGFn8WNfqj780+rdgZzDt+M8JBpAAAAAAAAAAAAAAABxa0RG+Z3RCXms9a3NTmrx7Z/hxn8zypmsdGNfvLIAAAAAAAAAAAADVlc7avNbfavrMdyrh3iYiYnfE9qA05LMci26ejOv2niCwOIcgAAAAAAAAAAM+dxeThzMaz9Md8tCfta3Qjvn/vUE4AAAAAAAAAAAAAAAFfZ2Lyqbp1rPJ8uxqTNlT9V441ifSf9qYAAAAAAAAAACbtbWndb4Uk3a2tO63uDAAAAAAAAAAAAAAAADZsvrJ8PzCqlbL6yfD8wqgAAAAAAAAAAJu1tad1vdSTdra07re4MAAAAAAAAAAAAAAAANmy+snw/MKqVsvrJ8PzCqAAAAAAAAAAAm7W1p3W91JN2trTut7gwAAAAAAAAAAAAAAAA2bL6yfD8wqpWy+snw/MKoAAAAAAAAAACbtbWndb3AGAAAAAAAAAAAAAAAAGzZfWT4fmFUAAAAAAAf//Z);">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <input type="submit" class="btn btn-primary btn-block" value="create account">
+
+                                    </form>
+
+                                    <div class="clearfix"></div>
+                                    <p class="content-divider center mt-4"><span>or</span></p>
+                                </div>
+
+                                <p class="">
+                                    <script>
+                                        function submitGo(){
+                                        window.location ="oauth/google";
+                                        }
+
+                                        </script>
+                                        <button type="button" class="loginBtn loginBtn--google" style="margin-left: 145px;"  onclick="submitGo(); return false;">
+                                        Sign up with google
+                                        </button>
+                                </p>
+
+                                <p class="text-center">
+                                    Already have an account? <a href="/users/signin">Login Now</a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="col-sm-12 mt-5 footer">
+                        <p class="text-white small text-center">
+                            &copy;
+                            <a href=""> Site</a>. Designed by <a href="https://twitter.com/">@Tafarah</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script>
+    $('#myForm').bind('ajax:complete',function(){
+      redirect();
+    });
+        function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            $('#imagePreview').css('background-image', 'url('+e.target.result +')');
+            $('#imagePreview').hide();
+            $('#imagePreview').fadeIn(650);
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+$("#imageUpload").change(function() {
+    readURL(this);
+});
+
+
+
+    </script>
+
+</body>
+</html>

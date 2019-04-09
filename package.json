@@ -23,10 +23,25 @@
   },
   "homepage": "https://github.com/OsamaNabih/Meetups#readme",
   "dependencies": {
-    "ejs": "^2.5.7",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.2",
+    "cookie-parser": "^1.4.3",
+    "ejs": "^2.5.9",
     "express": "^4.16.3",
+    "express-promise-router": "^3.0.1",
+    "express-session": "^1.15.6",
+    "joi": "^13.1.2",
+    "joi-date-extensions": "^1.2.0",
+    "jsonwebtoken": "^8.2.0",
+    "morgan": "^1.9.0",
+    "multer": "^1.3.0",
+    "mysql": "^2.15.0",
     "nodemon": "^1.17.2",
     "passport": "^0.4.0",
-    "passport-google-oauth20": "^1.0.0"
+    "passport-facebook-token": "^3.3.0",
+    "passport-google-oauth20": "^1.0.0",
+    "passport-google-plus-token": "^2.1.0",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0"
   }
 }

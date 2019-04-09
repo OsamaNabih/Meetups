@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Tafrah - Sign in</title>
+        <link rel="icon" href="../assets/img/Tafrah Logo.ico">
+        <meta name="description" content="Love Authority." />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
+        <link rel="stylesheet" href="../assets/css/style.css"/>
+    </head>
+    <body>
+        <!--hero section-->
+        <section class="hero">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-sm-8 mx-auto">
+                        <div class="card border-none">
+                            <div class="card-body">
+                                <div class="mt-2">
+                                    <img src="../assets/img/Tafrah.png" alt="Male" class="brand-logo mx-auto d-block img-fluid rounded-circle"/>
+                                </div>
+                                <p class="mt-4 text-white lead text-center">
+                                    Sign in to access your Authority account
+                                </p>
+                                <div class="mt-4">
+                                    <form>
+                                        <div class="form-group">
+                                            <input type="email" class="form-control" id="email" value="" name="email" placeholder="Enter email address" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" class="form-control" id="password" value="" placeholder="Enter password" required>
+                                        </div>
+                                        <button type="button" class="btn btn-primary float-right">Sign in</button>
+                                    </form>
+                                    <div class="clearfix"></div>
+                                    <p class="content-divider center mt-4"><span>or</span></p>
+                                </div>
+                                <p class="">
+                                  <script>
+                                      function submitGo(){
+                                      window.location ="oauth/google";
+                                      }
+                                      </script>
+                                    <button type="button" class="loginBtn loginBtn--google" style="margin-left: 145px;"  onclick="submitGo(); return false;">
+                                            Sign in with google
+                                    </button>
+                                    </p>
+                                <p class="text-center">
+                                    Don't have an account yet? <a href="/users/signup">Sign Up Now</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-sm-12 mt-5 footer">
+                        <p class="text-white small text-center">
+                            &copy; 2017
+                            <a href="https://.com">Tafrah</a>. Designed by <a href="https://.com/">@something</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </body>
+   <script type="text/javascript" src="/assets/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="/assets/js/popper.min.js"></script>
+<script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
+    <script>
+        var email = document.getElementById("email");
+            $("button").click(function(){
+              var email = $("#email").val();
+              var password = $("#password").val();
+                $.post("./signin",
+                {
+
+                    email    :  email,
+                    authField : password
+
+                },
+                function(data, status){
+                  if(data.error){
+                    alert(data.error);
+                  }
+                  else if (data.token){
+                    //document.cookie='access_token='+data.token + ";path=/;;max-age=60*60*24*7";
+                    window.location.href = '/';
+                  }
+                });
+            });
+    </script>
+</html>

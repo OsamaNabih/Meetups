@@ -1,0 +1,58 @@
+.MainTron
+{
+  background-image: url('egypt.jpg');
+  background-position: 0% 25%;
+  background-size: cover;
+  border-radius: 0px;
+  background-repeat: no-repeat;
+  color: white;
+  text-shadow: black 0.3em 0.3em 0.3em;
+}
+.nav-item /* The margin right is to make the "spaces" between the words, the text overflow and the whitespace is to make the text not wrap */
+{
+  margin-right: 7%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-decoration: none;
+}
+.navbar /* making the navbar cover the whole page (full width) and unpadded */
+{
+  background: rgb(grey) !important;
+  transition: 0.5s;
+  width:100%;
+  padding: 0%;
+  text-decoration: none;
+  
+}
+.show /* show and collapsing are classes that get added to the data toggler, if you remove the padding left the text will stick to the left of the page*/
+      /* try removing collapsing first and see how it looks and then try to remove them both, watch div with id collapsibleNavbar in the inspector on google chrome */
+{
+  padding-left: 15px;
+}
+.collapsing
+{
+  padding-left: 15px;
+}
+.nav-link,.navbar-brand
+{
+   color: black !important;
+   text-decoration: none;
+  
+}
+#Profiling  /* this is just an arbitrary number by trial and error */
+{
+  margin-right: 50px !important;
+}
+.navbar-toggler:focus {outline:0;}
+.navbar-fixed-top {height: 50px !important;}
+.navbar-brand img {height: 40px;} /* so the image doesn't overflow the navbar*/
+@media (max-width: 767px) { /* when the screen is small and you're going to make a toggler have the drop down menu colored in transparent white, so the text can be seen */
+  .navbar-collapse
+    {
+        background-color:rgba(255,255,255,0.8);
+    }
+  .navbar-toggler
+  {
+    margin-right:2%;
+  }
+}

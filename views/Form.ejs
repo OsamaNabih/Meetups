@@ -1,0 +1,116 @@
+<% include partials/head %>
+<title>Tafrah - Form</title>
+<link href="/assets/css/Form.css" rel="stylesheet">
+<div class="mainDivForm" id = "<%= data.EventInformation.meetupId%>" >
+   <div class="hey" ></div>
+   <div class ="parentHey">
+   <% if(feedback != undefined) { %>
+   <div id = "feedback" class="hey SpecialHey" style="overflow-y:scroll; background-color:white; ">
+   <% } else { %>
+   <div id = "register" class="hey SpecialHey" style="overflow-y:scroll; background-color:white; ">
+   <% } %>
+   <form onsubmit= "return false;"   id = "Form1" class="FormQuestions">
+   <%
+   counter = 0;
+   console.log(data.Questions)%>
+   <% data.Questions.forEach(function(date){ %>
+        <h3 id='<%=date.questionId%>|<%=date.questionType%>' class="H3Head" > <%=date.question%>   <% if(date.required == true) { %> * <% } %> </h3>
+        <% if(date.questionType == 2) {
+             var answerCounter = 0;
+            date.Answers.forEach(function(answer){
+               %>
+                <div class="custom-control custom-radio">
+                <%  if(date.required == true) { %>
+                     <input type="radio" id="<%=String(counter + '|' + answerCounter).trim()%>" name = "<%=date.question%>" class="custom-control-input" required>
+                     <label class="custom-control-label" for="<%=String(counter + '|' + answerCounter).trim()%>"><%=answer%></label>
+                     <div class="invalid-feedback">Example invalid feedback text</div>
+                   <% } else { %>
+                     <input type="radio" id="<%=String(counter + '|' + answerCounter).trim()%>" name = "<%= date.question%>" class="custom-control-input">
+                     <label class="custom-control-label" for="<%=String(counter + '|' + answerCounter).trim()%>"><%=answer%></label>
+                    <% } %>
+                </div>
+          <%  answerCounter++; })} %>
+          <% if(date.questionType == 3) {
+               var answerCounter = 0;
+            date.Answers.forEach(function(answer){
+                 %>
+               <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" name = "<%= String(counter + '|' + answerCounter).trim()%>" id="<%=String(counter + '|' + answerCounter).trim()%>">
+                                            <label class="custom-control-label" for="<%=String(counter + '|' + answerCounter).trim()%>"><%=answer%></label>
+                </div>
+          <%  answerCounter++;})} %>
+          <% if(date.questionType == 1) {
+          if(date.required == true) { %>
+                <input placeholder ="Answer" required="true" name="<%=counter%>" type="text" class="form-control Questions" aria-label="Text input with checkbox">
+                 <div class="invalid-feedback">Example invalid feedback text</div>
+          <%  } %>
+          <% if(date.required == false) { %>
+                <input placeholder ="Answer"  name="<%=counter%>" type="text" class="form-control Questions" aria-label="Text input with checkbox">
+          <%  } %>
+          <%  } %>
+ <% counter++; })%>
+   <button onclick = "Submitfun()" class="btn submitButton btn-primary">Submit</button>
+   </form>
+   </div>
+   </div>
+   <div class="hey"></div> </div>
+   </body>
+
+   <style>
+   .SpecialHey
+   {
+       -ms-overflow-style: none;
+       white-space: wrap;
+}
+.SpecialHey::-webkit-scrollbar {
+display: none;
+}
+   .submitButton
+   {
+       margin-top: 0.5rem;
+       margin-left:0.5rem;
+   }
+   h3
+   {
+       padding-top:0.5rem;
+       padding-bottom:0.5rem;
+   }
+   .parentHey
+   {
+       max-width:70%;
+       overflow-wrap: break-word;
+   }
+   .FormQuestions
+   {
+       padding: 0.5rem;
+   }
+   .hey
+   {
+       flex:1;
+       height:100%; background-color:#e9ecef;
+   }
+   #navBarHead
+   {
+       border-bottom:1px solid rgba(0,0,0,.1);
+   }
+   .mainDivForm
+   {
+
+       display: flex;
+       flex-direction: row;
+       width: 100%;
+       margin-top:1rem;
+       height:100%;
+       padding:0;
+       margin-right:0;
+       margin-left:0;
+   }
+   </style>
+<script type="text/javascript" src="/assets/js/jquery-3.2.1.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="/assets/js/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3nfuwaNpvJldXYFHprFU0QwD0Jwr74Oc&callback=initMap" async defer></script>
+
+<script type="text/javascript" src= "/assets/js/Form.js" > </script>

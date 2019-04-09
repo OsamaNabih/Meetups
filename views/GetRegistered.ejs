@@ -1,0 +1,38 @@
+<% include partials/head %>
+<title>Tafrah - View Registered</title>
+<div class ="Type1Questions">
+  <% data.forEach(function(date){ %>
+  <a class="list-group-item disabled list-group-item-action flex-column align-items-start">
+        <h5> <%= date.firstName + ' ' + date.lastName %></h3>
+        <small><%= date.email%></small>
+        <% date.Questions.forEach(function(question){ %>
+     <div class="d-flex w-100 justify-content-between">
+       <p class="mb-1"> <%= question.question %></p>
+     </div>
+     <p class="mb-1"> <%= question.answer %> </p>
+
+    <% })%>
+   </a>
+    <% })%>
+
+</div>
+<style>
+.Type1Questions
+{
+    margin-top:20px;
+    margin-bottom:20px;
+}
+.h5
+{
+  padding-top:0rem;
+}
+
+</style>
+</body>
+</html>
+<!-- JQuery -->
+<script type="text/javascript" src="/assets/js/jquery-3.2.1.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="/assets/js/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>

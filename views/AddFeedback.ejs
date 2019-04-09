@@ -1,0 +1,40 @@
+<% include partials/head %>
+<title>Tafrah - Add Feedback</title>
+      <div  style = 'height:30vh;' class="jumbotron MainTron">
+         <p class="AddPageTitle" >Add your feedback form!</p>
+      </div>
+     <div id = "SecondDiv">
+        <div class="container">
+         <div id = "<%= meetupId %>" class = "jumbotron formJumbotron">
+            <div class="row">
+               <div class="col-sm">
+               </div>
+               <div class="col-7">
+                  <center>
+                     <div class= "InputsList">
+                        <button type="button" onclick="AddParagraph()" class="FormButton btn btn-outline-dark">Paragraph question</button>
+                        <button type="button" onclick= "AddSingle()" class="FormButton btn btn-outline-dark">Single choice question</button>
+                        <button type="button" onclick= "AddMultiple()" class="FormButton btn btn-outline-dark">Multiple choice queston</button>
+                        <div id="Controller2">
+                        </div>
+                        <button type="button" onclick="Clear()" class="FormButton btn btn-outline-dark">Clear</button>
+                        <button type="button" onclick="Submit()" class="FormButton btn btn-outline-dark">Submit</button>
+
+                  </center>
+               </div>
+               <div class="col-sm">
+               </div>
+            </div>
+         </div>
+      </div>
+                     </div>
+   </body>
+</html>
+<!-- JQuery -->
+<script type="text/javascript" src="/assets/js/jquery-3.2.1.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="/assets/js/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3nfuwaNpvJldXYFHprFU0QwD0Jwr74Oc&callback=initMap" async defer></script>
+<script type="text/javascript" src="/assets/js/AddFeedback.js"></script>

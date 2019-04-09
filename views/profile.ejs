@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+            <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title><%=user.firstName + ' ' + user.lastName %></title>
+    <link rel="icon" href="../assets/img/Tafrah Logo.ico">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../assets/css/editProfileStyle.css"/>
+    <script src="/assets/JS/jquery-3.2.1.min.js"></script>
+    </head>
+    <body>
+        <!--hero section-->
+        <section class="hero">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-sm-8 mx-auto">
+                        <div class="card border-none">
+                            <div class="card-body">
+                                <div class="mt-2 text-center">
+                                    <h2><%=user.firstName + ' ' + user.lastName + "'s " + 'Profile' %></h2>
+                                </div>
+
+                                <div class="mt-4">
+                                    <form>
+                                        <div class="form-group">
+                                            <label style="font-size: 20px;">First Name:</label> <label> &emsp; <%=user.firstName %></label>
+                                        </div>
+                                        <div class="form-group">
+                                                <label style="font-size: 20px;">Last Name:</label> <label> &emsp;<%=user.lastName %></label>
+                                        </div>
+
+                                        <div class="form-group">
+                                                <label style="font-size: 20px;"> Position:</label> <label> &emsp;<%=user.position %></label>
+                                        </div>
+                                        <div class="form-group">
+                                                <label style="font-size: 20px;"> Date of Birth:</label> <label> &emsp;<%=user.birthDate.toISOString().split('T')[0] %></label>
+                                        </div>
+                                        <div class="form-group">
+                                            <label style="font-size: 20px;"> Email:</label> <label> &emsp;<%=user.email %></label>
+                                         </div>
+                                        <div class="form-group">
+                                            <img class="rounded-circle mx-auto d-block" src=<%= '../' + user.imagePath%>  width="200px" height="200px">
+                                        </div>
+                                        <!--end of input fields-->
+                                        <!--
+                                        <div class="img-container">
+                                            <div class="avatar-upload">
+                                                <div class="avatar-edit">
+                                                    <img>
+                                                 <img name="MyImage" src="img/egypt.jpg" class="rounded" siz/>
+                                                </div>
+                                                <div class="avatar-preview">
+                                                    <div id="imagePreview" style="background-image: url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwoQDQ0ODQ0NDQ4NDg8KDg0NDw8NDw4KFREiGBURFRMYHCgsGBolGxMTITEhJSkrLi4uFyszODMtNygtLisBCgoKBQUFDgUFDisZExkrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrK//AABEIAOEA4QMBIgACEQEDEQH/xAAbAAEBAQADAQEAAAAAAAAAAAAABQQBAgMGB//EADMQAQACAAMDCwMDBQEAAAAAAAABAgMEMQURURIhMjNBcXKBkbHBImFiUqHRFUKy4fAj/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/AP3EAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGXMZ3DpzdK3CPmQahIxM/izpMVj7fzLwnFvOtrT5yC8IEYl40taPOXvh57Gjt5UcLfyCwMmXz1Lc0/Tb76T5tYAAAAAAAAAAAAAAAAAAAAAMe0cxyY5MdK37VB453OTz1pPNpNviGAAAAAAGzJ5yazFbzvrpEz2MYD6CJcsGzcxv8AonWI318PBvAAAAAAAAAAAAAAAAAAAQ81icq9p++6PDCxj23UtPCsyhAAAAAAAAA74V5rato7J3+XauxPb5vn1vJ234dO7cD2AAAAAAAAAAAAAAAAAB5ZqP8Azv4ZQ30Fo3xMcY3IFo3TMcJ3A4AAAAAAAAWch1VPOf3Rl7Bpya1jhER5g7gAAAAAAAAAAAAAAAAAJO0sHdflRpb/ACVnnj4UXrNZ7f2niCEO+LhWraa2194dAAAAAAdsOk2mIrG+ZB75DB5V44V+qe/sWHjlsGKViI11meMvYAAAAAAAAAAAAAAAAAAAAHlmMCt43T5TGsJWYyuJTWN9f1Rp5rQD54WcTKYVuea7p415nhOzadlrR6SCaKUbNp22tPlEPfDyWDX+3fP5c4JeBl736Mc36p0Vctl6Ujm55nW06y9ocgAAAAAAAAAAAAAAAAAAAADPj5vDr2754Qw4u0MSejurHrIKzxtmcKNb19d6Ne9p6Uzbvne6gr2z+D+qZ7qy6/1HC/L0SgFX+o4X5ejtXP4PGY74lIAW65rBnS9fOd3u9YmOx8+5ra0dGZjumYB9AJGFn8WNfqj780+rdgZzDt+M8JBpAAAAAAAAAAAAAAABxa0RG+Z3RCXms9a3NTmrx7Z/hxn8zypmsdGNfvLIAAAAAAAAAAAADVlc7avNbfavrMdyrh3iYiYnfE9qA05LMci26ejOv2niCwOIcgAAAAAAAAAAM+dxeThzMaz9Md8tCfta3Qjvn/vUE4AAAAAAAAAAAAAAAFfZ2Lyqbp1rPJ8uxqTNlT9V441ifSf9qYAAAAAAAAAACbtbWndb4Uk3a2tO63uDAAAAAAAAAAAAAAAADZsvrJ8PzCqlbL6yfD8wqgAAAAAAAAAAJu1tad1vdSTdra07re4MAAAAAAAAAAAAAAAANmy+snw/MKqVsvrJ8PzCqAAAAAAAAAAAm7W1p3W91JN2trTut7gwAAAAAAAAAAAAAAAA2bL6yfD8wqpWy+snw/MKoAAAAAAAAAACbtbWndb3AGAAAAAAAAAAAAAAAAGzZfWT4fmFUAAAAAAAf//Z);">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+
+                    </div>
+                    <div class="col-sm-12 mt-5 footer">
+                        <p class="text-white small text-center">
+                            &copy;
+                            <a href=""> Site</a>. Designed by <a href="https://twitter.com/">@Tafarah</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+
+
+</html>
