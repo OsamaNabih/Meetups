@@ -76,15 +76,15 @@ router.route('/:id/register')
     });
   });
     //test feedback input
-  router.route('/:id/getRegistered')
+  router.route('/:id/getFormReplies')
   .get(passportAdmin, (req, res)=>{
       let data = MeetupController.GetRegistered(req,res);
       data.then((data)=>{
           res.render('GetRegistered',{data:data, userType: req.user.userType});
       });
-      
+
   });
-  
+
   //test get feedback question with answers put by the admin
 router.route('/:id/feedback')
   .get(passportUser, (req,res)=>{
@@ -118,15 +118,7 @@ router.route('/:id/getFeedbackReplies')
     });
   });
 
-router.route('/:id/getFormReplies')
-  .get(passportAdmin, (req, res)=>{
-    let result = MeetupController.GetFormReplies(req, res);
-    result.then((result)=>{
-      res.render('GetRegistered', {data: result, userType: req.user.userType});
-    }).catch((error)=>{
-      res.status(400).json(error);
-    });
-  });
+
 
 router.route('/:id/edit')
   .get(passportAdmin, (req, res) =>{

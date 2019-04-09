@@ -76,7 +76,7 @@ module.exports = {
           data.Questions = paragraphQuestions;
       });
       await DB.close();
-      
+
       return uniqueIds;
     }
     catch(error){
@@ -442,8 +442,5 @@ module.exports = {
       console.log(error);
       throw error;
     }
-  },
-  GetFormReplies: async (req, res)=>{
-    
   }
 }
