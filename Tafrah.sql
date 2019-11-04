@@ -126,43 +126,7 @@ values ("OsamaNabih@gmail.com","Osama","Nabih",4444,1,3,STR_TO_DATE('09-04-2018 
 Insert Into Users(email,firstName,lastName,authField,authType,userType,birthDate,position, imagePath)
 values ("YasmeenAhmed@gmail.com","Yasmeen","Ahmed",5555,1,1,STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Professional Procrastinator", "Images/default-avatar.png");
 
-<<<<<<< HEAD
-/*-------------------------------------------------------------------------------------------------------------------
---Inserting some users--*/
-Insert Into Users(Email,FirstName,LastName,Password,UserType,BirthDate,Position)
-values ("walidashraf423@gmail.com","waleed","ashraf",123,1,STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Professional Procrastinator");
-||||||| merged common ancestors
-/*-------------------------------------------------------------------------------------------------------------------
---Inserting some users--*/
-Insert Into Users(Email,FirstName,LastName,Password,UserType,BirthDate,Position) 
-values ("walidashraf423@gmail.com","waleed","ashraf",123,1,STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Professional Procrastinator");
-=======
->>>>>>> merged
 
-<<<<<<< HEAD
-Insert Into Users(Email,FirstName,LastName,Password,UserType,BirthDate,Position)
-values ("OmarWagih@gmail.com","Omar","Wagih",11111,2,STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Professional Procrastinator");
-
-Insert Into Users(Email,FirstName,LastName,Password,UserType,BirthDate,Position)
-values ("OsamaNabih@gmail.com","Osama","Nabih",4444,2,STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Professional Procrastinator");
-
-Insert Into Users(Email,FirstName,LastName,Password,UserType,BirthDate,Position)
-values ("YasmeenAhmed@gmail.com","Yasmeen","Ahmed",5555,1,STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Professional Procrastinator");
-
-
-||||||| merged common ancestors
-Insert Into Users(Email,FirstName,LastName,Password,UserType,BirthDate,Position) 
-values ("OmarWagih@gmail.com","Omar","Wagih",11111,2,STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Professional Procrastinator");
- 
-Insert Into Users(Email,FirstName,LastName,Password,UserType,BirthDate,Position)
-values ("OsamaNabih@gmail.com","Osama","Nabih",4444,2,STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Professional Procrastinator");
- 
-Insert Into Users(Email,FirstName,LastName,Password,UserType,BirthDate,Position)
-values ("YasmeenAhmed@gmail.com","Yasmeen","Ahmed",5555,1,STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Professional Procrastinator"); 
- 
- 
-=======
->>>>>>> merged
 
 Insert Into Users
 (email,firstName,lastName,authField,authType,userType,birthDate,position, imagePath)
@@ -198,57 +162,6 @@ Values("admin@gmail.com", "Test", "Admin", "$2a$10$qECNSpwdIe.kacmtEakDuuuqcXPC2
 
 /*--------------------------------------------------------------------------------------------------------------------
 Inserting some Meetups--*/
-<<<<<<< HEAD
-Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,MeetupDate,Slogan,District)
-values ("helloworld1",50000,"how to procrastinate",0,"my house ",STR_TO_DATE('09-04-2018 23:30:50','%m-%d-%Y %H:%i:%s'),"Procrastinate FTW","Dokki");
-
-Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,MeetupDate,Slogan,District)
-values ("helloworld2",4165000,"how to procrastinate",33,"my house ",STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Procrastinate FTW","Dokki");
-
-Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,MeetupDate,Slogan,District)
-values ("helloworld3",50000,"how to procrastinate",99,"my house ",STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Procrastinate FTW","Dokki");
-
-Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,MeetupDate,Slogan,District)
-values ("helloworld4",50000,"how to procrastinate",40,"my house ",STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Procrastinate FTW","Dokki");
-
-Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,MeetupDate,Slogan,District)
-values ("helloworld5",50000,"how to procrastinate",80,"my house ",STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Procrastinate FTW","Dokki");
-
-Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,MeetupDate,Slogan,District)
-values ("helloworld6",50000,"how to procrastinate",650,"my house ",STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Procrastinate FTW","Dokki");
-
-Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,MeetupDate,Slogan,District)
-values ("helloworld7",50000,"how to procrastinate",7440,"my house ",19830905202020,"Procrastinate FTW","Dokki");
-
-
-Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,MeetupDate,Slogan,District)
-value("tafrah meetup #05: artificial intelligence potential",60,"The potential behind Artificial Intelligence is increasing every day with disrupting industries. Didn’t you wonder how can that solve challenges human race face till now such as healthcare ones! What are the actual insights and case studies regardless the hype of facebook posts! How can we connect all the dots from data science to machine learning to learn and develop such helpful solutions?
-||||||| merged common ancestors
-Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,MeetupDate,Slogan,District)
-values ("helloworld1",50000,"how to procrastinate",0,"my house ",STR_TO_DATE('09-04-2018 23:30:50','%m-%d-%Y %H:%i:%s'),"Procrastinate FTW","Dokki");
- 
-Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,MeetupDate,Slogan,District) 
-values ("helloworld2",4165000,"how to procrastinate",33,"my house ",STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Procrastinate FTW","Dokki");
-
-Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,MeetupDate,Slogan,District)
-values ("helloworld3",50000,"how to procrastinate",99,"my house ",STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Procrastinate FTW","Dokki");
- 
-Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,MeetupDate,Slogan,District) 
-values ("helloworld4",50000,"how to procrastinate",40,"my house ",STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Procrastinate FTW","Dokki");
-
-Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,MeetupDate,Slogan,District)
-values ("helloworld5",50000,"how to procrastinate",80,"my house ",STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Procrastinate FTW","Dokki");
- 
-Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,MeetupDate,Slogan,District)
-values ("helloworld6",50000,"how to procrastinate",650,"my house ",STR_TO_DATE('09-04-2018 00:00:00','%m-%d-%Y %H:%i:%s'),"Procrastinate FTW","Dokki");
- 
-Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,MeetupDate,Slogan,District) 
-values ("helloworld7",50000,"how to procrastinate",7440,"my house ",19830905202020,"Procrastinate FTW","Dokki");
-
-
-Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,MeetupDate,Slogan,District) 
-value("tafrah meetup #05: artificial intelligence potential",60,"The potential behind Artificial Intelligence is increasing every day with disrupting industries. Didn’t you wonder how can that solve challenges human race face till now such as healthcare ones! What are the actual insights and case studies regardless the hype of facebook posts! How can we connect all the dots from data science to machine learning to learn and develop such helpful solutions?
-=======
 
 Insert Into Meetups(meetupName,capacity,description,price,venue,meetupDate,slogan,district, ticketLink)
 values ("helloworld1",50000,"how to procrastinate",0,"my house ",STR_TO_DATE('01-10-2018','%m-%d-%Y'),"Procrastinate FTW","Dokki", "https://paymestore.co/085617");
@@ -274,7 +187,6 @@ values ("helloworld7",50000,"how to procrastinate",7440,"my house ",20170205,"Pr
 
 Insert Into Meetups(meetupName,capacity,description,price,venue,meetupDate,slogan,district, ticketLink)
 value("Tafrah meetup #05: artificial intelligence potential",60,"The potential behind Artificial Intelligence is increasing every day with disrupting industries. Didn’t you wonder how can that solve challenges human race face till now such as healthcare ones! What are the actual insights and case studies regardless the hype of facebook posts! How can we connect all the dots from data science to machine learning to learn and develop such helpful solutions?
->>>>>>> merged
 
 This round of #Tafrah_Meetup, we will be tackling the journey of Artificial Intelligence starting from how was it in the past going through the present state and what do we expect in the future, with focus on healthcare case studies, meeting different experienced people to share with you their insights and hands on experience and also getting to know a glimpse of Tafrah Artificial Intelligence community.
 
@@ -363,16 +275,8 @@ We started with conducting frequent rich meetups for techies (juniors/seniors) t
 Tafrah - Empowering Techies",120,"AUC Main Campus",20180317,"Artificial Intelligence Potential","Tahrir", "https://paymestore.co/085617");
 
 
-<<<<<<< HEAD
-Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,MeetupDate,Slogan,District)
-values ("Tafrah Meetup #06: DevOps 101",60,"Whether you are reading this as DevOps Engineer or enthusiast about the topic, Didn’t you question yourself at the very beginning when you heard about this term -DevOps- Is it a new Technology? Or just a practice and philosophy? Has it something linked between Software Operations and Software Development only? Didn’t you wonder before about the history of it? How is the global companies and the local ones dealing with it? How Agile methodologies for planning and development do affect on DevOps? Is there a difference when it comes to SysAdmins Vs DevOps?
-||||||| merged common ancestors
-Insert Into Meetups(MeetupName,Capacity,Description,Price,venue,MeetupDate,Slogan,District) 
-values ("Tafrah Meetup #06: DevOps 101",60,"Whether you are reading this as DevOps Engineer or enthusiast about the topic, Didn’t you question yourself at the very beginning when you heard about this term -DevOps- Is it a new Technology? Or just a practice and philosophy? Has it something linked between Software Operations and Software Development only? Didn’t you wonder before about the history of it? How is the global companies and the local ones dealing with it? How Agile methodologies for planning and development do affect on DevOps? Is there a difference when it comes to SysAdmins Vs DevOps? 
-=======
 Insert Into Meetups(meetupName,capacity,description,price,venue,meetupDate,slogan,district, ticketLink)
 values ("Tafrah Meetup #06: DevOps 101",60,"Whether you are reading this as DevOps Engineer or enthusiast about the topic, Didn’t you question yourself at the very beginning when you heard about this term -DevOps- Is it a new Technology? Or just a practice and philosophy? Has it something linked between Software Operations and Software Development only? Didn’t you wonder before about the history of it? How is the global companies and the local ones dealing with it? How Agile methodologies for planning and development do affect on DevOps? Is there a difference when it comes to SysAdmins Vs DevOps?
->>>>>>> merged
 
 This round of #Tafrah_Meetup, we will be tackling a glimpse of the journey of DevOps starting from how was it in the past going through the present state and what do we expect in the future, meeting different experienced people to share with you their insights and hands on experience and also getting to know Tafrah DevOps Community.
 
