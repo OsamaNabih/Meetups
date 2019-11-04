@@ -8,6 +8,7 @@ module.exports = {
   GetCountOfALLMeetups: function(){
     return `Select Count(meetupId) meetupCount from Meetups`;
   },
+  // Bassel starts
   GetSpeakersId: function(){
     return "SELECT * FROM spoke_in WHERE meetupId = ?";
   },
@@ -65,7 +66,8 @@ module.exports = {
             where FQ.meetupId = ?
             ORDER BY FQ.questionId`;
   },
-  */ /* GetFeedBackQuestions: function(){
+  */ 
+ /* GetFeedBackQuestions: function(){
       return `SELECT question, required, FQ.meetupId , FQ.questionId, MAX, optionString, FQ.questionType
               FROM FormQuestions as FQ LEFT JOIN
   	             (SELECT * FROM FormOptions NATURAL JOIN
@@ -89,6 +91,7 @@ module.exports = {
                where feedback = true) as questions
                Where  meetupId= ? and userId = ? `;
     },
+  //Bassel Ends, Osama starts
   CheckPreviousFeedbackOptionsSubmission: function(){
     return `SELECT Distinct userId,meetupId From FormOptionReplies as FR Natural JOIN
             (Select *
@@ -137,6 +140,7 @@ module.exports = {
   VerifyAttendees: function(){
     return `UPDATE Attended SET verified = !verified WHERE meetupId = ? AND userId IN (?)`;
   },
+  // Osama Ends, Wagih Begins
   CheckPreviousOptionsSubmission: function(){
     return "SELECT DISTINCT userId FROM FormOptionReplies WHERE meetupId = ? AND userId = ?";
   },
