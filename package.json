@@ -4,7 +4,9 @@
   "description": "Meetups project",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "NODE_ENV=test nyc mocha --timeout=5000 tests/",
+    "report": "NODE_ENV=test nyc --reporter=html mocha --timeout=5000 tests/",
+    "text-report": "NODE_ENV=test nyc --reporter=text-summary mocha --timeout=5000 tests/"
   },
   "repository": {
     "type": "git",
@@ -33,10 +35,11 @@
     "joi": "^13.1.2",
     "joi-date-extensions": "^1.2.0",
     "jsonwebtoken": "^8.2.0",
-    "morgan": "^1.9.0",
+    "morgan": "^1.9.1",
     "multer": "^1.3.0",
     "mysql": "^2.15.0",
-    "nodemon": "^1.17.2",
+    "nodemon": "^1.19.4",
+    "nyc": "^14.1.1",
     "passport": "^0.4.0",
     "passport-facebook-token": "^3.3.0",
     "passport-google-oauth20": "^1.0.0",
