@@ -5,6 +5,10 @@ const chai = require('chai');
 const faker = require('faker');
 const { expect } = chai;
 
+
+const sql = require('./testingDatabaseSql');
+
+
 const UserModel = require('../models/user');
 const MeetupModel = require('../models/meetup');
 
@@ -16,37 +20,10 @@ const server = require('../app');
 
 let token;
 
-console.log("here")
-
-function createABunchOfFakes()
-{
-    var users = []
-    for(var i = 0;i<5;i++){
-        users.push({
-            email: faker.internet.email(),
-            firstName: faker.name.findName().split(" ")[0],
-            lastName: faker.name.findName().split(" ")[0],
-            authField: faker.internet.password(),
-            authType: 1,
-            userType: 3,
-            birthDate: 19900413,
-            position: faker.name.jobTitle(),
-            imagePath: "Images/default-avatar.png"
-        });
-    }
-    return users
-}
-
+console.log(sql.sql)
 describe('Testing Models', () => {
-  const users = createABunchOfFakes()
-
   before(async () => {
-      console.log("DB")
-    for(var i = 0;i < 5;i++)
-    {
-        DB.query(UserModel.InsertUser(), users[i])
-    }
-
+        DB.query(sql.sql)
   });
 
   it('should return true', async () => {
@@ -55,14 +32,17 @@ describe('Testing Models', () => {
 
   // after all test have run we drop our test database
   after('droping test db', async () => {
-    
-    DB.query("DELETE FROM Users");
-    DB.query("DELETE FROM Meetups");
-    DB.query("DELETE FROM Spoke_In");
-    DB.query("DELETE FROM Attended");
-    DB.query("DELETE FROM Images");
+    console.log("Whatsup")
+    DB.query("DELETE FROM users");
+    DB.query("DELETE FROM meetups");
+    DB.query("DELETE FROM spoke_In");
+    DB.query("DELETE FROM attended");
+    DB.query("DELETE FROM images");
+    DB.query("DELETE FROM formquestions")
+    DB.query("DELETE FROM formoptions")
+    DB.query("DELETE FROM formreplies")
+    DB.query("DELETE FROM formoptionreplies")
     DB.close()
-
     process.exit();
   })
 });
