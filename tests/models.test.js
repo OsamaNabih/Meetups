@@ -20,29 +20,29 @@ const server = require('../app');
 
 let token;
 
-console.log(sql.sql)
 describe('Testing Models', () => {
   before(async () => {
-        DB.query(sql.sql)
+        await DB.query(sql.sql)
   });
 
-  it('should return true', async () => {
-    return true
+  it('should check if previous option replies are returned successfully', async function(){
+    let options = await DB.query(MeetupModel.CheckPreviousOptionsSubmission(),[1,1])
+    expect(options[0].userId).to.equal(1);
   });
 
   // after all test have run we drop our test database
   after('droping test db', async () => {
-    console.log("Whatsup")
-    DB.query("DELETE FROM users");
-    DB.query("DELETE FROM meetups");
-    DB.query("DELETE FROM spoke_In");
-    DB.query("DELETE FROM attended");
-    DB.query("DELETE FROM images");
-    DB.query("DELETE FROM formquestions")
-    DB.query("DELETE FROM formoptions")
-    DB.query("DELETE FROM formreplies")
-    DB.query("DELETE FROM formoptionreplies")
+    await DB.query("DELETE FROM `users`");
+    await DB.query("DELETE FROM `meetups`");
+    await DB.query("DELETE FROM `spoke_In`");
+    await DB.query("DELETE FROM `attended`");
+    await DB.query("DELETE FROM `images`");
+    await DB.query("DELETE FROM `formquestions`")
+    await DB.query("DELETE FROM `formoptions`")
+    await DB.query("DELETE FROM `formreplies`")
+    await DB.query("DELETE FROM `formoptionreplies`")
+    
     DB.close()
     process.exit();
-  })
+  });
 });
