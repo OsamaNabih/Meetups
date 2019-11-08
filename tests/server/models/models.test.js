@@ -123,7 +123,7 @@ describe('Testing Models', () => {
     expect(result[0].optionId).to.be.equal(1);
   });
 
-  /*
+  
   it("Should return question IDs of feedback questions", async function(){
     let result = await DB.query(MeetupModel.GetNumberOfMultipleFeedbackQuestions());
     result.sort(function(a, b) {return a.questionId - b.questionId});
@@ -131,10 +131,17 @@ describe('Testing Models', () => {
   });
 
   
-  it("Should return number of feedback questions", async function(){
+  it("Should return number of feedback questions with options, expecting 3", async function(){
     let result = await DB.query(MeetupModel.GetNumberOfMultipleFeedbackQuestions(), [1]);
+    expect(result[0]).to.be.equal(3);
   });
-  */
+
+  it("Should return option IDs of feedback replies, expecting 1 value of 1", async function(){
+    let result = await DB.query(MeetupModel.GetFeedBackOption(), [1, 3]);
+    expect(result[0]).to.be.equal(1);
+    expect(result.length).to.be.equal(1);
+  });
+  
 
   it("Should return max question ID for a meetup, expecting 5", async function(){
     let result = await DB.query(MeetupModel.GetMaxIdOfQuestions(), [1]);
