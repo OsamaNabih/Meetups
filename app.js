@@ -9,9 +9,11 @@ const bodyParser = require('body-parser');
 const mainPageController = require('./controllers/MainPage');
 const passportUser = require('./passport').passportUser;
 
+
 require('./config/DB');
 
 const app = express();
+const env = app.get('env')
 
 // Setting view engine
 app.set('views', __dirname + '/views');
@@ -40,9 +42,12 @@ app.get('/', passportUser, (req, res) =>{
   });
 
 });
-app.listen(3000,()=>
-{
-  console.log("Listening on port 3000");
-});
+if (env === 'production') {
+  app.listen(3000,()=>
+  {
+    console.log("Listening on port 3000");
+  });
+}
 
-module.export = app
+
+module.exports = app;

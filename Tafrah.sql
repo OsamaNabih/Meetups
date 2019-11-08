@@ -272,7 +272,7 @@ For any inquiries, please call us on +201111733122
 Tafrah is a platform that empowers MENA region techies to disrupt tech industries worldwide. We’re capable of doing that through our products.
 We started with conducting frequent rich meetups for techies (juniors/seniors) through #Tafrah_Meetup to tackle the latest updates and best practices, networking with like-minded people and enriching the mindsets with technical/non-technical experiences.
 
-Tafrah - Empowering Techies",120,"AUC Main Campus",20180317,"Artificial Intelligence Potential","Tahrir", "https://paymestore.co/085617");
+Tafrah - Empowering Techies",120,"AUC Main Campus",20200317,"Artificial Intelligence Potential","Tahrir", "https://paymestore.co/085617");
 
 
 Insert Into Meetups(meetupName,capacity,description,price,venue,meetupDate,slogan,district, ticketLink)

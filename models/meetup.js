@@ -101,15 +101,21 @@ module.exports = {
   },
   GetFeedBackReplies: function()
   {
-    return "Select userId,userReply,US.email,US.firstName from FormReplies NATURAL JOIN (Select firstName,email,userId from Users) as US where questionId=? and  meetupId=? "
+    return `Select userId,userReply,US.email,US.firstName from FormReplies NATURAL JOIN (Select firstName,email,userId from Users) as US 
+    NATURAL JOIN (SELECT questionId FROM FormQuestions WHERE feedback = true) as FQ
+    where questionId=? and meetupId=?`;
   },
   GetRegisteredChoiceReplies: function()
   {
-    return "SELECT questionId,question, optionString,userId,firstName,lastName,email FROM `formoptionreplies` NATURAL JOIN `formoptions` NATURAL JOIN `users` NATURAL JOIN `formquestions` WHERE meetupId = ?"
+    return `SELECT questionId,question, optionString,userId,firstName,lastName,email 
+            FROM FormOptionReplies NATURAL JOIN FormOptions NATURAL JOIN users NATURAL JOIN FormQuestions 
+            WHERE meetupId = ?`;
   },
   GetRegisteredParagraphReplies: function()
   {
-    return "SELECT questionId,question, userReply as optionString ,userId,firstName,lastName,email FROM `formreplies` NATURAL JOIN `users` NATURAL JOIN `formquestions` WHERE meetupId = ?"
+    return `SELECT questionId,question, userReply as optionString,userId,firstName,lastName,email 
+            FROM FormReplies NATURAL JOIN Users NATURAL JOIN FormQuestions 
+            WHERE meetupId = ?`;
   },
   GetFeedBackQuestionsOnly: function()
   {
@@ -121,7 +127,7 @@ module.exports = {
             where  meetupId = ? and questionId = ? and optionId In
            ( select optionId
              from FormOptionReplies
-             where meetupId = ?   and questionId = ? ) `;
+             where meetupId = ? and questionId = ?) `;
   },
   GetNumberOfMultipleFeedbackQuestions: function()
   {

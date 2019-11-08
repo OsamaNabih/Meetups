@@ -40,10 +40,36 @@ module.exports = {
     (3,2,1);
     Insert Into FormQuestions(meetupId,questionId,question,questionType,required,feedback) 
     values
-    (1,1,"What are your hopes and dreams?",1,0,0);
+    (1,1,"What are your hopes and dreams?",0,1,0);
     Insert Into FormQuestions(meetupId,questionId,question,questionType,required,feedback) 
     values
-    (1,2,"What are your hopes and dreams?",1,2,0);
+    (1,2,"What are your hopes and dreams?",2,1,0);
+
+    Insert Into FormQuestions(meetupId,questionId,question,questionType,required,feedback) 
+    values
+    (1,3,"What did you think of the meetup?",1,1,1);
+    Insert Into FormQuestions(meetupId,questionId,question,questionType,required,feedback) 
+    values
+    (1,4,"Do you have any comments or suggestions?",0,0,1);
+    Insert Into FormQuestions(meetupId,questionId,question,questionType,required,feedback) 
+    values
+    (1,5,"Feedback question without answers?",0,0,1);
+    Insert Into FormOptions(meetupId,questionId,optionId,optionString)
+    values
+    (1,3,1,"Excellent");
+    Insert Into FormOptions(meetupId,questionId,optionId,optionString)
+    values
+    (1,3,2,"Very good");
+    Insert Into FormOptions(meetupId,questionId,optionId,optionString)
+    values
+    (1,3,3,"Okay");
+    Insert Into FormOptions(meetupId,questionId,optionId,optionString)
+    values
+    (1,3,4,"Bad");
+    Insert Into FormOptions(meetupId,questionId,optionId,optionString)
+    values
+    (1,3,5,"Terrible");
+
     Insert Into FormOptions(meetupId,questionId,optionId,optionString)
     values
     (1,2,1,"this");
@@ -56,6 +82,13 @@ module.exports = {
     Insert Into FormReplies(meetupId,questionId,userId,userReply)
     values
     (1,1,3,"I have so much, but if i tell you i'll have to kill you."); 
+    Insert Into FormReplies(meetupId,questionId,userId,userReply)
+    values
+    (1,4,2,"Next time get better speakers"); 
+    Insert Into FormOptionReplies(meetupId, questionId, userId, optionId)
+    values
+    (1, 3, 2, 1);
+
     Insert Into FormOptionReplies(meetupId,questionId,userId,optionId)
     values
     (1,2,1,2);

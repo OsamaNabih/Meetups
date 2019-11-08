@@ -4,9 +4,9 @@
   "description": "Meetups project",
   "main": "app.js",
   "scripts": {
-    "test": " mocha --timeout=5000 tests/*.test.js",
-    "report": "nyc --reporter=html mocha --timeout=5000 tests/*.test.js",
-    "text-report": "nyc --reporter=text-summary mocha --timeout=5000 tests/*.test.js"
+    "test": " mocha --timeout=5000 tests/server/*/*.test.js",
+    "report": "nyc --reporter=html mocha --timeout=5000 tests/server/*/*.test.js",
+    "text-report": "nyc --reporter=text-summary mocha --timeout=5000 ttests/server/*/*.test.js"
   },
   "repository": {
     "type": "git",
