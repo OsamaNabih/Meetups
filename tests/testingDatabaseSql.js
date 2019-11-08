@@ -7,19 +7,20 @@ module.exports = {
     values (2,"helloworld2",4165000,"how to procrastinate",33,"my house ",STR_TO_DATE('01-09-2018','%m-%d-%Y'),"Procrastinate FTW","Dokki", "https://paymestore.co/085617");
     
     Insert Into Users(userId,email,firstName,lastName,authField,authType,userType,birthDate,position, imagePath)
-    Values(1,"user3@gmail.com", "Real", "Person", "1111",1, 3, 19900602, "Junior back-end developer", "Images/default-avatar.png");
+    Values(1,"user3@gmail.com", "Real", "Person", "1111",1, 2, 19900602, "Junior back-end developer", "Images/default-avatar.png");
 
     Insert Into Users(userId,email,firstName,lastName,authField,authType,userType,birthDate,position, imagePath)
-    Values(2,"user4@gmail.com", "Very", "Enthusiastic", "2222",1, 3, 19900413, "Machine Learning Engineer", "Images/default-avatar.png");
+    Values(2,"user4@gmail.com", "Very", "Enthusiastic", "2222",1, 2, 19900413, "Machine Learning Engineer", "Images/default-avatar.png");
 
     Insert Into Users(userId,email,firstName,lastName,authField,authType,userType,birthDate,position, imagePath)
-    Values(3,"user5@gmail.com", "Techie", "Goals", "randomFacebookToken23qwekmlkdmasd90i3e39msmdakmalksd",2, 3, 19900413, "Senior Machine Learning Engineer", "Images/default-avatar.png");
+    Values(3,"user5@gmail.com", "Techie", "Goals", "randomFacebookToken23qwekmlkdmasd90i3e39msmdakmalksd",2, 2, 19900413, "Senior Machine Learning Engineer", "Images/default-avatar.png");
 
     Insert Into Users(userId,email,firstName,lastName,authField,authType,userType,birthDate,position, imagePath)
-    Values(4,"user6@gmail.com", "Google", "Rocks", "randomGoogleTokena2sd6lklm9asd3",3, 3, 19900413, "Senior Machine Learning Engineer", "Images/default-avatar.png");
+    Values(4,"user6@gmail.com", "Google", "Rocks", "randomGoogleTokena2sd6lklm9asd3",3, 1, 19900413, "Senior Machine Learning Engineer", "Images/default-avatar.png");
 
     Insert Into Users(userId,email,firstName,lastName,authField,authType,userType,birthDate,position, imagePath)
     Values(5,"admin@gmail.com", "Test", "Admin", "$2a$10$qECNSpwdIe.kacmtEakDuuuqcXPC2WkZqHqQrNJ1sAMb2PA2mo0hm",1, 1, 19900413, "The admin", "Images/default-avatar.png");
+    
     Insert Into Spoke_In(speakerId, meetupId)
     values
     (2,1);
