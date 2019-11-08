@@ -123,10 +123,28 @@ describe('Testing Models', () => {
     expect(result[0].optionId).to.be.equal(1);
   });
 
+  /*
   it("Should return question IDs of feedback questions", async function(){
     let result = await DB.query(MeetupModel.GetNumberOfMultipleFeedbackQuestions());
+    result.sort(function(a, b) {return a.questionId - b.questionId});
+    expect(result[0].questionId).to.be.equal(2)
   });
 
+  
+  it("Should return number of feedback questions", async function(){
+    let result = await DB.query(MeetupModel.GetNumberOfMultipleFeedbackQuestions(), [1]);
+  });
+  */
+
+  it("Should return max question ID for a meetup, expecting 5", async function(){
+    let result = await DB.query(MeetupModel.GetMaxIdOfQuestions(), [1]);
+    expect(result[0].questionId).to.be.equal(5);
+  });
+
+  it("Should return max question ID for a meetup, expecting 0", async function(){
+    let result = await DB.query(MeetupModel.GetMaxIdOfQuestions(), [2]);
+    expect(result[0].questionId).to.be.null;
+  });
 
   it('Meetup update is working', async function(){
     let data = {
@@ -135,6 +153,18 @@ describe('Testing Models', () => {
     let options = await DB.query(MeetupModel.UpdateMeetup(),[data,1])
     let updated = await DB.query("SELECT meetupName FROM `meetups` where meetupId = 1")
     expect(updated[0].meetupName).to.equal("Changing for the Test");
+  });
+
+  it("Should invert verification status of attendees, expecting 0, 1", async function(){
+    let result = await DB.query(MeetupModel.VerifyAttendees(), [2, [1, 3]]);
+    let resultAfterQuery = await DB.query(MeetupModel.GetVerifiedAttendees(), [2]);
+    ids = []
+    resultAfterQuery.forEach(function(Attendee){
+      ids.push(Attendee.userId);
+    });
+    expect(ids).to.have.members([1]);
+    expect(ids).to.not.have.members([3]);
+    await DB.query(MeetupModel.VerifyAttendees(), [2, [1, 3]]);
   });
 
   
