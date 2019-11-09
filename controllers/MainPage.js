@@ -2,6 +2,7 @@ const MeetupModel = require('../models/meetup');
 const Database = require('../config/DB');
 const DBconfig = require('../config/keys').DBconfig;
 module.exports = {
+  // Walid starts
   GetMainPageStats: async (req, res) =>{
     try{
       const DB = new Database(DBconfig);

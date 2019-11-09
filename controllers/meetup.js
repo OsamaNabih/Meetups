@@ -84,6 +84,7 @@ module.exports = {
     }
 
   },
+    
   CreateMeetup: async (req, res)=>{
    //Assuming time format is HH:MM:SS, we concatenate them to insert into DB as HHMMSS
    /*If the format is HH:MM, it must be inserted into the DB as HHMM00 not HHMM or else
@@ -130,6 +131,7 @@ module.exports = {
      throw error;
    }
  },
+ // Walid Ends, Bassel starts
   GetQuestions: async (req, res)=>{
       try {
         const DB = new Database(DBconfig);
@@ -243,6 +245,7 @@ module.exports = {
       throw error;
     }
   },
+  // Bassel Ends, Osama Starts
   CreateFeedbackQuestions: async (req,res)=>{
 
     try{
@@ -289,6 +292,7 @@ module.exports = {
         console.log(error);
     }
   },
+  
   GetFeedBackQuestions: async (req, res)=>{
 
       try {
@@ -382,7 +386,6 @@ module.exports = {
       throw error;
     }
   },
-
   GetFeedBackQuestionswithreplies: async (req,res)=>
   {
     try{
@@ -443,4 +446,5 @@ module.exports = {
       throw error;
     }
   }
+  // Osama Ends, Wagih Starts
 }
