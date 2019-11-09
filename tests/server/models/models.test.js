@@ -32,6 +32,73 @@ describe('Testing Models', () => {
         await DB.query(sql.sql)
   });
 
+  // Bassel tests start
+
+  it('Get Speakers Id Working', async function (){
+    let result = await DB.query(MeetupModel.GetSpeakersId(), [2]);
+    expect(result[0].speakerId).to.be.equal(3);    
+    expect(result.length).to.be.equal(1);     
+  });
+
+  it('Get Meet up Working', async function (){
+    let result = await DB.query(MeetupModel.GetMeetup(), [1]);
+    expect(result[0].meetupName).to.be.equal('helloworld1');  
+    expect(result.length).to.be.equal(1);      
+  });  
+
+  it('Get Speakers Working', async function (){
+    let result = await DB.query(MeetupModel.GetSpeakers(), [2]);
+    expect(result[0].userId).to.be.equal(3);
+    expect(result[0].email).to.be.equal('user5@gmail.com');
+    expect(result[0].firstName).to.be.equal('Techie');
+    expect(result[0].lastName).to.be.equal('Goals');
+    expect(result[0].position).to.be.equal('Senior Machine Learning Engineer');
+    expect(result.length).to.be.equal(1);      
+  });
+
+  it('Get Attendees Working', async function (){
+    let result = await DB.query(MeetupModel.GetAttendees(), [1]);
+    expect(result.length).to.be.equal(1); 
+    expect(result[0].userId).to.be.equal(2);
+    expect(result[0].email).to.be.equal('user4@gmail.com');
+    expect(result[0].firstName).to.be.equal('Very');
+    expect(result[0].lastName).to.be.equal('Enthusiastic');
+    expect(result[0].position).to.be.equal('Machine Learning Engineer');
+    expect(result[0].verified).to.be.equal(1);
+  });
+
+  it('Get Verified Attendees Working', async function (){
+    let result = await DB.query(MeetupModel.GetVerifiedAttendees(), [2]);
+    expect(result.length).to.be.equal(1); 
+    expect(result[0].userId).to.be.equal(3);
+    expect(result[0].email).to.be.equal('user5@gmail.com');
+    expect(result[0].firstName).to.be.equal('Techie');
+    expect(result[0].lastName).to.be.equal('Goals');
+    expect(result[0].position).to.be.equal('Senior Machine Learning Engineer');
+  });
+
+  it('Get Questions with options working', async function (){
+    let result = await DB.query(MeetupModel.GetQuestions(), [1, 1, 0]);
+    expect(result.length).to.be.equal(3);
+    expect(result[0].question).to.be.equal('What are your hopes and dreams?');
+    expect(result[0].required).to.be.equal(1);
+    expect(result[0].meetupId).to.be.equal(1);
+    expect(result[0].questionId).to.be.equal(1);
+    expect(result[0].MAX).to.be.equal(null);
+    expect(result[0].optionString).to.be.equal(null);
+    expect(result[0].questionType).to.be.equal(0);
+  });
+  
+  it('Check Previous Feedback Submission working', async function (){
+    let result = await DB.query(MeetupModel.CheckPreviousFeedbackSubmission(), [1, 2]);
+    expect(result.length).to.be.equal(1);
+    //on join only {meetupId,questionId = 1,4} will join
+    expect(result[0].userId).to.be.equal(2);
+    expect(result[0].meetupId).to.be.equal(1);
+  });
+  
+  // Bassel tests end 
+
   it('Get userId by email', async function(){
     let email = "user3@gmail.com"
     let options = await DB.query(UserModel.GetUserId(),email)
@@ -313,7 +380,7 @@ describe('Testing Models', () => {
       expect(options.affectedRows).to.equal(1)
   });
  
-  
+ 
 
   // after all test have run we drop our test database
   after('droping test db', async () => {
