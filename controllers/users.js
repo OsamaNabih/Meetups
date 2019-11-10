@@ -19,7 +19,7 @@ module.exports = {
    const salt = await bcrypt.genSalt(10);
    // Generate a password hash (salt + hash)
    const passwordHash = await bcrypt.hash(req.value.body.authField, salt);
-   req.value.body.authField = passwordHash;
+    req.value.body.authField = passwordHash;
    req.value.body.authType = 1;
    req.value.body.userType = 3;
    if(req.file)
@@ -31,11 +31,9 @@ module.exports = {
      req.value.body.imagePath = "Images/default-avatar.png";
    }
    const DB = new Database(DBconfig);
-   console.log(req.value.body);
    DB.query(UserModel.InsertUser(), req.value.body).then(result =>{
       return DB.query(UserModel.GetUserIdAndTypeByEmail(),req.value.body.email);
     }).then(innerResult =>{
-      console.log('signed up successfully');
       let id = innerResult[0].userId;
       let type = innerResult[0].userType;
       let token = signToken(id, type);
@@ -68,8 +66,6 @@ module.exports = {
 
   googleOAuth: async(req,res,next)=>{
     // Generate a token
-    console.log("req.userId=" , req.user.userId);
-    console.log("req.userType=" , req.user.userType);
     const token = signToken(req.user.userId,req.user.userType);
     res.cookie('jwt', token); // add cookie here
     //res.status(200).json({token});

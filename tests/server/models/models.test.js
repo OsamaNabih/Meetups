@@ -6,8 +6,6 @@ const faker = require('faker');
 const { expect } = chai;
 chai.use(require("chai-sorted"));
 
-
-
 const sql = require('../testingDatabaseSql');
 const mainDirectory = '../../..';
 
