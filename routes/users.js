@@ -23,7 +23,6 @@ router.route('/signup')
         res.status(200).json({error: req.error.sqlMessage});
       }
       else{
-        console.log("enta hena");
         console.log(req.error);
         res.status(200).json({error: req.error});
       }
@@ -65,7 +64,7 @@ router.route('/oauth/facebook')
   .post(passport.authenticate('facebookToken', { session: false }), UsersController.facebookOAuth);
 
 
-// edit users information
+// edit users information, gets error on testing for god knows what reason
 router.route('/editProfile')
   .get((req,res)=>{
     res.render('editProfile');
@@ -75,6 +74,7 @@ router.route('/editProfile')
     res.send("");
   });
 
+  /*
 router.route('/oauth/google')
   .get(passportGoogleOauth);
 
@@ -85,6 +85,6 @@ router.route('/oauth/google')
   //Applying Multer
 router.route('/addprofilepicture')
   .post(passportUser, Multer.uploadPhoto,UsersController.photoUploaded);
-
+*/
 
 module.exports = router;

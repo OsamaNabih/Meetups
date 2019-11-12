@@ -325,7 +325,6 @@ describe('Testing Models', () => {
     let data = {}
     data.meetupId = 1; data.questionId = 2; data.userId = 3; data.optionId = 2;
     let options = await DB.query(MeetupModel.InsertFormOptionReply(),data)
-    console.log(options)
     expect(options.affectedRows).to.equal(1)
   });
 
@@ -333,14 +332,12 @@ describe('Testing Models', () => {
     let data = {}
     data.meetupId = 1; data.questionId = 1; data.userId = 1; data.userReply = "Hopelessness is a curse";
     let options = await DB.query(MeetupModel.InsertFormReply(),data)
-    console.log(options)
     expect(options.affectedRows).to.equal(1)
     
   });
 
   it('Meetups are deleted successfully', async function(){
     let options = await DB.query(MeetupModel.DeleteMeetup(),1)
-    console.log(options)
     expect(options.affectedRows).to.equal(1)
   });
 
@@ -348,7 +345,6 @@ describe('Testing Models', () => {
     let data = {}
     data.meetupId = 2; data.userId = 5; data.verified = 0;
     let options = await DB.query(MeetupModel.AddAttendee(),data)
-    console.log(options)
     expect(options.affectedRows).to.equal(1)
   });
 
