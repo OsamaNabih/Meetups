@@ -1,11 +1,18 @@
 const MeetupModel = require('../models/meetup');
 const Database = require('../config/DB');
 const DBconfig = require('../config/keys').DBconfig;
+
 module.exports = {
+
   // Walid starts
+  
+  getDataBase: function (DBconfig){
+    var db = new Database(DBconfig)
+    return db
+  },
   GetMainPageStats: async (req, res) =>{
     try{
-      const DB = new Database(DBconfig);
+      const DB = await module.exports.getDataBase(DBconfig);
       let numberOfUsers = await DB.query(MeetupModel.GetCountOfAllUsers());
       let numberOfMeetups = await DB.query(MeetupModel.GetCountOfALLMeetups());
       let upcomingMeetups = await DB.query(MeetupModel.GetTwoMeetups());
