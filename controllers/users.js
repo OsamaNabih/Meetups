@@ -13,6 +13,10 @@ signToken = (Id, type) =>{
 }
 
 module.exports = {
+  getDataBase: function (DBconfig){
+    var db = new Database(DBconfig)
+    return db
+  },
   signUp: async(req, res, next) =>{
     //403 = forbidden
     // Generate a salt
@@ -95,7 +99,7 @@ module.exports = {
   },
   GetUserInfo: async(req, res)=>{
     try{
-      const DB = new Database(DBconfig);
+      const DB = await module.exports.getDataBase(DBconfig);
       let result = await DB.query(UserModel.GetUserById(), req.params.id);
       await DB.close();
       return result[0];

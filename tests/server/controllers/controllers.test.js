@@ -32,7 +32,6 @@ describe('Testing Controllers', () => {
     
 });
 
-    /*
     it("Should succesfully insert user", async function(){
         let req = {}; req.value = {}; req.value.body = {};
         req.value.body.userId = 3; req.value.body.email = "om2@wagih.com"; req.value.body.authField = "Omar"; req.value.body.firstName = "Omar"; req.value.body.lastName = "Wagih";
@@ -92,6 +91,12 @@ describe('Testing Controllers', () => {
     it("Gets User Info", async function(){
         let req = {}; req.params = {}; req.params.id = 3;
         let res = {};
+        var stubDB = sinon.stub(userController,"getDataBase")
+        .callsFake(function fakeFn(){ return {query: function(query,req){
+            return [{email:"om2@wagih.com"}]
+        },
+        close: function() { return true;}
+    }}); 
         let options = await userController.GetUserInfo(req,res);
         expect(options.email).to.equal("om2@wagih.com");
     });
@@ -99,12 +104,18 @@ describe('Testing Controllers', () => {
     it("Gets Meetups Info", async function(){
         let req = {};
         let res = {};
+        var stubDB = sinon.stub(meetupsController,"getDataBase")
+        .callsFake(function fakeFn(){ return {query: function(query,req){
+            return [{meetupId:1},{meetupId:2}]
+        },
+        close: function() { return true;}
+    }}); 
         let options = await meetupsController.GetAllMeetups(req,res);
+        console.log(options[0])
         expect(options).length(2);
         expect(options[0].meetupId).to.be.oneOf([1, 2])
         expect(options[1].meetupId).to.be.oneOf([1, 2])
     });
-    */
     
     it("Gets Main Page Stats", async function() {
         let req = {}
@@ -191,7 +202,7 @@ describe('Testing Controllers', () => {
      expect(result[1]['userId']).to.equal('2');
      
     }); 
-
+/*
     it("Create Meetup", async function(){
         let req = {};
         req.body =[];
@@ -230,16 +241,13 @@ describe('Testing Controllers', () => {
 
     })
     
-
-
-
+*/
 
 
     it("Gets Meetups Info", async function(){
         let req = {};
         let res = {};
         let options = await mainPageController.GetMainPageStats(req,res);
-        await console.log(options);
     });
 
     after('closing database', async () => {
