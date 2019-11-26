@@ -103,6 +103,13 @@ describe('Testing Controllers', () => {
         expect(options[1].meetupId).to.be.oneOf([1, 2])
     });
 
+    it("Gets Meetups Info", async function(){
+        let req = {};
+        let res = {};
+        let options = await mainPageController.GetMainPageStats(req,res);
+        await console.log(options);
+    });
+
     after('closing database', async () => {
         await DB.query("DELETE FROM `users`");
         await DB.query("DELETE FROM `meetups`");
