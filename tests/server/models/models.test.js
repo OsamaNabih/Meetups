@@ -173,7 +173,6 @@ describe('Testing Models', () => {
     expect(options[0].meetupCount).to.equal(2)
   });
 
-<<<<<<< HEAD
   //Bassel
   it('Meetups are inserted successfully', async function(){
     let numberBefore = await DB.query("SELECT COUNT(meetupId) as replyCount FROM `Meetups` WHERE meetupName = 'helloworld1'")
@@ -196,9 +195,7 @@ describe('Testing Models', () => {
     numberAfter = numberAfter[0].replyCount
     expect(numberAfter).to.be.above(numberBefore);
   });
-=======
   // Walid Ends, Wagih Starts
->>>>>>> c553ee4b7a20b47a89c808f487abc54ea4721365
 
   it('Meetups are ordered successfuly by date', async function(){
     let options = await DB.query(MeetupModel.GetTwoMeetups())
@@ -401,11 +398,8 @@ describe('Testing Models', () => {
       expect(options.affectedRows).to.equal(1)
   });
  
-<<<<<<< HEAD
 
   
-=======
->>>>>>> c553ee4b7a20b47a89c808f487abc54ea4721365
   // after all test have run we drop our test database
   after('droping test db', async () => {
     await DB.query("DELETE FROM `users`");
