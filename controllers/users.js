@@ -43,11 +43,9 @@ module.exports = {
       let token = signToken(id, type);
       return DB.close().then( () => { req.token = token; next(); } )
     },err => {
-      console.log('err');
       console.log(err);
       return DB.close().then( () => { throw err; } )
     }).catch(error=>{
-      console.log('error');
       console.log(error);
       req.error = error;
       next();

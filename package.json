@@ -60,7 +60,10 @@
   "nyc": {
     "exclude": [
       "tests",
-      "node_modules"
+      "node_modules",
+      "Multer.js",
+      "passport.js",
+      "app.js"
     ],
     "cache": false,
     "report-dir": "/tests/report"

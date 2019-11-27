@@ -21,10 +21,8 @@ module.exports = {
         return DB.query(MeetupModel.GetVerifiedAttendees(), req.params.id);
       }).then(result =>{
         attendees = result;
-        //console.log('you made it');
         return DB.query(MeetupModel.IsAttended(), [req.user.userId, req.params.id]);
       }).then(result =>{
-       // console.log('reached');
         Registered = Boolean(result.length);
         DB.close().then( ()=>{ resolve({meetup: meetup, speakers: speakers, attendees: attendees, Registered: Registered}); } );
       },err => {
@@ -199,7 +197,6 @@ module.exports = {
     try{
       //Currenyl hardcoding the user ID and question types until the front-end sends them
       let JSON = req.body;
-      console.log(JSON);
       const DB = new Database(DBconfig);
       let previousOptionsSubmission = await DB.query(MeetupModel.CheckPreviousOptionsSubmission(),
                                     [JSON.meetupId, req.user.userId]);
@@ -239,7 +236,6 @@ module.exports = {
     try{
       let JSON = req.body.EventInformation;
       const DB = new Database(DBconfig);
-      console.log(JSON);
       let result = await DB.query(MeetupModel.UpdateMeetup(), [JSON, req.params.id]);
       await DB.close();
       return 'Meetup has been updated successfully';
@@ -258,21 +254,18 @@ module.exports = {
           if(feedbackexist.length > 0)
             {
               await DB.close();
-              res.send("Already contains  feedback Questions");
+              res.send("Already contains feedback Questions");
             }
           let feedbackNums = Object.keys(req.body.Questions).length;
           let  maxId = await DB.query(MeetupModel.GetMaxIdOfQuestions(),req.body.id);
           for(let i = 1; i <= feedbackNums;i++){
             let feedbackId = i + maxId[0].questionId;
-            console.log(maxId);
-            console.log(feedbackId);
             let currFeedbackQuestion = req.body.Questions[i-1];
             currFeedbackQuestion['questionId'] = feedbackId;
             currFeedbackQuestion['meetupId'] = req.body.id;           // if it is seprated then  i must have the meetup id sent to me
             currFeedbackQuestion['feedback'] = true;
             if (currFeedbackQuestion.questionType === 1){
               await DB.query(MeetupModel.InsertQuestion(), currFeedbackQuestion);
-              console.log("insertedquestions of type single");
             }
             else{
                 const Options = currFeedbackQuestion.Answers.split("|");
@@ -283,16 +276,12 @@ module.exports = {
                       optionString: Options[j - 1], optionId: j};
                       let innerResult = await DB.query(MeetupModel.InsertOption(), currOption);
                   }
-                  console.log("insertedquestions of type multiple");
             }
-
         }
         DB.close().then(()=>{
-            console.log('feedback inserted');
           });
 
       }catch(error){
-        console.log('fel catch');
         console.log(error);
     }
   },
@@ -361,12 +350,9 @@ module.exports = {
       if (previousFeedbackSubmission.length !== 0 || previousFeedbackOptionsSubmission.length !== 0)
       {
         //This user already registered for the meetup
-        console.log('Feedback was inserted before ');
         throw 'You have already inserted a feedback for this meetup';
       }
       for(let i = 0; i < JSON.Questions.length; i++){
-        console.log(JSON.Questions[i].questionType != 1);
-        console.log(JSON.Questions[i]);
         if(JSON.Questions[i].questionType != 1){
           let result = await DB.query(MeetupModel.InsertFormOptionReply(),
                                         {meetupId: Number(JSON.meetupId),
@@ -397,7 +383,6 @@ module.exports = {
          const DB = new Database(DBconfig);
          let numberOfMultipleFeedbackQuestions = await DB.query(MeetupModel.GetNumberOfMultipleFeedbackQuestions(),meetupId);
          let questions = await DB.query(MeetupModel.GetFeedBackQuestionsOnly(),meetupId);
-        //  console.log(Questions);
         if(questions.length === 0)
           throw 'No feedback questions added to this meetup';
          for (var i = 0; i < questions.length; i++) {
@@ -418,8 +403,6 @@ module.exports = {
                 let frequencyMap = {};
                 let options = await DB.query(MeetupModel.GetFeedBackOptions(),[meetupId,questions[i].questionId,meetupId,questions[i].questionId]);
                 let frequency = await DB.query(MeetupModel.GetFeedBackOptionsCount(),[meetupId,questions[i].questionId]);
-            //    console.log(options);
-            //    console.log(frequency);
                 questions[i].options = [];
                 for (var j = 0; j <options.length; j++) {
                   questions[i].options.push(options[j]);
@@ -430,10 +413,7 @@ module.exports = {
                       else
                       frequencyMap[frequency[j].optionId]++;
                 }
-            //            console.log(frequencyMap)
                  for (var j = 0; j < questions[i].options.length ; j++) {
-                    //    console.log(frequencyMap[frequency[j].optionId]);
-            //            console.log(options[j].optionId);
                         questions[i].options[j].frequency = frequencyMap[options[j].optionId];
                         delete questions[i].options[j]['optionId'];
                   }
@@ -442,7 +422,6 @@ module.exports = {
 
         await DB.close();
         questions['chartsNumber'] = numberOfMultipleFeedbackQuestions.length;
-        console.log(questions);
         return questions;
     }
     catch(error){
