@@ -3,9 +3,13 @@ const Database = require('../config/DB');
 const DBconfig = require('../config/keys').DBconfig;
 const UserModel = require('../models/user');
 module.exports = {
+  getDataBase: function (DBconfig){
+    var db = new Database(DBconfig)
+    return db
+  },
   GetMeetupAndSpeakers: (req, res) =>{
     return new Promise(function(resolve, reject){
-      const DB = new Database(DBconfig);
+      const DB = module.exports.getDataBase(DBconfig);
       let meetup, speakers, attendees;
       DB.query(MeetupModel.GetMeetup(), req.params.id).then(result =>{
         if (result.length == 0)
@@ -17,10 +21,10 @@ module.exports = {
         return DB.query(MeetupModel.GetVerifiedAttendees(), req.params.id);
       }).then(result =>{
         attendees = result;
-        console.log('you made it');
+        //console.log('you made it');
         return DB.query(MeetupModel.IsAttended(), [req.user.userId, req.params.id]);
       }).then(result =>{
-        console.log('reached');
+       // console.log('reached');
         Registered = Boolean(result.length);
         DB.close().then( ()=>{ resolve({meetup: meetup, speakers: speakers, attendees: attendees, Registered: Registered}); } );
       },err => {
@@ -32,7 +36,7 @@ module.exports = {
   },
   GetAttendees: async (req, res)=>{
     try {
-      const DB = new Database(DBconfig);
+      const DB = module.exports.getDataBase(DBconfig);
       let result = await DB.query(MeetupModel.GetAttendees(), req.params.id);
       await DB.close();
       return result;
@@ -44,7 +48,7 @@ module.exports = {
   },
   GetRegistered: async(req,res)=>{
  try {
-      const DB = new Database(DBconfig);
+      const DB = new module.exports.getDataBase(DBconfig);
       let result = await DB.query(MeetupModel.GetRegisteredChoiceReplies(), req.params.id);
       let result2 = await DB.query(MeetupModel.GetRegisteredParagraphReplies(), req.params.id);
       let bothResults = result.concat(result2);
@@ -84,6 +88,7 @@ module.exports = {
     }
 
   },
+    
   CreateMeetup: async (req, res)=>{
    //Assuming time format is HH:MM:SS, we concatenate them to insert into DB as HHMMSS
    /*If the format is HH:MM, it must be inserted into the DB as HHMM00 not HHMM or else
@@ -98,7 +103,7 @@ module.exports = {
      req.body.EventInformation.startTime = Number(req.body.EventInformation.startTime.split(":").join(""));
      req.body.EventInformation.endTime = Number(req.body.EventInformation.endTime.split(":").join(""));
      req.body.EventInformation.meetupDate = Number(req.body.EventInformation.meetupDate.split("-").join(""));
-     const DB = new Database(DBconfig);
+     const DB = new module.exports.getDataBase(DBconfig);
      let meetupResult = await DB.query(MeetupModel.InsertMeetup(), req.body.EventInformation)
      let meetupId = meetupResult.insertId;
      let questionsNum = Object.keys(req.body.Questions).length;
@@ -130,6 +135,7 @@ module.exports = {
      throw error;
    }
  },
+ // Walid Ends, Bassel starts
   GetQuestions: async (req, res)=>{
       try {
         const DB = new Database(DBconfig);
@@ -243,6 +249,7 @@ module.exports = {
       throw error;
     }
   },
+  // Bassel Ends, Osama Starts
   CreateFeedbackQuestions: async (req,res)=>{
 
     try{
@@ -289,6 +296,7 @@ module.exports = {
         console.log(error);
     }
   },
+  
   GetFeedBackQuestions: async (req, res)=>{
 
       try {
@@ -382,7 +390,6 @@ module.exports = {
       throw error;
     }
   },
-
   GetFeedBackQuestionswithreplies: async (req,res)=>
   {
     try{
@@ -443,4 +450,5 @@ module.exports = {
       throw error;
     }
   }
+  // Osama Ends, Wagih Starts
 }

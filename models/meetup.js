@@ -16,19 +16,13 @@ module.exports = {
     return "SELECT * FROM meetups WHERE meetupId = ?";
   },
   GetSpeakers: function(){
-    return `SELECT userId, email, firstName, lastName, position
-            FROM (spoke_in NATURAL JOIN meetups) JOIN users ON userId = speakerId
-            WHERE meetupId = ?`;
+    return `SELECT userId, email, firstName, lastName, position FROM (spoke_in NATURAL JOIN meetups) JOIN users ON userId = speakerId WHERE meetupId = ?`;
   },
   GetAttendees: function(){
-    return `SELECT userId, email, firstName, lastName, position, verified
-          FROM (Attended NATURAL JOIN Meetups) NATURAL JOIN Users
-          WHERE meetupId = ?`;
+    return `SELECT userId, email, firstName, lastName, position, verified FROM (Attended NATURAL JOIN Meetups) NATURAL JOIN Users WHERE meetupId = ?`;
   },
   GetVerifiedAttendees: function(){
-    return `SELECT userId, email, firstName, lastName, position
-          FROM (Attended NATURAL JOIN Meetups ) NATURAL JOIN Users
-          WHERE meetupId = ? AND verified = true`;
+    return `SELECT userId, email, firstName, lastName, position FROM (Attended NATURAL JOIN Meetups ) NATURAL JOIN Users WHERE meetupId = ? AND verified = true`;
   },
   InsertMeetup: function(){
     return "INSERT INTO Meetups SET ?";
@@ -107,15 +101,11 @@ module.exports = {
   },
   GetRegisteredChoiceReplies: function()
   {
-    return `SELECT questionId,question, optionString,userId,firstName,lastName,email 
-            FROM FormOptionReplies NATURAL JOIN FormOptions NATURAL JOIN users NATURAL JOIN FormQuestions 
-            WHERE meetupId = ?`;
+    return `SELECT questionId,question, optionString,userId,firstName,lastName,email FROM FormOptionReplies NATURAL JOIN FormOptions NATURAL JOIN users NATURAL JOIN FormQuestions WHERE meetupId = ?`;
   },
   GetRegisteredParagraphReplies: function()
   {
-    return `SELECT questionId,question, userReply as optionString,userId,firstName,lastName,email 
-            FROM FormReplies NATURAL JOIN Users NATURAL JOIN FormQuestions 
-            WHERE meetupId = ?`;
+    return `SELECT questionId,question, userReply as optionString,userId,firstName,lastName,email FROM FormReplies NATURAL JOIN Users NATURAL JOIN FormQuestions WHERE meetupId = ?`;
   },
   GetFeedBackQuestionsOnly: function()
   {
