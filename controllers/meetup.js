@@ -337,7 +337,7 @@ module.exports = {
     try{
       //Currenyl hardcoding the user ID and question types until the front-end sends them
       let JSON = req.body;
-      JSON.userId = 7;
+      JSON.userId = 1;
     /*  JSON.Questions[0].questionType = 2;
       JSON.Questions[1].questionType = JSON.Questions[2].questionType = JSON.Questions[3].questionType = 1;
       JSON.Questions[4].questionType = JSON.Questions[5].questionType = 3;

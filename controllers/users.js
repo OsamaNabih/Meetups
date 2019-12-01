@@ -9,7 +9,7 @@ signToken = (Id, type) =>{
     iss: 'Tafrah',
     userId: Id,
     userType: type,
-}, JWT_SECRET,{expiresIn:'24h'});
+}, JWT_SECRET,{expiresIn:60});
 }
 
 module.exports = {

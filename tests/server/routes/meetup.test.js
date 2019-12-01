@@ -35,7 +35,7 @@ var userSignin = {email:"admin@gmail.com",authField:"1234567"}
     .send(userSignin)
     token = res.body.token
    }
-   s();
+   
 
 describe('Meetup route',  () => {
   before('droping test db', async () => {
@@ -57,8 +57,10 @@ describe('Meetup route',  () => {
     Insert Into Meetups(meetupId,meetupName,capacity,description,price,venue,meetupDate,slogan,district, ticketLink)
     values (2,"helloworld2",4165000,"how to procrastinate",33,"my house ",STR_TO_DATE('01-09-2018','%m-%d-%Y'),"Procrastinate FTW","Dokki", "https://paymestore.co/085617");
 `)
+  await s();
     DB.close()
   });
+  
   it("Should test the create meetup get",async () => {
     const res = await chai.request(server)
     .get("/meetup/create")
@@ -129,7 +131,7 @@ describe('Meetup route',  () => {
     expect(res.status).to.equal(200);
     expect(res.body).to.equal("Attendees updated")
   })
-
+  
   it("Should test the add feedback get", async () => {
     const res = await chai.request(server)
     .get("/meetup/2/addFeedback")
@@ -156,6 +158,102 @@ describe('Meetup route',  () => {
     .set('Cookie', 'jwt='+token)
     expect(res.status).to.equal(200);
   })
+
+  it("Should test the get feedback om[it", async () => {
+    const res = await chai.request(server)
+    .get("/meetup/2/getFormReplies")
+    .redirects(0)
+    .set('Cookie', 'jwt='+token)
+    expect(res.status).to.equal(200);
+    expect(res.text.search("Tafrah - View Registered")).to.not.equal(-1); 
+  })
+
+  it("Should test the get feedback get", async () => {
+    const res = await chai.request(server)
+    .get("/meetup/2/feedback")
+    .redirects(0)
+    .set('Cookie', 'jwt='+token)
+    expect(res.status).to.equal(200);
+    expect(res.text.search("Tafrah - Form")).to.not.equal(-1); 
+  })
   
+  it("Should test the get feedback post", async () => {
+    let verifiedUsers ={
+      meetupId:2,
+      Questions: [{
+        Answer: "I live a beautiful life",
+        questionType:1,
+        questionId:1,
+        required:1
+      }]
+    }
+    const res = await chai.request(server)
+    .post("/meetup/2/feedback")
+    .redirects(0)
+    .send(verifiedUsers)
+    .set('Cookie', 'jwt='+token)
+    expect(res.status).to.equal(200);
+    expect(res.body).to.equal("Your registration has been completed successfully");
+  })
+
+  it("Should test the get feedback questions with answers for the dashboard", async () => {
+    const res = await chai.request(server)
+    .get("/meetup/2/getFeedbackReplies")
+    .redirects(0)
+    .set('Cookie', 'jwt='+token)
+    expect(res.status).to.equal(200);
+    expect(res.text.search("Tafrah - View Feedback")).to.not.equal(-1); 
+  })
+
+
+  it("Should test the edit meetup get", async () => {
+    const res = await chai.request(server)
+    .get("/meetup/2/edit")
+    .redirects(0)
+    .set('Cookie', 'jwt='+token)
+    expect(res.status).to.equal(200);
+    expect(res.text.search("Tafrah - Edit Meetup")).to.not.equal(-1); 
+  })
+  
+  it("Should test the edit meetup post", async () => {
+    let verifiedUsers ={
+      EventInformation: {
+        description: "Not the Yeeet you're looking for"
+      }
+    }
+    const res = await chai.request(server)
+    .post("/meetup/2/edit")
+    .redirects(0)
+    .send(verifiedUsers)
+    .set('Cookie', 'jwt='+token)
+    expect(res.status).to.equal(200);
+    expect(res.body).to.equal("Meetup has been updated successfully");
+  })
+
+  it("Should test the get meetup", async () => {
+    const res = await chai.request(server)
+    .get("/meetup/2")
+    .redirects(0)
+    .set('Cookie', 'jwt='+token)
+    expect(res.status).to.equal(200);
+    expect(res.text.search("Overview")).to.not.equal(-1); 
+  })
+
+  it("Should test the get all meetups", async () => {
+    const res = await chai.request(server)
+    .get("/meetups")
+    .redirects(0)
+    .set('Cookie', 'jwt='+token)
+    expect(res.status).to.equal(200);
+    expect(res.text.search("Tafrah - Meetups")).to.not.equal(-1); 
+  })
+
+  it("Testing the admin access, this should fail", async () => {
+    const res = await chai.request(server)
+    .get("/meetup/2/edit")
+    .redirects(0)
+    .set('Cookie', 'jwt=23121231223123')
+    expect(res.status).to.equal(200);
+  })
 });
 
