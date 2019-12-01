@@ -173,6 +173,28 @@ describe('Testing Models', () => {
     expect(options[0].meetupCount).to.equal(2)
   });
 
+  //Bassel
+  it('Meetups are inserted successfully', async function(){
+    let numberBefore = await DB.query("SELECT COUNT(meetupId) as replyCount FROM `Meetups` WHERE meetupName = 'helloworld1'")
+    numberBefore = numberBefore[0].replyCount
+    let data = {}
+    data.meetupName = "helloworld1"; data.capacity = 500; data.description = "Why should I care ?";  data.price = 100;
+    let options = await DB.query(MeetupModel.InsertMeetup(),data)
+    let numberAfter = await DB.query("SELECT COUNT(meetupId) as replyCount FROM `Meetups` WHERE meetupName = 'helloworld1'")
+    numberAfter = numberAfter[0].replyCount
+    expect(numberAfter).to.be.above(numberBefore);
+  });
+  
+  it('Options are inserted successfully', async function(){
+    let numberBefore = await DB.query("SELECT COUNT(meetupId) as replyCount FROM `FormOptions` WHERE optionId = 1")
+    numberBefore = numberBefore[0].replyCount
+    let data = {}
+    data.meetupId = 1; data.optionId = 1; data.questionId = 4; data.optionString = "VERY BAD";
+    let options = await DB.query(MeetupModel.InsertOption(),data)
+    let numberAfter = await DB.query("SELECT COUNT(meetupId) as replyCount FROM `FormOptions` WHERE optionId = 1")
+    numberAfter = numberAfter[0].replyCount
+    expect(numberAfter).to.be.above(numberBefore);
+  });
   // Walid Ends, Wagih Starts
 
   it('Meetups are ordered successfuly by date', async function(){
@@ -336,6 +358,17 @@ describe('Testing Models', () => {
     
   });
 
+  it('Question are inserted successfully', async function(){
+    let numberBefore = await DB.query("SELECT COUNT(meetupId) as replyCount FROM `FormQuestions` WHERE required = 1")
+    numberBefore = numberBefore[0].replyCount
+    let data = {}
+    data.meetupId = 1; data.question = "Would it make any difference ?"; data.questionId = 6; data.required = 1;
+    let options = await DB.query(MeetupModel.InsertQuestion(),data)
+    let numberAfter = await DB.query("SELECT COUNT(meetupId) as replyCount FROM `FormQuestions` WHERE required = 1")
+    numberAfter = numberAfter[0].replyCount
+    expect(numberAfter).to.be.above(numberBefore);
+  });
+
   it('Meetups are deleted successfully', async function(){
     let options = await DB.query(MeetupModel.DeleteMeetup(),1)
     expect(options.affectedRows).to.equal(1)
@@ -365,6 +398,8 @@ describe('Testing Models', () => {
       expect(options.affectedRows).to.equal(1)
   });
  
+
+  
   // after all test have run we drop our test database
   after('droping test db', async () => {
     await DB.query("DELETE FROM `users`");
