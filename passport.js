@@ -22,7 +22,6 @@ var cookieExtractor = function(req) {
 
 module.exports.passportUser = (req, res, next)=>{
   if (req.cookies.jwt){
-    console.log(req.cookies);
     passport.authenticate('user-local', { session: false })(req, res, next);
   }
   else{
@@ -30,7 +29,6 @@ module.exports.passportUser = (req, res, next)=>{
     user['userType'] = 0;
     user['userId'] = 0;
     req.user = user;
-    console.log('No cookie');
     next();
   }
 }
@@ -40,16 +38,12 @@ passport.use('user-local', new JwtStrategy({
   secretOrKey: JWT_SECRET
 }, async (payload, done) =>{
   try{
-    console.log('fel strat');
       // Find the user specifided in token
       const DB = new Database(DBconfig);
-      console.log(payload.userId);
       const user = await DB.query(UserModel.GetUserIdAndTypeById(), payload.userId);
       await DB.close();
       if (user.length === 0){
-        console.log(user);
         user[0]['userType'] = 0;
-        console.log(user);
         return done(null, user[0]);
       }
       done(null, user[0]);
@@ -58,14 +52,12 @@ passport.use('user-local', new JwtStrategy({
     let user = {};
     user.userType = Number(0);
     console.log('f error passport');
-    console.log(user);
     done(error, user);
   }
 }));
 
 module.exports.passportAdmin = (req, res, next)=>{
   if (req.cookies.jwt){
-    console.log(req.cookies);
     passport.authenticate('admin-local', { session: false })(req, res, next);
   }
   else{
@@ -80,8 +72,6 @@ passport.use('admin-local', new JwtStrategy({
   secretOrKey: JWT_SECRET
 }, async (payload, done) =>{
   try{
-    console.log('fel strat, payload: ');
-    console.log(payload);
       // Find the user specifided in token
       const DB = new Database(DBconfig);
       const user = await DB.query(UserModel.GetUserIdAndTypeById(), payload.userId);
@@ -109,9 +99,6 @@ passport.use('google',new GoogleStrategy({
 }, async (accessToken,refreshToken,profile,done)=>{
     DB = new Database(DBconfig);
     DB.query(UserModel.GetUserIdAndTypeByEmail(),profile.emails[0].value).then(result=>{
-  //    console.log("Access Token",accessToken);
-  //    console.log("Referesh Token",refreshToken);
-  //    console.log("Profile",profile);
       console.log("result",result);
 
       if(result.length>0)
@@ -122,7 +109,6 @@ passport.use('google',new GoogleStrategy({
           }
         else
         {
-                console.log("User doesnt exist we are creating new user");
                 newUser={};
                 newUser['email']=profile.emails[0].value;
                 newUser['authField']=profile.id;

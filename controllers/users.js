@@ -9,10 +9,14 @@ signToken = (Id, type) =>{
     iss: 'Tafrah',
     userId: Id,
     userType: type,
-}, JWT_SECRET,{expiresIn:'24h'});
+}, JWT_SECRET,{expiresIn:60});
 }
 
 module.exports = {
+  getDataBase: function (DBconfig){
+    var db = new Database(DBconfig)
+    return db
+  },
   signUp: async(req, res, next) =>{
     //403 = forbidden
     // Generate a salt
@@ -39,11 +43,9 @@ module.exports = {
       let token = signToken(id, type);
       return DB.close().then( () => { req.token = token; next(); } )
     },err => {
-      console.log('err');
       console.log(err);
       return DB.close().then( () => { throw err; } )
     }).catch(error=>{
-      console.log('error');
       console.log(error);
       req.error = error;
       next();
@@ -95,7 +97,7 @@ module.exports = {
   },
   GetUserInfo: async(req, res)=>{
     try{
-      const DB = new Database(DBconfig);
+      const DB = await module.exports.getDataBase(DBconfig);
       let result = await DB.query(UserModel.GetUserById(), req.params.id);
       await DB.close();
       return result[0];

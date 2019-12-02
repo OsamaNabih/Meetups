@@ -50,6 +50,7 @@ describe('Users route', () => {
     .redirects(0)
     .end((err, res) => {
           expect(res.status).to.equal(200);
+          expect(res.text.search("Tafrah - Sign up")).to.not.equal(-1);  
     });
   })
   it("Should test the signin POST", () => {
@@ -61,6 +62,16 @@ describe('Users route', () => {
     .end((err, res) => {
       expect(res.status).to.equal(200);
       expect(res.body).to.haveOwnProperty("token")
+    });
+  })
+
+  it("Should test the signin GET", () => {
+    chai.request(server)
+    .get(signin)
+    .redirects(0)
+    .end((err, res) => {
+          expect(res.status).to.equal(200);
+          expect(res.text.search("Tafrah - Sign in")).to.not.equal(-1);  
     });
   })
   it("Should test the get user", () => {
@@ -95,6 +106,15 @@ describe('Users route', () => {
     });
   })
 
+  it("Should test the editProfile GET", () => {
+    chai.request(server)
+    .get("/user/editProfile")
+    .redirects(0)
+    .end((err, res) => {
+          expect(res.status).to.equal(200);
+          expect(res.text.search("Register")).to.not.equal(-1);  
+    });
+  })
   
 });
 

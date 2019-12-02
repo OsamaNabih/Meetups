@@ -49,7 +49,6 @@ router.route('/:id/register')
     result.then(function(result){
       res.render('Form',{data:result,feedback:undefined, userType: req.user.userType});
     }).catch(function(error){
-      console.log('barra');
     });
   })
   .post(passportUser, urlencodedParser, (req, res)=>{
@@ -70,11 +69,12 @@ router.route('/:id/register')
   .post(passportAdmin, (req,res)=>{
     let result = MeetupController.CreateFeedbackQuestions(req,res);
     result.then(()=>{
-      res.status(200);
+      res.status(200).json(result);
     }).catch((error)=>{
-      res.status(400);
+      res.status(400).json(error);
     });
   });
+  
     //test feedback input
   router.route('/:id/getFormReplies')
   .get(passportAdmin, (req, res)=>{
@@ -109,7 +109,6 @@ router.route('/:id/feedback')
 
 router.route('/:id/getFeedbackReplies')
   .get(passportAdmin, (req,res)=>{
-    console.log('hena');
     let result = MeetupController.GetFeedBackQuestionswithreplies(req,res);
     result.then((result)=>{
      res.render('GetFeedback',{data: result, userType: req.user.userType});
@@ -124,7 +123,6 @@ router.route('/:id/edit')
   .get(passportAdmin, (req, res) =>{
     let result = MeetupController.GetQuestions(req,res);
     result.then(function(result){
-      console.log(result);
       res.render('EditPage', {data: result, userType: req.user.userType});
     }).catch(function(error){
       res.send(error);
