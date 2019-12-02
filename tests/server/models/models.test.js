@@ -269,7 +269,7 @@ describe('Testing Models', () => {
 
 
   it("Should return question IDs of feedback questions", async function(){
-    let result = await DB.query(MeetupModel.GetNumberOfMultipleFeedbackQuestions());
+    let result = await DB.query(MeetupModel.GetNumberOfMultipleFeedbackQuestions(), [1]);
     result.sort(function(a, b) {return a.questionId - b.questionId});
     expect(result[0].questionId).to.be.equal(2)
   });

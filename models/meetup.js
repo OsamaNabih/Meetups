@@ -131,7 +131,7 @@ module.exports = {
   },
   GetNumberOfMultipleFeedbackQuestions: function()
   {
-    return `select Distinct questionId From formoptionreplies where meetupId = ?  `;
+    return `select Distinct questionId From formoptionreplies where meetupId = ?`;
   },
   GetFeedBackOptionsCount: function()
   {
