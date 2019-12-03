@@ -283,34 +283,34 @@ module.exports = {
           });
 
       }catch(error){
-        //console.log(error);
+        console.log(error);
         throw(error);
     }
   },
   
   GetFeedBackQuestions: async (req, res)=>{
-
       try {
-        const DB = new Database(DBconfig);
+        const DB = new module.exports.getDataBase(DBconfig);
         //let paragraphQuestions = await DB.query(MeetupModel.GetParagraphQuestions(), req.params.id);
-        let meetup = await DB.query(MeetupModel.GetMeetup(), req.params.id);
+        let meetup = await DB.query(MeetupModel.GetMeetup(), req.params.id); //Selects all from meetup
         if(meetup.length === 0)
           throw 'No meetup exists with this Id';
         meetup = meetup[0];
+        //Selects question, required, FQ.meetupId , FQ.questionId, MAX(optionId), optionString, FQ.questionType
+        //Selects feedback questions only, Ordered by form question ID
         let result = await DB.query(MeetupModel.GetQuestions(), [req.params.id, req.params.id,true]);
         await DB.close();
         let Questions = [];
         for(let j = 0; j < result.length; j++){
           if (result[j].questionType === 1){
             delete result[j]["optionString"];
-          //  delete result[j]["questionId"];
             delete result[j]["Max"];
-         //   delete result[j]["optionId"];
             delete result[j]["meetupId"];
-            result[j].required = Boolean(result[j].required);
+            result[j].required = Boolean(result[j].required); //Stored in DB as 1 or 0, requires casting
             Questions.push(result[j]);
             continue;
           }
+          //Must be type 2 or 3 (radio button or check box)
           result[j].Answers = [result[j].optionString];
           let k = 1;
           while (k < result[j].MAX)
@@ -320,8 +320,6 @@ module.exports = {
           }
           delete result[j]["optionString"];
           delete result[j]["MAX"];
-      //    delete result[j]["questionId"];
-      //    delete result[j]["optionId"];
           delete result[j]["meetupId"];
           result[j].required = Boolean(result[j].required);
           Questions.push(result[j]);

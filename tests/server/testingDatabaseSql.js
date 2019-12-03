@@ -41,20 +41,20 @@ module.exports = {
     (3,2,1);
     Insert Into FormQuestions(meetupId,questionId,question,questionType,required,feedback) 
     values
-    (1,1,"What are your hopes and dreams?",0,1,0);
+    (1,1,"What are your hopes and dreams?",1,1,0);
     Insert Into FormQuestions(meetupId,questionId,question,questionType,required,feedback) 
     values
-    (1,2,"What are your hopes and dreams?",2,1,0);
+    (1,2,"What are your hopes and dreams?",3,1,0);
 
     Insert Into FormQuestions(meetupId,questionId,question,questionType,required,feedback) 
     values
-    (1,3,"What did you think of the meetup?",1,1,1);
+    (1,3,"What did you think of the meetup?",2,1,1);
     Insert Into FormQuestions(meetupId,questionId,question,questionType,required,feedback) 
     values
-    (1,4,"Do you have any comments or suggestions?",0,0,1);
+    (1,4,"Do you have any comments or suggestions?",1,0,1);
     Insert Into FormQuestions(meetupId,questionId,question,questionType,required,feedback) 
     values
-    (1,5,"Feedback question without answers?",0,0,1);
+    (1,5,"Feedback question without answers?",1,0,1);
     Insert Into FormOptions(meetupId,questionId,optionId,optionString)
     values
     (1,3,1,"Excellent");

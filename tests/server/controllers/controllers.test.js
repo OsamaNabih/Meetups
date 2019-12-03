@@ -240,46 +240,120 @@ describe('Testing Controllers', () => {
     });
 
     
-    it("Should create feedback questions, ", async function(){
-        let [req, res, questionTexts, questionTypes, required, meetupId] = CreateFeedbackQuestionsSetUp();
-        var stubDB = sinon.stub(meetupController,"getDataBase")
-        stubDB.returns(CreateFeedbackQuestionsSuccessStubDefinition());
-        var querySpy = sinon.spy(meetupController.getDataBase(), 'query'); //Spy on the getDatabase property called query
-        let result = meetupController.CreateFeedbackQuestions(req, res);
+    it("Should create feedback questions", async function(){
+        let [req, res, questionTexts, questionTypes, required, meetupId, splitAnswers] = CreateFeedbackQuestionsSetUp();
+        let stubDB = sinon.stub(meetupController,"getDataBase")
+        stubDB.returns(
+            { 
+                query: function(query,params){
+                    if(query === MeetupModel.GetFeedBackQuestionsOnly()) //returns question, questionId, questionType
+                    {
+                        return [];
+                    }
+                    else if(query === MeetupModel.GetMaxIdOfQuestions())
+                        return [{questionId: 2}];
+                    else if (query === MeetupModel.InsertQuestion())
+                    {
+                        let callNum = querySpy.withArgs(MeetupModel.InsertQuestion()).callCount;
+                        let callIdx = callNum - 1;
+                        expect(params.questionId).to.be.equal(2 + callNum);
+                        expect(params.meetupId).to.be.equal(meetupId);
+                        expect(params.questionType).to.be.equal(questionTypes[callIdx]);
+                        expect(params.question).to.be.equal(questionTexts[callIdx]);
+                        expect(params.required).to.be.equal(required[callIdx]);
+                        return [];
+                    }
+                        
+                    else if (query === MeetupModel.InsertOption())
+                    {
+                        //Question containing options is the last one
+                        let questions = querySpy.withArgs(MeetupModel.InsertQuestion()).callCount;
+                        let callNum = querySpy.withArgs(MeetupModel.InsertOption()).callCount;
+                        let callIdx = callNum - 1;
+                        expect(params.questionId).to.be.equal(2 + questions);
+                        expect(params.optionId).to.be.equal(callNum);
+                        expect(params.meetupId).to.be.equal(meetupId);
+                        expect(params.optionString).to.be.equal(splitAnswers[callIdx]);
+                        return [];
+                    }
+                        
+                },
+                close: function() {
+                    return new Promise((resolve,reject) => {resolve(1)}); 
+                }            
+            }
+        );
+        let querySpy = sinon.spy(meetupController.getDataBase(), 'query'); //Spy on the getDatabase property called query
+        try {
+            let result = meetupController.CreateFeedbackQuestions(req, res);
+            meetupController.getDataBase.restore();
+        } catch(err) {
+            meetupController.getDataBase.restore();
+        }
         //expect(querySpy.withArgs(MeetupModel.InsertQuestion()).callCount).to.be.equal(3, 'Number of questions should be 3');
         //expect(querySpy.withArgs(MeetupModel.InsertOption()).callcount).to.be.equal(5, 'Number of options should be 5')
-        meetupController.getDataBase.restore();
+        
     });
     
      
     it("Should create feedback questions, expecting to call res.send", async function(){       
         let [req, res, questionTexts, questionTypes, required, meetupId] = CreateFeedbackQuestionsSetUp();
-        var stubDB = sinon.stub(meetupController,"getDataBase")
-            .returns({query: function(query,params){
-            if(query === MeetupModel.GetFeedBackQuestionsOnly()) //returns question, questionId, questionType
-                return [{question: "Would you attend another meeting?", questionId: "3", questionType: 1}]
-            else if(query === MeetupModel.GetMaxIdOfQuestions())
-                return [{questionId: 2}];
-            else 
-                return [];
-            },
-            close: function() { return 1;}
-        })
+        let stubDB = sinon.stub(meetupController,"getDataBase")
+            .returns(CreateFeedbackQuestionsFailureStubDefinition());
         let resSendSpy = sinon.spy(res, 'send');
-        //let result = await meetupController.CreateFeedbackQuestions(req,res);
         try {
             await meetupController.CreateFeedbackQuestions(req,res); 
         } catch(err) {
             console.log(err);
+            meetupController.getDataBase.restore();
             expect(resSendSpy.calledOnce).to.be.true;
             expect(err).to.be.equal('Already contains feedback Questions');
         }
-        expect(resSendSpy.calledOnce).to.be.true;
         meetupController.getDataBase.restore();
+        expect(resSendSpy.calledOnce).to.be.true;
     });
    
+    it("Should return feedback questions and format them for the front-end", async function(){
+        let [req, res, questionTexts, required, questionTypes, meetup, answers, questionIds, questions] = GetFeedBackQuestionsSetUp();
+        let stubDB = sinon.stub(meetupController,"getDataBase")
+            .returns(GetFeedBackQuestionsStubDefinition(questions, meetup, true));
+        let result = await meetupController.GetFeedBackQuestions(req, res);
+        meetupController.getDataBase.restore();
+        let eventInfo = result.EventInformation;
+        expect(eventInfo.meetupId).to.be.equal(meetup.meetupId);
+        expect(eventInfo.description).to.be.equal(meetup.description);
+        expect(eventInfo.capacity).to.be.equal(meetup.capacity);
+        expect(eventInfo.meetupName).to.be.equal(meetup.meetupName);
+        expect(eventInfo.price).to.be.equal(meetup.price);
+        let returnedQuestions = result.Questions;
+        expect(returnedQuestions.length).to.be.equal(questionIds.length);
+        let i = 0;
+        for(i = 0; i < 3; i++)
+        {
+            expect(returnedQuestions[i].question).to.be.equal(questionTexts[i]);
+            expect(returnedQuestions[i].questionType).to.be.equal(questionTypes[i]);
+            expect(returnedQuestions[i].required).to.be.equal(required[i]);
+            expect(returnedQuestions[i].questionId).to.be.equal(i);
+        }
+        for(j = 0; j < answers.length; j++)
+            expect(returnedQuestions[i - 1].Answers[j]).to.be.equal(answers[j]);
+    });
 
-    
+    it("Should return feedback questions, expecting error to be thrown bec. meetup doesn't exist", async function(){
+        let [req, res, questionTexts, required, questionTypes, meetup, answers, questionIds, questions] = GetFeedBackQuestionsSetUp();
+        meetup = null;
+        let stubDB = sinon.stub(meetupController,"getDataBase")
+            .returns(GetFeedBackQuestionsStubDefinition(questions, meetup, false));
+        try {
+            let result = await meetupController.GetFeedBackQuestions(req, res);
+        } catch(err) {
+            expect(err).to.be.equal("No meetup exists with this Id");
+        }
+        
+        meetupController.getDataBase.restore();
+    });
+
+
     function CreateFeedbackQuestionsSetUp() {
         let res = {send: function(s){ return s;}};
         let questionTexts = ["How was the session?", "Do you have any suggestions?", "Rate the session"];
@@ -287,60 +361,81 @@ describe('Testing Controllers', () => {
         let required = [true, false, true];
         let meetupId = 5;
         let questions = [];
+        let answers = 'Excellent|Very good|Okay|Bad|Terrible'
         for(let i = 0; i < 3; i++){
             questions.push({question: questionTexts[i], 
                               questionType: questionTypes[i], 
                               required: required[i],
                               meetupId: meetupId})
         }
+        questions[2]['Answers'] = answers;
+        let splitAnswers = answers.split('|');
         let req = {body: 
-                        {meetupId: meetupId, 
+                        {id: meetupId, 
                          Questions: questions}
                     };
-        return [req, res, questionTexts, questionTypes, required, meetupId];
+        return [req, res, questionTexts, questionTypes, required, meetupId, splitAnswers];
     }
 
-    function CreateFeedbackQuestionsSuccessStubDefinition() {
-        return { 
-            query: function(query,params){
-                if(query === MeetupModel.GetFeedBackQuestionsOnly()) //returns question, questionId, questionType
-                {
-                    return [];
-                }
-                else if(query === MeetupModel.GetMaxIdOfQuestions())
-                    return [{questionId: 2}];
-                else if (query === MeetupModel.InsertQuestion())
-                {
-                    let callNum = querySpy.withArgs(MeetupModel.InsertQuestion()).callCount;
-                    let callIdx = callNum - 1;
-                    expect(params.questionId).to.be.equal(2 + callNum);
-                    expect(params.meetupId).to.be.equal(meetupId);
-                    expect(params.questionType).to.be.equal(questionTypes[callIdx]);
-                    expect(params.question).to.be.equal(questionTexts[callIdx]);
-                    expect(params.required).to.be.equal(required[callIdx]);
-                    return [];
-                }
-                    
-                else if (query === MeetupModel.InsertOption())
-                {
-                    //Question containing options is the last one
-                    let questions = querySpy.withArgs(MeetupModel.InsertQuestion()).callCount;
-                    let callNum = querySpy.withArgs(MeetupModel.InsertOption()).callCount;
-                    let callIdx = callNum - 1;
-                    expect(params.questionId).to.be.equal(2 + questions);
-                    expect(params.optionId).to.be.equal(callNum);
-                    expect(params.meetupId).to.be.equal(meetupId);
-                    expect(params.optionString).to.be.equal(splitAnswers[callIdx]);
-                    return [];
-                }
-                    
+
+    function CreateFeedbackQuestionsFailureStubDefinition() {
+        return {query: function(query,params){
+            if(query === MeetupModel.GetFeedBackQuestionsOnly()) //returns question, questionId, questionType
+                return [{question: "Would you attend another meeting?", questionId: "3", questionType: 1}]
+            else if(query === MeetupModel.GetMaxIdOfQuestions())
+                return [];
+            else 
+                return [];
             },
             close: function() {
                 return new Promise((resolve,reject) => {resolve(1)}); 
-            }            
-        }
+            }
+        };
     }
-    function CreateFeedbackQuestionsFailureStubDefinition() {
 
+    function GetFeedBackQuestionsSetUp() {
+        let req = {params: {id: 1}};
+        let res = {};
+        let questions = []
+        let questionTexts = ["How was the session?", "Do you have any suggestions?", "Rate the session"];
+        let questionTypes = [1, 1, 2];
+        let questionIds = [1, 2, 3];
+        let required = [true, false, true];
+        let meetupId = 5;
+        let answers = ['Excellent', 'Very good', 'Okay', 'Bad', 'Terrible']
+        for(let i = 0; i < 2; i++){
+            questions.push({question: questionTexts[i], 
+                              questionType: questionTypes[i], 
+                              required: required[i],
+                              meetupId: meetupId,
+                              questionId: i})
+        }
+        for(let j = 0; j < answers.length; j++)
+        {
+            questions.push({question: questionTexts[2],
+                            questionType: questionTypes[2],
+                            required: required[2],
+                            MAX: answers.length,
+                            optionString: answers[j],
+                            meetupId: meetupId,
+                            questionId: 2})
+        }
+        let meetup = {meetupId: meetupId, meetupName: "name", capacity: 5, description: "description", price: 5};
+        return [req, res, questionTexts, required, questionTypes, meetup, answers, questionIds, questions];
+    }
+
+    function GetFeedBackQuestionsStubDefinition(questions, meetup, success){
+        return {query: function(query,params){
+            if(query === MeetupModel.GetMeetup() && success) //returns question, questionId, questionType
+                return [meetup];
+            else if(query === MeetupModel.GetQuestions())
+                return questions;
+            else 
+                return [];
+            },
+            close: function() {
+                return new Promise((resolve,reject) => {resolve(1)}); 
+            }
+        };
     }
 });
