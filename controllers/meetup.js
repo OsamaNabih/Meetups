@@ -247,28 +247,29 @@ module.exports = {
   },
   // Bassel Ends, Osama Starts
   CreateFeedbackQuestions: async (req,res)=>{
-
+    //This function is sent a JSON of feedback questions submitted by admin to a meetup, for users to fill later on
     try{
-          const DB = new Database(DBconfig);
+          const DB = new module.exports.getDataBase(DBconfig);
           let feedbackexist = await DB.query(MeetupModel.GetFeedBackQuestionsOnly(),req.body.id);
           if(feedbackexist.length > 0)
-            {
-              await DB.close();
-              res.send("Already contains feedback Questions");
-            }
+          {
+            await DB.close();
+            res.send("Meetup already contains feedback Questions");
+            //throw("Meetup already contains feedback questions");  //TODO
+          }
           let feedbackNums = Object.keys(req.body.Questions).length;
-          let  maxId = await DB.query(MeetupModel.GetMaxIdOfQuestions(),req.body.id);
+          let  maxId = await DB.query(MeetupModel.GetMaxIdOfQuestions(),req.body.id);  //Start Ids from first available one
           for(let i = 1; i <= feedbackNums;i++){
             let feedbackId = i + maxId[0].questionId;
             let currFeedbackQuestion = req.body.Questions[i-1];
             currFeedbackQuestion['questionId'] = feedbackId;
-            currFeedbackQuestion['meetupId'] = req.body.id;           // if it is seprated then  i must have the meetup id sent to me
+            currFeedbackQuestion['meetupId'] = req.body.id;  // if it is seprated then  i must have the meetup id sent to me
             currFeedbackQuestion['feedback'] = true;
-            if (currFeedbackQuestion.questionType === 1){
+            if (currFeedbackQuestion.questionType === 1){  //1 means a text question
               await DB.query(MeetupModel.InsertQuestion(), currFeedbackQuestion);
             }
             else{
-                const Options = currFeedbackQuestion.Answers.split("|");
+                const Options = currFeedbackQuestion.Answers.split("|"); //Options are separated by '|' in the json
                 delete currFeedbackQuestion["Answers"];
                 await DB.query(MeetupModel.InsertQuestion(), currFeedbackQuestion);
                   for(let j = 1; j <= Options.length;j++){
@@ -282,7 +283,8 @@ module.exports = {
           });
 
       }catch(error){
-        console.log(error);
+        //console.log(error);
+        throw(error);
     }
   },
   

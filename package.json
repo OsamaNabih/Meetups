@@ -4,8 +4,8 @@
   "description": "Meetups project",
   "main": "app.js",
   "scripts": {
-    "test": "mocha --exit tests/server/*/*.test.js",
-    "report": "set NODE_ENV=test nyc mocha --timeout=5000 tests/server/*/*.test.js",
+    "test": "mocha --timeout=10000 tests/server/controllers/controllers.test.js",
+    "report": "nyc mocha --timeout=10000 tests/server/*/*.test.js",
     "text-report": "set NODE_ENV=test nyc --reporter=text-summary mocha --timeout=5000 tests/server/*/*.test.js"
   },
   "repository": {
@@ -27,6 +27,7 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.2",
+    "chai-as-promised": "^7.1.1",
     "cookie-parser": "^1.4.3",
     "ejs": "^2.5.9",
     "express": "^4.16.3",

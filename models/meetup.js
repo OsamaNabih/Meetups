@@ -109,7 +109,7 @@ module.exports = {
   },
   GetFeedBackQuestionsOnly: function()
   {
-    return " Select question,questionId,questionType from FormQuestions where meetupId = ? and feedback= true ";
+    return "Select question,questionId,questionType from FormQuestions where meetupId = ? and feedback = true";
   },
   GetFeedBackOptions: function()
   {
