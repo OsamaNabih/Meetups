@@ -23,6 +23,7 @@ chai.use(chaiAsPromised)
 
 const DB = new Database(DBconfig);
 describe('Testing Controllers', () => {
+    /*
     it("Should succesfully insert user", async function(){
         let req = {}; req.value = {}; req.value.body = {};
         req.value.body.userId = 3; req.value.body.email = "om2@wagih.com"; req.value.body.authField = "Omar"; req.value.body.firstName = "Omar"; req.value.body.lastName = "Wagih";
@@ -35,7 +36,7 @@ describe('Testing Controllers', () => {
             expect(result[0].email).to.equal("om2@wagih.com")
         })
     });
-
+    */
     it("Token is sent back on sign in", async function(){
         let req = {}; req.user = []; req.user.push({});
         req.user[0].userId = 1; req.user[0].userType = 2; 
@@ -286,6 +287,8 @@ describe('Testing Controllers', () => {
         let querySpy = sinon.spy(meetupController.getDataBase(), 'query'); //Spy on the getDatabase property called query
         try {
             let result = meetupController.CreateFeedbackQuestions(req, res);
+            expect(querySpy.withArgs(MeetupModel.InsertQuestion()).callCount).to.be.equal(3, 'Number of questions should be 3');
+            expect(querySpy.withArgs(MeetupModel.InsertOption()).callcount).to.be.equal(5, 'Number of options should be 5')
             meetupController.getDataBase.restore();
         } catch(err) {
             meetupController.getDataBase.restore();
@@ -304,7 +307,6 @@ describe('Testing Controllers', () => {
         try {
             await meetupController.CreateFeedbackQuestions(req,res); 
         } catch(err) {
-            console.log(err);
             meetupController.getDataBase.restore();
             expect(resSendSpy.calledOnce).to.be.true;
             expect(err).to.be.equal('Already contains feedback Questions');
@@ -346,13 +348,135 @@ describe('Testing Controllers', () => {
             .returns(GetFeedBackQuestionsStubDefinition(questions, meetup, false));
         try {
             let result = await meetupController.GetFeedBackQuestions(req, res);
+            meetupController.getDataBase.restore();
         } catch(err) {
+            meetupController.getDataBase.restore();
             expect(err).to.be.equal("No meetup exists with this Id");
         }
-        
-        meetupController.getDataBase.restore();
     });
 
+    it("Should submit feedback form replies, expecting input data to be formatted for database", async function(){
+        //Setup
+        let [req, res, questionIds, optionIdOrUserReply, meetupId, userId] = SubmitFeedbackRepliesSetUp();
+        //Mock/stub
+        let stubDB = sinon.stub(meetupController,"getDataBase")
+        stubDB.returns(
+            { 
+                query: function(query,params){
+                    if(query === MeetupModel.CheckPreviousFeedbackSubmission()) 
+                    {
+                        return [];
+                    }
+                    else if(query === MeetupModel.CheckPreviousFeedbackOptionsSubmission())
+                        return [];
+                    else if (query === MeetupModel.InsertFormOptionReply())
+                    {
+                        expect(params.questionId).to.be.equal(questionIds[2]);
+                        expect(params.meetupId).to.be.equal(meetupId);
+                        expect(params.optionId).to.be.equal(optionIdOrUserReply[2] + 1);
+                        expect(params.userId).to.be.equal(userId);
+                        return [];
+                    }
+                        
+                    else if (query === MeetupModel.InsertFormReply())
+                    {
+                        let callNum = querySpy.withArgs(MeetupModel.InsertFormReply()).callCount;
+                        let callIdx = callNum - 1;
+                        expect(params.questionId).to.be.equal(questionIds[callIdx]);
+                        expect(params.meetupId).to.be.equal(meetupId);
+                        expect(params.userReply).to.be.equal(optionIdOrUserReply[callIdx]);
+                        expect(params.userId).to.be.equal(userId);
+                        return [];
+                    }
+                },
+                close: function() {
+                    return new Promise((resolve,reject) => {resolve(1)}); 
+                }            
+            }
+        );
+        let querySpy = sinon.spy(meetupController.getDataBase(), 'query'); //Spy on the getDatabase property called query
+        try {
+            let result = await meetupController.SubmitFeedbackReplies(req, res);
+            meetupController.getDataBase.restore(); 
+        } catch(error) {
+            meetupController.getDataBase.restore();
+            throw error;
+        }
+        
+    });
+
+
+    it("Should submit feedback form replies, expecting error to be thrown due to previous feedback option reply", async function(){
+        //Setup
+        let [req, res, questionIds, optionIdOrUserReply, meetupId, userId] = SubmitFeedbackRepliesSetUp();
+        //Mock/stub
+        let stubDB = sinon.stub(meetupController,"getDataBase")
+        stubDB.returns(
+            { 
+                query: function(query,params){
+                    if(query === MeetupModel.CheckPreviousFeedbackSubmission()) 
+                    {
+                        return [];
+                    }
+                    else if(query === MeetupModel.CheckPreviousFeedbackOptionsSubmission())
+                        return [{userId: 4, meetupId: 5}];
+                    else if (query === MeetupModel.InsertFormOptionReply())
+                        return [];
+                    else if (query === MeetupModel.InsertFormReply())
+                        return [];
+                },
+                close: function() {
+                    return new Promise((resolve,reject) => {resolve(1)}); 
+                }            
+            }
+        );
+        let querySpy = sinon.spy(meetupController.getDataBase(), 'query'); //Spy on the getDatabase property called query
+        try {
+            let result = await meetupController.SubmitFeedbackReplies(req, res);
+            meetupController.getDataBase.restore();
+        } catch(error) {
+            meetupController.getDataBase.restore();
+            expect(error).to.be.equal('You have already inserted a feedback for this meetup');
+        }
+    })
+
+    it("Should submit feedback form replies, expecting error to be thrown due to previous feedback reply", async function(){
+        //Setup
+        let [req, res, questionIds, optionIdOrUserReply, meetupId, userId] = SubmitFeedbackRepliesSetUp();
+        //Mock/stub
+        let stubDB = sinon.stub(meetupController,"getDataBase")
+        stubDB.returns(
+            { 
+                query: function(query,params){
+                    if(query === MeetupModel.CheckPreviousFeedbackSubmission()) 
+                    {
+                        return [{userId: 4, meetupId: 5}];
+                    }
+                    else if(query === MeetupModel.CheckPreviousFeedbackOptionsSubmission())
+                        return [];
+                    else if (query === MeetupModel.InsertFormOptionReply())
+                        return [];
+                    else if (query === MeetupModel.InsertFormReply())
+                        return [];
+                },
+                close: function() {
+                    return new Promise((resolve,reject) => {resolve(1)}); 
+                }            
+            }
+        );
+        let querySpy = sinon.spy(meetupController.getDataBase(), 'query'); //Spy on the getDatabase property called query
+        try {
+            let result = await meetupController.SubmitFeedbackReplies(req, res);
+            meetupController.getDataBase.restore();
+        } catch(error) {
+            meetupController.getDataBase.restore();
+            expect(error).to.be.equal('You have already inserted a feedback for this meetup');
+        }
+    })
+
+    it("Should", async function(){
+        
+    })
 
     function CreateFeedbackQuestionsSetUp() {
         let res = {send: function(s){ return s;}};
@@ -437,5 +561,27 @@ describe('Testing Controllers', () => {
                 return new Promise((resolve,reject) => {resolve(1)}); 
             }
         };
+    }
+
+    function SubmitFeedbackRepliesSetUp() {
+        let questions = []
+        let questionTypes = [1, 1, 2];
+        let questionIds = [1, 2, 3];
+        let meetupId = 5;
+        let optionIdOrUserReply = ["It was great", "None that I can think of", 3];
+        let userId = 3;
+        for (let i = 0; i < 3; i++) {
+            questions.push({questionId: questionIds[i],
+                            questionType: questionTypes[i],
+                            Answer: optionIdOrUserReply[i]});
+        }
+        let req = {body:
+                {userId: userId,
+                meetupId: meetupId,
+                Questions: questions
+                }
+            };
+        let res = {};
+        return [req, res, questionIds, optionIdOrUserReply, meetupId, userId];
     }
 });

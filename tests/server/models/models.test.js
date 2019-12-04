@@ -27,7 +27,7 @@ function comp(a, b){
 
 describe('Testing Models', () => {
   before(async () => {
-        await DB.query(sql.sql)
+        await DB.query(sql.sql);
   });
 
   // Bassel tests start
@@ -301,13 +301,19 @@ describe('Testing Models', () => {
     let result = await DB.query(MeetupModel.GetNumberOfMultipleFeedbackQuestions(), [1]);
     expect(result[0]).to.be.equal(3);
   });
-
-  it("Should return option IDs of feedback replies, expecting 1 value of 1", async function(){
-    let result = await DB.query(MeetupModel.GetFeedBackOption(), [1, 3]);
-    expect(result[0]).to.be.equal(1);
-    expect(result.length).to.be.equal(1);
-  });
   
+
+  it("Should return the number of feedback questions replied to, expecting 2", async function(){
+    let result = await DB.query(MeetupModel.GetNumberOfMultipleFeedbackQuestions(), [1]);
+    expect(result[0]).to.be.equal(2, 'Should return the number 2');
+  })
+
+  it("Should return option IDs of replies submitted to form for a question, expecting 2", async function(){
+    let result = await DB.query(MeetupModel.GetFeedBackOptionsCount(), [1, 2]);
+    expect(result.length).to.be.equal(2);
+    expect(result[0].optionId).to.be.equal(2);
+    expect(result[1].optionId).to.be.equal(1);
+  })
 
   it("Should return max question ID for a meetup, expecting 5", async function(){
     let result = await DB.query(MeetupModel.GetMaxIdOfQuestions(), [1]);

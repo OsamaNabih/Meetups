@@ -4,8 +4,8 @@
   "description": "Meetups project",
   "main": "app.js",
   "scripts": {
-    "test": "mocha --timeout=10000 tests/server/controllers/controllers.test.js",
-    "report": "nyc mocha --timeout=10000 tests/server/*/*.test.js",
+    "test": "mocha --timeout=10000 tests/server/models/*.test.js",
+    "report": "nyc mocha --timeout=10000 tests/server/models/*.test.js",
     "text-report": "set NODE_ENV=test nyc --reporter=text-summary mocha --timeout=5000 tests/server/*/*.test.js"
   },
   "repository": {

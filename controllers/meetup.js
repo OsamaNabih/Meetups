@@ -283,7 +283,7 @@ module.exports = {
           });
 
       }catch(error){
-        console.log(error);
+        console.log('Error in CreateFeedbackQuestions:\n' + error);
         throw(error);
     }
   },
@@ -329,20 +329,20 @@ module.exports = {
         return data;
       }
       catch(error){
-        console.log(error);
+        console.log('Error in GetFeedbackQuestions:\n' + error);
         throw error;
       }
   },
   SubmitFeedbackReplies: async(req, res)=>{
     try{
-      //Currenyl hardcoding the user ID and question types until the front-end sends them
+      //Currently hardcoding the user ID and question types until the front-end sends them
       let JSON = req.body;
       JSON.userId = 1;
     /*  JSON.Questions[0].questionType = 2;
       JSON.Questions[1].questionType = JSON.Questions[2].questionType = JSON.Questions[3].questionType = 1;
       JSON.Questions[4].questionType = JSON.Questions[5].questionType = 3;
     */
-      const DB = new Database(DBconfig);
+      const DB = new module.exports.getDataBase(DBconfig);
       let previousFeedbackSubmission = await DB.query(MeetupModel.CheckPreviousFeedbackSubmission(),
                                     [JSON.meetupId, JSON.userId]);
       let previousFeedbackOptionsSubmission = await DB.query(MeetupModel.CheckPreviousFeedbackOptionsSubmission(),
@@ -372,7 +372,7 @@ module.exports = {
       return 'Your registration has been completed successfully';
     }
     catch (error){
-      console.log(error);
+      console.log('Error in SubmitFormReplies:\n' + error);
       throw error;
     }
   },
@@ -380,7 +380,7 @@ module.exports = {
   {
     try{
          let meetupId = req.params.id;
-         const DB = new Database(DBconfig);
+         const DB = new module.exports.getDataBase(DBconfig);
          let numberOfMultipleFeedbackQuestions = await DB.query(MeetupModel.GetNumberOfMultipleFeedbackQuestions(),meetupId);
          let questions = await DB.query(MeetupModel.GetFeedBackQuestionsOnly(),meetupId);
         if(questions.length === 0)
@@ -425,7 +425,7 @@ module.exports = {
         return questions;
     }
     catch(error){
-      console.log(error);
+      console.log('Error in GetFeedBackQuestionswithreplies:\n' + error);
       throw error;
     }
   }
