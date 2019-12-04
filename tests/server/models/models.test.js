@@ -288,19 +288,6 @@ describe('Testing Models', () => {
     expect(result[0].optionString).to.be.equal("Excellent");
     expect(result[0].optionId).to.be.equal(1);
   });
-
-
-  it("Should return question IDs of feedback questions", async function(){
-    let result = await DB.query(MeetupModel.GetNumberOfMultipleFeedbackQuestions(), [1]);
-    result.sort(function(a, b) {return a.questionId - b.questionId});
-    expect(result[0].questionId).to.be.equal(2)
-  });
-
-  
-  it("Should return number of feedback questions with options, expecting 3", async function(){
-    let result = await DB.query(MeetupModel.GetNumberOfMultipleFeedbackQuestions(), [1]);
-    expect(result[0]).to.be.equal(3);
-  });
   
 
   it("Should return the number of feedback questions replied to, expecting 2", async function(){
