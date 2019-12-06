@@ -410,7 +410,7 @@ module.exports = {
                 for (var j = 0; j < frequency.length; j++) {
                   if(frequencyMap[frequency[j].optionId] === undefined)
                       frequencyMap[frequency[j].optionId] = 1;
-                      else
+                  else
                       frequencyMap[frequency[j].optionId]++;
                 }
                  for (var j = 0; j < questions[i].options.length ; j++) {

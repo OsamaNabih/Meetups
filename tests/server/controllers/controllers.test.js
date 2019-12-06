@@ -474,8 +474,70 @@ describe('Testing Controllers', () => {
         }
     })
 
-    it("Should", async function(){
-        
+    it("Should return statistics of users' feedback replies", async function(){
+        let [req, res, meetupId] = GetFeedBackQuestionswithrepliesSetUp();
+        let stubDB = sinon.stub(meetupController,"getDataBase")
+        stubDB.returns(
+            { 
+                query: function(query,params){
+                    if(query === MeetupModel.GetNumberOfMultipleFeedbackQuestions()) 
+                        return [{questionId: 1}, {questionId: 2}];
+                    else if(query === MeetupModel.GetFeedBackQuestionsOnly())
+                    {
+                        return [{question: "Any comments?", questionId: 1, questionType: 1},
+                                {question: "Rate our meetup", questionId: 2, questionType: 2}];
+                    }
+                    else if (query === MeetupModel.GetFeedBackReplies())
+                    {
+                        return [{userId: 1, userReply: "No, I'm satisfied", email:"email1@gmail.com", firstName: "user1"},
+                                {userId: 2, userReply: "All is good", email: "email2@gmail.com", firstName: "user2"}];
+                    }
+                    else if (query === MeetupModel.GetFeedBackOptions())
+                        return [{optionId: 1, optionString: "Excellent"}, {optionId: 2, optionString: "Terrible"}];
+                    else if (query === MeetupModel.GetFeedBackOptionsCount())
+                        return [{optionId: 1}, {optionId: 2}, {optionId: 1}, {optionId: 1}];
+                },
+                close: function() {
+                    return new Promise((resolve,reject) => {resolve(1)}); 
+                }            
+            }
+        );
+        let result = await meetupController.GetFeedBackQuestionswithreplies(req, res);
+        meetupController.getDataBase.restore();
+        expect(result.length).to.be.equal(2);
+        expect(result[0].questionId).to.be.equal(1);
+        expect(result[0].questionType).to.be.equal(1);
+        expect(result[0].replies[0].userId).to.be.equal(1);
+        expect(result[0].replies[0].email).to.be.equal('email1@gmail.com');
+        expect(result[1].questionId).to.be.equal(2);
+        expect(result[1].questionType).to.be.equal(2);
+        expect(result[1].options[0].frequency).to.be.equal(3);
+        expect(result[1].options[0].optionString).to.be.equal('Excellent');
+        expect(result[1].options[1].frequency).to.be.equal(1);
+        expect(result[1].options[1].optionString).to.be.equal('Terrible');
+        expect(result.chartsNumber).to.be.equal(2);
+    })
+
+    it("Should throw error bec. no feedback questions in this meetup", async function(){
+        let [req, res, meetupId] = GetFeedBackQuestionswithrepliesSetUp();
+        let stubDB = sinon.stub(meetupController,"getDataBase")
+        stubDB.returns(
+            { 
+                query: function(query,params){
+                    return [];
+                },
+                close: function() {
+                    return new Promise((resolve,reject) => {resolve(1)}); 
+                }            
+            }
+        );
+        try {
+            let result = await meetupController.GetFeedBackQuestionswithreplies(req, res);
+            meetupController.getDataBase.restore();
+        } catch (error) {
+            meetupController.getDataBase.restore();
+            expect(error).to.be.equal("No feedback questions added to this meetup");
+        }
     })
 
     //Bassel
@@ -712,7 +774,7 @@ describe('Testing Controllers', () => {
         return [req, res, questionTexts, required, questionTypes, meetup, answers, questionIds, questions];
     }
 
-    function GetFeedBackQuestionsStubDefinition(questions, meetup, success){
+    function GetFeedBackQuestionsStubDefinition(questions, meetup, success) {
         return {query: function(query,params){
             if(query === MeetupModel.GetMeetup() && success) //returns question, questionId, questionType
                 return [meetup];
@@ -747,5 +809,14 @@ describe('Testing Controllers', () => {
             };
         let res = {};
         return [req, res, questionIds, optionIdOrUserReply, meetupId, userId];
+    }
+
+    function GetFeedBackQuestionswithrepliesSetUp() {
+        let req = {params: {id: 3}};
+        let res = {};
+        let meetupId = 3
+        let choices = [1, 1, 2];
+        let optionStrings = ["Excellent", "Very good", "Okay", "Bad", "Terrible"];
+        return [req, res, meetupId];
     }
 });

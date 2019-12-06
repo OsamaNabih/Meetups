@@ -255,5 +255,7 @@ describe('Meetup route',  () => {
     .set('Cookie', 'jwt=23121231223123')
     expect(res.status).to.equal(200);
   })
+
+  
 });
 
