@@ -478,6 +478,170 @@ describe('Testing Controllers', () => {
         
     })
 
+    //Bassel
+    it("Gets Question",async function(){
+        let req = {params:{id:1}};
+        let res = {};
+        var stubDB = sinon.stub(meetupController,"getDataBase")
+        .callsFake(function fakeFn(){ return {query: function(query){
+            if(query === "SELECT * FROM meetups WHERE meetupId = ?")  
+                return [{meetupId: 1, meetupName: 'helloworld1', capacity: 50000, description: 'how to procrastinate', price: 0}]
+            else if (query === `SELECT question, required, FQ.meetupId , FQ.questionId, MAX, optionString, FQ.questionType
+            FROM FormQuestions as FQ LEFT JOIN
+	             (SELECT * FROM FormOptions NATURAL JOIN
+		                (SELECT questionId, meetupId, MAX(optionId) as MAX
+                    FROM FormOptions
+                    WHERE meetupId = ?
+                    GROUP BY questionId
+                    ORDER BY questionId)
+                as OptionsNum)
+            as Options
+            on FQ.meetupId = Options.meetupId AND FQ.questionId = Options.questionId
+            WHERE FQ.meetupId = ? and FQ.feedback = ?
+            ORDER BY FQ.questionId`)
+                return [{questionId:"2",question:"what are your hopes and dreams",optionString:"that",userId:"1",firstName:"Real",lastName:"Person",email:"user3@gmail.com",required:1}
+                ,{questionId:"2",question:"what are your hopes and dreams",optionString:"this",userId:"2",firstName:"very",lastName:"Enthusiastic",email:"user4@gmail.com",required:0}];
+        },
+        close: function() { return true;}
+        }});
+        let result = await meetupController.GetQuestions(req,res);
+        meetupController.getDataBase.restore();
+        expect(result['EventInformation'].meetupId).to.equal(1);
+        expect(result['EventInformation'].meetupName).to.equal('helloworld1');
+        expect(result['Questions'].length).to.equal(2);
+        expect(result['Questions'][0].questionId).to.equal('2');
+    });
+
+    it("Validate Users",async function(){
+        let req1 = {
+            body:
+            {
+                meetupId:4,
+                verifiedUsers:[{userId:1},{userId:2}]
+            }                        
+        };
+        let req2 = {
+            body:
+            {
+                meetupId:4,
+                verifiedUsers:[]
+            }                        
+        };
+        let res = {};
+        var stubDB = sinon.stub(meetupController,"getDataBase")
+        .callsFake(function fakeFn(){ return {query: function(query){
+            if(query === `UPDATE Attended SET verified = !verified WHERE meetupId = ? AND userId IN (?)`)
+                return null
+            },
+            close: function() { return true;}
+        }});
+        let result = await meetupController.ValidateUsers(req1,res);
+        expect(result).to.equal();
+        try{
+            meetupController.ValidateUsers(req2,res);
+        }
+        catch(error){
+            expect(error).to.equal('no change');
+        }
+        meetupController.getDataBase.restore();
+    });
+
+    it("Submit Replies Registered",async function(){
+        let req = {
+            user:{
+                userid:1
+            },
+            body:{
+                meetupId:1,
+                Questions:[
+                    {questionId:1,Answer:"test1"},
+                    {questionId:2,Answer:"test2"}
+                ] 
+            }
+        };
+        let res = {};
+        var stubDB = sinon.stub(meetupController,"getDataBase")
+        .callsFake(function fakeFn(){ return {query: function(query){
+                if(query === "SELECT DISTINCT userId FROM FormOptionReplies WHERE meetupId = ? AND userId = ?")
+                    return [{
+                        meetupId:1,
+                        Questions:[
+                            {questionId:1,Answer:"test1"},
+                            {questionId:2,Answer:"test2"}
+                        ]                                                
+                    }]
+                else if(query === "SELECT DISTINCT userId FROM FormReplies WHERE meetupId = ? AND userId = ?")
+                    return []
+                else if(query === "INSERT INTO Attended SET ?")
+                    return null
+            },
+                close: function() { return true;}
+        }});
+
+        try{
+            await meetupController.SubmitReplies(req,res);
+        }catch(error){
+            expect(error).to.equal('You have already registered for this meetup');
+        }
+        meetupController.getDataBase.restore();
+    });
+
+    it("Submit Replies Not Registered",async function(){
+        let req = {
+            user:{
+                userid:1
+            },
+            body:{
+                meetupId:1,
+                Questions:[
+                    {questionId:1,Answer:"test1"},
+                    {questionId:2,Answer:"test2"}
+                ]
+            }
+        };
+        let res = {};
+        var stubDB = sinon.stub(meetupController,"getDataBase")
+        .callsFake(function fakeFn(){ return {query: function(query){
+                if(query === "SELECT DISTINCT userId FROM FormOptionReplies WHERE meetupId = ? AND userId = ?")
+                    return []
+                else if(query === "SELECT DISTINCT userId FROM FormReplies WHERE meetupId = ? AND userId = ?")
+                    return []
+                else if(query === "INSERT INTO Attended SET ?")
+                    return null
+            },
+                close: function() { return true;}
+        }});
+
+        let result = await meetupController.SubmitReplies(req,res);
+        expect(result).to.equal('Your registration has been completed successfully');
+
+        meetupController.getDataBase.restore();
+    });
+
+    it("Update Meetup", async function(){
+        let req = {
+            body:{
+            EventInformation: "useless info"
+            },
+            params:{
+                id:0
+            }
+        };
+        let res = {};
+        var stubDB = sinon.stub(meetupController,"getDataBase")
+        .callsFake(function fakeFn(){ return {query:function(query){
+            if(query === `UPDATE Meetups SET ? WHERE meetupId = ?`)
+            return;
+        },
+        close: function() { return true;}
+    }});
+    
+    let result = await meetupController.UpdateMeetup(req,res);
+    expect(result).to.equal('Meetup has been updated successfully');
+
+    meetupController.getDataBase.restore();
+    });
+
     function CreateFeedbackQuestionsSetUp() {
         let res = {send: function(s){ return s;}};
         let questionTexts = ["How was the session?", "Do you have any suggestions?", "Rate the session"];

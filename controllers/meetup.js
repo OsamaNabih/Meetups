@@ -136,7 +136,7 @@ module.exports = {
  // Walid Ends, Bassel starts
   GetQuestions: async (req, res)=>{
       try {
-        const DB = new Database(DBconfig);
+        const DB = module.exports.getDataBase(DBconfig);// = new Database(DBconfig);
         //let paragraphQuestions = await DB.query(MeetupModel.GetParagraphQuestions(), req.params.id);
         let meetup = await DB.query(MeetupModel.GetMeetup(), req.params.id);
         meetup = meetup[0];
@@ -184,7 +184,7 @@ module.exports = {
       for(let i = 0; i < req.body.verifiedUsers.length; i++){
         Ids.push(req.body.verifiedUsers[i].userId);
       }
-      const DB = new Database(DBconfig);
+      const DB = module.exports.getDataBase(DBconfig);// = new Database(DBconfig);
       let result = await DB.query(MeetupModel.VerifyAttendees(), [req.body.meetupId, Ids]);
       await DB.close();
       return;
@@ -197,7 +197,7 @@ module.exports = {
     try{
       //Currenyl hardcoding the user ID and question types until the front-end sends them
       let JSON = req.body;
-      const DB = new Database(DBconfig);
+      const DB = module.exports.getDataBase(DBconfig);// = new Database(DBconfig);
       let previousOptionsSubmission = await DB.query(MeetupModel.CheckPreviousOptionsSubmission(),
                                     [JSON.meetupId, req.user.userId]);
       let previousRepliesSubmission = await DB.query(MeetupModel.CheckPreviousRepliesSubmission(),
@@ -235,7 +235,7 @@ module.exports = {
   UpdateMeetup: async (req, res)=>{
     try{
       let JSON = req.body.EventInformation;
-      const DB = new Database(DBconfig);
+      const DB = module.exports.getDataBase(DBconfig);// = new Database(DBconfig);
       let result = await DB.query(MeetupModel.UpdateMeetup(), [JSON, req.params.id]);
       await DB.close();
       return 'Meetup has been updated successfully';
