@@ -26,11 +26,11 @@
   "homepage": "https://github.com/OsamaNabih/Meetups#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
-    "body-parser": "^1.18.2",
+    "body-parser": "^1.20.1",
     "chai-as-promised": "^7.1.1",
     "cookie-parser": "^1.4.3",
     "ejs": "^2.5.9",
-    "express": "^4.16.3",
+    "express": "^4.18.2",
     "express-promise-router": "^3.0.1",
     "express-session": "^1.15.6",
     "joi": "^13.1.2",
